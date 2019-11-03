@@ -14,6 +14,7 @@ Welcome to Data Science's documentation!
    :caption: 目录:
 
    README1
+   python/index
 
 
 Indices and tables

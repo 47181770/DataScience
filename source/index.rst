@@ -15,6 +15,7 @@ Welcome to Data Science's documentation!
 
    README1
    python/index
+   R/index
 
 
 Indices and tables
