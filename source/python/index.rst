@@ -10,6 +10,8 @@ Python
    :maxdepth: 2
 
    datastructure.rst
+   oop.rst
+   database.rst
 
 参考资源
 

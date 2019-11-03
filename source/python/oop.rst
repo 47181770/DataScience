@@ -1,46 +1,33 @@
-数据结构
-----------
+面向对象编程
+--------------
 
 
-1. 变量 表达式 语句 语法
+1. 类与对象
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-- **Python 保留字**
+- **类**
 
 -----------------------------------------
 
 .. raw:: html
 
- 1. <a href="http://www.pythondoc.com/flask-restful/first.html">使用 Python 和 Flask 设计 RESTful API</a>
-
-
-
- 2.
  <font color="red">
  import class def and global nonlocal  not
  with as in from return
  if elif else assert pass break continue or yield
  try except finally raise for while lambda is  del</font>
 
-- 元组
 
+- **对象**
 
-- 字典
-
-
-- 表达式
-
-- 语法
-
-2. 函数
+2. 继承、多态
 ~~~~~~~~~~~~~~~~~~~~
 
-- 函数
+- 继承
 
 
-- 字典
+- 多态
 
 
-   <a href="http://www.baidu.com">baidu</a>
 
 
