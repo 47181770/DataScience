@@ -410,7 +410,7 @@ ul.auto-toc {
 <div class="section" id="break-continue-pass">
 <h1>8. break continue pass</h1>
 <ul class="simple">
-<li>break<ul>
+<li><strong>break</strong><ul>
 <li>break语句用在while和for循环中</li>
 <li>打破了最小封闭for或while循环</li>
 <li>break语句用来终止循环语句，即循环条件没有False条件或者还没被完全递归完，也会停止执行循环语句</li>
@@ -419,14 +419,43 @@ ul.auto-toc {
 </li>
 </ul>
 <pre class="code python literal-block">
-<span class="keyword">for</span> <span class="name">i</span> <span class="operator word">in</span> <span class="name builtin">range</span><span class="punctuation">(</span><span class="literal number integer">5</span><span class="punctuation">):</span>
-   <span class="keyword">print</span><span class="punctuation">(</span><span class="literal string double">&quot;---i is--{}---printed--&quot;</span><span class="operator">.</span><span class="name">format</span><span class="punctuation">(</span><span class="name">i</span><span class="punctuation">))</span>
+<span class="keyword">for</span> <span class="name">i</span> <span class="operator word">in</span> <span class="name builtin">range</span><span class="punctuation">(</span><span class="literal number integer">8</span><span class="punctuation">):</span>
+   <span class="keyword">print</span><span class="punctuation">(</span><span class="literal string double">&quot;---i1 is--{}---printed--&quot;</span><span class="operator">.</span><span class="name">format</span><span class="punctuation">(</span><span class="name">i</span><span class="punctuation">))</span>
    <span class="keyword">for</span> <span class="name">j</span> <span class="operator word">in</span> <span class="name builtin">range</span><span class="punctuation">(</span><span class="literal number integer">6</span><span class="punctuation">):</span>
-       <span class="keyword">print</span><span class="punctuation">(</span><span class="literal string double">&quot;-j-{}---printed&quot;</span><span class="operator">.</span><span class="name">format</span><span class="punctuation">(</span><span class="name">j</span><span class="punctuation">))</span>
+       <span class="keyword">print</span><span class="punctuation">(</span><span class="literal string double">&quot;-j1-{}---printed&quot;</span><span class="operator">.</span><span class="name">format</span><span class="punctuation">(</span><span class="name">j</span><span class="punctuation">))</span>
        <span class="keyword">if</span> <span class="name">j</span> <span class="operator">&gt;</span> <span class="literal number integer">3</span><span class="punctuation">:</span>
-           <span class="keyword">print</span><span class="punctuation">(</span><span class="literal string double">&quot;--j-{}---printed&quot;</span><span class="operator">.</span><span class="name">format</span><span class="punctuation">(</span><span class="name">j</span><span class="punctuation">))</span>
+           <span class="keyword">print</span><span class="punctuation">(</span><span class="literal string double">&quot;--j2-{}---printed&quot;</span><span class="operator">.</span><span class="name">format</span><span class="punctuation">(</span><span class="name">j</span><span class="punctuation">))</span>
            <span class="keyword">break</span>
 </pre>
+<div class="line-block">
+<div class="line">执行结果说明: 第一层循环--i1 is-- 5次全部执行完成，第二层for循环执行前5次（值为0-4）执行完，在j &gt;= 4时，因为符合break条件，所以退出次循环</div>
+</div>
+<ul class="simple">
+<li><strong>continue</strong><ul>
+<li>跳出本次循环</li>
+<li>continue 语句用在while和for循环中</li>
+<li>continue 语句跳出本次循环，而break跳出整个循环</li>
+</ul>
+</li>
+</ul>
+<pre class="code python literal-block">
+<span class="keyword">for</span> <span class="name">i</span> <span class="operator word">in</span> <span class="name builtin">range</span><span class="punctuation">(</span><span class="literal number integer">8</span><span class="punctuation">):</span>
+   <span class="keyword">print</span><span class="punctuation">(</span><span class="literal string double">&quot;---i1 is--{}---printed--&quot;</span><span class="operator">.</span><span class="name">format</span><span class="punctuation">(</span><span class="name">i</span><span class="punctuation">))</span>
+   <span class="keyword">for</span> <span class="name">j</span> <span class="operator word">in</span> <span class="name builtin">range</span><span class="punctuation">(</span><span class="literal number integer">6</span><span class="punctuation">):</span>
+       <span class="keyword">print</span><span class="punctuation">(</span><span class="literal string double">&quot;-j1-{}---printed&quot;</span><span class="operator">.</span><span class="name">format</span><span class="punctuation">(</span><span class="name">j</span><span class="punctuation">))</span>
+       <span class="keyword">if</span> <span class="name">j</span> <span class="operator">&gt;</span> <span class="literal number integer">3</span><span class="punctuation">:</span>
+           <span class="keyword">print</span><span class="punctuation">(</span><span class="literal string double">&quot;--j2-{}---printed&quot;</span><span class="operator">.</span><span class="name">format</span><span class="punctuation">(</span><span class="name">j</span><span class="punctuation">))</span>
+           <span class="keyword">continue</span>
+           <span class="keyword">print</span><span class="punctuation">(</span><span class="literal string double">&quot;--j3-{}---printed&quot;</span><span class="operator">.</span><span class="name">format</span><span class="punctuation">(</span><span class="name">j</span><span class="punctuation">))</span>
+
+
+<span class="comment single"># 注意观察i1 j2 j3值在循环中的变化</span>
+</pre>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+执行结果说明: continue退出本次循环，跳过当前循环的剩余语句，然后继续下一轮第一层循环</blockquote>
 </div>
 </div>
 </body>

@@ -230,7 +230,7 @@
 </ul>
 </li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;---i1 is--{}---printed--&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;-j1-{}---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
@@ -239,7 +239,37 @@
            <span class="k">break</span>
 </pre></div>
 </div>
-<p>结果说明: 第一层循环–i1 is– 5次全部执行完成，第二层for循环执行前5次（值为0-4）执行完，在j &gt;= 4时，因为符合bread条件，所以退出次循环</p>
+<div class="line-block">
+<div class="line">执行结果说明: 第一层循环–i1 is– 5次全部执行完成，第二层for循环执行前5次（值为0-4）执行完，在j &gt;= 4时，因为符合break条件，所以退出次循环</div>
+</div>
+<ul class="simple">
+<li><p><strong>continue</strong></p>
+<ul>
+<li><p>跳出本次循环</p></li>
+<li><p>continue 语句用在while和for循环中</p></li>
+<li><p>continue 语句跳出本次循环，而break跳出整个循环</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+   <span class="k">print</span><span class="p">(</span><span class="s2">&quot;---i1 is--{}---printed--&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+   <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+       <span class="k">print</span><span class="p">(</span><span class="s2">&quot;-j1-{}---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
+       <span class="k">if</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
+           <span class="k">print</span><span class="p">(</span><span class="s2">&quot;--j2-{}---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
+           <span class="k">continue</span>
+           <span class="k">print</span><span class="p">(</span><span class="s2">&quot;--j3-{}---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
+
+
+<span class="c1"># 注意观察i1 j2 j3值在循环中的变化</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><p>执行结果说明: continue退出本次循环，跳过当前循环的剩余语句，然后继续下一轮第一层循环</p>
+</div></blockquote>
 </div>
 </div>
 

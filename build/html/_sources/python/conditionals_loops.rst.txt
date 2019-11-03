@@ -64,7 +64,7 @@ Conditionals and Loops 条件循环
 
 .. code:: python
 
- for i in range(5):
+ for i in range(8):
     print("---i1 is--{}---printed--".format(i))
     for j in range(6):
         print("-j1-{}---printed".format(j))
@@ -72,6 +72,29 @@ Conditionals and Loops 条件循环
             print("--j2-{}---printed".format(j))
             break
 
+|
+  执行结果说明: 第一层循环--i1 is-- 5次全部执行完成，第二层for循环执行前5次（值为0-4）执行完，在j >= 4时，因为符合break条件，所以退出次循环
+
+- **continue**
+
+  * 跳出本次循环
+  * continue 语句用在while和for循环中
+  * continue 语句跳出本次循环，而break跳出整个循环
+
+.. code:: python
+
+ for i in range(8):
+    print("---i1 is--{}---printed--".format(i))
+    for j in range(6):
+        print("-j1-{}---printed".format(j))
+        if j > 3:
+            print("--j2-{}---printed".format(j))
+            continue
+            print("--j3-{}---printed".format(j))
 
 
-结果说明: 第一层循环--i1 is-- 5次全部执行完成，第二层for循环执行前5次（值为0-4）执行完，在j >= 4时，因为符合bread条件，所以退出次循环
+ # 注意观察i1 j2 j3值在循环中的变化
+
+|
+
+ 执行结果说明: continue退出本次循环，跳过当前循环的剩余语句，然后继续下一轮第一层循环
