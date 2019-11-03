@@ -187,7 +187,6 @@
    <span class="s1">&#39;执行语句&#39;</span>
 
 
-
 <span class="n">x</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;x is the right number: {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
@@ -215,12 +214,33 @@
 <div class="section" id="forwhile">
 <h2>7. 怎样选择for或while<a class="headerlink" href="#forwhile" title="永久链接至标题">¶</a></h2>
 <ul class="simple">
-<li><p>使用for循环：如果知道开始循环之前执行程序体的最大次数，即确定性迭代</p></li>
-<li><p>使用while循环：不确定性迭代，无法确定执行次数的上限</p></li>
+<li><p>for循环：知道开始循环之前执行程序体的最大次数，是确定性迭代</p></li>
+<li><p>while循环：不确定性迭代，无法确定执行次数的上限</p></li>
 </ul>
 </div>
 <div class="section" id="break-continue-pass">
 <h2>8. break continue pass<a class="headerlink" href="#break-continue-pass" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><p><strong>break</strong></p>
+<ul>
+<li><p>break语句用在while和for循环中</p></li>
+<li><p>打破了最小封闭for或while循环</p></li>
+<li><p>break语句用来终止循环语句，即循环条件没有False条件或者还没被完全递归完，也会停止执行循环语句</p></li>
+<li><p>如果使用的是嵌套循环，break语句在深层嵌套中，则break会停止执行最深层的循环，并开始执行下一行代码</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>for i in range(5):
+   print(&quot;---i1 is--{}---printed--&quot;.format(i))
+   for j in range(6):
+       print(&quot;-j1-{}---printed&quot;.format(j))
+       if j &gt; 3:
+           print(&quot;--j2-{}---printed&quot;.format(j))
+           break
+
+结果说明: 第一层循环--i1 is-- 5次全部执行完成，第二层for循环执行前5次（值为0-4）执行完，在j &gt;= 4时，因为符合bread条件，所以退出次循环
+</pre></div>
+</div>
 </div>
 </div>
 

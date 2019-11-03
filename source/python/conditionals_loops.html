@@ -368,15 +368,20 @@ ul.auto-toc {
 <ul class="simple">
 <li>if语句</li>
 </ul>
+<blockquote>
+如果满足条件，则执行程序，否则退出:</blockquote>
 <pre class="code python literal-block">
 <span class="keyword">if</span> <span class="punctuation">(</span><span class="literal string single">'条件表达式为True'</span><span class="punctuation">):</span>
    <span class="literal string single">'执行语句'</span>
-
+<span class="keyword">else</span><span class="punctuation">:</span>
+   <span class="literal string single">'执行语句'</span>
 
 
 <span class="name">x</span> <span class="operator">=</span> <span class="literal number integer">3</span>
 <span class="keyword">if</span> <span class="name">x</span> <span class="operator">==</span> <span class="literal number integer">3</span><span class="punctuation">:</span>
    <span class="keyword">print</span><span class="punctuation">(</span><span class="literal string single">'x is the right number: {}'</span><span class="operator">.</span><span class="name">format</span><span class="punctuation">(</span><span class="name">x</span><span class="punctuation">))</span>
+<span class="keyword">else</span><span class="punctuation">:</span>
+   <span class="keyword">print</span><span class="punctuation">(</span><span class="literal string single">'x is the wrong number: {}'</span><span class="operator">.</span><span class="name">format</span><span class="punctuation">(</span><span class="name">x</span><span class="punctuation">))</span>
 <span class="comment single">#输出: x is the right number: 3</span>
 </pre>
 </div>
@@ -398,12 +403,30 @@ ul.auto-toc {
 <div class="section" id="forwhile">
 <h1>7. 怎样选择for或while</h1>
 <ul class="simple">
-<li>使用for循环：如果知道开始循环之前执行程序体的最大次数，即确定性迭代</li>
-<li>使用while循环：不确定性迭代，无法确定执行次数的上限</li>
+<li>for循环：知道开始循环之前执行程序体的最大次数，是确定性迭代</li>
+<li>while循环：不确定性迭代，无法确定执行次数的上限</li>
 </ul>
 </div>
 <div class="section" id="break-continue-pass">
 <h1>8. break continue pass</h1>
+<ul class="simple">
+<li>break<ul>
+<li>break语句用在while和for循环中</li>
+<li>打破了最小封闭for或while循环</li>
+<li>break语句用来终止循环语句，即循环条件没有False条件或者还没被完全递归完，也会停止执行循环语句</li>
+<li>如果使用的是嵌套循环，break语句在深层嵌套中，则break会停止执行最深层的循环，并开始执行下一行代码</li>
+</ul>
+</li>
+</ul>
+<pre class="code python literal-block">
+<span class="keyword">for</span> <span class="name">i</span> <span class="operator word">in</span> <span class="name builtin">range</span><span class="punctuation">(</span><span class="literal number integer">5</span><span class="punctuation">):</span>
+   <span class="keyword">print</span><span class="punctuation">(</span><span class="literal string double">&quot;---i is--{}---printed--&quot;</span><span class="operator">.</span><span class="name">format</span><span class="punctuation">(</span><span class="name">i</span><span class="punctuation">))</span>
+   <span class="keyword">for</span> <span class="name">j</span> <span class="operator word">in</span> <span class="name builtin">range</span><span class="punctuation">(</span><span class="literal number integer">6</span><span class="punctuation">):</span>
+       <span class="keyword">print</span><span class="punctuation">(</span><span class="literal string double">&quot;-j-{}---printed&quot;</span><span class="operator">.</span><span class="name">format</span><span class="punctuation">(</span><span class="name">j</span><span class="punctuation">))</span>
+       <span class="keyword">if</span> <span class="name">j</span> <span class="operator">&gt;</span> <span class="literal number integer">3</span><span class="punctuation">:</span>
+           <span class="keyword">print</span><span class="punctuation">(</span><span class="literal string double">&quot;--j-{}---printed&quot;</span><span class="operator">.</span><span class="name">format</span><span class="punctuation">(</span><span class="name">j</span><span class="punctuation">))</span>
+           <span class="keyword">break</span>
+</pre>
 </div>
 </div>
 </body>
