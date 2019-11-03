@@ -1,31 +1,40 @@
 数据结构
 ----------
 
-- 变量 表达式 语句 
 
-  + 保留字
+1. 变量 表达式 语句 语法
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
- and del global not with as if elif or yield assert else import pass
- break continue try except finally in raise class for while lambda is 
- return def from nonlocal
+- **Python 保留字**
 
-- 函数
+-----------------------------------------
 
+.. raw:: html
+
+ <font color="red">
+ import class def and global nonlocal  not
+ with as in from return
+ if elif else assert pass break continue or yield
+ try except finally raise for while lambda is  del</font>
 
 - 元组
- 
+
 
 - 字典
 
 
-.. raw:: html
+- 表达式
 
- <div>
- <div class="ui steps">
- <div class="step">撰写 markup 文件</div>
- <div class="active step">添加 meta 信息</div>
- <div class="disabled step">提交 GitHub</div>
- </div>
+- 语法
+
+2. 函数
+~~~~~~~~~~~~~~~~~~~~
+
+- 函数
+
+
+- 字典
+
 
    <a href="http://www.baidu.com">baidu</a>
 
