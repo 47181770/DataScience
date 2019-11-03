@@ -13,12 +13,16 @@ Conditionals and Loops 条件循环
 
  if ('条件表达式为True'):
     '执行语句'
+ else:
+    '执行语句'
 
 
 
  x = 3
  if x == 3:
     print('x is the right number: {}'.format(x))
+ else:
+    print('x is the wrong number: {}'.format(x))
  #输出: x is the right number: 3
 
 2. 多条件执行
