@@ -17,6 +17,7 @@
 
 2. 变量命名
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Python需要使用**合法**标识符给变量命名，标识符就是用于给程序中变量、类、方法命名的符号
 
 - **Python 保留字**
 
@@ -33,9 +34,29 @@
  try except finally raise for while lambda is  del</font>
 
 
+关键字列表随时查：
+
+.. code:: python
+
+ #导入keyword 模块
+ import keyword
+ #显示所有关键字
+ keyword.kwlist
+ ['False', 'None', 'True', 'and', 'as', 'assert', 'break', 'class', 'continue', 'def', 'del', 'elif', 'else', 'except', 'finally', 'for', 'from', 'global', 'if', 'import', 'in', 'is', 'lambda', 'nonlocal', 'not', 'or', 'pass', 'raise', 'return', 'try', 'while', 'with', 'yield']
+
 - 对命名的PEP 8要求与硬性规则
-  1 PEP 8:
-  # 硬性
+
+  1. PEP 8:
+
+     a. 用小写字母拼写，多个单词用下划线连接
+     b. 受保护的实例属性用**单个下划线**开头
+     c. 私有的实例属性用**两个下划线**开头
+
+  2. 硬性规则:
+
+     a. 变量名由字母（广义的**Unicode字符**，不包括特殊字符）、数字和下划线构成，数字不能开头
+     b. 大小写**敏感**
+     c. 与关键字（有特殊含义的单词）和系统保留字（如函数、模块等的名字）**不冲突**
 
 3. 变量使用
 ~~~~~~~~~~~~~~~~~~~~~~~

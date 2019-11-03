@@ -365,10 +365,21 @@ ul.auto-toc {
 
 <div class="section" id="id2">
 <h1>1. 变量和类型</h1>
-<p>变量是一种存储数据的载体。计算机中的变量是实际存在的数据或者说是存储器中存储数据的一块内存空间，变量的值可以被读取和修改，这是所有计算和控制的基础。计算机能处理的数据有很多种类型，除了数值之外还可以处理文本、图形、音频、视频等各种各样的数据，那么不同的数据就需要定义不同的存储类型。Python中的数据类型很多，而且也允许我们自定义新的数据类型</p>
+<p>变量是一种存储数据的载体。计算机中的变量是实际存在的数据或者说是存储器中存储数据的一块内存空间，变量的值可以被读取和修改，这是所有计算和控制的基础。计算机能处理的数据有很多种类型，除了数值之外还可以处理文本、图形、音频、视频等各种各样的数据，那么不同的数据就需要定义不同的存储类型。Python中的数据类型很多，而且也允许我们自定义新的数据类型，如下为我们常用的Python数据类型</p>
+<blockquote>
+<ul class="simple">
+<li>整形</li>
+<li>浮点型</li>
+<li>字符串型</li>
+<li>布尔型</li>
+<li>复数型</li>
+</ul>
+</blockquote>
+<p>变量的使用：</p>
 </div>
 <div class="section" id="id3">
 <h1>2. 变量命名</h1>
+<p>Python需要使用**合法**标识符给变量命名，标识符就是用于给程序中变量、类、方法命名的符号</p>
 <ul class="simple">
 <li><strong>Python 保留字</strong></li>
 </ul>
@@ -378,9 +389,48 @@ ul.auto-toc {
 import class def and global nonlocal  not
 with as in from return
 if elif else assert pass break continue or yield
-try except finally raise for while lambda is  del</font></div>
+try except finally raise for while lambda is  del</font><p>关键字列表随时查：</p>
+<pre class="code python literal-block">
+<span class="comment single">#导入keyword 模块</span>
+<span class="keyword namespace">import</span> <span class="name namespace">keyword</span>
+<span class="comment single">#显示所有关键字</span>
+<span class="name">keyword</span><span class="operator">.</span><span class="name">kwlist</span>
+<span class="punctuation">[</span><span class="literal string single">'False'</span><span class="punctuation">,</span> <span class="literal string single">'None'</span><span class="punctuation">,</span> <span class="literal string single">'True'</span><span class="punctuation">,</span> <span class="literal string single">'and'</span><span class="punctuation">,</span> <span class="literal string single">'as'</span><span class="punctuation">,</span> <span class="literal string single">'assert'</span><span class="punctuation">,</span> <span class="literal string single">'break'</span><span class="punctuation">,</span> <span class="literal string single">'class'</span><span class="punctuation">,</span> <span class="literal string single">'continue'</span><span class="punctuation">,</span> <span class="literal string single">'def'</span><span class="punctuation">,</span> <span class="literal string single">'del'</span><span class="punctuation">,</span> <span class="literal string single">'elif'</span><span class="punctuation">,</span> <span class="literal string single">'else'</span><span class="punctuation">,</span> <span class="literal string single">'except'</span><span class="punctuation">,</span> <span class="literal string single">'finally'</span><span class="punctuation">,</span> <span class="literal string single">'for'</span><span class="punctuation">,</span> <span class="literal string single">'from'</span><span class="punctuation">,</span> <span class="literal string single">'global'</span><span class="punctuation">,</span> <span class="literal string single">'if'</span><span class="punctuation">,</span> <span class="literal string single">'import'</span><span class="punctuation">,</span> <span class="literal string single">'in'</span><span class="punctuation">,</span> <span class="literal string single">'is'</span><span class="punctuation">,</span> <span class="literal string single">'lambda'</span><span class="punctuation">,</span> <span class="literal string single">'nonlocal'</span><span class="punctuation">,</span> <span class="literal string single">'not'</span><span class="punctuation">,</span> <span class="literal string single">'or'</span><span class="punctuation">,</span> <span class="literal string single">'pass'</span><span class="punctuation">,</span> <span class="literal string single">'raise'</span><span class="punctuation">,</span> <span class="literal string single">'return'</span><span class="punctuation">,</span> <span class="literal string single">'try'</span><span class="punctuation">,</span> <span class="literal string single">'while'</span><span class="punctuation">,</span> <span class="literal string single">'with'</span><span class="punctuation">,</span> <span class="literal string single">'yield'</span><span class="punctuation">]</span>
+</pre>
+<ul>
+<li><p class="first">对命名的PEP 8要求与硬性规则
+1. PEP 8:</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>用小写字母拼写，多个单词用下划线连接</li>
+<li>受保护的实例属性用**单个下划线**开头</li>
+<li>私有的实例属性用**两个下划线**开头</li>
+</ol>
+</blockquote>
+<ol class="arabic simple" start="2">
+<li>硬性规则:<ol class="loweralpha">
+<li>变量名由字母（广义的**Unicode字符**，不包括特殊字符）、数字和下划线构成，数字不能开头</li>
+<li>大小写**敏感**</li>
+<li>与关键字（有特殊含义的单词）和系统保留字（如函数、模块等的名字）**不冲突**</li>
+</ol>
+</li>
+</ol>
+</li>
+</ul>
+</div>
 <div class="section" id="id4">
-<h1>3. 字符串与常用数据结构</h1>
+<h1>3. 变量使用</h1>
+<ul class="simple">
+<li>变量使用</li>
+<li>变量转换</li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h1>4. 运算符</h1>
+<p>加减乘除等</p>
+</div>
+<div class="section" id="id6">
+<h1>5. 字符串与常用数据结构</h1>
 <blockquote>
 <ol class="arabic simple">
 <li>列表</li>
