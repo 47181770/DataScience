@@ -98,3 +98,9 @@ Conditionals and Loops 条件循环
 |
 
  执行结果说明: continue退出本次循环，跳过当前循环的剩余语句，然后继续下一轮第一层循环
+
+参考：
+   1. Python 条件语句与循环，`Conditionals_and_Loops`_
+
+.. _Conditionals_and_Loops: http://www.openbookproject.net/books/bpp4awd/ch04.html#conditionals-and-loops
+
