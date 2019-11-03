@@ -384,7 +384,10 @@ ul.auto-toc {
 <li><strong>Python 保留字</strong></li>
 </ul>
 <hr class="docutils" />
-<p>如下为Python保留字，不能用于变量、函数等对象名字。</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">如下为Python保留字，不能用于变量、函数等对象名字。</p>
+</div>
 <font color="red">
 import class def and global nonlocal  not
 with as in from return
@@ -394,6 +397,8 @@ try except finally raise for while lambda is  del</font><p>关键字列表随时
 <span class="comment single">#导入keyword 模块</span>
 <span class="keyword namespace">import</span> <span class="name namespace">keyword</span>
 <span class="comment single">#显示所有关键字</span>
+<span class="keyword">print</span><span class="punctuation">(</span><span class="name builtin">type</span><span class="punctuation">(</span><span class="name">keyword</span><span class="operator">.</span><span class="name">kwlist</span><span class="punctuation">))</span>
+<span class="comment single"># 返回list</span>
 <span class="name">keyword</span><span class="operator">.</span><span class="name">kwlist</span>
 <span class="punctuation">[</span><span class="literal string single">'False'</span><span class="punctuation">,</span> <span class="literal string single">'None'</span><span class="punctuation">,</span> <span class="literal string single">'True'</span><span class="punctuation">,</span> <span class="literal string single">'and'</span><span class="punctuation">,</span> <span class="literal string single">'as'</span><span class="punctuation">,</span> <span class="literal string single">'assert'</span><span class="punctuation">,</span> <span class="literal string single">'break'</span><span class="punctuation">,</span> <span class="literal string single">'class'</span><span class="punctuation">,</span> <span class="literal string single">'continue'</span><span class="punctuation">,</span> <span class="literal string single">'def'</span><span class="punctuation">,</span> <span class="literal string single">'del'</span><span class="punctuation">,</span> <span class="literal string single">'elif'</span><span class="punctuation">,</span> <span class="literal string single">'else'</span><span class="punctuation">,</span> <span class="literal string single">'except'</span><span class="punctuation">,</span> <span class="literal string single">'finally'</span><span class="punctuation">,</span> <span class="literal string single">'for'</span><span class="punctuation">,</span> <span class="literal string single">'from'</span><span class="punctuation">,</span> <span class="literal string single">'global'</span><span class="punctuation">,</span> <span class="literal string single">'if'</span><span class="punctuation">,</span> <span class="literal string single">'import'</span><span class="punctuation">,</span> <span class="literal string single">'in'</span><span class="punctuation">,</span> <span class="literal string single">'is'</span><span class="punctuation">,</span> <span class="literal string single">'lambda'</span><span class="punctuation">,</span> <span class="literal string single">'nonlocal'</span><span class="punctuation">,</span> <span class="literal string single">'not'</span><span class="punctuation">,</span> <span class="literal string single">'or'</span><span class="punctuation">,</span> <span class="literal string single">'pass'</span><span class="punctuation">,</span> <span class="literal string single">'raise'</span><span class="punctuation">,</span> <span class="literal string single">'return'</span><span class="punctuation">,</span> <span class="literal string single">'try'</span><span class="punctuation">,</span> <span class="literal string single">'while'</span><span class="punctuation">,</span> <span class="literal string single">'with'</span><span class="punctuation">,</span> <span class="literal string single">'yield'</span><span class="punctuation">]</span>
 </pre>
@@ -401,16 +406,20 @@ try except finally raise for while lambda is  del</font><p>关键字列表随时
 <li>对命名的PEP 8要求与硬性规则<ol class="arabic">
 <li>PEP 8:<ol class="loweralpha">
 <li>用小写字母拼写，多个单词用下划线连接</li>
+<li>受保护的实例属性用单个下划线开头</li>
+<li>私有的实例属性用两个下划线开头</li>
+</ol>
+</li>
+<li>硬性规则:<ol class="loweralpha">
+<li>变量名由字母（广义的Unicode字符，不包括特殊字符）、数字和下划线构成，数字不能开头</li>
+<li>大小写敏感</li>
+<li>与关键字（有特殊含义的单词）和系统保留字（如函数、模块等的名字）不冲突</li>
 </ol>
 </li>
 </ol>
 </li>
 </ul>
-2. 硬性规则:
-
-   a. 变量名由字母（广义的**Unicode字符**，不包括特殊字符）、数字和下划线构成，数字不能开头
-   b. 大小写**敏感**
-   c. 与关键字（有特殊含义的单词）和系统保留字（如函数、模块等的名字）**不冲突**</div>
+</div>
 <div class="section" id="id4">
 <h1>3. 变量使用</h1>
 <ul class="simple">

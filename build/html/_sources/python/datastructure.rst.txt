@@ -23,7 +23,8 @@ Python需要使用**合法**标识符给变量命名，标识符就是用于给�
 
 -----------------------------------------
 
-如下为Python保留字，不能用于变量、函数等对象名字。
+.. tip::
+ 如下为Python保留字，不能用于变量、函数等对象名字。
 
 .. raw:: html
 
@@ -34,6 +35,7 @@ Python需要使用**合法**标识符给变量命名，标识符就是用于给�
  try except finally raise for while lambda is  del</font>
 
 
+
 关键字列表随时查：
 
 .. code:: python
@@ -42,7 +44,7 @@ Python需要使用**合法**标识符给变量命名，标识符就是用于给�
  import keyword
  #显示所有关键字
  print(type(keyword.kwlist))
- <class 'list'>
+ # 返回list
  keyword.kwlist
  ['False', 'None', 'True', 'and', 'as', 'assert', 'break', 'class', 'continue', 'def', 'del', 'elif', 'else', 'except', 'finally', 'for', 'from', 'global', 'if', 'import', 'in', 'is', 'lambda', 'nonlocal', 'not', 'or', 'pass', 'raise', 'return', 'try', 'while', 'with', 'yield']
 
