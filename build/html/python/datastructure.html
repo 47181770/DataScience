@@ -239,6 +239,7 @@ try except finally raise for while lambda is  del</font><div class="line-block">
 <div class="line"><br /></div>
 </div>
 </div>
+<hr class="docutils" />
 <div class="section" id="id4">
 <h2>3. 变量使用<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
 <ul class="simple">
@@ -274,14 +275,15 @@ try except finally raise for while lambda is  del</font><div class="line-block">
 </div></blockquote>
 </div></blockquote>
 </div>
+<hr class="docutils" />
 <div class="section" id="id5">
 <h2>4. 运算符<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
 <p>Python支持多种运算符（如：加减乘除等），下表大致按照优先级从高到低的顺序列出了所有的运算符</p>
 <blockquote>
 <div><table class="docutils align-default">
 <colgroup>
-<col style="width: 22%" />
-<col style="width: 78%" />
+<col style="width: 25%" />
+<col style="width: 75%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>运算符</p></th>
@@ -298,15 +300,42 @@ try except finally raise for while lambda is  del</font><div class="line-block">
 <tr class="row-even"><td><p><cite>~ + -</cite></p></td>
 <td><p>按位取反, 正负号</p></td>
 </tr>
+<tr class="row-odd"><td><p><cite>+ - * / % //</cite></p></td>
+<td><p>加，减，乘，除，模，整除</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>&gt;&gt; &lt;&lt;</cite></p></td>
+<td><p>右移，左移</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>&amp; ^ |</cite></p></td>
+<td><p>按位与, 按位异或，按位或</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>&lt;= &lt; &gt; &gt;= == !=</cite></p></td>
+<td><p>小于等于，小于，大于，大于等于，等于，不等于</p></td>
+</tr>
+<tr class="row-odd"><td><p>is is not</p></td>
+<td><p>身份运算符</p></td>
+</tr>
+<tr class="row-even"><td><p>in not in</p></td>
+<td><p>成员运算符</p></td>
+</tr>
+<tr class="row-odd"><td><p>not or and</p></td>
+<td><p>逻辑运算符</p></td>
+</tr>
 </tbody>
 </table>
 </div></blockquote>
+<blockquote>
+<div><p>说明： 在实际开发中，如果搞不清楚运算符的优先级，可以使用括号来确保运算的执行顺序。</p>
+</div></blockquote>
 </div>
+<hr class="docutils" />
 <div class="section" id="id6">
 <h2>5. 字符串与常用数据结构<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
+<p><strong>字符串</strong>，就是由零个或多个字符组成的有限序列，在Python程序中，如果我们把单个或多个字符用单引号或者双引号包围起来，就可以表示一个字符串。</p>
 <blockquote>
 <div><ol class="arabic simple">
 <li><p>列表</p></li>
+<li><p>生成式和生成器</p></li>
 <li><p>元组</p></li>
 <li><p>字典</p></li>
 <li><p>集合</p></li>
