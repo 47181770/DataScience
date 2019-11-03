@@ -16,6 +16,9 @@ Welcome to Data Science's documentation!
    README1
    python/index
    R/index
+   machinelearning/index
+   businessanalysis/index
+   managementmodel/index
 
 
 Indices and tables
