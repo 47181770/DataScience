@@ -9,16 +9,29 @@
 
 -----------------------------------------
 
+
 - **数据库操作**
+
+-----------------------------------------
 
 - ** Python RESTful API 与Oracle APEX **
 
-参考链接：
 
-.. raw:: html
+-------------------------------------------
 
- <a href="http://www.pythondoc.com/flask-restful/first.html">使用 Python 和 Flask 设计 RESTful API</a>
+参考：
+ 
+ 1. 使用 Python 和 Flask 设计 RESTful API, `link_flask`_
+ 2. 使用Oracle APEX与Flask RESTful API集成, `link_oracleApex_RESTful`_
 
+
+.. _link_flask: http://www.pythondoc.com/flask-restful/first.html
+
+.. _link_oracleApex_RESTful: https://www.oracle.com/technetwork/cn/articles/dsl/mastering-oracle-python-soa-1391432-zhs.html
+
+     <a href="http://www.pythondoc.com/flask-restful/first.html">使用 Python 和 Flask 设计 RESTful API</a>
+
+ 2. <a href="https://www.oracle.com/technetwork/cn/articles/dsl/mastering-oracle-python-soa-1391432-zhs.html">使用Oracle APEX与Flask RESTful API集成</a>
 
 2. MySQL数据库编程
 ~~~~~~~~~~~~~~~~~~~~
