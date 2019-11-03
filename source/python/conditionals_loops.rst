@@ -61,6 +61,7 @@ Conditionals and Loops 条件循环
   * break语句用来终止循环语句，即循环条件没有False条件或者还没被完全递归完，也会停止执行循环语句
   * 如果使用的是嵌套循环，break语句在深层嵌套中，则break会停止执行最深层的循环，并开始执行下一行代码
 
+
 .. code:: python
 
  for i in range(5):
@@ -71,4 +72,6 @@ Conditionals and Loops 条件循环
             print("--j2-{}---printed".format(j))
             break
 
- 结果说明: 第一层循环--i1 is-- 5次全部执行完成，第二层for循环执行前5次（值为0-4）执行完，在j >= 4时，因为符合bread条件，所以退出次循环
+
+
+结果说明: 第一层循环--i1 is-- 5次全部执行完成，第二层for循环执行前5次（值为0-4）执行完，在j >= 4时，因为符合bread条件，所以退出次循环
