@@ -41,6 +41,8 @@ Python需要使用**合法**标识符给变量命名，标识符就是用于给�
  #导入keyword 模块
  import keyword
  #显示所有关键字
+ print(type(keyword.kwlist))
+ <class 'list'>
  keyword.kwlist
  ['False', 'None', 'True', 'and', 'as', 'assert', 'break', 'class', 'continue', 'def', 'del', 'elif', 'else', 'except', 'finally', 'for', 'from', 'global', 'if', 'import', 'in', 'is', 'lambda', 'nonlocal', 'not', 'or', 'pass', 'raise', 'return', 'try', 'while', 'with', 'yield']
 
@@ -49,14 +51,14 @@ Python需要使用**合法**标识符给变量命名，标识符就是用于给�
   1. PEP 8:
 
      a. 用小写字母拼写，多个单词用下划线连接
-     b. 受保护的实例属性用**单个下划线**开头
-     c. 私有的实例属性用**两个下划线**开头
+     b. 受保护的实例属性用单个下划线开头
+     c. 私有的实例属性用两个下划线开头
 
   2. 硬性规则:
 
-     a. 变量名由字母（广义的**Unicode字符**，不包括特殊字符）、数字和下划线构成，数字不能开头
-     b. 大小写**敏感**
-     c. 与关键字（有特殊含义的单词）和系统保留字（如函数、模块等的名字）**不冲突**
+     a. 变量名由字母（广义的Unicode字符，不包括特殊字符）、数字和下划线构成，数字不能开头
+     b. 大小写敏感
+     c. 与关键字（有特殊含义的单词）和系统保留字（如函数、模块等的名字）不冲突
 
 3. 变量使用
 ~~~~~~~~~~~~~~~~~~~~~~~
