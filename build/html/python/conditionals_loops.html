@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>数据库编程 &mdash; Data Science 0.2 文档</title>
+  <title>Conditionals and Loops 条件循环 &mdash; Data Science 0.2 文档</title>
   
 
   
@@ -36,8 +36,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜索" href="../search.html" />
-    <link rel="next" title="R" href="../R/index.html" />
-    <link rel="prev" title="面向对象编程" href="oop.html" /> 
+    <link rel="next" title="面向对象编程" href="oop.html" />
+    <link rel="prev" title="数据结构" href="datastructure.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -86,15 +86,19 @@
 <li class="toctree-l1"><a class="reference internal" href="../README1.html">Data Science数据科学路线图</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Python</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="datastructure.html">数据结构</a></li>
-<li class="toctree-l2"><a class="reference internal" href="conditionals_loops.html">Conditionals and Loops 条件循环</a></li>
-<li class="toctree-l2"><a class="reference internal" href="oop.html">面向对象编程</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">数据库编程</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#oracle">1. Oracle数据库编程</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mysql">2. MySQL数据库编程</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#influxdb">3. Influxdb时序数据库编程</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#python-for-hadoop">4. Python for Hadoop数据库编程</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Conditionals and Loops 条件循环</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">1. 条件执行</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">2. 多条件执行</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">3. 嵌套条件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#loop">4. 循环Loop</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tables">5. Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#while">6. While语句</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#forwhile">7. 怎样选择for或while</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#break-continue-pass">8. break continue pass</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="oop.html">面向对象编程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database.html">数据库编程</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../R/index.html">R</a></li>
@@ -148,13 +152,13 @@
         
           <li><a href="index.html">Python</a> &raquo;</li>
         
-      <li>数据库编程</li>
+      <li>Conditionals and Loops 条件循环</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/python/database.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/python/conditionals_loops.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -167,52 +171,52 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="id1">
-<h1>数据库编程<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
-<div class="section" id="oracle">
-<h2>1. Oracle数据库编程<a class="headerlink" href="#oracle" title="永久链接至标题">¶</a></h2>
+  <div class="section" id="conditionals-and-loops">
+<h1>Conditionals and Loops 条件循环<a class="headerlink" href="#conditionals-and-loops" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id1">
+<h2>1. 条件执行<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
 <ul class="simple">
-<li><p><strong>数据库连接</strong></p></li>
+<li><p>if语句</p></li>
 </ul>
-<hr class="docutils" />
-<ul class="simple">
-<li><p><strong>数据库操作</strong></p></li>
-</ul>
-<hr class="docutils" />
-<ul class="simple">
-<li><p><strong>Python RESTful API 与Oracle APEX</strong></p></li>
-</ul>
-<hr class="docutils" />
-<p>参考：</p>
 <blockquote>
-<div><ol class="arabic simple">
-<li><p>使用 Python 和 Flask 设计 RESTful API, <a class="reference external" href="http://www.pythondoc.com/flask-restful/first.html">flask_RESTfulAPI</a></p></li>
-<li><p>使用Oracle APEX与Flask RESTful API集成, <a class="reference external" href="https://www.oracle.com/technetwork/cn/articles/dsl/mastering-oracle-python-soa-1391432-zhs.html">oracleApex_RESTful_Integration</a></p></li>
-</ol>
+<div><p>如果满足条件，则执行程序，否则退出:</p>
 </div></blockquote>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="s1">&#39;条件表达式为True&#39;</span><span class="p">):</span>
+   <span class="s1">&#39;执行语句&#39;</span>
+
+
+
+<span class="n">x</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+   <span class="k">print</span><span class="p">(</span><span class="s1">&#39;x is the right number: {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="c1">#输出: x is the right number: 3</span>
+</pre></div>
 </div>
-<div class="section" id="mysql">
-<h2>2. MySQL数据库编程<a class="headerlink" href="#mysql" title="永久链接至标题">¶</a></h2>
+</div>
+<div class="section" id="id2">
+<h2>2. 多条件执行<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+</div>
+<div class="section" id="id3">
+<h2>3. 嵌套条件<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+</div>
+<div class="section" id="loop">
+<h2>4. 循环Loop<a class="headerlink" href="#loop" title="永久链接至标题">¶</a></h2>
+</div>
+<div class="section" id="tables">
+<h2>5. Tables<a class="headerlink" href="#tables" title="永久链接至标题">¶</a></h2>
+</div>
+<div class="section" id="while">
+<h2>6. While语句<a class="headerlink" href="#while" title="永久链接至标题">¶</a></h2>
+</div>
+<div class="section" id="forwhile">
+<h2>7. 怎样选择for或while<a class="headerlink" href="#forwhile" title="永久链接至标题">¶</a></h2>
 <ul class="simple">
-<li><p><strong>数据库连接</strong></p></li>
-<li><p><strong>数据库操作</strong></p></li>
+<li><p>使用for循环：如果知道开始循环之前执行程序体的最大次数，即确定性迭代</p></li>
+<li><p>使用while循环：不确定性迭代，无法确定执行次数的上限</p></li>
 </ul>
 </div>
-<div class="section" id="influxdb">
-<h2>3. Influxdb时序数据库编程<a class="headerlink" href="#influxdb" title="永久链接至标题">¶</a></h2>
-<ul class="simple">
-<li><p><strong>数据库连接</strong></p></li>
-<li><p><strong>数据库操作</strong></p></li>
-<li><p><strong>Granfana与Influxdb</strong></p></li>
-</ul>
-</div>
-<div class="section" id="python-for-hadoop">
-<h2>4. Python for Hadoop数据库编程<a class="headerlink" href="#python-for-hadoop" title="永久链接至标题">¶</a></h2>
-<ul class="simple">
-<li><p><strong>数据库连接</strong></p></li>
-<li><p><strong>数据库操作</strong></p></li>
-<li><p><strong>Hadoop 与Apache Kylin</strong></p></li>
-</ul>
+<div class="section" id="break-continue-pass">
+<h2>8. break continue pass<a class="headerlink" href="#break-continue-pass" title="永久链接至标题">¶</a></h2>
 </div>
 </div>
 
@@ -224,10 +228,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../R/index.html" class="btn btn-neutral float-right" title="R" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="oop.html" class="btn btn-neutral float-right" title="面向对象编程" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="oop.html" class="btn btn-neutral float-left" title="面向对象编程" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="datastructure.html" class="btn btn-neutral float-left" title="数据结构" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

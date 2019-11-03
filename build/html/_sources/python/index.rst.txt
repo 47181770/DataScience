@@ -10,8 +10,10 @@ Python
    :maxdepth: 2
 
    datastructure.rst
+   conditionals_loops.rst
    oop.rst
    database.rst
+
 
 参考资源
 
