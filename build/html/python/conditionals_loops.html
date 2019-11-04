@@ -94,7 +94,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#tables">5. 生成Tables</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#while">6. While语句</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#forwhile">7. 怎样选择for或while</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#break-continue-pass">8. break continue pass</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#break-continue-pass-exit">8. break continue pass exit()</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="oop.html">面向对象编程</a></li>
@@ -198,10 +198,7 @@
 </div>
 <div class="section" id="id2">
 <h2>2. 多条件执行<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
-<dl class="simple">
-<dt>参考如下多条件样例链式条件Chained conditionals:</dt><dd><p>如果满足条件，则执行程序并退出:</p>
-</dd>
-</dl>
+<p>参考如下多条件样例链式条件Chained conditionals:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;请输入一个字母:&quot;</span><span class="p">)</span>
 <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;a&#39;</span><span class="p">:</span>
     <span class="k">print</span><span class="p">(</span><span class="s1">&#39;输入的字母为:a&#39;</span><span class="p">)</span>
@@ -216,7 +213,7 @@
 </div>
 <div class="section" id="id3">
 <h2>3. 嵌套条件<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
-<p>参考如下多条件样例二嵌套条件Nested conditionals:</p>
+<p>参考如下多条件样例嵌套条件Nested conditionals:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span><span class="p">:</span>
     <span class="n">STATEMENTS_A</span>
 <span class="k">else</span><span class="p">:</span>
@@ -277,8 +274,8 @@
 <li><p>while循环：不确定性迭代，无法确定执行次数的上限</p></li>
 </ul>
 </div>
-<div class="section" id="break-continue-pass">
-<h2>8. break continue pass<a class="headerlink" href="#break-continue-pass" title="永久链接至标题">¶</a></h2>
+<div class="section" id="break-continue-pass-exit">
+<h2>8. break continue pass exit()<a class="headerlink" href="#break-continue-pass-exit" title="永久链接至标题">¶</a></h2>
 <ul class="simple">
 <li><p><strong>break</strong></p>
 <ul>
@@ -329,6 +326,42 @@
 <blockquote>
 <div><p>执行结果说明: continue退出本次循环，跳过当前循环的剩余语句，然后继续下一轮第一层循环</p>
 </div></blockquote>
+<ul class="simple">
+<li><p><strong>pass</strong></p>
+<ul>
+<li><p>什么都不做， do nothing</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;---i1 is--{}---printed--&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;-j1-{}---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;--j2-{}---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
+            <span class="k">pass</span>
+            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;--j3-{}---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>– <strong>exit()</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>结束整个程序</p></li>
+</ul>
+</div></blockquote>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;---i1 is--{}---printed--&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;-j1-{}---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;--j2-{}---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
+            <span class="nb">exit</span><span class="p">()</span>
+            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;--j3-{}---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <dl class="simple">
 <dt>参考：</dt><dd><ol class="arabic simple">
 <li><p>Python 条件语句与循环，<a class="reference external" href="http://www.openbookproject.net/books/bpp4awd/ch04.html#conditionals-and-loops">Conditionals_and_Loops</a></p></li>

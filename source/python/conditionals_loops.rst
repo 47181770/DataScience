@@ -27,8 +27,8 @@ Conditionals and Loops 条件循环
 2. 多条件执行
 ~~~~~~~~~~~~~~
 
+
 参考如下多条件样例链式条件Chained conditionals:
- 如果满足条件，则执行程序并退出:
 
 .. code:: python
 
@@ -48,7 +48,7 @@ Conditionals and Loops 条件循环
 ~~~~~~~~~~~~~~~~~~~
 
 
-参考如下多条件样例二嵌套条件Nested conditionals:
+参考如下多条件样例嵌套条件Nested conditionals:
 
 .. code:: python
 
@@ -118,7 +118,7 @@ Conditionals and Loops 条件循环
 - while循环：不确定性迭代，无法确定执行次数的上限
 
 
-8. break continue pass
+8. break continue pass exit()
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - **break**
@@ -165,6 +165,40 @@ Conditionals and Loops 条件循环
 |
 
  执行结果说明: continue退出本次循环，跳过当前循环的剩余语句，然后继续下一轮第一层循环
+
+
+- **pass**
+
+  * 什么都不做， do nothing
+
+.. code:: python
+
+ for i in range(6):
+     print("---i1 is--{}---printed--".format(i))
+     for j in range(6):
+         print("-j1-{}---printed".format(j))
+         if j > 3:
+             print("--j2-{}---printed".format(j))
+             pass
+             print("--j3-{}---printed".format(j))
+
+
+-- **exit()**
+
+   * 结束整个程序
+
+.. code:: python
+
+ for i in range(6):
+     print("---i1 is--{}---printed--".format(i))
+     for j in range(6):
+         print("-j1-{}---printed".format(j))
+         if j > 3:
+             print("--j2-{}---printed".format(j))
+             exit()
+             print("--j3-{}---printed".format(j))
+
+|
 
 参考：
    1. Python 条件语句与循环，`Conditionals_and_Loops`_
