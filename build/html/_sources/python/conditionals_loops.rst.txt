@@ -4,9 +4,9 @@ Conditionals and Loops 条件循环
 1. 条件执行
 ~~~~~~~~~~~~~~
 
-- if语句
+- if语句/多条件执行
 
- 如果满足条件，则执行程序，否则退出:
+ 如果满足条件，则执行程序，否则执行下一个条件并退出:
 
 
 .. code:: python
@@ -27,21 +27,88 @@ Conditionals and Loops 条件循环
 2. 多条件执行
 ~~~~~~~~~~~~~~
 
+参考如下多条件样例链式条件Chained conditionals:
+ 如果满足条件，则执行程序并退出:
+
+.. code:: python
+
+ name = input("请输入一个字母:")
+ if name == 'a':
+     print('输入的字母为:a')
+ elif name == 'b':
+     print('输入的字母为:b')
+ elif name == 'c':
+     print('输入的字母为:c')
+ else:
+     print('用户输入的字母不符合要求')
+
+
 
 3. 嵌套条件
 ~~~~~~~~~~~~~~~~~~~
 
 
-4. 循环Loop
+参考如下多条件样例二嵌套条件Nested conditionals:
+
+.. code:: python
+
+ if x < y:
+     STATEMENTS_A
+ else:
+     if x > y:
+         STATEMENTS_B
+     else:
+         STATEMENTS_C
+
+4. Loop循环
 ~~~~~~~~~~~~~~~~
 
+.. code:: python
 
-5. Tables
+ pdb_list = ['pdb1', 'pdb2']
+ for pdb_name in pdb_list:
+     # 拼接一个插入的SQL语句，用于程序调用并执行
+     statement = 'insert into DB_CLOUD_PDBS(PDB_NAME) VALUES' + str(pdb_name)
+     print(statement)
+
+
+5. 生成Tables
 ~~~~~~~~~~~~~~~
+
+- 生成2 :sup:`x` 次方，x为0-10的数字，最大生成的值为2 :sup:`10` =1024
+
+.. code:: python
+
+ for x in range(11):   # Generate numbers 0 to 10
+     print(x, '\t', 2**x)
 
 
 6. While语句
 ~~~~~~~~~~~~~~~~~~
+
+猜数字（100以内）游戏
+
+.. tip::
+
+ 如何快速的猜对答案，提示算法：二分查找
+
+.. code:: python
+
+    import random
+    input_number = input('请输入数字: ')
+    # 设定一个数字，看怎么在最短循环次数内猜对
+    game_number = random.randint(1, 100)
+    guess = int(input_number)
+    while guess != game_number:
+        if guess > game_number:
+            guess_new = int(input('猜大了,请重新输入数字: '))
+        else:
+            guess_new = int(input('猜的数字小了，请重新输入数字: '))
+        guess = guess_new
+
+    print('恭喜你，猜对了')
+
+
 
 7. 怎样选择for或while
 ~~~~~~~~~~~~~~~~~~~~~~~~

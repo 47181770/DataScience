@@ -366,10 +366,10 @@ ul.auto-toc {
 <div class="section" id="id1">
 <h1>1. 条件执行</h1>
 <ul class="simple">
-<li>if语句</li>
+<li>if语句/多条件执行</li>
 </ul>
 <blockquote>
-如果满足条件，则执行程序，否则退出:</blockquote>
+如果满足条件，则执行程序，否则执行下一个条件并退出:</blockquote>
 <pre class="code python literal-block">
 <span class="keyword">if</span> <span class="punctuation">(</span><span class="literal string single">'条件表达式为True'</span><span class="punctuation">):</span>
    <span class="literal string single">'执行语句'</span>
@@ -387,18 +387,73 @@ ul.auto-toc {
 </div>
 <div class="section" id="id2">
 <h1>2. 多条件执行</h1>
+<dl class="docutils">
+<dt>参考如下多条件样例链式条件Chained conditionals:</dt>
+<dd>如果满足条件，则执行程序并退出:</dd>
+</dl>
+<pre class="code python literal-block">
+<span class="name">name</span> <span class="operator">=</span> <span class="name builtin">input</span><span class="punctuation">(</span><span class="literal string double">&quot;请输入一个字母:&quot;</span><span class="punctuation">)</span>
+<span class="keyword">if</span> <span class="name">name</span> <span class="operator">==</span> <span class="literal string single">'a'</span><span class="punctuation">:</span>
+    <span class="keyword">print</span><span class="punctuation">(</span><span class="literal string single">'输入的字母为:a'</span><span class="punctuation">)</span>
+<span class="keyword">elif</span> <span class="name">name</span> <span class="operator">==</span> <span class="literal string single">'b'</span><span class="punctuation">:</span>
+    <span class="keyword">print</span><span class="punctuation">(</span><span class="literal string single">'输入的字母为:b'</span><span class="punctuation">)</span>
+<span class="keyword">elif</span> <span class="name">name</span> <span class="operator">==</span> <span class="literal string single">'c'</span><span class="punctuation">:</span>
+    <span class="keyword">print</span><span class="punctuation">(</span><span class="literal string single">'输入的字母为:c'</span><span class="punctuation">)</span>
+<span class="keyword">else</span><span class="punctuation">:</span>
+    <span class="keyword">print</span><span class="punctuation">(</span><span class="literal string single">'用户输入的字母不符合要求'</span><span class="punctuation">)</span>
+</pre>
 </div>
 <div class="section" id="id3">
 <h1>3. 嵌套条件</h1>
+<p>参考如下多条件样例二嵌套条件Nested conditionals:</p>
+<pre class="code python literal-block">
+<span class="keyword">if</span> <span class="name">x</span> <span class="operator">&lt;</span> <span class="name">y</span><span class="punctuation">:</span>
+    <span class="name">STATEMENTS_A</span>
+<span class="keyword">else</span><span class="punctuation">:</span>
+    <span class="keyword">if</span> <span class="name">x</span> <span class="operator">&gt;</span> <span class="name">y</span><span class="punctuation">:</span>
+        <span class="name">STATEMENTS_B</span>
+    <span class="keyword">else</span><span class="punctuation">:</span>
+        <span class="name">STATEMENTS_C</span>
+</pre>
 </div>
 <div class="section" id="loop">
-<h1>4. 循环Loop</h1>
+<h1>4. Loop循环</h1>
+<pre class="code python literal-block">
+<span class="name">pdb_list</span> <span class="operator">=</span> <span class="punctuation">[</span><span class="literal string single">'pdb1'</span><span class="punctuation">,</span> <span class="literal string single">'pdb2'</span><span class="punctuation">]</span>
+<span class="keyword">for</span> <span class="name">pdb_name</span> <span class="operator word">in</span> <span class="name">pdb_list</span><span class="punctuation">:</span>
+    <span class="comment single"># 拼接一个插入的SQL语句，用于程序调用并执行</span>
+    <span class="name">statement</span> <span class="operator">=</span> <span class="literal string single">'insert into DB_CLOUD_PDBS(PDB_NAME) VALUES'</span> <span class="operator">+</span> <span class="name builtin">str</span><span class="punctuation">(</span><span class="name">pdb_name</span><span class="punctuation">)</span>
+    <span class="keyword">print</span><span class="punctuation">(</span><span class="name">statement</span><span class="punctuation">)</span>
+</pre>
 </div>
 <div class="section" id="tables">
-<h1>5. Tables</h1>
+<h1>5. 生成Tables</h1>
+<ul class="simple">
+<li>生成2 <sup>x</sup> 次方，x为0-10的数字，最大生成的值为2 <sup>10</sup> =1024</li>
+</ul>
+<pre class="code python literal-block">
+<span class="keyword">for</span> <span class="name">x</span> <span class="operator word">in</span> <span class="name builtin">range</span><span class="punctuation">(</span><span class="literal number integer">11</span><span class="punctuation">):</span>   <span class="comment single"># Generate numbers 0 to 10</span>
+    <span class="keyword">print</span><span class="punctuation">(</span><span class="name">x</span><span class="punctuation">,</span> <span class="literal string single">'</span><span class="literal string escape">\t</span><span class="literal string single">'</span><span class="punctuation">,</span> <span class="literal number integer">2</span><span class="operator">**</span><span class="name">x</span><span class="punctuation">)</span>
+</pre>
 </div>
 <div class="section" id="while">
 <h1>6. While语句</h1>
+<p>猜数字游戏</p>
+<pre class="code python literal-block">
+<span class="keyword namespace">import</span> <span class="name namespace">random</span>
+<span class="name">input_number</span> <span class="operator">=</span> <span class="name builtin">input</span><span class="punctuation">(</span><span class="literal string single">'请输入数字: '</span><span class="punctuation">)</span>
+<span class="comment single"># 设定一个数字，看怎么在最短循环次数内猜对</span>
+<span class="name">game_number</span> <span class="operator">=</span> <span class="name">random</span><span class="operator">.</span><span class="name">randint</span><span class="punctuation">(</span><span class="literal number integer">1</span><span class="punctuation">,</span> <span class="literal number integer">100</span><span class="punctuation">)</span>
+<span class="name">guess</span> <span class="operator">=</span> <span class="name builtin">int</span><span class="punctuation">(</span><span class="name">input_number</span><span class="punctuation">)</span>
+<span class="keyword">while</span> <span class="name">guess</span> <span class="operator">!=</span> <span class="name">game_number</span><span class="punctuation">:</span>
+    <span class="keyword">if</span> <span class="name">guess</span> <span class="operator">&gt;</span> <span class="name">game_number</span><span class="punctuation">:</span>
+        <span class="name">guess_new</span> <span class="operator">=</span> <span class="name builtin">int</span><span class="punctuation">(</span><span class="name builtin">input</span><span class="punctuation">(</span><span class="literal string single">'猜大了,请重新输入数字: '</span><span class="punctuation">))</span>
+    <span class="keyword">else</span><span class="punctuation">:</span>
+        <span class="name">guess_new</span> <span class="operator">=</span> <span class="name builtin">int</span><span class="punctuation">(</span><span class="name builtin">input</span><span class="punctuation">(</span><span class="literal string single">'猜的数字小了，请重新输入数字: '</span><span class="punctuation">))</span>
+    <span class="name">guess</span> <span class="operator">=</span> <span class="name">guess_new</span>
+
+<span class="keyword">print</span><span class="punctuation">(</span><span class="literal string single">'恭喜你，猜对了'</span><span class="punctuation">)</span>
+</pre>
 </div>
 <div class="section" id="forwhile">
 <h1>7. 怎样选择for或while</h1>
@@ -456,6 +511,13 @@ ul.auto-toc {
 </div>
 <blockquote>
 执行结果说明: continue退出本次循环，跳过当前循环的剩余语句，然后继续下一轮第一层循环</blockquote>
+<dl class="docutils">
+<dt>参考：</dt>
+<dd><ol class="first last arabic simple">
+<li>Python 条件语句与循环，<a class="reference external" href="http://www.openbookproject.net/books/bpp4awd/ch04.html#conditionals-and-loops">Conditionals_and_Loops</a></li>
+</ol>
+</dd>
+</dl>
 </div>
 </div>
 </body>

@@ -90,8 +90,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#id1">1. 条件执行</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id2">2. 多条件执行</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id3">3. 嵌套条件</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#loop">4. 循环Loop</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#tables">5. Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#loop">4. Loop循环</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tables">5. 生成Tables</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#while">6. While语句</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#forwhile">7. 怎样选择for或while</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#break-continue-pass">8. break continue pass</a></li>
@@ -176,10 +176,10 @@
 <div class="section" id="id1">
 <h2>1. 条件执行<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
 <ul class="simple">
-<li><p>if语句</p></li>
+<li><p>if语句/多条件执行</p></li>
 </ul>
 <blockquote>
-<div><p>如果满足条件，则执行程序，否则退出:</p>
+<div><p>如果满足条件，则执行程序，否则执行下一个条件并退出:</p>
 </div></blockquote>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="s1">&#39;条件表达式为True&#39;</span><span class="p">):</span>
    <span class="s1">&#39;执行语句&#39;</span>
@@ -198,18 +198,77 @@
 </div>
 <div class="section" id="id2">
 <h2>2. 多条件执行<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<dl class="simple">
+<dt>参考如下多条件样例链式条件Chained conditionals:</dt><dd><p>如果满足条件，则执行程序并退出:</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;请输入一个字母:&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;a&#39;</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;输入的字母为:a&#39;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;输入的字母为:b&#39;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;输入的字母为:c&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;用户输入的字母不符合要求&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="id3">
 <h2>3. 嵌套条件<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>参考如下多条件样例二嵌套条件Nested conditionals:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span><span class="p">:</span>
+    <span class="n">STATEMENTS_A</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span><span class="p">:</span>
+        <span class="n">STATEMENTS_B</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">STATEMENTS_C</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="loop">
-<h2>4. 循环Loop<a class="headerlink" href="#loop" title="永久链接至标题">¶</a></h2>
+<h2>4. Loop循环<a class="headerlink" href="#loop" title="永久链接至标题">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pdb_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pdb1&#39;</span><span class="p">,</span> <span class="s1">&#39;pdb2&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">pdb_name</span> <span class="ow">in</span> <span class="n">pdb_list</span><span class="p">:</span>
+    <span class="c1"># 拼接一个插入的SQL语句，用于程序调用并执行</span>
+    <span class="n">statement</span> <span class="o">=</span> <span class="s1">&#39;insert into DB_CLOUD_PDBS(PDB_NAME) VALUES&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">pdb_name</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">statement</span><span class="p">)</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="tables">
-<h2>5. Tables<a class="headerlink" href="#tables" title="永久链接至标题">¶</a></h2>
+<h2>5. 生成Tables<a class="headerlink" href="#tables" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><p>生成2 <sup>x</sup> 次方，x为0-10的数字，最大生成的值为2 <sup>10</sup> =1024</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">11</span><span class="p">):</span>   <span class="c1"># Generate numbers 0 to 10</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="o">**</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="while">
 <h2>6. While语句<a class="headerlink" href="#while" title="永久链接至标题">¶</a></h2>
+<p>猜数字（100以内）游戏</p>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>如何快速的猜对答案，提示算法：二分查找</p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+<span class="n">input_number</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;请输入数字: &#39;</span><span class="p">)</span>
+<span class="c1"># 设定一个数字，看怎么在最短循环次数内猜对</span>
+<span class="n">game_number</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">guess</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">input_number</span><span class="p">)</span>
+<span class="k">while</span> <span class="n">guess</span> <span class="o">!=</span> <span class="n">game_number</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">guess</span> <span class="o">&gt;</span> <span class="n">game_number</span><span class="p">:</span>
+        <span class="n">guess_new</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;猜大了,请重新输入数字: &#39;</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">guess_new</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;猜的数字小了，请重新输入数字: &#39;</span><span class="p">))</span>
+    <span class="n">guess</span> <span class="o">=</span> <span class="n">guess_new</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;恭喜你，猜对了&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="forwhile">
 <h2>7. 怎样选择for或while<a class="headerlink" href="#forwhile" title="永久链接至标题">¶</a></h2>
