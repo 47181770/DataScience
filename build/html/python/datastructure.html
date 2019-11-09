@@ -414,6 +414,43 @@ try except finally raise for while lambda is  del</font><div class="line-block">
 </pre></div>
 </div>
 <dl class="simple">
+<dt><strong>6. 生成器</strong></dt><dd><ul class="simple">
+<li><p>任何使用yield的函数都成为生成器</p></li>
+<li><p>是编写基于处理管道、流、数据流程序的极其强大的方式（例: 类似Unix/Linux的tail -f命令的行为）</p></li>
+<li><p>经常与其他可迭代对象（列表或文件）混合使用</p></li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 模拟Linux/Unix的tail -f命令行为</span>
+<span class="c1"># 定义一个tail 与grep 函数</span>
+<span class="kn">import</span> <span class="nn">time</span>
+   <span class="k">def</span> <span class="nf">tail</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+       <span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+       <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+           <span class="n">line</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+           <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span><span class="p">:</span>
+               <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+               <span class="k">continue</span>
+           <span class="k">yield</span> <span class="n">line</span>
+
+   <span class="k">def</span> <span class="nf">grep</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">search_text</span><span class="p">):</span>
+       <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+           <span class="k">if</span> <span class="n">search_text</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+               <span class="k">yield</span> <span class="n">line</span>
+
+
+   <span class="n">wwwlog</span> <span class="o">=</span> <span class="n">tail</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;access.log&quot;</span><span class="p">))</span>
+   <span class="n">rlines</span> <span class="o">=</span> <span class="n">grep</span><span class="p">(</span><span class="n">wwwlog</span><span class="p">,</span> <span class="s2">&quot;R&quot;</span><span class="p">)</span>
+   <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">rlines</span><span class="p">:</span>
+       <span class="k">print</span><span class="p">(</span><span class="s1">&#39;R language exists in {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">line</span><span class="p">))</span>
+</pre></div>
+</div>
+<p># 执行： python tail.py
+# 在另一个Linux命令行终端窗口执行：echo ‘python is not good’ &gt;&gt; access.log
+执行参考下图：</p>
+<a class="reference internal image-reference" href="../_images/tail.PNG"><img alt="alternate text" class="align-center" src="../_images/tail.PNG" style="width: 240.0px; height: 120.0px;" /></a>
+<p><strong>7. 协程</strong></p>
+<dl class="simple">
 <dt>参考：</dt><dd><ol class="arabic simple">
 <li><p>Python 数据结构，<a class="reference external" href="https://docs.python.org/zh-cn/3.8/tutorial/datastructures.html">Data_Structures</a></p></li>
 </ol>

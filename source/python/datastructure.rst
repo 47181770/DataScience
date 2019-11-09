@@ -210,6 +210,54 @@ Python支持多种运算符（如：加减乘除等），下表大致按照优�
     # how much
     # why
 
+**6. 生成器**
+    * 任何使用yield的函数都成为生成器
+    * 是编写基于处理管道、流、数据流程序的极其强大的方式（例: 类似Unix/Linux的tail -f命令的行为）
+    * 经常与其他可迭代对象（列表或文件）混合使用
+
+.. code:: python
+
+ # 模拟Linux/Unix的tail -f命令行为
+ # 定义一个tail 与grep 函数
+ import time
+    def tail(f):
+        f.seek(0,2)
+        while True:
+            line = f.readline()
+            if not line:
+                time.sleep(0.1)
+                continue
+            yield line
+
+    def grep(lines, search_text):
+        for line in lines:
+            if search_text in line:
+                yield line
+
+
+    wwwlog = tail(open("access.log"))
+    rlines = grep(wwwlog, "R")
+    for line in rlines:
+        print('R language exists in {}'.format(line))
+
+
+# 执行： python tail.py
+# 在另一个Linux命令行终端窗口执行：echo 'python is not good' >> access.log
+执行参考下图：
+
+.. image:: ../_static/tail.PNG
+   :height: 200
+   :width: 400
+   :scale: 60
+   :alt: alternate text
+   :align: center
+
+
+**7. 协程**
+
+
+
+
 
 参考：
    1. Python 数据结构，`Data_Structures`_
