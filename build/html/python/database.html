@@ -321,39 +321,45 @@
 <hr class="docutils" />
 <div class="section" id="influxdb">
 <h2>3. Influxdb时序数据库编程<a class="headerlink" href="#influxdb" title="永久链接至标题">¶</a></h2>
-<ul>
-<li><p><strong>数据Influxdb连接</strong></p>
-<blockquote>
-<div><p>from influxdb import InfluxDBClient
-from influxdb import SeriesHelper</p>
-<p># InfluxDB connections settings
-host = ‘x.x.x.x’
-port = 8086
-user = ‘root’
-password = ‘root’
-dbname = ‘mydb’</p>
-<p>myclient = InfluxDBClient(host, port, user, password, dbname)</p>
-<p>class MySeriesHelper(SeriesHelper):</p>
-<blockquote>
-<div><p># Meta class stores time series helper configuration.</p>
-<p>class Meta:</p>
-<blockquote>
-<div><p># The client should be the instance of InfluxDBClient</p>
-<p>client = myclient</p>
-<p># The series name must be a string. Add dependent fields and tags in curly brackets.
-series_name = ‘’
-# Defines all the fields in this time series.
-fields = []
-# Defines all the tags for the series.
-tags = []
-# Defines the number of data points to store prior to writing on the wire.
-bulk_size = 1
-# autocommit must be set to True when using bulk_size
-autocommit = True</p>
-</div></blockquote>
-</div></blockquote>
-</div></blockquote>
-</li>
+<ul class="simple">
+<li><p><strong>数据Influxdb连接</strong></p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">influxdb</span> <span class="kn">import</span> <span class="n">InfluxDBClient</span>
+<span class="kn">from</span> <span class="nn">influxdb</span> <span class="kn">import</span> <span class="n">SeriesHelper</span>
+
+<span class="c1"># InfluxDB connections settings</span>
+<span class="n">host</span> <span class="o">=</span> <span class="s1">&#39;x.x.x.x&#39;</span>
+<span class="n">port</span> <span class="o">=</span> <span class="mi">8086</span>
+<span class="n">user</span> <span class="o">=</span> <span class="s1">&#39;root&#39;</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s1">&#39;root&#39;</span>
+<span class="n">dbname</span> <span class="o">=</span> <span class="s1">&#39;mydb&#39;</span>
+
+<span class="n">myclient</span> <span class="o">=</span> <span class="n">InfluxDBClient</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">dbname</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">MySeriesHelper</span><span class="p">(</span><span class="n">SeriesHelper</span><span class="p">):</span>
+
+    <span class="c1"># Meta class stores time series helper configuration.</span>
+
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+
+        <span class="c1"># The client should be the instance of InfluxDBClient</span>
+
+        <span class="n">client</span> <span class="o">=</span> <span class="n">myclient</span>
+
+        <span class="c1"># The series name must be a string. Add dependent fields and tags in curly brackets.</span>
+        <span class="n">series_name</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="c1"># Defines all the fields in this time series.</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c1"># Defines all the tags for the series.</span>
+        <span class="n">tags</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c1"># Defines the number of data points to store prior to writing on the wire.</span>
+        <span class="n">bulk_size</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="c1"># autocommit must be set to True when using bulk_size</span>
+        <span class="n">autocommit</span> <span class="o">=</span> <span class="bp">True</span>
+</pre></div>
+</div>
+<ul class="simple">
 <li><dl class="simple">
 <dt><strong>Grafana与Influxdb</strong></dt><dd><p>时序数据插入influxdb后，在Grafana配置界面&gt;配置数据源&gt;influxdb选件 输入相关参数，即可自定制监控页面。</p>
 </dd>
