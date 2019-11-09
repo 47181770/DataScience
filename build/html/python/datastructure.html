@@ -425,10 +425,10 @@ try except finally raise for while lambda is  del</font><div class="line-block">
 <span class="c1"># 定义一个tail 与grep 函数</span>
 <span class="kn">import</span> <span class="nn">time</span>
    <span class="k">def</span> <span class="nf">tail</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
-       <span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+       <span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># 跳到文件的EOF最后</span>
        <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-           <span class="n">line</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
-           <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span><span class="p">:</span>
+           <span class="n">line</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span> <span class="c1"># 尝试读取一个新的文本行</span>
+           <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span><span class="p">:</span>        <span class="c1"># 如果没内容，暂时休眠并再次尝试</span>
                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
                <span class="k">continue</span>
            <span class="k">yield</span> <span class="n">line</span>
@@ -445,13 +445,76 @@ try except finally raise for while lambda is  del</font><div class="line-block">
        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;R language exists in {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">line</span><span class="p">))</span>
 </pre></div>
 </div>
-<p># 执行： python tail.py
+<p>执行 python tail.py
 |
-# 在另一个Linux命令行终端窗口执行：echo ‘Python is not better than R language’ &gt;&gt; access.log
+在另一个Linux命令行窗口执行：echo ‘Python is not better than R language’ &gt;&gt; access.log
 执行参考下图：</p>
 <a class="reference internal image-reference" href="../_images/tail.PNG"><img alt="alternate text" class="align-center" src="../_images/tail.PNG" style="width: 480.0px; height: 240.0px;" /></a>
-<p><strong>7. 协程</strong></p>
 <dl class="simple">
+<dt><strong>7. 协程</strong></dt><dd><dl class="simple">
+<dt>函数可以编写成一个*任务程序*，用来处理发送给他的一系列输入，这类函数被称为*协程*</dt><dd><ul class="simple">
+<li><p>协程是通过将yield语句作为表达式（yield）的形式创建的</p></li>
+<li><p>使用send()为协程发送某个值之前，协程会暂止</p></li>
+<li><p>发送值之后，协程中的(yield)表达式将返回这个值，而接下来的语句会处理它，处理直到遇到下一个(yield)表达式才会结束</p></li>
+<li><p>整个过程会持续进行，直到协程函数返回或调用它的close()方法为止</p></li>
+<li><p>基于Producer-Consumer 生产者-消费者模型编写并发程序时，必用协程</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">def</span> <span class="nf">consumer</span><span class="p">():</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">r</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">n</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;[CONSUMER] Consuming </span><span class="si">%s</span><span class="s1">...&#39;</span> <span class="o">%</span> <span class="n">n</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="s1">&#39;I am OK&#39;</span>
+
+<span class="k">def</span> <span class="nf">producer</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+    <span class="nb">next</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>  <span class="c1"># 启动生成器</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">:</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;[PRODUCER] Producing </span><span class="si">%s</span><span class="s1">...&#39;</span> <span class="o">%</span> <span class="n">n</span><span class="p">)</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="c1"># 切换到consumer()执行</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;[PRODUCER] Consumer return: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">r</span><span class="p">)</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span><span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">consumer</span><span class="p">()</span>
+    <span class="n">producer</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="c1"># 输出结果</span>
+<span class="c1">#[PRODUCER] Producing 1...</span>
+<span class="c1">#[CONSUMER] Consuming 1...</span>
+<span class="c1">#[PRODUCER] Consumer return: I am OK</span>
+<span class="c1">#[PRODUCER] Producing 2...</span>
+<span class="c1">#[CONSUMER] Consuming 2...</span>
+<span class="c1">#[PRODUCER] Consumer return: I am OK</span>
+<span class="c1">#[PRODUCER] Producing 3...</span>
+<span class="c1">#[CONSUMER] Consuming 3...</span>
+<span class="c1">#[PRODUCER] Consumer return: I am OK</span>
+<span class="c1">#[PRODUCER] Producing 4...</span>
+<span class="c1">#[CONSUMER] Consuming 4...</span>
+<span class="c1">#[PRODUCER] Consumer return: I am OK</span>
+<span class="c1">#[PRODUCER] Producing 5...</span>
+<span class="c1">#[CONSUMER] Consuming 5...</span>
+<span class="c1">#[PRODUCER] Consumer return: I am OK</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>说明：</dt><dd><ol class="arabic simple">
+<li><p>首先调用next(c)启动生成器</p></li>
+<li><p>通过通过c.send(n)切换到consumer执行</p></li>
+<li><p>consumer通过yield拿到消息，处理，又通过yield把结果传回</p></li>
+<li><p>producer拿到consumer处理的结果，继续生产下一条消息</p></li>
+<li><p>达到限制条件后，producer决定不生产了，通过c.close()关闭consumer，整个过程结束。</p></li>
+</ol>
+</dd>
 <dt>参考：</dt><dd><ol class="arabic simple">
 <li><p>Python 数据结构，<a class="reference external" href="https://docs.python.org/zh-cn/3.8/tutorial/datastructures.html">Data_Structures</a></p></li>
 </ol>

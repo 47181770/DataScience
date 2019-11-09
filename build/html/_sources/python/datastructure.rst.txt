@@ -221,10 +221,10 @@ Python支持多种运算符（如：加减乘除等），下表大致按照优�
  # 定义一个tail 与grep 函数
  import time
     def tail(f):
-        f.seek(0,2)
+        f.seek(0,2) # 跳到文件的EOF最后
         while True:
-            line = f.readline()
-            if not line:
+            line = f.readline() # 尝试读取一个新的文本行
+            if not line:        # 如果没内容，暂时休眠并再次尝试
                 time.sleep(0.1)
                 continue
             yield line
@@ -241,9 +241,9 @@ Python支持多种运算符（如：加减乘除等），下表大致按照优�
         print('R language exists in {}'.format(line))
 
 
-# 执行： python tail.py
+执行 python tail.py
 |
-# 在另一个Linux命令行终端窗口执行：echo 'Python is not better than R language' >> access.log
+在另一个Linux命令行窗口执行：echo 'Python is not better than R language' >> access.log
 执行参考下图：
 
 .. image:: ../_static/tail.PNG
@@ -255,9 +255,64 @@ Python支持多种运算符（如：加减乘除等），下表大致按照优�
 
 
 **7. 协程**
+  函数可以编写成一个*任务程序*，用来处理发送给他的一系列输入，这类函数被称为*协程*
+    * 协程是通过将yield语句作为表达式（yield）的形式创建的
+    * 使用send()为协程发送某个值之前，协程会暂止
+    * 发送值之后，协程中的(yield)表达式将返回这个值，而接下来的语句会处理它，处理直到遇到下一个(yield)表达式才会结束
+    * 整个过程会持续进行，直到协程函数返回或调用它的close()方法为止
+    * 基于Producer-Consumer 生产者-消费者模型编写并发程序时，必用协程
+
+.. code:: python
 
 
+    import time
 
+    def consumer():
+        r = ''
+        while True:
+            n = yield r
+            if not n:
+                return
+            print('[CONSUMER] Consuming %s...' % n)
+            time.sleep(1)
+            r = 'I am OK'
+
+    def producer(c):
+        next(c)  # 启动生成器
+        n = 0
+        while n < 5:
+            n = n + 1
+            print('[PRODUCER] Producing %s...' % n)
+            r = c.send(n) # 切换到consumer()执行
+            print('[PRODUCER] Consumer return: %s' % r)
+        c.close()
+
+    if __name__=='__main__':
+        c = consumer()
+        producer(c)
+    # 输出结果
+    #[PRODUCER] Producing 1...
+    #[CONSUMER] Consuming 1...
+    #[PRODUCER] Consumer return: I am OK
+    #[PRODUCER] Producing 2...
+    #[CONSUMER] Consuming 2...
+    #[PRODUCER] Consumer return: I am OK
+    #[PRODUCER] Producing 3...
+    #[CONSUMER] Consuming 3...
+    #[PRODUCER] Consumer return: I am OK
+    #[PRODUCER] Producing 4...
+    #[CONSUMER] Consuming 4...
+    #[PRODUCER] Consumer return: I am OK
+    #[PRODUCER] Producing 5...
+    #[CONSUMER] Consuming 5...
+    #[PRODUCER] Consumer return: I am OK
+
+说明：
+   1. 首先调用next(c)启动生成器
+   2. 通过通过c.send(n)切换到consumer执行
+   3. consumer通过yield拿到消息，处理，又通过yield把结果传回
+   4. producer拿到consumer处理的结果，继续生产下一条消息
+   5. 达到限制条件后，producer决定不生产了，通过c.close()关闭consumer，整个过程结束。
 
 
 参考：
