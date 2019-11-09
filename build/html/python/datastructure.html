@@ -396,13 +396,15 @@ try except finally raise for while lambda is  del</font><div class="line-block">
  <span class="c1"># 2 haha</span>
 
 <span class="c1"># 当同时在两个或更多序列/lists中循环时，可以用 zip() 函数将其内元素匹配</span>
-<span class="n">q</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;why&#39;</span><span class="p">,</span><span class="s1">&#39;how much&#39;</span><span class="p">]</span>
-<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;because&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
-<span class="k">for</span> <span class="n">question</span><span class="p">,</span> <span class="n">answer</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">q</span><span class="p">,</span><span class="n">a</span><span class="p">):</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">question</span><span class="p">,</span> <span class="n">answer</span><span class="p">)</span>
+<span class="n">question</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;why&#39;</span><span class="p">,</span><span class="s1">&#39;how much&#39;</span><span class="p">]</span>
+<span class="n">answer</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;because ah&#39;</span><span class="p">,</span> <span class="s1">&#39;5$&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">q</span><span class="p">,</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">question</span><span class="p">,</span> <span class="n">answer</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
    <span class="c1"># 输出</span>
-   <span class="c1"># why because</span>
-   <span class="c1"># how much 5</span>
+   <span class="c1"># why because ah</span>
+   <span class="c1"># how much 5$</span>
+
+
 <span class="c1"># 逆序对序列/list排序</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>

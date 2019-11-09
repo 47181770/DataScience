@@ -194,13 +194,15 @@ Python支持多种运算符（如：加减乘除等），下表大致按照优�
   # 2 haha
 
  # 当同时在两个或更多序列/lists中循环时，可以用 zip() 函数将其内元素匹配
- q = ['why','how much']
- a = ['because', 5]
- for question, answer in zip(q,a):
-     print(question, answer)
+ question = ['why','how much']
+ answer = ['because ah', '5$']
+ for q, a in zip(question, answer):
+     print(q, a)
     # 输出
-    # why because
-    # how much 5
+    # why because ah
+    # how much 5$
+
+
  # 逆序对序列/list排序
  for i in reversed(q):
     print(i)
