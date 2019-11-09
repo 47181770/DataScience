@@ -169,43 +169,199 @@
             
   <div class="section" id="id1">
 <h1>数据库编程<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<blockquote>
+<div><dl class="simple">
+<dt>Python数据库API定义了一组用于连接数据库服务器、执行SQL语句的高级函数和对象。主要有两个主要对象：</dt><dd><ul class="simple">
+<li><p>管理数据库连接的Connection对象</p></li>
+<li><p>执行SQL语句的Cursor对象</p></li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
 <div class="section" id="oracle">
 <h2>1. Oracle数据库编程<a class="headerlink" href="#oracle" title="永久链接至标题">¶</a></h2>
 <ul class="simple">
-<li><p><strong>数据库连接</strong></p></li>
+<li><p><strong>Oracle动态根据输入环境的参数执行特定数据库查询操作</strong></p></li>
 </ul>
-<hr class="docutils" />
-<ul class="simple">
-<li><p><strong>数据库操作</strong></p></li>
-</ul>
-<hr class="docutils" />
-<ul class="simple">
-<li><p><strong>Python RESTful API 与Oracle APEX</strong></p></li>
-</ul>
-<hr class="docutils" />
-<p>参考：</p>
-<blockquote>
-<div><ol class="arabic simple">
-<li><p>使用 Python 和 Flask 设计 RESTful API, <a class="reference external" href="http://www.pythondoc.com/flask-restful/first.html">flask_RESTfulAPI</a></p></li>
-<li><p>使用Oracle APEX与Flask RESTful API集成, <a class="reference external" href="https://www.oracle.com/technetwork/cn/articles/dsl/mastering-oracle-python-soa-1391432-zhs.html">oracleApex_RESTful_Integration</a></p></li>
-</ol>
-</div></blockquote>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*-coding:utf8-*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Author: Wang Shaofei</span>
+<span class="sd">Created: 2019-7-1</span>
+<span class="sd">Purpose: Oracle connection function</span>
+<span class="sd">         Use to query data from oracle database dynamically</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<span class="kn">import</span> <span class="nn">cx_Oracle</span>
+<span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
+<span class="kn">import</span> <span class="nn">random</span>
+
+
+<span class="k">class</span> <span class="nc">Oracle</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">tnsname</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">user</span> <span class="c1"># Oracle数据库用户名</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="n">password</span> <span class="c1"># Oracle数据库密码</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tns</span> <span class="o">=</span> <span class="n">tnsname</span> <span class="c1"># Oracle数据库实例连接tnsname</span>
+        <span class="k">if</span> <span class="n">user</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;SYS&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">q</span> <span class="o">=</span> <span class="n">cx_Oracle</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">password</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tns</span><span class="p">,</span> <span class="n">cx_Oracle</span><span class="o">.</span><span class="n">SYSDBA</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">q</span> <span class="o">=</span> <span class="n">cx_Oracle</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">password</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tns</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">q_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sql</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">q</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
+                <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+
+        <span class="k">except</span> <span class="n">cx_Oracle</span><span class="o">.</span><span class="n">DatabaseError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s1">&#39;No Data Found or Oracle Database can not connect or can not connect using SYSDBA mode!</span><span class="se">\n</span><span class="s1"> &#39;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+</pre></div>
 </div>
+<ul>
+<li><p><strong>Python RESTful API 与Oracle APEX</strong></p>
+<blockquote>
+<div><p>已实现Python Flask RESTful API程序原型样例。</p>
+</div></blockquote>
+</li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">创建日期：2018-9-17</span>
+<span class="sd">用法: http://127.0.0.1:5000/?input_text=安全身份验证</span>
+<span class="sd">内容: 与机器学习预测程序包一起使用，对外提供预测服务</span>
+<span class="sd">作者：Shaofei Wang</span>
+<span class="sd">QQ: 47181770</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">from</span> <span class="nn">flask_restful</span> <span class="kn">import</span> <span class="n">Resource</span><span class="p">,</span> <span class="n">Api</span><span class="p">,</span> <span class="n">reqparse</span>
+<span class="kn">from</span> <span class="nn">pinlp</span> <span class="kn">import</span> <span class="n">train_model_NB</span>
+
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="n">api</span> <span class="o">=</span> <span class="n">Api</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+
+<span class="n">parser</span> <span class="o">=</span> <span class="n">reqparse</span><span class="o">.</span><span class="n">RequestParser</span><span class="p">()</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;input_text&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="s1">&#39;args&#39;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Prediction</span><span class="p">(</span><span class="n">Resource</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;voice input text is {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">args</span><span class="p">))</span>
+        <span class="n">input_text</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s1">&#39;input_text&#39;</span><span class="p">]</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;voice input text is {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">input_text</span><span class="p">))</span>
+        <span class="n">predicted</span> <span class="o">=</span> <span class="n">train_model_NB</span><span class="p">(</span><span class="n">input_text</span><span class="p">)</span> <span class="c1"># 根据输入语音使用模型进行预测</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;predicted type is *** {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">predicted</span><span class="p">)))</span>
+        <span class="n">prediction</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">predicted</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;My Prediction is {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">prediction</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">prediction</span>
+
+
+<span class="n">api</span><span class="o">.</span><span class="n">add_resource</span><span class="p">(</span><span class="n">Prediction</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;0.0.0.0&#39;</span><span class="p">,</span><span class="n">port</span><span class="o">=</span><span class="mi">8006</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<hr class="docutils" />
 <div class="section" id="mysql">
 <h2>2. MySQL数据库编程<a class="headerlink" href="#mysql" title="永久链接至标题">¶</a></h2>
 <ul class="simple">
-<li><p><strong>数据库连接</strong></p></li>
-<li><p><strong>数据库操作</strong></p></li>
+<li><p><strong>MySQL动态根据输入环境的参数执行特定数据库查询操作</strong></p></li>
 </ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*-coding:utf8-*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Author: Shaofei Wang</span>
+<span class="sd">Created: 2019-3-1</span>
+<span class="sd">Purpose: MySQL connection function</span>
+<span class="sd">         Use to query data from MYSQL database dynamically</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">pymysql</span> <span class="c1"># 导入模块</span>
+<span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
+
+
+<span class="k">class</span> <span class="nc">Mysql</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">host</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">db</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">3306</span><span class="p">,</span> <span class="n">data_type</span><span class="o">=</span><span class="s2">&quot;dic&quot;</span><span class="p">):</span>
+        <span class="n">connect_arg</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;host&quot;</span><span class="p">:</span><span class="n">host</span><span class="p">,</span> <span class="c1"># Mysql数据库服务器IP</span>
+                     <span class="s2">&quot;user&quot;</span><span class="p">:</span><span class="n">user</span><span class="p">,</span> <span class="c1"># Mysql数据库用户名</span>
+                     <span class="s2">&quot;password&quot;</span><span class="p">:</span><span class="n">password</span><span class="p">,</span> <span class="c1"># Mysql数据库密码</span>
+                     <span class="s2">&quot;db&quot;</span><span class="p">:</span><span class="n">db</span><span class="p">,</span> <span class="c1"># Mysql数据库实例名</span>
+                     <span class="s2">&quot;port&quot;</span><span class="p">:</span> <span class="n">port</span><span class="p">,</span> <span class="c1"># Mysql数据库实例端口</span>
+                     <span class="s2">&quot;charset&quot;</span><span class="p">:</span><span class="s1">&#39;utf8mb4&#39;</span><span class="p">,</span>
+                     <span class="s2">&quot;cursorclass&quot;</span><span class="p">:</span> <span class="n">pymysql</span><span class="o">.</span><span class="n">cursors</span><span class="o">.</span><span class="n">DictCursor</span>
+        <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">host</span> <span class="o">=</span> <span class="n">host</span>
+        <span class="k">if</span> <span class="n">data_type</span> <span class="o">==</span> <span class="s2">&quot;list&quot;</span><span class="p">:</span>
+            <span class="n">connect_arg</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;cursorclass&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">q</span> <span class="o">=</span> <span class="n">pymysql</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="o">**</span><span class="n">connect_arg</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">q_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sql</span><span class="p">):</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">q</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+
+            <span class="k">return</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">q</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="c1"># 调用并测试q_data执行SQL查询</span>
+<span class="c1"># ip_address = &#39;x.x.x.x&#39;</span>
+<span class="c1"># db_username = &#39;root&#39;</span>
+<span class="c1"># password = &#39;root&#39;</span>
+<span class="c1"># port = 3306</span>
+<span class="c1"># ms = Mysql(str(ip_address), str(db_username), str(password), &#39;information_schema&#39;, int(port), &#39;list&#39;)</span>
+<span class="c1"># lock_count = ms.q_data(&quot;select count(*) from INFORMATION_SCHEMA.INNODB_LOCKS;&quot;)</span>
+<span class="c1">#</span>
+<span class="c1"># pprint(lock_count)</span>
+</pre></div>
 </div>
+</div>
+<hr class="docutils" />
 <div class="section" id="influxdb">
 <h2>3. Influxdb时序数据库编程<a class="headerlink" href="#influxdb" title="永久链接至标题">¶</a></h2>
-<ul class="simple">
-<li><p><strong>数据库连接</strong></p></li>
-<li><p><strong>数据库操作</strong></p></li>
-<li><p><strong>Granfana与Influxdb</strong></p></li>
+<ul>
+<li><p><strong>数据Influxdb连接</strong></p>
+<blockquote>
+<div><p>from influxdb import InfluxDBClient
+from influxdb import SeriesHelper</p>
+<p># InfluxDB connections settings
+host = ‘x.x.x.x’
+port = 8086
+user = ‘root’
+password = ‘root’
+dbname = ‘mydb’</p>
+<p>myclient = InfluxDBClient(host, port, user, password, dbname)</p>
+<p>class MySeriesHelper(SeriesHelper):</p>
+<blockquote>
+<div><p># Meta class stores time series helper configuration.</p>
+<p>class Meta:</p>
+<blockquote>
+<div><p># The client should be the instance of InfluxDBClient</p>
+<p>client = myclient</p>
+<p># The series name must be a string. Add dependent fields and tags in curly brackets.
+series_name = ‘’
+# Defines all the fields in this time series.
+fields = []
+# Defines all the tags for the series.
+tags = []
+# Defines the number of data points to store prior to writing on the wire.
+bulk_size = 1
+# autocommit must be set to True when using bulk_size
+autocommit = True</p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</li>
+<li><dl class="simple">
+<dt><strong>Grafana与Influxdb</strong></dt><dd><p>时序数据插入influxdb后，在Grafana配置界面&gt;配置数据源&gt;influxdb选件 输入相关参数，即可自定制监控页面。</p>
+</dd>
+</dl>
+</li>
 </ul>
 </div>
+<hr class="docutils" />
 <div class="section" id="python-for-hadoop">
 <h2>4. Python for Hadoop数据库编程<a class="headerlink" href="#python-for-hadoop" title="永久链接至标题">¶</a></h2>
 <ul class="simple">
@@ -213,6 +369,13 @@
 <li><p><strong>数据库操作</strong></p></li>
 <li><p><strong>Hadoop 与Apache Kylin</strong></p></li>
 </ul>
+<p>参考：</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>使用 Python 和 Flask 设计 RESTful API, <a class="reference external" href="http://www.pythondoc.com/flask-restful/first.html">flask_RESTfulAPI</a></p></li>
+<li><p>使用Oracle APEX与Flask RESTful API集成, <a class="reference external" href="https://www.oracle.com/technetwork/cn/articles/dsl/mastering-oracle-python-soa-1391432-zhs.html">oracleApex_RESTful_Integration</a></p></li>
+</ol>
+</div></blockquote>
 </div>
 </div>
 
