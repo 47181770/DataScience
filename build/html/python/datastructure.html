@@ -416,8 +416,10 @@ try except finally raise for while lambda is  del</font><div class="line-block">
 <dl class="simple">
 <dt><strong>6. 生成器</strong></dt><dd><ul class="simple">
 <li><p>任何使用yield的函数都成为生成器</p></li>
+<li><p>生成器是一个函数，生成一个值的序列</p></li>
 <li><p>是编写基于处理管道、流、数据流程序的极其强大的方式（例: 类似Unix/Linux的tail -f命令的行为）</p></li>
 <li><p>经常与其他可迭代对象（列表或文件）混合使用</p></li>
+<li><p>递归不能用在生成器函数中</p></li>
 </ul>
 </dd>
 </dl>
@@ -453,11 +455,15 @@ try except finally raise for while lambda is  del</font><div class="line-block">
 <dl class="simple">
 <dt><strong>7. 协程</strong></dt><dd><dl class="simple">
 <dt>函数可以编写成一个*任务程序*，用来处理发送给他的一系列输入，这类函数被称为*协程*</dt><dd><ul class="simple">
+<li><p>在函数内yield语句可以作为表达式使用（出现在赋值运算符的右边），以这种方式使用yield语句的函数称为协程</p></li>
 <li><p>协程是通过将yield语句作为表达式（yield）的形式创建的</p></li>
 <li><p>使用send()为协程发送某个值之前，协程会暂止</p></li>
 <li><p>发送值之后，协程中的(yield)表达式将返回这个值，而接下来的语句会处理它，处理直到遇到下一个(yield)表达式才会结束</p></li>
 <li><p>整个过程会持续进行，直到协程函数返回或调用它的close()方法为止</p></li>
 <li><p>基于Producer-Consumer 生产者-消费者模型编写并发程序时，必用协程</p></li>
+<li><p>会不断地执行下去，除非被显式关闭或者自己退出</p></li>
+<li><p>在解决系统、网络和分布式计算的某些编程问题时，生成器和协程特别有用</p></li>
+<li><p>递归不能用在协程函数中</p></li>
 </ul>
 </dd>
 </dl>
@@ -508,7 +514,7 @@ try except finally raise for while lambda is  del</font><div class="line-block">
 </div>
 <dl class="simple">
 <dt>说明：</dt><dd><ol class="arabic simple">
-<li><p>首先调用next(c)启动生成器</p></li>
+<li><p>首先调用next(c)启动生成器，一开始调用next()必不可少，非常容易被忽略。</p></li>
 <li><p>通过通过c.send(n)切换到consumer执行</p></li>
 <li><p>consumer通过yield拿到消息，处理，又通过yield把结果传回</p></li>
 <li><p>producer拿到consumer处理的结果，继续生产下一条消息</p></li>

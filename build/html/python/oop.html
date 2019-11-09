@@ -89,7 +89,7 @@
 <li class="toctree-l2"><a class="reference internal" href="conditionals_loops.html">Conditionals and Loops 条件循环</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">面向对象编程</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id2">1. 函数与函数式编程</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">2. 类与对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">2. 类与面向对象编程</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id4">3. 模块、包与分发</a></li>
 </ul>
 </li>
@@ -170,31 +170,70 @@
 <h1>面向对象编程<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
 <div class="section" id="id2">
 <h2>1. 函数与函数式编程<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
-<ul class="simple">
-<li><p>函数</p></li>
+<ul>
+<li><p>函数</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>使用def语句定义函数</p></li>
+<li><p>函数体就是调用函数时所执行的一系列语句</p></li>
+<li><p>调用函数的方法就是在函数名称后面加上函数参数的元组，参数的顺序与数量必须与函数定义匹配，否则会引发TypeError异常</p></li>
+<li><p>函数参数可以有默认值</p></li>
+<li><p>接受数量不定的位置或者关键字参数，如def spam(<em>args, **kwargs*</em>)中args是一个位置参数的元组，kwargs是一个关键字参数的字典</p></li>
+<li><p>可以使用**kargs语法把关键字参数传递给另一个函数</p></li>
+<li><p>作用域规则：全局命名空间（使用global语句）与局部命名空间</p></li>
+<li><p>闭包：将组成函数的语句与这些语句的执行环境打包在一起时得到的对象，如果在一系列函数调用中保持某个状态，使用闭包非常高效</p></li>
+<li><p>装饰器：是一个函数，用于包装另一个函数或类，使用特殊符号&#64;表示装饰器，注意装饰器也可以接受参数</p></li>
+<li><p>生成器是一个函数，生成一个值的序列</p></li>
+<li><p>在函数内yield语句可以作为表达式使用（出现在赋值运算符的右边），以这种方式使用yield语句的函数称为协程</p></li>
+</ul>
+</div></blockquote>
+</li>
 </ul>
 </div>
 <hr class="docutils" />
 <div class="section" id="id3">
-<h2>2. 类与对象<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<h2>2. 类与面向对象编程<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
 <ul class="simple">
-<li><p><strong>类</strong></p></li>
+<li><dl class="simple">
+<dt><strong>类</strong></dt><dd><ol class="arabic simple">
+<li><p>类是对象的蓝图和模板，而对象是类的实例，类是创建对象的机制</p></li>
+<li><p>类通常是由函数（称为方法, method)、变量和计算出的属性（称为特性）组成的集合</p></li>
+<li><p>类是抽象的概念，对象是具体的东西</p></li>
+<li><p>类的实例是以函数形式调用类对象来创建的</p></li>
+<li><p>原始类称为基类或超类</p></li>
+</ol>
+</dd>
+</dl>
+</li>
 </ul>
-<font color="red">
-import class def and global nonlocal  not
-with as in from return
-if elif else assert pass break continue or yield
-try except finally raise for while lambda is  del</font><ul class="simple">
+<font color="red"> 在面向对象编程的世界中，一切皆为对象，对象都有属性和行为，每个对象都是独一无二的，而且对象一定属于某个类（型） </font><ul class="simple">
 <li><p><strong>对象</strong></p></li>
+<li><dl class="simple">
+<dt>继承</dt><dd><ol class="arabic simple">
+<li><p>继承是一种创建新类的机制，目的是使用或修改现有类的行为，原始类称为基类或超类，新类称谓派生类或子类</p></li>
+<li><p>通过继承创建新类时，所创建的类将“继承”基类定义的属性，但派生类也可以重新定义任何这些属性并添加自己的新属性</p></li>
+<li><p>如果没有有效的基类，类将继承object，object是所有Python对象的根类，它提供了一些常见的方法（如__str__())</p></li>
+<li><p>通常用于重新定义现有方法的行为</p></li>
+<li><p>派生类的__init__不会自动调用基类__init__，需要手工调用</p></li>
+<li><p>super(cls, instance)会返回一个特殊的对象，该对象支持在基类上执行属性查找</p></li>
+<li><p>虽然python支持多重继承，但是在大多数程序中最好避免使用多重继承</p></li>
+</ol>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>多态</dt><dd><ol class="arabic simple">
+<li><p>动态绑定（在继承背景下使用时，有时也称为多态性）是指在不考虑实例类型的情况下使用的实例</p></li>
+<li><p>调用经过子类重写的方法时并给出不同的实现版本，不同的子类对象会表现出不同的行为，这个就是多态</p></li>
+</ol>
+</dd>
+</dl>
+</li>
 </ul>
 </div>
 <hr class="docutils" />
 <div class="section" id="id4">
 <h2>3. 模块、包与分发<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
-<ul class="simple">
-<li><p>继承</p></li>
-<li><p>多态</p></li>
-</ul>
 <p>2</p>
 </div>
 </div>
