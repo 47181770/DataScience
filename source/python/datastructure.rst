@@ -242,12 +242,13 @@ Python支持多种运算符（如：加减乘除等），下表大致按照优�
 
 
 # 执行： python tail.py
-# 在另一个Linux命令行终端窗口执行：echo 'python is not good' >> access.log
+|
+# 在另一个Linux命令行终端窗口执行：echo 'Python is not better than R language' >> access.log
 执行参考下图：
 
 .. image:: ../_static/tail.PNG
-   :height: 200
-   :width: 400
+   :height: 400
+   :width: 800
    :scale: 60
    :alt: alternate text
    :align: center
