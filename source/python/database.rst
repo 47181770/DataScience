@@ -157,6 +157,8 @@
 
 - **数据Influxdb连接**
 
+.. code:: python
+
     from influxdb import InfluxDBClient
     from influxdb import SeriesHelper
 
