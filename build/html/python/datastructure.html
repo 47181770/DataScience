@@ -339,42 +339,90 @@ try except finally raise for while lambda is  del</font><div class="line-block">
 </ul>
 </dd>
 <dt><strong>2. 列表Lists</strong></dt><dd><ul class="simple">
-<li><p>是任意对象（包括任意种类的Python对象，如列表）组成的序列，把值放入方括号**[]**就可以创建列表</p></li>
+<li><p>是任意对象（包括任意种类的Python对象，如列表）组成的序列，把值放入方括号[]就可以创建列表</p></li>
 <li><p>列表使用从0开始的整数索引</p></li>
-<li><p>新项**追加**到列表末尾: &lt;list_name&gt;.append()</p></li>
-<li><p>将一项**插入**到列表: &lt;list_name&gt;.insert(位置索引,数字/字符)</p></li>
+<li><p>新项追加到列表末尾: &lt;list_name&gt;.append()</p></li>
+<li><p>将一项插入到列表: &lt;list_name&gt;.insert(位置索引,数字/字符)</p></li>
 <li><p>列表推导表达式：list_name = [i for i in range(18) if i %% 3 == 0]</p></li>
 </ul>
 </dd>
 <dt><strong>3. 元组Tuples</strong></dt><dd><ul class="simple">
 <li><p>圆括号()中放入一组值即可创建元组</p></li>
 <li><p>元组支持的大部分操作与列表相同，但元组创建后**不能修改/删除/添加**新元素</p></li>
-<li><p>元组是**不可变的**</p></li>
+<li><p>元组是不可变的</p></li>
 </ul>
 </dd>
 <dt><strong>4. 集合Sets</strong></dt><dd><ul class="simple">
-<li><p>集合是由**不重复元素**组成的**无序**的集</p></li>
+<li><p>集合是由不重复元素组成的无序的集</p></li>
 <li><p>基本用法：消除重复值</p></li>
 <li><p>标准操作支持：并集 | 、交集 &amp; 、差集 - 和对称差集 ^</p></li>
 <li><p>添加删除操作：add()、update()、remove()</p></li>
-<li><p>集合支持**推导式**形式</p></li>
+<li><p>集合支持推导式形式</p></li>
 </ul>
 </dd>
 </dl>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>a = 88
-a = {x for x in &#39;abraceaddabra&#39; if x not in &#39;abc&#39;}
-print (a) # 输出结果 {&#39;r&#39;, &#39;d&#39;, &#39;e&#39;}
-
-
- 2. 集合
-
- 3. 元组
-
- 4. 字典
-
- 5. 集合
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">88</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="s1">&#39;abraceaddabra&#39;</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">not</span> <span class="ow">in</span> <span class="s1">&#39;abc&#39;</span><span class="p">}</span>
+<span class="k">print</span> <span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1"># 输出结果 {&#39;r&#39;, &#39;d&#39;, &#39;e&#39;}</span>
 </pre></div>
 </div>
+<ul class="simple">
+<li></li>
+</ul>
+<p><strong>5. 字典</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>字典是一个关联数组或散列表，其中包含键Key索引的对象</p></li>
+<li><p>关键字可以是任意不可变对象，通常是数字/字符串，如果一个元组只包含数字/字符串/元组，则这个元组也可以做关键字</p></li>
+<li><p>创建字典：在大括号 {} 中放入值</p></li>
+<li><p>删除字典元素： del &lt;dic_name&gt;[“Key”]</p></li>
+<li><p>字典排序：sorted(&lt;dict_name&gt;)</p></li>
+<li><p>检测字典中是否存在特定键，使用in 或 not in</p></li>
+<li><p>字典可以通过list(dic_name)将字典转换成列表</p></li>
+<li><p>dict() 构造函数可以直接从键值对序列里创建字典</p></li>
+</ul>
+</div></blockquote>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 字典循环，同时取出关键字与对应值</span>
+<span class="n">phone</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;zhangsan&#39;</span><span class="p">:</span> <span class="mi">82668888</span><span class="p">,</span> <span class="s1">&#39;wangwu&#39;</span><span class="p">:</span> <span class="mi">95595</span><span class="p">}</span>
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">phone</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
+    <span class="c1"># 输出</span>
+    <span class="c1"># zhangsan 82668888</span>
+    <span class="c1"># wangwu 95595</span>
+
+<span class="c1"># 序列循环,enumerate() 函数可以将索引位置和其对应的值</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="s1">&#39;wangwu&#39;</span><span class="p">,</span> <span class="s1">&#39;zhangsan&#39;</span><span class="p">,</span> <span class="s1">&#39;haha&#39;</span><span class="p">]):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
+ <span class="c1"># 输出</span>
+ <span class="c1"># 0 wangwu</span>
+ <span class="c1"># 1 zhangsan</span>
+ <span class="c1"># 2 haha</span>
+
+<span class="c1"># 当同时在两个或更多序列/lists中循环时，可以用 zip() 函数将其内元素匹配</span>
+<span class="n">q</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;why&#39;</span><span class="p">,</span><span class="s1">&#39;how much&#39;</span><span class="p">]</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;because&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">question</span><span class="p">,</span> <span class="n">answer</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">q</span><span class="p">,</span><span class="n">a</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">question</span><span class="p">,</span> <span class="n">answer</span><span class="p">)</span>
+   <span class="c1"># 输出</span>
+   <span class="c1"># why because</span>
+   <span class="c1"># how much 5</span>
+<span class="c1"># 逆序对序列/list排序</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
+   <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+   <span class="c1"># 输出</span>
+   <span class="c1"># how much</span>
+   <span class="c1"># why</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><ol class="arabic simple" start="2">
+<li><p>集合</p></li>
+<li><p>元组</p></li>
+<li><p>字典</p></li>
+<li><p>集合</p></li>
+</ol>
+</li>
+</ul>
 </div>
 </div>
 

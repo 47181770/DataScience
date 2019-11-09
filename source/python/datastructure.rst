@@ -136,24 +136,24 @@ Python支持多种运算符（如：加减乘除等），下表大致按照优�
 
 
 **2. 列表Lists**
-    * 是任意对象（包括任意种类的Python对象，如列表）组成的序列，把值放入方括号**[]**就可以创建列表
+    * 是任意对象（包括任意种类的Python对象，如列表）组成的序列，把值放入方括号[]就可以创建列表
     * 列表使用从0开始的整数索引
-    * 新项**追加**到列表末尾: <list_name>.append()
-    * 将一项**插入**到列表: <list_name>.insert(位置索引,数字/字符)
+    * 新项追加到列表末尾: <list_name>.append()
+    * 将一项插入到列表: <list_name>.insert(位置索引,数字/字符)
     * 列表推导表达式：list_name = [i for i in range(18) if i %% 3 == 0]
 
 
 **3. 元组Tuples**
     * 圆括号()中放入一组值即可创建元组
     * 元组支持的大部分操作与列表相同，但元组创建后**不能修改/删除/添加**新元素
-    * 元组是**不可变的**
+    * 元组是不可变的
 
 **4. 集合Sets**
-    * 集合是由**不重复元素**组成的**无序**的集
+    * 集合是由不重复元素组成的无序的集
     * 基本用法：消除重复值
     * 标准操作支持：并集 | 、交集 & 、差集 - 和对称差集 ^
     * 添加删除操作：add()、update()、remove()
-    * 集合支持**推导式**形式
+    * 集合支持推导式形式
 
 .. code:: python
 
@@ -161,6 +161,55 @@ Python支持多种运算符（如：加减乘除等），下表大致按照优�
  a = {x for x in 'abraceaddabra' if x not in 'abc'}
  print (a) # 输出结果 {'r', 'd', 'e'}
 
+
+-
+
+**5. 字典**
+
+    * 字典是一个关联数组或散列表，其中包含键Key索引的对象
+    * 关键字可以是任意不可变对象，通常是数字/字符串，如果一个元组只包含数字/字符串/元组，则这个元组也可以做关键字
+    * 创建字典：在大括号 {} 中放入值
+    * 删除字典元素： del <dic_name>["Key"]
+    * 字典排序：sorted(<dict_name>)
+    * 检测字典中是否存在特定键，使用in 或 not in
+    * 字典可以通过list(dic_name)将字典转换成列表
+    * dict() 构造函数可以直接从键值对序列里创建字典
+
+
+.. code:: python
+
+ # 字典循环，同时取出关键字与对应值
+ phone = {'zhangsan': 82668888, 'wangwu': 95595}
+     for k,v in phone.items():
+     print(k,v)
+     # 输出
+     # zhangsan 82668888
+     # wangwu 95595
+
+ # 序列循环,enumerate() 函数可以将索引位置和其对应的值
+ for i, v in enumerate(['wangwu', 'zhangsan', 'haha']):
+     print(i,v)
+  # 输出
+  # 0 wangwu
+  # 1 zhangsan
+  # 2 haha
+
+ # 当同时在两个或更多序列/lists中循环时，可以用 zip() 函数将其内元素匹配
+ q = ['why','how much']
+ a = ['because', 5]
+ for question, answer in zip(q,a):
+     print(question, answer)
+    # 输出
+    # why because
+    # how much 5
+ # 逆序对序列/list排序
+ for i in reversed(q):
+    print(i)
+    # 输出
+    # how much
+    # why
+
+-
 
   2. 集合
 
