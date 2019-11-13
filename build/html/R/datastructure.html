@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>R数据结构 &mdash; Data Science 0.2 文档</title>
+  <title>R数据类型与数据结构 &mdash; Data Science 0.2 文档</title>
   
 
   
@@ -86,7 +86,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../README1.html">Data Science数据科学路线图</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">R</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">R数据结构</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">R数据类型与数据结构</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../machinelearning/index.html">机器学习</a></li>
@@ -139,7 +139,7 @@
         
           <li><a href="index.html">R</a> &raquo;</li>
         
-      <li>R数据结构</li>
+      <li>R数据类型与数据结构</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -159,25 +159,45 @@
            <div itemprop="articleBody">
             
   <div class="section" id="r">
-<h1>R数据结构<a class="headerlink" href="#r" title="永久链接至标题">¶</a></h1>
+<h1>R数据类型与数据结构<a class="headerlink" href="#r" title="永久链接至标题">¶</a></h1>
 <ul class="simple">
-<li><p>变量 表达式 语句</p>
+<li><p>数据类型</p>
 <ul>
-<li><p>保留字</p></li>
+<li><p>字符型 characters</p></li>
+<li><p>数值型 numerics</p></li>
+<li><p>逻辑判断 Logical (TRUE or FALSE)</p></li>
+<li><p>因子factors</p></li>
+</ul>
+</li>
+<li><p>数据结构</p>
+<ul>
+<li><p>标量 Atomic Vector</p></li>
+<li><p>向量 Vector</p></li>
+<li><p>矩阵 Matrix</p></li>
+<li><p>数组 Array</p></li>
+<li><p>列表 List</p></li>
+<li><p>数据框 Data Frame</p></li>
+</ul>
+</li>
+<li><p>数据结构常用方法</p>
+<ul>
+<li><p>as 转换数据类型</p></li>
+<li><p>class() 是什么类型的对象</p></li>
+<li><p>typeof() 对象的数据类型</p></li>
+<li><p>length() 对象多长，两维对象呢？</p></li>
+<li><p>attributes() 有元数据？是什么</p></li>
+<li><p>head() 显示前6行数据</p></li>
+<li><p>tail() 显示后6行数据</p></li>
+<li><p>dim()  数据框维度，行列数</p></li>
+<li><p>nrow() 行数</p></li>
+<li><p>ncol() 列数</p></li>
+<li><p>str() 数据框的结构， name, type and preview of data in each column</p></li>
+<li><p>names() or colnames() 显示一个数据框的属性</p></li>
+<li><p>sapply(dataframe, class) - shows the class of each column in the data frame</p></li>
 </ul>
 </li>
 </ul>
-<blockquote>
-<div><p>and del global not with as if elif or yield assert else import pass
-break continue try except finally in raise class for while lambda is
-return def from nonlocal</p>
-</div></blockquote>
-<ul class="simple">
-<li><p>函数</p></li>
-<li><p>元组</p></li>
-<li><p>字典</p></li>
-</ul>
-  <a href="http://www.baidu.com">baidu</a></div>
+</div>
 
 
            </div>
