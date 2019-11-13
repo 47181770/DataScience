@@ -34,7 +34,6 @@ R数据类型与数据结构
   * sapply(dataframe, class) - shows the class of each column in the data frame
  
 
-- 字典
 
 
 
