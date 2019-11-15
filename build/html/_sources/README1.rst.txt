@@ -4,7 +4,7 @@ Data Science数据科学路线图
 
 - 作者: Shaofei Wang
 - 邮箱: 47181770@qq.com 
-- 个人说明：数据分析爱好者
+- 个人说明：数据分析之路
 - 网页：https://theroadtodatascience.readthedocs.io/
 
 数据科学概览
