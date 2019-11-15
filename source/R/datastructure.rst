@@ -38,12 +38,34 @@ R数据类型与数据结构
 
 - 使用样例如下：
 
-.. code:: S
+.. code:: r
 
  2 * 3
-
+ # 返回 [1] 6
 
  myvector <- c(1, 3 ,8, 6, 9, 10, 5)
+
+ myvector[0]
+ # 返回  numeric(0)
  myvector[1]
+ # 返回 [1] 1
+ typeof(myvector)
+ # 返回 [1] "double"
+ class(myvector)
+ # 返回 [1] "numeric"
+ length(myvector)
+ # [1] 7
+ attributes(myvector)
+ # NULL
+ head(myvector)
+ #[1]  1  3  8  6  9 10
+ tail(myvector)
+ #[1]  3  8  6  9 10  5
+ str(myvector)
+ # num [1:7] 1 3 8 6 9 10 5
 
 
+
+.. Tip::
+
+   R语言的向量索引下标从1开始，这个不同于Python 列表索引从0开始
