@@ -89,6 +89,9 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">R数据类型与数据结构</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1">1. 基本向量</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id2">2. 运算符</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">3. 数据结构</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">4. 数据结构常用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">5. 使用样例如下：</a></li>
 </ul>
 </li>
 </ul>
@@ -277,9 +280,11 @@
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<ul class="simple">
-<li><p>数据结构</p>
-<ul>
+</div>
+<div class="section" id="id3">
+<h2>3. 数据结构<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
 <li><p>标量 Atomic Vector</p></li>
 <li><p>向量 Vector</p></li>
 <li><p>矩阵 Matrix</p></li>
@@ -288,14 +293,15 @@
 <li><p>列表 List</p></li>
 <li><p>数据框 Data Frame</p></li>
 </ul>
-</li>
-</ul>
+</div></blockquote>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<ul class="simple">
-<li><p>数据结构常用方法</p>
-<ul>
+</div>
+<div class="section" id="id4">
+<h2>4. 数据结构常用方法<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
 <li><p>as 转换数据类型</p></li>
 <li><p>class() 是什么类型的对象</p></li>
 <li><p>typeof() 对象的数据类型</p></li>
@@ -310,14 +316,13 @@
 <li><p>names() or colnames() 显示一个数据框的属性</p></li>
 <li><p>sapply(dataframe, class) - shows the class of each column in the data frame</p></li>
 </ul>
-</li>
-</ul>
+</div></blockquote>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<ul class="simple">
-<li><p>使用样例如下：</p></li>
-</ul>
+</div>
+<div class="section" id="id5">
+<h2>5. 使用样例如下：<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="m">2</span> <span class="o">*</span> <span class="m">3</span>
 <span class="c1"># 返回 [1] 6</span>
 <span class="c1"># 原始型字节向量，对来自R之外的对象进行编码有用</span>
@@ -353,13 +358,27 @@
 <p class="admonition-title">小技巧</p>
 <p>R语言的向量索引下标从1开始，这个不同于Python 列表索引从0开始</p>
 </div>
-<ul class="simple">
-<li><p><strong>对命名规范的PEP 8要求与硬性规则</strong></p>
-<ol class="arabic simple">
-<li><p>PEP 8:</p></li>
-</ol>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>6. <strong>R 编程标准</strong>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~··</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p>缩进:</p>
+<p>使用两个空格缩进代码。不要使用Tab键（制表符），括号内换行时，另起一行与括号内的第一个字符对齐</p>
 </li>
-</ul>
+<li><p>空格</p>
+<p>只使用单空格，在二元操作符和操作数之间插入空格。不要在函数名称和参数列表之间增加空格。对于列表对象，在每个项目后面插入一个空格，其后再加上逗号</p>
+</li>
+<li><p>块</p>
+<p>左括号“{”不能独占一行，右括号“}”应该独占一行。块内部的代码用两个空格缩进</p>
+</li>
+<li><p>分号</p>
+<p>行结尾的分号是可以忽略的</p>
+</li>
+</ol>
+</div></blockquote>
 </div>
 </div>
 
