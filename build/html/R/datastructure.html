@@ -86,7 +86,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../README1.html">Data Science数据科学路线图</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">R</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">R数据类型与数据结构</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">R数据类型与数据结构</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">1. 基本向量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">2. 运算符</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../machinelearning/index.html">机器学习</a></li>
@@ -160,28 +164,138 @@
             
   <div class="section" id="r">
 <h1>R数据类型与数据结构<a class="headerlink" href="#r" title="永久链接至标题">¶</a></h1>
-<ul>
-<li><p>数据类型</p>
-<p>经典的数据类型是由一系列数据组成的变量，按照通常数据处理的分类，有**数值变量（或定量变量）**，分为连续性（定比）与离散型（定距），还有非数值变量（定性变量），分为类别型（定类）与有序性（定序）</p>
+<div class="section" id="id1">
+<h2>1. 基本向量<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<blockquote>
+<div><p>基本向量仅包含单类型对象，经典的数据类型是由如下一系列数据组成的变量，按照通常数据处理的分类，有**数值变量（或定量变量）**，分为**连续性（定比）与离散型（定距）**，还有非数值变量（定性变量），分为**类别型（定类）与有序性（定序）**</p>
 <ul class="simple">
-<li><p>字符型 characters</p></li>
-<li><p>数值型 numerics</p></li>
-<li><p>逻辑判断 Logical (TRUE or FALSE)</p></li>
-<li><p>因子factors</p></li>
+<li><p>字符型 characters （文本）</p></li>
+<li><p>数值型 numerics （整数、浮点数、复数）</p></li>
+<li><p>逻辑判断 Logical (逻辑值TRUE or FALSE)</p></li>
+<li><p>原始型</p></li>
+</ul>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>2. 运算符<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<blockquote>
+<div><blockquote>
+<div><p>R中的运算符总时按照既定的顺序被解释执行。运行先后顺序为：函数调用和分组表达式、索引和查找运算符、算数运算、比较运算、公式、赋值、帮助。详见下标</p>
+</div></blockquote>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>运算符</p></th>
+<th class="head"><p>描述</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>({</p></td>
+<td><p>函数调用和分组表达式</p></td>
+</tr>
+<tr class="row-odd"><td><p>[ [[</p></td>
+<td><p>索引</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>:: :::</cite></p></td>
+<td><p>访问命名空间中的变量</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>$ &#64;</cite></p></td>
+<td><p>成分/序列提取</p></td>
+</tr>
+<tr class="row-even"><td><p>^</p></td>
+<td><p>求幂</p></td>
+</tr>
+<tr class="row-odd"><td><ul class="simple">
+<li><ul>
+<li></li>
 </ul>
 </li>
-<li><p>数据结构</p>
+</ul>
+</td>
+<td><p>一元负号和正号</p></td>
+</tr>
+<tr class="row-even"><td><p>:</p></td>
+<td><p>序列运算符</p></td>
+</tr>
+<tr class="row-odd"><td><p>%any%</p></td>
+<td><p>特殊运算符</p></td>
+</tr>
+<tr class="row-even"><td><ul class="simple">
+<li><p>/</p></li>
+</ul>
+</td>
+<td><p>乘法、除法</p></td>
+</tr>
+<tr class="row-odd"><td><ul class="simple">
+<li><ul>
+<li></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>二元加、减</p></td>
+</tr>
+<tr class="row-even"><td><p>&lt; &gt; &lt;= &gt;= == !=</p></td>
+<td><p>排序 比较</p></td>
+</tr>
+<tr class="row-odd"><td><p>!</p></td>
+<td><p>“非”运算</p></td>
+</tr>
+<tr class="row-even"><td><p>&amp; &amp;&amp;</p></td>
+<td><p>“且”运算</p></td>
+</tr>
+<tr class="row-odd"><td><div class="line-block">
+<div class="line">||</div>
+</div>
+</td>
+<td><p>“或”运算</p></td>
+</tr>
+<tr class="row-even"><td><p>~</p></td>
+<td><p>公式连接符（如: ）</p></td>
+</tr>
+<tr class="row-odd"><td><p>-&gt; -&gt;&gt;</p></td>
+<td><p>向右赋值</p></td>
+</tr>
+<tr class="row-even"><td><p>=</p></td>
+<td><p>从右向左赋值</p></td>
+</tr>
+<tr class="row-odd"><td><p>&lt;- &lt;&lt;-</p></td>
+<td><p>从右向左赋值</p></td>
+</tr>
+<tr class="row-even"><td><p>?</p></td>
+<td><p>帮助（一元/多元运算符）</p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <ul class="simple">
+<li><p>数据结构</p>
+<ul>
 <li><p>标量 Atomic Vector</p></li>
 <li><p>向量 Vector</p></li>
 <li><p>矩阵 Matrix</p></li>
 <li><p>数组 Array</p></li>
+<li><p>因子 factors</p></li>
 <li><p>列表 List</p></li>
 <li><p>数据框 Data Frame</p></li>
 </ul>
 </li>
-<li><p>数据结构常用方法</p>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <ul class="simple">
+<li><p>数据结构常用方法</p>
+<ul>
 <li><p>as 转换数据类型</p></li>
 <li><p>class() 是什么类型的对象</p></li>
 <li><p>typeof() 对象的数据类型</p></li>
@@ -197,11 +311,22 @@
 <li><p>sapply(dataframe, class) - shows the class of each column in the data frame</p></li>
 </ul>
 </li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
 <li><p>使用样例如下：</p></li>
 </ul>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="m">2</span> <span class="o">*</span> <span class="m">3</span>
 <span class="c1"># 返回 [1] 6</span>
+<span class="c1"># 原始型字节向量，对来自R之外的对象进行编码有用</span>
+<span class="nf">raw</span><span class="p">(</span><span class="m">8</span><span class="p">)</span>
+<span class="c1"># [1] 00 00 00 00 00 00 00 00</span>
+<span class="nf">charToRaw</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">)</span>
+<span class="c1">#[1] 68 65 6c 6c 6f</span>
 
+<span class="c1"># 测试数据结构的常用方法</span>
 <span class="n">myvector</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">3</span> <span class="p">,</span><span class="m">8</span><span class="p">,</span> <span class="m">6</span><span class="p">,</span> <span class="m">9</span><span class="p">,</span> <span class="m">10</span><span class="p">,</span> <span class="m">5</span><span class="p">)</span>
 
 <span class="n">myvector[0]</span>
@@ -227,6 +352,14 @@
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>R语言的向量索引下标从1开始，这个不同于Python 列表索引从0开始</p>
+</div>
+<ul class="simple">
+<li><p><strong>对命名规范的PEP 8要求与硬性规则</strong></p>
+<ol class="arabic simple">
+<li><p>PEP 8:</p></li>
+</ol>
+</li>
+</ul>
 </div>
 </div>
 
