@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Python
+R
 -------------
 
 .. toctree::
@@ -13,7 +13,7 @@ Python
 
 参考资源
 
- [1] Python for Everyone
- [2] Python 技术参考
+ [1] R in Action 
+ [2] R技术参考
 
 
