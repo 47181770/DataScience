@@ -10,6 +10,7 @@ R
    :maxdepth: 2
 
    datastructure.rst
+   oop.rst
 
 参考资源
 

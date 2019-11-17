@@ -1,0 +1,422 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Conditionals and Loops 条件循环 &mdash; Data Science 1.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="面向对象编程" href="oop.html" />
+    <link rel="prev" title="R数据类型与数据结构" href="datastructure.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Data Science
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../README1.html">Data Science数据科学路线图</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">R</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="datastructure.html">R数据类型与数据结构</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Conditionals and Loops 条件循环</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">1. 条件执行</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">2. 多条件执行</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">3. 嵌套条件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#loop">4. Loop循环</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tables">5. 生成Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#while">6. While语句</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#forwhile">7. 怎样选择for或while</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#break-continue-pass-exit">8. break continue pass exit()</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="oop.html">面向对象编程</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../machinelearning/index.html">机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../businessanalysis/index.html">Business Analysis 业务分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../managementmodel/index.html">管理模型</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Data Science</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">R</a> &raquo;</li>
+        
+      <li>Conditionals and Loops 条件循环</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/R/conditionals_loops.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="conditionals-and-loops">
+<h1>Conditionals and Loops 条件循环<a class="headerlink" href="#conditionals-and-loops" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id1">
+<h2>1. 条件执行<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><p>if语句/多条件执行</p></li>
+</ul>
+<blockquote>
+<div><p>如果满足条件，则执行程序，否则执行下一个条件并退出:</p>
+</div></blockquote>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="s1">&#39;条件表达式为True&#39;</span><span class="p">):</span>
+   <span class="s1">&#39;执行语句&#39;</span>
+<span class="k">else</span><span class="p">:</span>
+   <span class="s1">&#39;执行语句&#39;</span>
+
+
+<span class="n">x</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+   <span class="k">print</span><span class="p">(</span><span class="s1">&#39;x is the right number: {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="k">else</span><span class="p">:</span>
+   <span class="k">print</span><span class="p">(</span><span class="s1">&#39;x is the wrong number: {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="c1">#输出: x is the right number: 3</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>2. 多条件执行<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>参考如下多条件样例链式条件Chained conditionals:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;请输入一个字母:&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;a&#39;</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;输入的字母为:a&#39;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;输入的字母为:b&#39;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;输入的字母为:c&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;用户输入的字母不符合要求&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>3. 嵌套条件<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>参考如下多条件样例嵌套条件Nested conditionals:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span><span class="p">:</span>
+    <span class="n">STATEMENTS_A</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span><span class="p">:</span>
+        <span class="n">STATEMENTS_B</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">STATEMENTS_C</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="loop">
+<h2>4. Loop循环<a class="headerlink" href="#loop" title="永久链接至标题">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pdb_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pdb1&#39;</span><span class="p">,</span> <span class="s1">&#39;pdb2&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">pdb_name</span> <span class="ow">in</span> <span class="n">pdb_list</span><span class="p">:</span>
+    <span class="c1"># 拼接一个插入的SQL语句，用于程序调用并执行</span>
+    <span class="n">statement</span> <span class="o">=</span> <span class="s1">&#39;insert into DB_CLOUD_PDBS(PDB_NAME) VALUES&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">pdb_name</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">statement</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="tables">
+<h2>5. 生成Tables<a class="headerlink" href="#tables" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><p>生成2 <sup>x</sup> 次方，x为0-10的数字，最大生成的值为2 <sup>10</sup> =1024</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">11</span><span class="p">):</span>   <span class="c1"># Generate numbers 0 to 10</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="o">**</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="while">
+<h2>6. While语句<a class="headerlink" href="#while" title="永久链接至标题">¶</a></h2>
+<p>猜数字（100以内）游戏</p>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>如何快速的猜对答案，提示算法：二分查找</p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+<span class="n">input_number</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;请输入数字: &#39;</span><span class="p">)</span>
+<span class="c1"># 设定一个数字，看怎么在最短循环次数内猜对</span>
+<span class="n">game_number</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">guess</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">input_number</span><span class="p">)</span>
+<span class="k">while</span> <span class="n">guess</span> <span class="o">!=</span> <span class="n">game_number</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">guess</span> <span class="o">&gt;</span> <span class="n">game_number</span><span class="p">:</span>
+        <span class="n">guess_new</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;猜大了,请重新输入数字: &#39;</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">guess_new</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;猜的数字小了，请重新输入数字: &#39;</span><span class="p">))</span>
+    <span class="n">guess</span> <span class="o">=</span> <span class="n">guess_new</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;恭喜你，猜对了&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="forwhile">
+<h2>7. 怎样选择for或while<a class="headerlink" href="#forwhile" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><p>for循环：知道开始循环之前执行程序体的最大次数，是确定性迭代</p></li>
+<li><p>while循环：不确定性迭代，无法确定执行次数的上限</p></li>
+</ul>
+</div>
+<div class="section" id="break-continue-pass-exit">
+<h2>8. break continue pass exit()<a class="headerlink" href="#break-continue-pass-exit" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><p><strong>break</strong></p>
+<ul>
+<li><p>break语句用在while和for循环中</p></li>
+<li><p>打破了最小封闭for或while循环</p></li>
+<li><p>break语句用来终止循环语句，即循环条件没有False条件或者还没被完全递归完，也会停止执行循环语句</p></li>
+<li><p>如果使用的是嵌套循环，break语句在深层嵌套中，则break会停止执行最深层的循环，并开始执行下一行代码</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+   <span class="k">print</span><span class="p">(</span><span class="s2">&quot;---i1 is--{}---printed--&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+   <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+       <span class="k">print</span><span class="p">(</span><span class="s2">&quot;-j1-{}---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
+       <span class="k">if</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
+           <span class="k">print</span><span class="p">(</span><span class="s2">&quot;--j2-{}---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
+           <span class="k">break</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">执行结果说明: 第一层循环–i1 is– 5次全部执行完成，第二层for循环执行前5次（值为0-4）执行完，在j &gt;= 4时，因为符合break条件，所以退出次循环</div>
+</div>
+<ul class="simple">
+<li><p><strong>continue</strong></p>
+<ul>
+<li><p>跳出本次循环</p></li>
+<li><p>continue 语句用在while和for循环中</p></li>
+<li><p>continue 语句跳出本次循环，而break跳出整个循环</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+   <span class="k">print</span><span class="p">(</span><span class="s2">&quot;---i1 is--{}---printed--&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+   <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+       <span class="k">print</span><span class="p">(</span><span class="s2">&quot;-j1-{}---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
+       <span class="k">if</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
+           <span class="k">print</span><span class="p">(</span><span class="s2">&quot;--j2-{}---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
+           <span class="k">continue</span>
+           <span class="k">print</span><span class="p">(</span><span class="s2">&quot;--j3-{}---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
+
+
+<span class="c1"># 注意观察i1 j2 j3值在循环中的变化</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><p>执行结果说明: continue退出本次循环，跳过当前循环的剩余语句，然后继续下一轮第一层循环</p>
+</div></blockquote>
+<ul class="simple">
+<li><p><strong>pass</strong></p>
+<ul>
+<li><p>什么都不做， do nothing</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;---i1 is--{}---printed--&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;-j1-{}---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;--j2-{}---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
+            <span class="k">pass</span>
+            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;--j3-{}---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>– <strong>exit()</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>结束整个程序</p></li>
+</ul>
+</div></blockquote>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;---i1 is--{}---printed--&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;-j1-{}---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;--j2-{}---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
+            <span class="nb">exit</span><span class="p">()</span>
+            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;--j3-{}---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<dl class="simple">
+<dt>参考：</dt><dd><ol class="arabic simple">
+<li><p>Python 条件语句与循环，<a class="reference external" href="http://www.openbookproject.net/books/bpp4awd/ch04.html#conditionals-and-loops">Conditionals_and_Loops</a></p></li>
+</ol>
+</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="oop.html" class="btn btn-neutral float-right" title="面向对象编程" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="datastructure.html" class="btn btn-neutral float-left" title="R数据类型与数据结构" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Shaofei Wang
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

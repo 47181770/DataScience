@@ -10,6 +10,7 @@ R
    :maxdepth: 2
 
    datastructure.rst
+   conditionals_loops.rst
    oop.rst
 
 参考资源
