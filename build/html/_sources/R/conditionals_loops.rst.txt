@@ -6,31 +6,30 @@ Conditionals and Loops 条件循环
 
 - if语句/多条件执行
 
- 如果满足条件，则执行程序，否则执行下一个条件并退出:
+ 如果满足条件，则执行程序，否则执行下一个条件并退出，其中条件必须是一个被解析为T或F的表达式，所以尽可能让条件简单:
 
 
-.. code:: python
+.. code:: r
 
- if ('条件表达式为True'):
+ if ('条件表达式为True'){
     '执行语句'
- else:
+ }else{
     '执行语句'
+ }
 
-
- x = 3
- if x == 3:
-    print('x is the right number: {}'.format(x))
- else:
-    print('x is the wrong number: {}'.format(x))
- #输出: x is the right number: 3
+ # if...else...可以写成一行
+ x <- 3
+ y <- if (x==3) 7 else 8
+ print('y is the right number: 7')
+ #输出: x is the right number: 7
 
 2. 多条件执行
 ~~~~~~~~~~~~~~
 
 
-参考如下多条件样例链式条件Chained conditionals:
+参考如下多条件样例
 
-.. code:: python
+.. code:: r
 
  name = input("请输入一个字母:")
  if name == 'a':

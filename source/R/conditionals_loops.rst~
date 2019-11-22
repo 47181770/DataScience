@@ -17,19 +17,19 @@ Conditionals and Loops 条件循环
     '执行语句'
  }
 
- # if...else...可以写成一行
+
  x <- 3
  y <- if (x==3) 7 else 8
- print('y is the right number: 7')
+ print('y is the right number:',y)
  #输出: x is the right number: 7
 
 2. 多条件执行
 ~~~~~~~~~~~~~~
 
 
-参考如下多条件样例
+参考如下多条件样例链式条件Chained conditionals:
 
-.. code:: r
+.. code:: python
 
  name = input("请输入一个字母:")
  if name == 'a':
