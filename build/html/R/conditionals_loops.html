@@ -91,10 +91,9 @@
 <li class="toctree-l3"><a class="reference internal" href="#id1">1. 条件执行</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id2">2. 多条件执行</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#for">3. for循环</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#tables">5. 生成Tables</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#while">6. While语句</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#forwhile">7. 怎样选择for或while</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#break-next">8. break next</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#repeat">4. repeat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#while">5. While语句</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#break-next">6. break next</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="oop.html">面向对象编程</a></li>
@@ -233,48 +232,63 @@ var为循环变量，seq为向量表达式，通常为一个序列 expr是一个
 </pre></div>
 </div>
 </div>
-<div class="section" id="tables">
-<h2>5. 生成Tables<a class="headerlink" href="#tables" title="永久链接至标题">¶</a></h2>
-<ul class="simple">
-<li><p>生成2 <sup>x</sup> 次方，x为0-10的数字，最大生成的值为2 <sup>10</sup> =1024</p></li>
-</ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">11</span><span class="p">):</span>   <span class="c1"># Generate numbers 0 to 10</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="o">**</span><span class="n">x</span><span class="p">)</span>
+<div class="section" id="repeat">
+<h2>4. repeat<a class="headerlink" href="#repeat" title="永久链接至标题">¶</a></h2>
+<blockquote>
+<div><p>Repeat循环重复执行相同的代码，直到满足停止条件。</p>
+</div></blockquote>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">repeat</span> <span class="p">{</span>
+ <span class="n">commands</span>
+ <span class="nf">if</span><span class="p">(</span><span class="n">condition</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">break</span>
+ <span class="p">}</span>
+<span class="p">}</span>
+
+
+<span class="o">&gt;</span> <span class="n">v</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;hello world&quot;</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="n">count</span> <span class="o">&lt;-</span> <span class="m">1</span>
+<span class="o">&gt;</span> <span class="n">repeat</span> <span class="p">{</span>
+<span class="o">+</span>   <span class="nf">print</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="o">+</span>   <span class="n">count</span> <span class="o">&lt;-</span> <span class="n">count</span><span class="m">+1</span>
+<span class="o">+</span>   <span class="nf">if </span><span class="p">(</span><span class="n">count</span><span class="o">&gt;</span><span class="m">5</span><span class="p">){</span>
+<span class="o">+</span>     <span class="n">break</span>
+<span class="o">+</span>   <span class="p">}</span>
+<span class="o">+</span> <span class="p">}</span>
+<span class="c1"># 输出</span>
+<span class="c1">#[1] &quot;hello world&quot;</span>
+<span class="c1">#[1] &quot;hello world&quot;</span>
+<span class="c1">#[1] &quot;hello world&quot;</span>
+<span class="c1">#[1] &quot;hello world&quot;</span>
+<span class="c1">#[1] &quot;hello world&quot;</span>
+<span class="c1"># repeat 循环执行，知道条件满足count&gt;5，则执行if () {break}跳出循环</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="while">
-<h2>6. While语句<a class="headerlink" href="#while" title="永久链接至标题">¶</a></h2>
-<p>猜数字（100以内）游戏</p>
+<h2>5. While语句<a class="headerlink" href="#while" title="永久链接至标题">¶</a></h2>
+<blockquote>
+<div><p>While循环一次又一次地执行相同的代码，直到满足停止条件。
+基本语法：while (expression) { expr }</p>
+</div></blockquote>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
-<p>如何快速的猜对答案，提示算法：二分查找</p>
+<p>何时用for或while? Python常将while用作无限次循环情况，for用在有限次循环，R暂无</p>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
-<span class="n">input_number</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;请输入数字: &#39;</span><span class="p">)</span>
-<span class="c1"># 设定一个数字，看怎么在最短循环次数内猜对</span>
-<span class="n">game_number</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
-<span class="n">guess</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">input_number</span><span class="p">)</span>
-<span class="k">while</span> <span class="n">guess</span> <span class="o">!=</span> <span class="n">game_number</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">guess</span> <span class="o">&gt;</span> <span class="n">game_number</span><span class="p">:</span>
-        <span class="n">guess_new</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;猜大了,请重新输入数字: &#39;</span><span class="p">))</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">guess_new</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;猜的数字小了，请重新输入数字: &#39;</span><span class="p">))</span>
-    <span class="n">guess</span> <span class="o">=</span> <span class="n">guess_new</span>
-
-<span class="k">print</span><span class="p">(</span><span class="s1">&#39;恭喜你，猜对了&#39;</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">count</span> <span class="o">&lt;-</span> <span class="m">1</span>
+<span class="o">&gt;</span> <span class="nf">while </span><span class="p">(</span><span class="n">count</span><span class="o">&lt;=</span><span class="m">5</span><span class="p">)</span> <span class="p">{</span>
+<span class="o">+</span>   <span class="nf">print</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="o">+</span>   <span class="n">count</span> <span class="o">=</span> <span class="n">count</span> <span class="o">+</span> <span class="m">1</span>
+<span class="o">+</span> <span class="p">}</span>
+<span class="c1">#[1] &quot;hello world&quot;</span>
+<span class="c1">#[1] &quot;hello world&quot;</span>
+<span class="c1">#[1] &quot;hello world&quot;</span>
+<span class="c1">#[1] &quot;hello world&quot;</span>
+<span class="c1">#[1] &quot;hello world&quot;</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="forwhile">
-<h2>7. 怎样选择for或while<a class="headerlink" href="#forwhile" title="永久链接至标题">¶</a></h2>
-<ul class="simple">
-<li><p>for循环：知道开始循环之前执行程序体的最大次数，是确定性迭代</p></li>
-<li><p>while循环：不确定性迭代，无法确定执行次数的上限</p></li>
-</ul>
-</div>
 <div class="section" id="break-next">
-<h2>8. break next<a class="headerlink" href="#break-next" title="永久链接至标题">¶</a></h2>
+<h2>6. break next<a class="headerlink" href="#break-next" title="永久链接至标题">¶</a></h2>
 <ul class="simple">
 <li><p><strong>break</strong></p>
 <ul>
@@ -339,7 +353,7 @@ var为循环变量，seq为向量表达式，通常为一个序列 expr是一个
 </div></blockquote>
 <dl class="simple">
 <dt>参考：</dt><dd><ol class="arabic simple">
-<li><p>R语言 条件语句与循环，<a class="reference external" href="http://www.openbookproject.net/books/bpp4awd/ch04.html#conditionals-and-loops">Conditionals_and_Loops</a></p></li>
+<li><p>R语言 条件语句与循环，<a class="reference external" href="https://cran.r-project.org/doc/manuals/r-release/R-intro.html#Loops-and-conditional-execution">Conditionals_and_Loops</a></p></li>
 </ol>
 </dd>
 </dl>

@@ -65,53 +65,66 @@ Conditionals and Loops 条件循环
      # 返回 500500
 
 
-5. 生成Tables
+4. repeat 
 ~~~~~~~~~~~~~~~
 
-- 生成2 :sup:`x` 次方，x为0-10的数字，最大生成的值为2 :sup:`10` =1024
-
-.. code:: python
-
- for x in range(11):   # Generate numbers 0 to 10
-     print(x, '\t', 2**x)
+    Repeat循环重复执行相同的代码，直到满足停止条件。
 
 
-6. While语句
+.. code:: r
+
+  repeat { 
+   commands 
+   if(condition) {
+      break
+   }
+  }
+
+
+  > v <- c("hello world")
+  > count <- 1
+  > repeat {
+  +   print(v)
+  +   count <- count+1
+  +   if (count>5){
+  +     break
+  +   }
+  + }
+  # 输出
+  #[1] "hello world"
+  #[1] "hello world"
+  #[1] "hello world"
+  #[1] "hello world"
+  #[1] "hello world"
+  # repeat 循环执行，知道条件满足count>5，则执行if () {break}跳出循环  
+ 
+
+5. While语句
 ~~~~~~~~~~~~~~~~~~
 
-猜数字（100以内）游戏
+    While循环一次又一次地执行相同的代码，直到满足停止条件。
+    基本语法：while (expression) { expr }
+    
 
 .. tip::
 
- 如何快速的猜对答案，提示算法：二分查找
+  何时用for或while? Python常将while用作无限次循环情况，for用在有限次循环，R暂无
 
-.. code:: python
+.. code:: r
 
-    import random
-    input_number = input('请输入数字: ')
-    # 设定一个数字，看怎么在最短循环次数内猜对
-    game_number = random.randint(1, 100)
-    guess = int(input_number)
-    while guess != game_number:
-        if guess > game_number:
-            guess_new = int(input('猜大了,请重新输入数字: '))
-        else:
-            guess_new = int(input('猜的数字小了，请重新输入数字: '))
-        guess = guess_new
-
-    print('恭喜你，猜对了')
+  > count <- 1
+  > while (count<=5) {
+  +   print(v)
+  +   count = count + 1
+  + }
+  #[1] "hello world"
+  #[1] "hello world"
+  #[1] "hello world"
+  #[1] "hello world"
+  #[1] "hello world"
 
 
-
-7. 怎样选择for或while
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-- for循环：知道开始循环之前执行程序体的最大次数，是确定性迭代
-
-- while循环：不确定性迭代，无法确定执行次数的上限
-
-
-8. break next
+6. break next
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - **break**
@@ -177,5 +190,5 @@ Conditionals and Loops 条件循环
 参考：
    1. R语言 条件语句与循环，`Conditionals_and_Loops`_
 
-.. _Conditionals_and_Loops: http://www.openbookproject.net/books/bpp4awd/ch04.html#conditionals-and-loops
+.. _Conditionals_and_Loops: https://cran.r-project.org/doc/manuals/r-release/R-intro.html#Loops-and-conditional-execution
 
