@@ -97,6 +97,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="oop.html">面向对象编程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataprocessing.html">R数据处理</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../machinelearning/index.html">机器学习</a></li>
@@ -188,7 +189,7 @@ else不能单独成一行，它的前边必须有内容，如”}” 或者expr1
 
 <span class="c1"># if...else...也可以写成一行</span>
 <span class="n">x</span> <span class="o">&lt;-</span> <span class="m">3</span>
-<span class="n">y</span> <span class="o">&lt;-</span> <span class="nf">if </span><span class="p">(</span><span class="n">x</span><span class="o">==</span><span class="m">3</span><span class="p">)</span> <span class="m">7</span> <span class="n">else</span> <span class="m">8</span>
+<span class="n">y</span> <span class="o">&lt;-</span> <span class="nf">if </span><span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="m">3</span><span class="p">)</span> <span class="m">7</span> <span class="n">else</span> <span class="m">8</span>
 <span class="nf">print</span><span class="p">(</span><span class="s">&#39;y is the right number: 7&#39;</span><span class="p">)</span>
 <span class="c1">#输出: x is the right number: 7</span>
 </pre></div>
@@ -205,9 +206,9 @@ else不能单独成一行，它的前边必须有内容，如”}” 或者expr1
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">&lt;-</span> <span class="m">100</span>
 <span class="n">y</span> <span class="o">&lt;-</span> <span class="m">99</span>
 
-<span class="nf">if </span><span class="p">(</span><span class="n">x</span><span class="o">&lt;</span><span class="n">y</span><span class="p">)</span> <span class="p">{</span>
+<span class="nf">if </span><span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span>
   <span class="nf">print</span><span class="p">(</span><span class="s">&#39;x is less than y&#39;</span><span class="p">)</span>
-<span class="p">}</span> <span class="n">else</span> <span class="nf">if </span><span class="p">(</span><span class="n">x</span><span class="o">==</span><span class="n">y</span><span class="p">)</span> <span class="p">{</span>
+<span class="p">}</span> <span class="n">else</span> <span class="nf">if </span><span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span>
   <span class="nf">print</span><span class="p">(</span><span class="s">&#39;x is equal to y&#39;</span><span class="p">)</span>
 <span class="p">}</span> <span class="n">else</span> <span class="p">{</span>
   <span class="nf">print</span><span class="p">(</span><span class="s">&#39;x is larger than y&#39;</span><span class="p">)</span>
@@ -250,7 +251,7 @@ var为循环变量，seq为向量表达式，通常为一个序列 expr是一个
 <span class="o">&gt;</span> <span class="n">repeat</span> <span class="p">{</span>
 <span class="o">+</span>   <span class="nf">print</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
 <span class="o">+</span>   <span class="n">count</span> <span class="o">&lt;-</span> <span class="n">count</span><span class="m">+1</span>
-<span class="o">+</span>   <span class="nf">if </span><span class="p">(</span><span class="n">count</span><span class="o">&gt;</span><span class="m">5</span><span class="p">){</span>
+<span class="o">+</span>   <span class="nf">if </span><span class="p">(</span><span class="n">count</span> <span class="o">&gt;</span> <span class="m">5</span><span class="p">){</span>
 <span class="o">+</span>     <span class="n">break</span>
 <span class="o">+</span>   <span class="p">}</span>
 <span class="o">+</span> <span class="p">}</span>
@@ -275,7 +276,7 @@ var为循环变量，seq为向量表达式，通常为一个序列 expr是一个
 <p>何时用for或while? Python常将while用作无限次循环情况，for用在有限次循环，R暂无</p>
 </div>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">count</span> <span class="o">&lt;-</span> <span class="m">1</span>
-<span class="o">&gt;</span> <span class="nf">while </span><span class="p">(</span><span class="n">count</span><span class="o">&lt;=</span><span class="m">5</span><span class="p">)</span> <span class="p">{</span>
+<span class="o">&gt;</span> <span class="nf">while </span><span class="p">(</span><span class="n">count</span> <span class="o">&lt;=</span> <span class="m">5</span><span class="p">)</span> <span class="p">{</span>
 <span class="o">+</span>   <span class="nf">print</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
 <span class="o">+</span>   <span class="n">count</span> <span class="o">=</span> <span class="n">count</span> <span class="o">+</span> <span class="m">1</span>
 <span class="o">+</span> <span class="p">}</span>

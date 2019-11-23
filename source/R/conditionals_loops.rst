@@ -20,7 +20,7 @@ Conditionals and Loops 条件循环
 
  # if...else...也可以写成一行
  x <- 3
- y <- if (x==3) 7 else 8
+ y <- if (x == 3) 7 else 8
  print('y is the right number: 7')
  #输出: x is the right number: 7
 
@@ -38,9 +38,9 @@ Conditionals and Loops 条件循环
   x <- 100
   y <- 99
 
-  if (x<y) {
+  if (x < y) {
     print('x is less than y')
-  } else if (x==y) {
+  } else if (x == y) {
     print('x is equal to y')
   } else {
     print('x is larger than y')
@@ -86,7 +86,7 @@ Conditionals and Loops 条件循环
   > repeat {
   +   print(v)
   +   count <- count+1
-  +   if (count>5){
+  +   if (count > 5){
   +     break
   +   }
   + }
@@ -113,7 +113,7 @@ Conditionals and Loops 条件循环
 .. code:: r
 
   > count <- 1
-  > while (count<=5) {
+  > while (count <= 5) {
   +   print(v)
   +   count = count + 1
   + }

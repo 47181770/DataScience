@@ -1,0 +1,316 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>R数据处理 &mdash; Data Science 1.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="机器学习" href="../machinelearning/index.html" />
+    <link rel="prev" title="面向对象编程" href="oop.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Data Science
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../README1.html">Data Science数据科学路线图</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">R</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="datastructure.html">R数据类型与数据结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conditionals_loops.html">Conditionals and Loops 条件循环</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oop.html">面向对象编程</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">R数据处理</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">1. 数据处理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">2. 数值摘要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">3.</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../machinelearning/index.html">机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../businessanalysis/index.html">Business Analysis 业务分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../managementmodel/index.html">管理模型</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Data Science</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">R</a> &raquo;</li>
+        
+      <li>R数据处理</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/R/dataprocessing.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="r">
+<h1>R数据处理<a class="headerlink" href="#r" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id1">
+<h2>1. 数据处理<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<blockquote>
+<div><p>数据处理方法，把任务清晰地分成分析和验证两步。</p>
+<p>1.1 数据分析</p>
+<blockquote>
+<div><p>用数值摘要表(Summary table) 和基本可视化方法从数据中寻找隐含的模式</p>
+</div></blockquote>
+<p>1.2 数据验证</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>如果认为自己在一个新的数据集上发现了模式，那就用另一批数据来测试这个模式的正规模型 (交叉验证)</p></li>
+<li><p>利用概率论来测试你在原始数据集中发现的模式是否只是巧合（假设验证）</p></li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>简单的方法一度得不到重视，但是要训练数据分析的直觉，最好是用简单的方法去操作数据</p>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>2. 数值摘要<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<blockquote>
+<div><p>数值摘要就是一些基本的统计项目：均值（mean）和众数（mode）、百分位数（percentile）和中位数（median）、标准差（standard deviation）和方差（variance）
+基本的可视化工具：直方图、核密度估计、散点图</p>
+</div></blockquote>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="nf">summary</span><span class="p">(</span><span class="n">iris</span><span class="p">)</span>
+<span class="n">Sepal.Length</span>    <span class="n">Sepal.Width</span>     <span class="n">Petal.Length</span>    <span class="n">Petal.Width</span>          <span class="n">Species</span>
+<span class="n">Min.</span>   <span class="o">:</span><span class="m">4.300</span>   <span class="n">Min.</span>   <span class="o">:</span><span class="m">2.000</span>   <span class="n">Min.</span>   <span class="o">:</span><span class="m">1.000</span>   <span class="n">Min.</span>   <span class="o">:</span><span class="m">0.100</span>   <span class="n">setosa</span>    <span class="o">:</span><span class="m">50</span>
+<span class="m">1</span><span class="n">st</span> <span class="n">Qu.</span><span class="o">:</span><span class="m">5.100</span>   <span class="m">1</span><span class="n">st</span> <span class="n">Qu.</span><span class="o">:</span><span class="m">2.800</span>   <span class="m">1</span><span class="n">st</span> <span class="n">Qu.</span><span class="o">:</span><span class="m">1.600</span>   <span class="m">1</span><span class="n">st</span> <span class="n">Qu.</span><span class="o">:</span><span class="m">0.300</span>   <span class="n">versicolor</span><span class="o">:</span><span class="m">50</span>
+<span class="n">Median</span> <span class="o">:</span><span class="m">5.800</span>   <span class="n">Median</span> <span class="o">:</span><span class="m">3.000</span>   <span class="n">Median</span> <span class="o">:</span><span class="m">4.350</span>   <span class="n">Median</span> <span class="o">:</span><span class="m">1.300</span>   <span class="n">virginica</span> <span class="o">:</span><span class="m">50</span>
+<span class="n">Mean</span>   <span class="o">:</span><span class="m">5.843</span>   <span class="n">Mean</span>   <span class="o">:</span><span class="m">3.057</span>   <span class="n">Mean</span>   <span class="o">:</span><span class="m">3.758</span>   <span class="n">Mean</span>   <span class="o">:</span><span class="m">1.199</span>
+<span class="m">3</span><span class="n">rd</span> <span class="n">Qu.</span><span class="o">:</span><span class="m">6.400</span>   <span class="m">3</span><span class="n">rd</span> <span class="n">Qu.</span><span class="o">:</span><span class="m">3.300</span>   <span class="m">3</span><span class="n">rd</span> <span class="n">Qu.</span><span class="o">:</span><span class="m">5.100</span>   <span class="m">3</span><span class="n">rd</span> <span class="n">Qu.</span><span class="o">:</span><span class="m">1.800</span>
+<span class="n">Max.</span>   <span class="o">:</span><span class="m">7.900</span>   <span class="n">Max.</span>   <span class="o">:</span><span class="m">4.400</span>   <span class="n">Max.</span>   <span class="o">:</span><span class="m">6.900</span>   <span class="n">Max.</span>   <span class="o">:</span><span class="m">2.500</span>
+
+<span class="n">Min</span> 向量中的最小值
+<span class="m">1</span><span class="n">st</span> <span class="n">Qu</span> 第一个四分位数（也称为第<span class="m">25</span>个百分位数，即大于<span class="m">25</span><span class="o">%的数据中最小的那个）</span>
+<span class="o">Median 中位数（称为第50个百分位数）</span>
+<span class="o">Mean 均值</span>
+<span class="o">3rd Qu 第三个四分位数（也成为第75个百分位数）</span>
+<span class="o">Max 最大值</span>
+
+<span class="o">&gt; quantile(iris$Sepal.Length)</span>
+<span class="o">  0%</span>  <span class="m">25</span><span class="o">%  50%</span>  <span class="m">75</span><span class="o">% 100%</span>
+ <span class="m">4.3</span>  <span class="m">5.1</span>  <span class="m">5.8</span>  <span class="m">6.4</span>  <span class="m">7.9</span>
+<span class="o">&gt;</span>
+<span class="n">quantile统计数据集的0</span><span class="o">% 25%</span> <span class="m">50</span><span class="o">% 75%</span> <span class="m">100</span><span class="o">%位置处的数据。如果要得到其他位置的分位数，需要传一个参数probs，如得到每隔10%</span>的位置的分位数：
+<span class="o">&gt;</span> <span class="nf">quantile</span><span class="p">(</span><span class="n">iris</span><span class="o">$</span><span class="n">Sepal.Length</span><span class="p">,</span> <span class="n">probs</span> <span class="o">=</span> <span class="nf">seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="n">by</span> <span class="o">=</span> <span class="m">0.1</span><span class="p">))</span>
+<span class="m">0</span><span class="o">%  10%</span>  <span class="m">20</span><span class="o">%  30%</span>  <span class="m">40</span><span class="o">%  50%</span>  <span class="m">60</span><span class="o">%  70%</span>  <span class="m">80</span><span class="o">%  90%</span> <span class="m">100</span><span class="o">%</span>
+<span class="o">4.30 4.80 5.00 5.27 5.60 5.80 6.10 6.30 6.52 6.90 7.90</span>
+<span class="o">seq函数在这里用于在 0 ~ 1 之间产生一个步长为0.1的序列</span>
+<span class="o">如在运营部，需要记录用户反馈的响应时间，可能关心前99%</span>顾客的收益远大于只关心中位数个数顾客情况
+
+<span class="c1"># 求标准差与方差</span>
+<span class="o">&gt;</span> <span class="nf">sd</span><span class="p">(</span><span class="n">iris</span><span class="o">$</span><span class="n">Sepal.Length</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="m">0.8280661</span>
+<span class="o">&gt;</span> <span class="nf">var</span><span class="p">(</span><span class="n">iris</span><span class="o">$</span><span class="n">Sepal.Length</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="m">0.6856935</span>
+<span class="o">&gt;</span> <span class="nf">sd</span><span class="p">(</span><span class="n">iris</span><span class="o">$</span><span class="n">Sepal.Length</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="m">0.8280661</span>
+<span class="c1">#验证方差为标准差的平方：</span>
+<span class="o">&gt;</span> <span class="nf">print</span><span class="p">(</span><span class="m">0.8280661</span><span class="n">^2</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="m">0.6856935</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>3.<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>标量 Atomic Vector</p></li>
+<li><p>向量 Vector</p></li>
+<li><p>矩阵 Matrix</p></li>
+<li><p>数组 Array</p></li>
+<li><p>因子 factors</p></li>
+<li><p>列表 List</p></li>
+<li><p>数据框 Data Frame</p></li>
+</ul>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>R语言的向量索引下标从1开始，这个不同于Python 列表索引从0开始</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../machinelearning/index.html" class="btn btn-neutral float-right" title="机器学习" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="oop.html" class="btn btn-neutral float-left" title="面向对象编程" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Shaofei Wang
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -12,6 +12,7 @@ R
    datastructure.rst
    conditionals_loops.rst
    oop.rst
+   dataprocessing.rst
 
 参考资源
 

@@ -190,5 +190,5 @@ Conditionals and Loops 条件循环
 参考：
    1. R语言 条件语句与循环，`Conditionals_and_Loops`_
 
-.. _Conditionals_and_Loops: http://www.openbookproject.net/books/bpp4awd/ch04.html#conditionals-and-loops
+.. _Conditionals_and_Loops: https://cran.r-project.org/doc/manuals/r-release/R-intro.html#Loops-and-conditional-execution
 
