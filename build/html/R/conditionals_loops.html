@@ -278,24 +278,31 @@ var为循环变量，seq为向量表达式，通常为一个序列 expr是一个
 <ul class="simple">
 <li><p><strong>break</strong></p>
 <ul>
-<li><p>break语句用在while和for循环中</p></li>
-<li><p>打破了最小封闭for或while循环</p></li>
+<li><p>break语句用在for循环中</p></li>
+<li><p>打破了最小封闭for循环</p></li>
 <li><p>break语句用来终止循环语句，即循环条件没有False条件或者还没被完全递归完，也会停止执行循环语句</p></li>
 <li><p>如果使用的是嵌套循环，break语句在深层嵌套中，则break会停止执行最深层的循环，并开始执行下一行代码</p></li>
 </ul>
 </li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
-   <span class="k">print</span><span class="p">(</span><span class="s2">&quot;---i1 is--{}---printed--&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
-   <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
-       <span class="k">print</span><span class="p">(</span><span class="s2">&quot;-j1-{}---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
-       <span class="k">if</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
-           <span class="k">print</span><span class="p">(</span><span class="s2">&quot;--j2-{}---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
-           <span class="k">break</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">v</span> <span class="o">&lt;-</span> <span class="kc">letters</span><span class="n">[1</span><span class="o">:</span><span class="m">6</span><span class="n">]</span>
+<span class="o">&gt;</span> <span class="nf">print</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="c1"># [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot;</span>
+<span class="o">&gt;</span> <span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="n">v</span><span class="p">){</span>
+<span class="o">+</span>   <span class="nf">if </span><span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="s">&quot;d&quot;</span><span class="p">)</span> <span class="p">{</span>
+<span class="o">+</span>     <span class="n">break</span>
+<span class="o">+</span>   <span class="p">}</span>
+<span class="o">+</span>   <span class="nf">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="o">+</span> <span class="p">}</span>
+
+<span class="c1"># 输出</span>
+<span class="c1"># [1] &quot;a&quot;</span>
+<span class="c1"># [1] &quot;b&quot;</span>
+<span class="c1"># [1] &quot;c&quot;</span>
 </pre></div>
 </div>
 <div class="line-block">
-<div class="line">执行结果说明: 第一层循环–i1 is– 5次全部执行完成，第二层for循环执行前5次（值为0-4）执行完，在j &gt;= 4时，因为符合break条件，所以退出次循环</div>
+<div class="line">执行结果说明: 在a,b,c正常输出在i == “d”时，因为符合break条件，所以退出循环，与下面样例next做比对</div>
 </div>
 <ul class="simple">
 <li><p><strong>next</strong></p>
@@ -330,45 +337,9 @@ var为循环变量，seq为向量表达式，通常为一个序列 expr是一个
 <blockquote>
 <div><p>执行结果说明: 退出本次循，跳过当前循环的剩余语句，然后继续下一轮迭代</p>
 </div></blockquote>
-<ul class="simple">
-<li><p><strong>pass</strong></p>
-<ul>
-<li><p>什么都不做， do nothing</p></li>
-</ul>
-</li>
-</ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;---i1 is--{}---printed--&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
-    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;-j1-{}---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
-        <span class="k">if</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
-            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;--j2-{}---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
-            <span class="k">pass</span>
-            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;--j3-{}---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
-</pre></div>
-</div>
-<p>– <strong>exit()</strong></p>
-<blockquote>
-<div><ul class="simple">
-<li><p>结束整个程序</p></li>
-</ul>
-</div></blockquote>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;---i1 is--{}---printed--&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
-    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;-j1-{}---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
-        <span class="k">if</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
-            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;--j2-{}---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
-            <span class="nb">exit</span><span class="p">()</span>
-            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;--j3-{}---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
-</pre></div>
-</div>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
 <dl class="simple">
 <dt>参考：</dt><dd><ol class="arabic simple">
-<li><p>Python 条件语句与循环，<a class="reference external" href="http://www.openbookproject.net/books/bpp4awd/ch04.html#conditionals-and-loops">Conditionals_and_Loops</a></p></li>
+<li><p>R语言 条件语句与循环，<a class="reference external" href="http://www.openbookproject.net/books/bpp4awd/ch04.html#conditionals-and-loops">Conditionals_and_Loops</a></p></li>
 </ol>
 </dd>
 </dl>

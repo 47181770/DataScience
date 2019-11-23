@@ -116,24 +116,31 @@ Conditionals and Loops 条件循环
 
 - **break**
 
-  * break语句用在while和for循环中
-  * 打破了最小封闭for或while循环
+  * break语句用在for循环中
+  * 打破了最小封闭for循环
   * break语句用来终止循环语句，即循环条件没有False条件或者还没被完全递归完，也会停止执行循环语句
   * 如果使用的是嵌套循环，break语句在深层嵌套中，则break会停止执行最深层的循环，并开始执行下一行代码
 
 
-.. code:: python
+.. code:: r
 
- for i in range(8):
-    print("---i1 is--{}---printed--".format(i))
-    for j in range(6):
-        print("-j1-{}---printed".format(j))
-        if j > 3:
-            print("--j2-{}---printed".format(j))
-            break
+  > v <- letters[1:6]
+  > print(v)
+  # [1] "a" "b" "c" "d" "e" "f"
+  > for (i in v){
+  +   if (i == "d") {
+  +     break
+  +   }
+  +   print(i)
+  + }
+
+  # 输出
+  # [1] "a"
+  # [1] "b"
+  # [1] "c"
 
 |
-  执行结果说明: 第一层循环--i1 is-- 5次全部执行完成，第二层for循环执行前5次（值为0-4）执行完，在j >= 4时，因为符合break条件，所以退出次循环
+  执行结果说明: 在a,b,c正常输出在i == "d"时，因为符合break条件，所以退出循环，与下面样例next做比对
 
 - **next**
 
@@ -166,41 +173,9 @@ Conditionals and Loops 条件循环
  执行结果说明: 退出本次循，跳过当前循环的剩余语句，然后继续下一轮迭代
 
 
-- **pass**
-
-  * 什么都不做， do nothing
-
-.. code:: python
-
- for i in range(6):
-     print("---i1 is--{}---printed--".format(i))
-     for j in range(6):
-         print("-j1-{}---printed".format(j))
-         if j > 3:
-             print("--j2-{}---printed".format(j))
-             pass
-             print("--j3-{}---printed".format(j))
-
-
--- **exit()**
-
-   * 结束整个程序
-
-.. code:: python
-
- for i in range(6):
-     print("---i1 is--{}---printed--".format(i))
-     for j in range(6):
-         print("-j1-{}---printed".format(j))
-         if j > 3:
-             print("--j2-{}---printed".format(j))
-             exit()
-             print("--j3-{}---printed".format(j))
-
-|
 
 参考：
-   1. Python 条件语句与循环，`Conditionals_and_Loops`_
+   1. R语言 条件语句与循环，`Conditionals_and_Loops`_
 
 .. _Conditionals_and_Loops: http://www.openbookproject.net/books/bpp4awd/ch04.html#conditionals-and-loops
 
