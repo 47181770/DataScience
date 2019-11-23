@@ -13,6 +13,8 @@ R
    conditionals_loops.rst
    oop.rst
    dataprocessing.rst
+   dataAnalysisModel.rst
+   dataVisualization.rst
 
 参考资源
 
