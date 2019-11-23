@@ -4,10 +4,11 @@ Conditionals and Loops 条件循环
 1. 条件执行
 ~~~~~~~~~~~~~~
 
-- if语句/多条件执行
+- if语句/单条件执行
 
  如果满足条件，则执行程序，否则执行下一个条件并退出，其中条件必须是一个被解析为T或F的表达式，所以尽可能让条件简单:
-
+ 条件控制语句写法：if (condition) {expr1} else {expr2}
+ else不能单独成一行，它的前边必须有内容
 
 .. code:: r
 
@@ -17,7 +18,7 @@ Conditionals and Loops 条件循环
     '执行语句'
  }
 
- # if...else...可以写成一行
+ # if...else...也可以写成一行
  x <- 3
  y <- if (x==3) 7 else 8
  print('y is the right number: 7')
@@ -26,22 +27,27 @@ Conditionals and Loops 条件循环
 2. 多条件执行
 ~~~~~~~~~~~~~~
 
+    多条件if...else嵌套结构用来实现更复杂的处理：
+    2.1 if(条件1）{语句块1} else if(条件2){语句块2} ... else{语句块}
+    2.2 if(条件) {if(条件1){语句块1} else{语句块2} else if(条件2}{if(条件3}...else...} else...
 
 参考如下多条件样例
 
 .. code:: r
 
- name = input("请输入一个字母:")
- if name == 'a':
-     print('输入的字母为:a')
- elif name == 'b':
-     print('输入的字母为:b')
- elif name == 'c':
-     print('输入的字母为:c')
- else:
-     print('用户输入的字母不符合要求')
+  x <- 100
+  y <- 99
 
+  if (x<y) {
+    print('x is less than y')
+  } else if (x == y) {
+    print('x is equal to y')
+  } else {
+    print('x is larger than y')
+  }
 
+  # 输出结果：[1] "x is larger than y"
+  
 
 3. 嵌套条件
 ~~~~~~~~~~~~~~~~~~~
@@ -59,17 +65,19 @@ Conditionals and Loops 条件循环
      else:
          STATEMENTS_C
 
-4. Loop循环
+4. for循环
 ~~~~~~~~~~~~~~~~
 
-.. code:: python
+   for循环的语法格式：for(var in seq){ expr } var为循环变量，seq为向量表达式，通常为一个序列 expr是一个表达式语句组，expr随着var的取不同的seq结果向量的值而被多次重复执行。
 
- pdb_list = ['pdb1', 'pdb2']
- for pdb_name in pdb_list:
-     # 拼接一个插入的SQL语句，用于程序调用并执行
-     statement = 'insert into DB_CLOUD_PDBS(PDB_NAME) VALUES' + str(pdb_name)
-     print(statement)
+.. code:: r
 
+     # 执行1到1000的求和值
+     sum <- 0
+     for (var in 1:1000)
+       sum = sum + var
+     print(sum)
+     # 返回 500500
 
 5. 生成Tables
 ~~~~~~~~~~~~~~~

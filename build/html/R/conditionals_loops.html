@@ -91,7 +91,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#id1">1. 条件执行</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id2">2. 多条件执行</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id3">3. 嵌套条件</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#loop">4. Loop循环</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#for">4. for循环</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#tables">5. 生成Tables</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#while">6. While语句</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#forwhile">7. 怎样选择for或while</a></li>
@@ -175,10 +175,12 @@
 <div class="section" id="id1">
 <h2>1. 条件执行<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
 <ul class="simple">
-<li><p>if语句/多条件执行</p></li>
+<li><p>if语句/单条件执行</p></li>
 </ul>
 <blockquote>
-<div><p>如果满足条件，则执行程序，否则执行下一个条件并退出，其中条件必须是一个被解析为T或F的表达式，所以尽可能让条件简单:</p>
+<div><p>如果满足条件，则执行程序，否则执行下一个条件并退出，其中条件必须是一个被解析为T或F的表达式，所以尽可能让条件简单:
+条件控制语句写法：if (condition) {expr1} else {expr2}
+else不能单独成一行，它的前边必须有内容</p>
 </div></blockquote>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">if </span><span class="p">(</span><span class="s">&#39;条件表达式为True&#39;</span><span class="p">){</span>
    <span class="s">&#39;执行语句&#39;</span>
@@ -186,7 +188,7 @@
    <span class="s">&#39;执行语句&#39;</span>
 <span class="p">}</span>
 
-<span class="c1"># if...else...可以写成一行</span>
+<span class="c1"># if...else...也可以写成一行</span>
 <span class="n">x</span> <span class="o">&lt;-</span> <span class="m">3</span>
 <span class="n">y</span> <span class="o">&lt;-</span> <span class="nf">if </span><span class="p">(</span><span class="n">x</span><span class="o">==</span><span class="m">3</span><span class="p">)</span> <span class="m">7</span> <span class="n">else</span> <span class="m">8</span>
 <span class="nf">print</span><span class="p">(</span><span class="s">&#39;y is the right number: 7&#39;</span><span class="p">)</span>
@@ -196,16 +198,24 @@
 </div>
 <div class="section" id="id2">
 <h2>2. 多条件执行<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<blockquote>
+<div><p>多条件if…else嵌套结构用来实现更复杂的处理：
+2.1 if(条件1）{语句块1} else if(条件2){语句块2} … else{语句块}
+2.2 if(条件) {if(条件1){语句块1} else{语句块2} else if(条件2}{if(条件3}…else…} else…</p>
+</div></blockquote>
 <p>参考如下多条件样例</p>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">&quot;请输入一个字母:&quot;</span><span class="p">)</span>
-<span class="n">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s">&#39;a&#39;</span><span class="o">:</span>
-    <span class="nf">print</span><span class="p">(</span><span class="s">&#39;输入的字母为:a&#39;</span><span class="p">)</span>
-<span class="n">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s">&#39;b&#39;</span><span class="o">:</span>
-    <span class="nf">print</span><span class="p">(</span><span class="s">&#39;输入的字母为:b&#39;</span><span class="p">)</span>
-<span class="n">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s">&#39;c&#39;</span><span class="o">:</span>
-    <span class="nf">print</span><span class="p">(</span><span class="s">&#39;输入的字母为:c&#39;</span><span class="p">)</span>
-<span class="n">else</span><span class="o">:</span>
-    <span class="nf">print</span><span class="p">(</span><span class="s">&#39;用户输入的字母不符合要求&#39;</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">&lt;-</span> <span class="m">100</span>
+<span class="n">y</span> <span class="o">&lt;-</span> <span class="m">99</span>
+
+<span class="nf">if </span><span class="p">(</span><span class="n">x</span><span class="o">&lt;</span><span class="n">y</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nf">print</span><span class="p">(</span><span class="s">&#39;x is less than y&#39;</span><span class="p">)</span>
+<span class="p">}</span> <span class="n">else</span> <span class="nf">if </span><span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nf">print</span><span class="p">(</span><span class="s">&#39;x is equal to y&#39;</span><span class="p">)</span>
+<span class="p">}</span> <span class="n">else</span> <span class="p">{</span>
+  <span class="nf">print</span><span class="p">(</span><span class="s">&#39;x is larger than y&#39;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1"># 输出结果：[1] &quot;x is larger than y&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -222,13 +232,17 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="loop">
-<h2>4. Loop循环<a class="headerlink" href="#loop" title="永久链接至标题">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pdb_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pdb1&#39;</span><span class="p">,</span> <span class="s1">&#39;pdb2&#39;</span><span class="p">]</span>
-<span class="k">for</span> <span class="n">pdb_name</span> <span class="ow">in</span> <span class="n">pdb_list</span><span class="p">:</span>
-    <span class="c1"># 拼接一个插入的SQL语句，用于程序调用并执行</span>
-    <span class="n">statement</span> <span class="o">=</span> <span class="s1">&#39;insert into DB_CLOUD_PDBS(PDB_NAME) VALUES&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">pdb_name</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">statement</span><span class="p">)</span>
+<div class="section" id="for">
+<h2>4. for循环<a class="headerlink" href="#for" title="永久链接至标题">¶</a></h2>
+<blockquote>
+<div><p>for循环的语法格式：for(var in seq){ expr } var为循环变量，seq为向量表达式，通常为一个序列 expr是一个表达式语句组，expr随着var的取不同的seq结果向量的值而被多次重复执行。</p>
+</div></blockquote>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># 执行1到1000的求和值</span>
+<span class="n">sum</span> <span class="o">&lt;-</span> <span class="m">0</span>
+<span class="nf">for </span><span class="p">(</span><span class="n">var</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="m">1000</span><span class="p">)</span>
+  <span class="n">sum</span> <span class="o">=</span> <span class="n">sum</span> <span class="o">+</span> <span class="n">var</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">sum</span><span class="p">)</span>
+<span class="c1"># 返回 500500</span>
 </pre></div>
 </div>
 </div>
