@@ -90,12 +90,11 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Conditionals and Loops 条件循环</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1">1. 条件执行</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id2">2. 多条件执行</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">3. 嵌套条件</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#for">4. for循环</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#for">3. for循环</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#tables">5. 生成Tables</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#while">6. While语句</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#forwhile">7. 怎样选择for或while</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#break-continue-pass-exit">8. break continue pass exit()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#break-next">8. break next</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="oop.html">面向对象编程</a></li>
@@ -180,7 +179,7 @@
 <blockquote>
 <div><p>如果满足条件，则执行程序，否则执行下一个条件并退出，其中条件必须是一个被解析为T或F的表达式，所以尽可能让条件简单:
 条件控制语句写法：if (condition) {expr1} else {expr2}
-else不能单独成一行，它的前边必须有内容</p>
+else不能单独成一行，它的前边必须有内容，如”}” 或者expr1表达式</p>
 </div></blockquote>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">if </span><span class="p">(</span><span class="s">&#39;条件表达式为True&#39;</span><span class="p">){</span>
    <span class="s">&#39;执行语句&#39;</span>
@@ -209,7 +208,7 @@ else不能单独成一行，它的前边必须有内容</p>
 
 <span class="nf">if </span><span class="p">(</span><span class="n">x</span><span class="o">&lt;</span><span class="n">y</span><span class="p">)</span> <span class="p">{</span>
   <span class="nf">print</span><span class="p">(</span><span class="s">&#39;x is less than y&#39;</span><span class="p">)</span>
-<span class="p">}</span> <span class="n">else</span> <span class="nf">if </span><span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span>
+<span class="p">}</span> <span class="n">else</span> <span class="nf">if </span><span class="p">(</span><span class="n">x</span><span class="o">==</span><span class="n">y</span><span class="p">)</span> <span class="p">{</span>
   <span class="nf">print</span><span class="p">(</span><span class="s">&#39;x is equal to y&#39;</span><span class="p">)</span>
 <span class="p">}</span> <span class="n">else</span> <span class="p">{</span>
   <span class="nf">print</span><span class="p">(</span><span class="s">&#39;x is larger than y&#39;</span><span class="p">)</span>
@@ -219,23 +218,11 @@ else不能单独成一行，它的前边必须有内容</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id3">
-<h2>3. 嵌套条件<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
-<p>参考如下多条件样例嵌套条件Nested conditionals:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span><span class="p">:</span>
-    <span class="n">STATEMENTS_A</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span><span class="p">:</span>
-        <span class="n">STATEMENTS_B</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">STATEMENTS_C</span>
-</pre></div>
-</div>
-</div>
 <div class="section" id="for">
-<h2>4. for循环<a class="headerlink" href="#for" title="永久链接至标题">¶</a></h2>
+<h2>3. for循环<a class="headerlink" href="#for" title="永久链接至标题">¶</a></h2>
 <blockquote>
-<div><p>for循环的语法格式：for(var in seq){ expr } var为循环变量，seq为向量表达式，通常为一个序列 expr是一个表达式语句组，expr随着var的取不同的seq结果向量的值而被多次重复执行。</p>
+<div><p>for循环的语法格式：for(var in seq){ expr }
+var为循环变量，seq为向量表达式，通常为一个序列 expr是一个表达式语句组，expr随着var的取不同的seq结果向量的值而被多次重复执行。</p>
 </div></blockquote>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># 执行1到1000的求和值</span>
 <span class="n">sum</span> <span class="o">&lt;-</span> <span class="m">0</span>
@@ -286,8 +273,8 @@ else不能单独成一行，它的前边必须有内容</p>
 <li><p>while循环：不确定性迭代，无法确定执行次数的上限</p></li>
 </ul>
 </div>
-<div class="section" id="break-continue-pass-exit">
-<h2>8. break continue pass exit()<a class="headerlink" href="#break-continue-pass-exit" title="永久链接至标题">¶</a></h2>
+<div class="section" id="break-next">
+<h2>8. break next<a class="headerlink" href="#break-next" title="永久链接至标题">¶</a></h2>
 <ul class="simple">
 <li><p><strong>break</strong></p>
 <ul>
@@ -311,32 +298,37 @@ else不能单独成一行，它的前边必须有内容</p>
 <div class="line">执行结果说明: 第一层循环–i1 is– 5次全部执行完成，第二层for循环执行前5次（值为0-4）执行完，在j &gt;= 4时，因为符合break条件，所以退出次循环</div>
 </div>
 <ul class="simple">
-<li><p><strong>continue</strong></p>
+<li><p><strong>next</strong></p>
 <ul>
-<li><p>跳出本次循环</p></li>
-<li><p>continue 语句用在while和for循环中</p></li>
-<li><p>continue 语句跳出本次循环，而break跳出整个循环</p></li>
+<li><p>当我们想跳过循环的当前迭代而不终止它时便可使用next。 遇到next时，R解析器跳过本次迭代，并开始循环的下一次迭代。</p></li>
 </ul>
 </li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
-   <span class="k">print</span><span class="p">(</span><span class="s2">&quot;---i1 is--{}---printed--&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
-   <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
-       <span class="k">print</span><span class="p">(</span><span class="s2">&quot;-j1-{}---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
-       <span class="k">if</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
-           <span class="k">print</span><span class="p">(</span><span class="s2">&quot;--j2-{}---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
-           <span class="k">continue</span>
-           <span class="k">print</span><span class="p">(</span><span class="s2">&quot;--j3-{}---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span> <span class="o">&gt;</span> <span class="n">v</span> <span class="o">&lt;-</span> <span class="kc">letters</span><span class="n">[1</span><span class="o">:</span><span class="m">6</span><span class="n">]</span>
+ <span class="o">&gt;</span> <span class="nf">print</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+ <span class="c1"># [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot;</span>
+ <span class="o">&gt;</span> <span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="n">v</span><span class="p">){</span>
+ <span class="o">+</span>   <span class="nf">if </span><span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="s">&quot;d&quot;</span><span class="p">)</span> <span class="p">{</span>
+ <span class="o">+</span>     <span class="n">next</span>
+ <span class="o">+</span>   <span class="p">}</span>
+ <span class="o">+</span>   <span class="nf">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+ <span class="o">+</span> <span class="p">}</span>
 
+ <span class="c1"># 输出</span>
+ <span class="c1">#[1] &quot;a&quot;</span>
+ <span class="c1">#[1] &quot;b&quot;</span>
+ <span class="c1">#[1] &quot;c&quot;</span>
+ <span class="c1">#[1] &quot;e&quot;</span>
+ <span class="c1">#[1] &quot;f&quot;</span>
 
-<span class="c1"># 注意观察i1 j2 j3值在循环中的变化</span>
+<span class="c1"># 注意观察输出值在循环中的变化</span>
 </pre></div>
 </div>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <blockquote>
-<div><p>执行结果说明: continue退出本次循环，跳过当前循环的剩余语句，然后继续下一轮第一层循环</p>
+<div><p>执行结果说明: 退出本次循，跳过当前循环的剩余语句，然后继续下一轮迭代</p>
 </div></blockquote>
 <ul class="simple">
 <li><p><strong>pass</strong></p>

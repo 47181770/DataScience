@@ -8,7 +8,7 @@ Conditionals and Loops 条件循环
 
  如果满足条件，则执行程序，否则执行下一个条件并退出，其中条件必须是一个被解析为T或F的表达式，所以尽可能让条件简单:
  条件控制语句写法：if (condition) {expr1} else {expr2}
- else不能单独成一行，它的前边必须有内容
+ else不能单独成一行，它的前边必须有内容，如"}" 或者expr1表达式
 
 .. code:: r
 
@@ -40,7 +40,7 @@ Conditionals and Loops 条件循环
 
   if (x<y) {
     print('x is less than y')
-  } else if (x == y) {
+  } else if (x==y) {
     print('x is equal to y')
   } else {
     print('x is larger than y')
@@ -49,26 +49,11 @@ Conditionals and Loops 条件循环
   # 输出结果：[1] "x is larger than y"
   
 
-3. 嵌套条件
-~~~~~~~~~~~~~~~~~~~
-
-
-参考如下多条件样例嵌套条件Nested conditionals:
-
-.. code:: python
-
- if x < y:
-     STATEMENTS_A
- else:
-     if x > y:
-         STATEMENTS_B
-     else:
-         STATEMENTS_C
-
-4. for循环
+3. for循环
 ~~~~~~~~~~~~~~~~
 
-   for循环的语法格式：for(var in seq){ expr } var为循环变量，seq为向量表达式，通常为一个序列 expr是一个表达式语句组，expr随着var的取不同的seq结果向量的值而被多次重复执行。
+   for循环的语法格式：for(var in seq){ expr } 
+   var为循环变量，seq为向量表达式，通常为一个序列 expr是一个表达式语句组，expr随着var的取不同的seq结果向量的值而被多次重复执行。
 
 .. code:: r
 
@@ -78,6 +63,7 @@ Conditionals and Loops 条件循环
        sum = sum + var
      print(sum)
      # 返回 500500
+
 
 5. 生成Tables
 ~~~~~~~~~~~~~~~
@@ -125,7 +111,7 @@ Conditionals and Loops 条件循环
 - while循环：不确定性迭代，无法确定执行次数的上限
 
 
-8. break continue pass exit()
+8. break next
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - **break**
@@ -149,29 +135,35 @@ Conditionals and Loops 条件循环
 |
   执行结果说明: 第一层循环--i1 is-- 5次全部执行完成，第二层for循环执行前5次（值为0-4）执行完，在j >= 4时，因为符合break条件，所以退出次循环
 
-- **continue**
+- **next**
 
-  * 跳出本次循环
-  * continue 语句用在while和for循环中
-  * continue 语句跳出本次循环，而break跳出整个循环
+  * 当我们想跳过循环的当前迭代而不终止它时便可使用next。 遇到next时，R解析器跳过本次迭代，并开始循环的下一次迭代。
+   
 
-.. code:: python
+.. code:: r
 
- for i in range(8):
-    print("---i1 is--{}---printed--".format(i))
-    for j in range(6):
-        print("-j1-{}---printed".format(j))
-        if j > 3:
-            print("--j2-{}---printed".format(j))
-            continue
-            print("--j3-{}---printed".format(j))
+  > v <- letters[1:6]
+  > print(v)
+  # [1] "a" "b" "c" "d" "e" "f"
+  > for (i in v){
+  +   if (i == "d") {
+  +     next
+  +   }
+  +   print(i)
+  + }
+  
+  # 输出
+  #[1] "a"
+  #[1] "b"
+  #[1] "c"
+  #[1] "e"
+  #[1] "f"
 
-
- # 注意观察i1 j2 j3值在循环中的变化
+ # 注意观察输出值在循环中的变化
 
 |
 
- 执行结果说明: continue退出本次循环，跳过当前循环的剩余语句，然后继续下一轮第一层循环
+ 执行结果说明: 退出本次循，跳过当前循环的剩余语句，然后继续下一轮迭代
 
 
 - **pass**
