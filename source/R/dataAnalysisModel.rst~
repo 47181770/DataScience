@@ -101,11 +101,11 @@
 - 分布的对称性检验
   Kolmogorov-Smirnov检验来查看一个向量是否来自对称的概率分布（不限于正态分布）
 
-  ks.test(x, y, ...,
-          alternative = c("two-side", "less", "greater"),
-          exact = NULL)
+    ks.test(x, y, ...,
+            alternative = c("two-side", "less", "greater"),
+            exact = NULL)
   
-          x为待检验数据
+  x为待检验数据
   y为指定对称分布的类型，可以是数值型向量、指定概率分布函数的字符串或是一个分布函数 
 
 - 二项式检验
