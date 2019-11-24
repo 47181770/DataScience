@@ -91,7 +91,7 @@
 <li class="toctree-l2"><a class="reference internal" href="oop.html">面向对象编程</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dataprocessing.html">R数据处理</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">数据分析模型</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">1. 函数与函数式编程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">1. 独立性检验</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id3">2. 类与面向对象编程</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id4">3. 包</a></li>
 </ul>
@@ -171,23 +171,98 @@
   <div class="section" id="id1">
 <h1>数据分析模型<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
 <div class="section" id="id2">
-<h2>1. 函数与函数式编程<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<h2>1. 独立性检验<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
 <ul>
-<li><p>函数</p>
+<li><p>三种基本检验方法</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>使用function(arguments) body定义函数</p></li>
-<li><p>函数体就是调用函数时所执行的一系列语句</p></li>
-<li><p>接受数量不定的位置或者关键字参数，很方便的指定任意长度的参数列表，在参数列表中加上一个省略号(…)来实现这个功能</p></li>
-<li><p>可以使用list将对象…转换成一个列表，如args &lt;- list(…)</p></li>
-<li><p>可以使用..1、..2到..9等直接引用列表…中的内容，..1表示第一项，..2表示第二项，以此类推</p></li>
-<li><p>R函数中，可以通过return函数来制定该函数的返回值，显式返回值会使得代码更加清晰易懂</p></li>
-<li><p>函数可以被当成参数而被其他函数调用，如sapply</p></li>
-<li><p>函数属性：R中包含了一系列函数用于提取函数类型对象的信息</p></li>
-<li><p>尽量用精确的参数名</p></li>
+<li><p>卡方独立性Pearson’s Chi-squared test检验：chisq.test()</p></li>
+<li><p>Fisher精确检验：fisher.test()</p></li>
+<li><p>Cochran-Mantel-Haenszel卡方检验：mantelhaen.test()</p></li>
 </ul>
 </div></blockquote>
 </li>
+<li><p>相关性度量</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>计算二维列连表的phi系数、列连系数和Cramer’s V系数，vcd包中的函数用法：assocstats(mytable)
+较大的值意味着较强的相关性。vcd包中也提供了一个kappa()函数，计算混淆矩阵的Cohen’s kappa值以及加权的kappa值</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>相关系数</p>
+<blockquote>
+<div><p>相关系数可以用来描述定量变量之间的关系。相关系数的符号（正负号）表明关系的方向（正相关或负相关），值大小表示关系强弱的程度，完全相关时为1，完全不相关时为0</p>
+<ul class="simple">
+<li><p>Pearson相关系数
+Pearson积差相关系数衡量了两个定量变量之间的线性相关程度</p></li>
+<li><p>Spearman相关系数
+Spearman等级相关系数则衡量分级定序变量之间的相关程度</p></li>
+<li><p>Kendall相关系数
+Kendall’s Tau相关系数是一种非参数的等级相关度量</p></li>
+</ul>
+<p>如上三种相关系数可以用cor()函数计算，而cov()函数可以用来计算协方差：
+cor(x, use= , method=) ; cov(x, use= , method=)
+x为矩阵或数据框；
+use指定缺失数据的处理方式（默认为everything，可选为all.obs不存在缺失数据-遇缺失数据则报错、complete.obs行删除、pairwise.complete.obs成对删除）
+method指定相关系数类型默认为pearson。可选类型：pearson、spearman或kendall
+计算好相关系数以后，如何对他们进行统计显著性检验呢？常用的原假设为变量间不相关（即总体的相关系数为0）：
+cor.test(x, y, alternative = , method = )
+x和y为要检验相关性的变量
+alternative 用来指定进行双侧检验或单侧检验（取值为：two.side、less或greater），当研究的假设为总体的相关系数小于0时，请使用alternative = “less”，研究的假设为总体的相关系数大于0时，使用alternative = “greater”，默认为two.side总体相关系数不等于0.
+method可选类型：pearson、spearman或kendall
+遗憾的是cor.test每次只能检验一种相关关系。psych包中提供的corr.test()函数可以计算相关矩阵并进行显著性检验</p>
+</div></blockquote>
+</li>
+</ul>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># 使用state.x77美国数据集</span>
+<span class="o">&gt;</span> <span class="n">sfstates</span> <span class="o">&lt;-</span> <span class="n">state.x77[</span><span class="p">,</span><span class="m">1</span><span class="o">:</span><span class="m">6</span><span class="n">]</span>
+<span class="o">&gt;</span> <span class="nf">library</span><span class="p">(</span><span class="n">psych</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="nf">corr.test</span><span class="p">(</span><span class="n">sfstates</span><span class="p">,</span> <span class="n">use</span> <span class="o">=</span> <span class="s">&quot;complete&quot;</span><span class="p">,</span> <span class="n">method</span> <span class="o">=</span> <span class="s">&quot;pearson&quot;</span><span class="p">)</span>
+<span class="n">Call</span><span class="o">:</span><span class="nf">corr.test</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">sfstates</span><span class="p">,</span> <span class="n">use</span> <span class="o">=</span> <span class="s">&quot;complete&quot;</span><span class="p">,</span> <span class="n">method</span> <span class="o">=</span> <span class="s">&quot;pearson&quot;</span><span class="p">)</span>
+<span class="n">Correlation</span> <span class="n">matrix</span>
+           <span class="n">Population</span> <span class="n">Income</span> <span class="n">Illiteracy</span> <span class="n">Life</span> <span class="n">Exp</span> <span class="n">Murder</span> <span class="n">HS</span> <span class="n">Grad</span>
+<span class="n">Population</span>       <span class="m">1.00</span>   <span class="m">0.21</span>       <span class="m">0.11</span>    <span class="m">-0.07</span>   <span class="m">0.34</span>   <span class="m">-0.10</span>
+<span class="n">Income</span>           <span class="m">0.21</span>   <span class="m">1.00</span>      <span class="m">-0.44</span>     <span class="m">0.34</span>  <span class="m">-0.23</span>    <span class="m">0.62</span>
+<span class="n">Illiteracy</span>       <span class="m">0.11</span>  <span class="m">-0.44</span>       <span class="m">1.00</span>    <span class="m">-0.59</span>   <span class="m">0.70</span>   <span class="m">-0.66</span>
+<span class="n">Life</span> <span class="n">Exp</span>        <span class="m">-0.07</span>   <span class="m">0.34</span>      <span class="m">-0.59</span>     <span class="m">1.00</span>  <span class="m">-0.78</span>    <span class="m">0.58</span>
+<span class="n">Murder</span>           <span class="m">0.34</span>  <span class="m">-0.23</span>       <span class="m">0.70</span>    <span class="m">-0.78</span>   <span class="m">1.00</span>   <span class="m">-0.49</span>
+<span class="n">HS</span> <span class="n">Grad</span>         <span class="m">-0.10</span>   <span class="m">0.62</span>      <span class="m">-0.66</span>     <span class="m">0.58</span>  <span class="m">-0.49</span>    <span class="m">1.00</span>
+<span class="n">Sample</span> <span class="n">Size</span>
+<span class="n">[1]</span> <span class="m">50</span>
+<span class="n">Probability</span> <span class="nf">values </span><span class="p">(</span><span class="n">Entries</span> <span class="n">above</span> <span class="n">the</span> <span class="n">diagonal</span> <span class="n">are</span> <span class="n">adjusted</span> <span class="n">for</span> <span class="n">multiple</span> <span class="n">tests.</span><span class="p">)</span>
+           <span class="n">Population</span> <span class="n">Income</span> <span class="n">Illiteracy</span> <span class="n">Life</span> <span class="n">Exp</span> <span class="n">Murder</span> <span class="n">HS</span> <span class="n">Grad</span>
+<span class="n">Population</span>       <span class="m">0.00</span>   <span class="m">0.59</span>       <span class="m">1.00</span>      <span class="m">1.0</span>   <span class="m">0.10</span>       <span class="m">1</span>
+<span class="n">Income</span>           <span class="m">0.15</span>   <span class="m">0.00</span>       <span class="m">0.01</span>      <span class="m">0.1</span>   <span class="m">0.54</span>       <span class="m">0</span>
+<span class="n">Illiteracy</span>       <span class="m">0.46</span>   <span class="m">0.00</span>       <span class="m">0.00</span>      <span class="m">0.0</span>   <span class="m">0.00</span>       <span class="m">0</span>
+<span class="n">Life</span> <span class="n">Exp</span>         <span class="m">0.64</span>   <span class="m">0.02</span>       <span class="m">0.00</span>      <span class="m">0.0</span>   <span class="m">0.00</span>       <span class="m">0</span>
+<span class="n">Murder</span>           <span class="m">0.01</span>   <span class="m">0.11</span>       <span class="m">0.00</span>      <span class="m">0.0</span>   <span class="m">0.00</span>       <span class="m">0</span>
+<span class="n">HS</span> <span class="n">Grad</span>          <span class="m">0.50</span>   <span class="m">0.00</span>       <span class="m">0.00</span>      <span class="m">0.0</span>   <span class="m">0.00</span>       <span class="m">0</span>
+收入与高中毕业有一定相关性
+
+
+  <span class="o">*</span> 偏相关系数
+    偏相关是指在控制一个或多个定量变量时，另外两个定量变量之间的相互关系，常用于社会科学的研究中。使用<span class="nf">ggm的pcor</span><span class="p">()</span>函数计算偏相关系数，在多元正态性的假设下，<span class="nf">ggm中的pcor.test</span><span class="p">()</span>函数可以用来检验在控制一个或多个额外变量时两个变量之间的条件独立性。
+    <span class="nf">pcor</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">S</span><span class="p">)</span>
+    <span class="n">u是一个数值向量</span>
+    <span class="n">S为变量的协方差阵</span>
+
+    <span class="nf">pcor.test</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+    <span class="n">r</span> 是由<span class="n">pcor计算得到的偏相关系数</span>
+    <span class="n">q</span> 为要控制的变量数（以数值表示位置）
+    <span class="n">n</span> 为样本大小
+    <span class="nf">psych包中的r.test</span><span class="p">()</span>提供了多种实用性的显著性检验方法，参阅<span class="nf">help</span><span class="p">(</span><span class="n">r.test</span><span class="p">)</span>：
+    <span class="m">1</span><span class="n">. 某种相关系数的显著性</span>
+    <span class="m">2</span><span class="n">. 两个独立相关系数的差异是否显著</span>
+    <span class="m">3</span><span class="n">. 两个基于一个共享变量得到的非独立相关系数的差异是否显著</span>
+    <span class="m">4</span><span class="n">. 两个基于完全不同的变量得到的非独立相关系数的差异是否显著</span>
+
+  <span class="o">*</span> 多分格（<span class="n">polychoric</span>）相关系数
+  <span class="o">*</span> 多系列（<span class="n">polyserial</span>）相关系数
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>t检验</p></li>
 </ul>
 </div>
 <hr class="docutils" />
