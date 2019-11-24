@@ -205,16 +205,16 @@ Spearman等级相关系数则衡量分级定序变量之间的相关程度</p></
 <li><p>Kendall相关系数
 Kendall’s Tau相关系数是一种非参数的等级相关度量</p></li>
 </ul>
-<p>如上三种相关系数可以用cor()函数计算，而cov()函数可以用来计算协方差：
-cor(x, use= , method=) ; cov(x, use= , method=)
-x为矩阵或数据框；
-use指定缺失数据的处理方式（默认为everything，可选为all.obs不存在缺失数据-遇缺失数据则报错、complete.obs行删除、pairwise.complete.obs成对删除）
-method指定相关系数类型默认为pearson。可选类型：pearson、spearman或kendall
-计算好相关系数以后，如何对他们进行统计显著性检验呢？常用的原假设为变量间不相关（即总体的相关系数为0）：
-cor.test(x, y, alternative = , method = )
-x和y为要检验相关性的变量
-alternative 用来指定进行双侧检验或单侧检验（取值为：two.side、less或greater），当研究的假设为总体的相关系数小于0时，请使用alternative = “less”，研究的假设为总体的相关系数大于0时，使用alternative = “greater”，默认为two.side总体相关系数不等于0.
-method可选类型：pearson、spearman或kendall
+<p>如上三种相关系数可以用cor()函数计算，而cov()函数可以用来计算协方差：</p>
+<p>cor(x, use= , method=) ; cov(x, use= , method=)</p>
+<p>x为矩阵或数据框；</p>
+<p>use指定缺失数据的处理方式（默认为everything，可选为all.obs不存在缺失数据-遇缺失数据则报错、complete.obs行删除、pairwise.complete.obs成对删除）</p>
+<p>method指定相关系数类型默认为pearson。可选类型：pearson、spearman或kendall</p>
+<p>计算好相关系数以后，如何对他们进行统计显著性检验呢？常用的原假设为变量间不相关（即总体的相关系数为0）：</p>
+<p>cor.test(x, y, alternative = , method = )</p>
+<p>x和y为要检验相关性的变量</p>
+<p>alternative 用来指定进行双侧检验或单侧检验（取值为：two.side、less或greater），当研究的假设为总体的相关系数小于0时，请使用alternative = “less”，研究的假设为总体的相关系数大于0时，使用alternative = “greater”，默认为two.side总体相关系数不等于0.</p>
+<p>method可选类型：pearson、spearman或kendall
 遗憾的是cor.test每次只能检验一种相关关系。psych包中提供的corr.test()函数可以计算相关矩阵并进行显著性检验</p>
 <ul>
 <li><p>偏相关系数
