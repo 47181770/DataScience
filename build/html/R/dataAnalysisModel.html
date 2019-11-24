@@ -172,6 +172,10 @@
 <h1>数据分析模型<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
 <div class="section" id="id2">
 <h2>1. 独立性检验<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<blockquote>
+<div><p>许多的数据分析问题都可以归结为统计检验问题，如新的投资策略能否跑赢指数基金的收益？
+要解答如上问题，需要提出一个原假设，设计一个实验，搜集所需数据并进行分析。</p>
+</div></blockquote>
 <ul>
 <li><p>三种基本检验方法</p>
 <blockquote>
@@ -260,9 +264,28 @@ psych包中的r.test()提供了多种实用性的显著性检验方法，参阅h
 收入与高中毕业有一定相关性
 </pre></div>
 </div>
-<ul class="simple">
+<ul>
 <li><p>t检验
-T检验，又称student t检验，主要用于样本含量较小（例如n&lt;30），总体标准差未知的正态分布。用T分布理论来推断差异发生的概率，从而判定两个平均数的差异是否显著</p></li>
+T检验，又称student t检验，主要用于样本含量较小（例如n&lt;30），总体标准差未知的正态分布。用T分布理论来推断差异发生的概率，从而判定两个平均数的差异是否显著
+想知道更多组件差异的细节信息，使用pairwise.t.test（x, g, p.adjust.method = p.adjust.methods, pool.sd = !paried, …）函数。x是一个数值型向量，g指定一个用于分组的因子变量</p></li>
+<li><p>正态性检验
+Shapiro-Wilk检验：shapiro.test(x)</p></li>
+<li><p>分布的对称性检验
+Kolmogorov-Smirnov检验来查看一个向量是否来自对称的概率分布（不限于正态分布）</p>
+<blockquote>
+<div><dl class="simple">
+<dt>ks.test(x, y, …,</dt><dd><p>alternative = c(“two-side”, “less”, “greater”),
+exact = NULL)</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>x为待检验数据
+y为指定对称分布的类型，可以是数值型向量、指定概率分布函数的字符串或是一个分布函数</p>
+</li>
+<li><p>二项式检验
+如抛硬币，只有正反两面两种</p></li>
+<li><p>列联表检验，Fisher确切概率检验：fisher.test()</p></li>
+<li><p>列联表非参数检验，Friedman禾失和检验是一个非参数版本的双边ANOVA方差检验，用friedman.test来执行检验</p></li>
 </ul>
 </div>
 <hr class="docutils" />
@@ -299,7 +322,7 @@ Significance test是实现对总体（随机变量）的参数或总体分布形
 <li><p>t’检验：与t检验大致同，但t’检验用于两组间方差不齐时</p></li>
 <li><p>U检验：应用条件与t检验基本一致，当大样本时用U检验</p></li>
 <li><p>方差分析
-用于正态分布、方差齐性的多组间计量比较。常见的有单因素分组的多样本均数比较及双因素分组的多样本均数比较，方差分析首先是比较各组间总的差异，如总差异有显著性，再进行组间两两比较，组件比较用q检验或LST检验等</p></li>
+用于正态分布、方差齐性的多组间计量比较。常见的有单因素分组的多样本均数比较及双因素分组的多样本均数比较，方差分析首先是比较各组间总的差异，如总差异有显著性，再进行组间两两比较，组件比较用q检验或LST检验等，如p值小于0.05，则表明两总体的方差的差异是统计显著的。</p></li>
 <li><p>X2检验
 用于两个或多个百分比（率）的比较，如：四格表资料、配对资料、多余2行*2列资料及组内分组X2检验</p></li>
 <li><p>零反应检验
