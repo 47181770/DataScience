@@ -144,7 +144,9 @@ Conditionals and Loops 条件循环
   [1] "星期日 十一月 24 2019"
   > sfdate("short")
   [1] "19-11-24"
-  > 
+  > sfdate("medium")
+  medium is not a recognized type
+   
   
 
 

@@ -145,7 +145,7 @@ Conditionals and Loops 条件循环
   > sfdate("short")
   [1] "19-11-24"
   > sfdate("medium")
-  medium is not a recognized type
+  #输出 medium is not a recognized type
    
   
 
