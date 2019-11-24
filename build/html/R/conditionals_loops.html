@@ -93,13 +93,14 @@
 <li class="toctree-l3"><a class="reference internal" href="#for">3. for循环</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#repeat">4. repeat</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#while">5. While语句</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#break-next">6. break next</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#switch">6. switch结构</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#break-next">7. break next</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="oop.html">面向对象编程</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dataprocessing.html">R数据处理</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dataAnalysisModel.html">面向对象编程</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dataVisualization.html">面向对象编程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataAnalysisModel.html">数据分析模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataVisualization.html">数据可视化</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../machinelearning/index.html">机器学习</a></li>
@@ -181,7 +182,8 @@
 <blockquote>
 <div><p>如果满足条件，则执行程序，否则执行下一个条件并退出，其中条件必须是一个被解析为T或F的表达式，所以尽可能让条件简单:
 条件控制语句写法：if (condition) {expr1} else {expr2}
-else不能单独成一行，它的前边必须有内容，如”}” 或者expr1表达式</p>
+else不能单独成一行，它的前边必须有内容，如”}” 或者expr1表达式
+ifelse结构是if-else结构比较紧凑的向量化版本，语法为：ifelse(condition, statement1, statement2),当希望结构的输入输出都是向量时，请使用ifelse</p>
 </div></blockquote>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">if </span><span class="p">(</span><span class="s">&#39;条件表达式为True&#39;</span><span class="p">){</span>
    <span class="s">&#39;执行语句&#39;</span>
@@ -290,8 +292,30 @@ var为循环变量，seq为向量表达式，通常为一个序列 expr是一个
 </pre></div>
 </div>
 </div>
+<div class="section" id="switch">
+<h2>6. switch结构<a class="headerlink" href="#switch" title="永久链接至标题">¶</a></h2>
+<blockquote>
+<div><p>switch根据一个表达式的值选择语句执行，语法为：
+switch(expr, …)
+其中…表示expr的各种可能输出值绑定的语句。</p>
+</div></blockquote>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">sfdate</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">type</span><span class="p">)</span> <span class="p">{</span>
+<span class="o">+</span> <span class="nf">switch </span><span class="p">(</span><span class="n">type</span><span class="p">,</span>
+<span class="o">+</span>   <span class="n">long</span> <span class="o">=</span> <span class="nf">format</span><span class="p">(</span><span class="nf">Sys.time</span><span class="p">(),</span> <span class="s">&quot;%A %B %d %Y&quot;</span><span class="p">),</span>
+<span class="o">+</span>   <span class="n">short</span> <span class="o">=</span> <span class="nf">format</span><span class="p">(</span><span class="nf">Sys.time</span><span class="p">(),</span> <span class="s">&quot;%y-%m-%d&quot;</span><span class="p">),</span>
+<span class="o">+</span>   <span class="nf">cat</span><span class="p">(</span><span class="n">type</span><span class="p">,</span> <span class="s">&quot;is not a recognized type\n&quot;</span><span class="p">)</span>
+<span class="o">+</span> <span class="p">)</span>
+<span class="o">+</span> <span class="p">}</span>
+<span class="o">&gt;</span> <span class="nf">sfdate</span><span class="p">(</span><span class="s">&quot;long&quot;</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="s">&quot;星期日 十一月 24 2019&quot;</span>
+<span class="o">&gt;</span> <span class="nf">sfdate</span><span class="p">(</span><span class="s">&quot;short&quot;</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="s">&quot;19-11-24&quot;</span>
+<span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="break-next">
-<h2>6. break next<a class="headerlink" href="#break-next" title="永久链接至标题">¶</a></h2>
+<h2>7. break next<a class="headerlink" href="#break-next" title="永久链接至标题">¶</a></h2>
 <ul class="simple">
 <li><p><strong>break</strong></p>
 <ul>

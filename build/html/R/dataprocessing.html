@@ -36,7 +36,7 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜索" href="../search.html" />
-    <link rel="next" title="面向对象编程" href="dataAnalysisModel.html" />
+    <link rel="next" title="数据分析模型" href="dataAnalysisModel.html" />
     <link rel="prev" title="面向对象编程" href="oop.html" /> 
 </head>
 
@@ -94,10 +94,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#id2">2. 数值摘要</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id3">3. 基本数据管理</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id4">4. 高级数据管理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">5. 总结数据</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="dataAnalysisModel.html">面向对象编程</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dataVisualization.html">面向对象编程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataAnalysisModel.html">数据分析模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataVisualization.html">数据可视化</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../machinelearning/index.html">机器学习</a></li>
@@ -257,9 +258,276 @@
 <li><p>SQL语句操作数据框</p></li>
 </ul>
 </div></blockquote>
-<div class="admonition tip">
-<p class="admonition-title">小技巧</p>
-<p>R语言的向量索引下标从1开始，这个不同于Python 列表索引从0开始</p>
+<ul class="simple">
+<li><p>创建新变量，变量重命名
+样例如下，建议采用transform()函数新增数据框的列</p></li>
+</ul>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">myd</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">x1</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">6</span><span class="p">,</span><span class="m">3</span><span class="p">),</span> <span class="n">x2</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">6</span><span class="p">))</span>
+<span class="o">&gt;</span> <span class="n">myd</span>
+  <span class="n">x1</span> <span class="n">x2</span>
+<span class="m">1</span>  <span class="m">2</span>  <span class="m">3</span>
+<span class="m">2</span>  <span class="m">2</span>  <span class="m">4</span>
+<span class="m">3</span>  <span class="m">6</span>  <span class="m">5</span>
+<span class="m">4</span>  <span class="m">3</span>  <span class="m">6</span>
+<span class="o">&gt;</span> <span class="n">myd</span><span class="o">$</span><span class="n">sumx</span> <span class="o">&lt;-</span> <span class="n">myd</span><span class="o">$</span><span class="n">x1</span> <span class="o">+</span> <span class="n">myd</span><span class="o">$</span><span class="n">x2</span>
+<span class="o">&gt;</span> <span class="n">myd</span>
+ <span class="n">x1</span> <span class="n">x2</span> <span class="n">sumx</span>
+<span class="m">1</span>  <span class="m">2</span>  <span class="m">3</span>    <span class="m">5</span>
+<span class="m">2</span>  <span class="m">2</span>  <span class="m">4</span>    <span class="m">6</span>
+<span class="m">3</span>  <span class="m">6</span>  <span class="m">5</span>   <span class="m">11</span>
+<span class="m">4</span>  <span class="m">3</span>  <span class="m">6</span>    <span class="m">9</span>
+<span class="o">&gt;</span> <span class="n">my</span> <span class="o">&lt;-</span> <span class="nf">transform</span><span class="p">(</span><span class="n">myd</span><span class="p">,</span> <span class="n">meanx</span> <span class="o">=</span> <span class="p">(</span><span class="n">x1</span> <span class="o">+</span> <span class="n">x2</span><span class="p">)</span><span class="o">/</span><span class="m">2</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="n">my</span>
+  <span class="n">x1</span> <span class="n">x2</span> <span class="n">sumx</span> <span class="n">meanx</span>
+<span class="m">1</span>  <span class="m">2</span>  <span class="m">3</span>    <span class="m">5</span>   <span class="m">2.5</span>
+<span class="m">2</span>  <span class="m">2</span>  <span class="m">4</span>    <span class="m">6</span>   <span class="m">3.0</span>
+<span class="m">3</span>  <span class="m">6</span>  <span class="m">5</span>   <span class="m">11</span>   <span class="m">5.5</span>
+<span class="m">4</span>  <span class="m">3</span>  <span class="m">6</span>    <span class="m">9</span>   <span class="m">4.5</span>
+<span class="o">&gt;</span>
+<span class="nf">transform</span><span class="p">()</span>简化了按需创建新变量并将其保存到数据框的过程
+
+<span class="c1"># 变量重命名</span>
+<span class="o">&gt;</span> <span class="nf">library</span><span class="p">(</span><span class="n">reshape</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="n">my</span>
+  <span class="n">x1</span> <span class="n">x2</span> <span class="n">sumx</span> <span class="n">meanx</span>
+<span class="m">1</span>  <span class="m">2</span>  <span class="m">3</span>    <span class="m">5</span>   <span class="m">2.5</span>
+<span class="m">2</span>  <span class="m">2</span>  <span class="m">4</span>    <span class="m">6</span>   <span class="m">3.0</span>
+<span class="m">3</span>  <span class="m">6</span>  <span class="m">5</span>   <span class="m">11</span>   <span class="m">5.5</span>
+<span class="m">4</span>  <span class="m">3</span>  <span class="m">6</span>    <span class="m">9</span>   <span class="m">4.5</span>
+<span class="o">&gt;</span> <span class="n">myv2</span> <span class="o">&lt;-</span> <span class="nf">rename</span><span class="p">(</span><span class="n">my</span><span class="p">,</span> <span class="nf">c</span><span class="p">(</span><span class="n">sumx</span> <span class="o">=</span> <span class="s">&quot;Summary&quot;</span><span class="p">,</span> <span class="n">meanx</span> <span class="o">=</span> <span class="s">&quot;Mean&quot;</span><span class="p">))</span>
+<span class="o">&gt;</span> <span class="n">myv2</span>
+  <span class="n">x1</span> <span class="n">x2</span> <span class="n">Summary</span> <span class="n">Mean</span>
+<span class="m">1</span>  <span class="m">2</span>  <span class="m">3</span>       <span class="m">5</span>  <span class="m">2.5</span>
+<span class="m">2</span>  <span class="m">2</span>  <span class="m">4</span>       <span class="m">6</span>  <span class="m">3.0</span>
+<span class="m">3</span>  <span class="m">6</span>  <span class="m">5</span>      <span class="m">11</span>  <span class="m">5.5</span>
+<span class="m">4</span>  <span class="m">3</span>  <span class="m">6</span>       <span class="m">9</span>  <span class="m">4.5</span>
+<span class="o">&gt;</span>
+<span class="o">&gt;</span> <span class="nf">names</span><span class="p">(</span><span class="n">myv2</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="s">&quot;x1&quot;</span>      <span class="s">&quot;x2&quot;</span>      <span class="s">&quot;Summary&quot;</span> <span class="s">&quot;Mean&quot;</span>
+使用<span class="n">reshape包中的rename函数</span>，快速修改变量名，使用格式为：
+<span class="nf">rename</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="nf">c</span><span class="p">(</span><span class="n">oldname1</span> <span class="o">=</span> <span class="s">&quot;newname1&quot;</span><span class="p">,</span> <span class="n">oldname2</span><span class="o">=</span><span class="s">&quot;newname2&quot;</span><span class="p">,</span> <span class="kc">...</span><span class="p">))</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>缺失值
+R中，缺失值以符号NA（Not Available，不可用）表示。不可能出现的值（如÷0的结果），通过符号NaN（Not a Number非数值）表示。
+R中字符型和数值型数据使用的缺失值符号相同
+识别包含缺失值的函数：is.na()
+注意：缺失值不可比较，不能用 myvar == NA 来获取TRUE比较</p></li>
+</ul>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">6</span><span class="p">,</span><span class="kc">NA</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="n">y</span>
+<span class="n">[1]</span>  <span class="m">2</span>  <span class="m">4</span>  <span class="m">6</span> <span class="kc">NA</span>
+<span class="o">&gt;</span> <span class="nf">is.na</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="kc">FALSE</span> <span class="kc">FALSE</span> <span class="kc">FALSE</span>  <span class="kc">TRUE</span>
+<span class="o">&gt;</span>
+<span class="c1"># is.na 识别出了缺失值</span>
+<span class="o">&gt;</span> <span class="n">y</span>
+<span class="n">[1]</span>  <span class="m">2</span>  <span class="m">4</span>  <span class="m">6</span> <span class="kc">NA</span>
+<span class="c1"># 请注意观察，NA + 数值还是等于NA，大部分数值函数都有na.rm=TRUE选项，用于计算前删除缺失值，使用剩余值计算</span>
+<span class="o">&gt;</span> <span class="nf">sum</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="kc">NA</span>
+<span class="o">&gt;</span> <span class="nf">sum</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">na.rm</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="m">12</span>
+<span class="o">&gt;</span>
+<span class="c1"># 或者使用na.omit() 删除含有缺失值数据的行或缺失值</span>
+<span class="o">&gt;</span> <span class="n">newy</span> <span class="o">&lt;-</span> <span class="nf">na.omit</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="n">newy</span>
+<span class="n">[1]</span> <span class="m">2</span> <span class="m">4</span> <span class="m">6</span>
+<span class="c1">#attr(,&quot;na.action&quot;)</span>
+<span class="n">[1]</span> <span class="m">4</span>
+<span class="c1">#attr(,&quot;class&quot;)</span>
+<span class="n">[1]</span> <span class="s">&quot;omit&quot;</span>
+<span class="o">&gt;</span> <span class="nf">sum</span><span class="p">(</span><span class="n">newy</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="m">12</span>
+<span class="c1">#&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>日期值
+日期值通常以字符串的形式输入到R，然后转化成以数值形式存储的日期变量。
+字符转化为日期转化函数：as.Date(x, “input_format”)，其中x是字符型数据，input_format给出了用于读入日期的适当格式，默认格式为yyyy-mm-dd
+日期转化为字符（很少用）as.character(Sys.Date())
+日期格式如下图</p></li>
+</ul>
+<blockquote>
+<div><table class="docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 43%" />
+<col style="width: 32%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>符号</p></th>
+<th class="head"><p>含义</p></th>
+<th class="head"><p>样例</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>%d</p></td>
+<td><p>数字表示的日期（0~31）</p></td>
+<td><p>01 ~ 31</p></td>
+</tr>
+<tr class="row-odd"><td><p>%a</p></td>
+<td><p>缩写的星期名</p></td>
+<td><p>Mon</p></td>
+</tr>
+<tr class="row-even"><td><p>%A</p></td>
+<td><p>非缩写的星期名</p></td>
+<td><p>Monday</p></td>
+</tr>
+<tr class="row-odd"><td><p>%m</p></td>
+<td><p>月份</p></td>
+<td><p>00 ~ 12</p></td>
+</tr>
+<tr class="row-even"><td><p>%b</p></td>
+<td><p>缩写的月份</p></td>
+<td><p>Jan</p></td>
+</tr>
+<tr class="row-odd"><td><p>%B</p></td>
+<td><p>非缩写的月份</p></td>
+<td><p>January</p></td>
+</tr>
+<tr class="row-even"><td><p>%y</p></td>
+<td><p>两位数的年份</p></td>
+<td><p>07</p></td>
+</tr>
+<tr class="row-odd"><td><p>%Y</p></td>
+<td><p>四位数的年份</p></td>
+<td><p>2007</p></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div><p>返回当天日期函数：Sys.Date()
+返回当天日期和时间函数：Sys.time()
+返回当前的日期和时间：date()
+了解更多的字符型数据转换为日期：help(as.Date)、help(strftime)</p>
+</div></blockquote>
+</div></blockquote>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="nf">Sys.Date</span><span class="p">()</span>
+<span class="n">[1]</span> <span class="s">&quot;2019-11-24&quot;</span>
+<span class="o">&gt;</span> <span class="nf">date</span><span class="p">()</span>
+<span class="n">[1]</span> <span class="s">&quot;Sun Nov 24 10:36:04 2019&quot;</span>
+<span class="o">&gt;</span> <span class="n">today</span> <span class="o">&lt;-</span> <span class="nf">Sys.Date</span><span class="p">()</span>
+<span class="o">&gt;</span> <span class="n">today</span>
+<span class="n">[1]</span> <span class="s">&quot;2019-11-24&quot;</span>
+<span class="o">&gt;</span> <span class="nf">format</span><span class="p">(</span><span class="n">today</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span> <span class="s">&quot;%B %A %Y&quot;</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="s">&quot;十一月 星期日 2019&quot;</span>
+<span class="o">&gt;</span> <span class="nf">format</span><span class="p">(</span><span class="n">today</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span> <span class="s">&quot;%d&quot;</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="s">&quot;24&quot;</span>
+<span class="o">&gt;</span> <span class="nf">format</span><span class="p">(</span><span class="n">today</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span> <span class="s">&quot;%a&quot;</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="s">&quot;周日&quot;</span>
+<span class="o">&gt;</span>
+<span class="c1"># 计算时间间隔</span>
+<span class="o">&gt;</span> <span class="n">startdate</span> <span class="o">&lt;-</span> <span class="nf">as.Date</span><span class="p">(</span><span class="s">&quot;2019-11-18&quot;</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="n">days</span> <span class="o">&lt;-</span> <span class="n">today</span> <span class="o">-</span> <span class="n">startdate</span>
+<span class="o">&gt;</span> <span class="n">days</span>
+<span class="n">Time</span> <span class="n">difference</span> <span class="n">of</span> <span class="m">6</span> <span class="n">days</span>
+<span class="o">&gt;</span> <span class="nf">difftime</span><span class="p">(</span><span class="n">today</span><span class="p">,</span> <span class="n">startdate</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&quot;weeks&quot;</span><span class="p">)</span>
+<span class="n">Time</span> <span class="n">difference</span> <span class="n">of</span> <span class="m">0.8571429</span> <span class="n">weeks</span>
+<span class="o">&gt;</span> <span class="nf">difftime</span><span class="p">(</span><span class="n">today</span><span class="p">,</span> <span class="n">startdate</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&quot;days&quot;</span><span class="p">)</span>
+<span class="n">Time</span> <span class="n">difference</span> <span class="n">of</span> <span class="m">6</span> <span class="n">days</span>
+<span class="o">&gt;</span> <span class="nf">difftime</span><span class="p">(</span><span class="n">today</span><span class="p">,</span> <span class="n">startdate</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&quot;hours&quot;</span><span class="p">)</span>
+<span class="n">Time</span> <span class="n">difference</span> <span class="n">of</span> <span class="m">144</span> <span class="n">hours</span>
+<span class="c1"># difftime units 应当是“auto”, “secs”, “mins”, “hours”, “days”, “weeks”其中的一个</span>
+<span class="o">&gt;</span> <span class="nf">difftime</span><span class="p">(</span><span class="n">today</span><span class="p">,</span> <span class="n">startdate</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&quot;mins&quot;</span><span class="p">)</span>
+<span class="n">Time</span> <span class="n">difference</span> <span class="n">of</span> <span class="m">8640</span> <span class="n">mins</span>
+<span class="o">&gt;</span> <span class="nf">difftime</span><span class="p">(</span><span class="n">today</span><span class="p">,</span> <span class="n">startdate</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&quot;secs&quot;</span><span class="p">)</span>
+<span class="n">Time</span> <span class="n">difference</span> <span class="n">of</span> <span class="m">518400</span> <span class="n">secs</span>
+<span class="o">&gt;</span>
+<span class="o">&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="nf">as.character</span><span class="p">(</span><span class="nf">Sys.Date</span><span class="p">())</span>
+<span class="o">&gt;</span> <span class="nf">typeof</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="s">&quot;character&quot;</span>
+<span class="o">&gt;</span> <span class="n">a</span>
+<span class="n">[1]</span> <span class="s">&quot;2019-11-24&quot;</span>
+<span class="o">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>数据排序
+对数据集iris的Sepal.Length排序，获得新的数据集newiris</p></li>
+</ul>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">newiris</span> <span class="o">&lt;-</span> <span class="n">iris</span><span class="nf">[order</span><span class="p">(</span><span class="n">iris</span><span class="o">$</span><span class="n">Sepal.Length</span><span class="p">),</span><span class="n">]</span>
+<span class="o">&gt;</span> <span class="n">newiris</span>
+    <span class="n">Sepal.Length</span> <span class="n">Sepal.Width</span> <span class="n">Petal.Length</span> <span class="n">Petal.Width</span>    <span class="n">Species</span>
+<span class="m">14</span>           <span class="m">4.3</span>         <span class="m">3.0</span>          <span class="m">1.1</span>         <span class="m">0.1</span>     <span class="n">setosa</span>
+<span class="m">9</span>            <span class="m">4.4</span>         <span class="m">2.9</span>          <span class="m">1.4</span>         <span class="m">0.2</span>     <span class="n">setosa</span>
+<span class="m">39</span>           <span class="m">4.4</span>         <span class="m">3.0</span>          <span class="m">1.3</span>         <span class="m">0.2</span>     <span class="n">setosa</span>
+<span class="m">43</span>           <span class="m">4.4</span>         <span class="m">3.2</span>          <span class="m">1.3</span>         <span class="m">0.2</span>     <span class="n">setosa</span>
+<span class="m">42</span>           <span class="m">4.5</span>         <span class="m">2.3</span>          <span class="m">1.3</span>         <span class="m">0.3</span>     <span class="n">setosa</span>
+<span class="m">4</span>            <span class="m">4.6</span>         <span class="m">3.1</span>          <span class="m">1.5</span>         <span class="m">0.2</span>     <span class="n">setosa</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>数据集合并</p>
+<ul>
+<li><p>添加列： 横向合并两个数据框，使用merge()函数，如：total &lt;- merge(dfA, dfB, by=”ID”)，如果直接横向合并两个矩阵或者数据框，并且不需要指定一个公共索引，直接使用cbind()函数。 total&lt;- cbind(A, B)，cbind()要求每个对象必须有相同的行数且以相同的顺序排序</p></li>
+<li><p>添加行： 纵向合并两个数据框（数据集），使用rbind()。如：total &lt;- rbind(dfA, dfB)，两个数据框必须拥有相同的变量，顺序不一定要相同</p></li>
+</ul>
+</li>
+<li><p>数据集取子集
+数据框的元素通过 dataframe[row indices, column indices]这样的记号
+建议采用subset()选择变量和观测的最简单方法
+随机抽样：sample()</p></li>
+</ul>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">newiris_1</span> <span class="o">&lt;-</span> <span class="n">newiris[</span><span class="p">,</span> <span class="nf">c</span><span class="p">(</span><span class="m">4</span><span class="o">:</span><span class="m">5</span><span class="p">)</span><span class="n">]</span>
+<span class="o">&gt;</span> <span class="n">newiris_1</span>
+    <span class="n">Petal.Width</span>    <span class="n">Species</span>
+<span class="m">14</span>          <span class="m">0.1</span>     <span class="n">setosa</span>
+<span class="m">9</span>           <span class="m">0.2</span>     <span class="n">setosa</span>
+<span class="m">39</span>          <span class="m">0.2</span>     <span class="n">setosa</span>
+<span class="o">&gt;</span> <span class="n">newiris_2</span> <span class="o">&lt;-</span> <span class="n">newiris[1</span><span class="o">:</span><span class="m">3</span><span class="n">]</span>
+<span class="o">&gt;</span> <span class="n">newiris_2</span>
+    <span class="n">Sepal.Length</span> <span class="n">Sepal.Width</span> <span class="n">Petal.Length</span>
+<span class="m">14</span>           <span class="m">4.3</span>         <span class="m">3.0</span>          <span class="m">1.1</span>
+<span class="m">9</span>            <span class="m">4.4</span>         <span class="m">2.9</span>          <span class="m">1.4</span>
+<span class="c1"># 取Sepal.Length&lt;=4.4的两列数据集</span>
+<span class="o">&gt;</span><span class="n">iris_3</span> <span class="o">&lt;-</span> <span class="nf">subset</span><span class="p">(</span><span class="n">iris</span><span class="p">,</span> <span class="n">Sepal.Length</span> <span class="o">&lt;=</span><span class="m">4.4</span><span class="p">,</span> <span class="n">select</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="n">Sepal.Length</span><span class="p">,</span><span class="n">Species</span><span class="p">))</span>
+<span class="o">&gt;</span> <span class="n">newiris_3</span>
+   <span class="n">Sepal.Length</span> <span class="n">Species</span>
+<span class="m">9</span>           <span class="m">4.4</span>  <span class="n">setosa</span>
+<span class="m">14</span>          <span class="m">4.3</span>  <span class="n">setosa</span>
+<span class="m">39</span>          <span class="m">4.4</span>  <span class="n">setosa</span>
+<span class="m">43</span>          <span class="m">4.4</span>  <span class="n">setosa</span>
+<span class="o">&gt;</span>
+<span class="o">&gt;</span><span class="n">iris_3</span> <span class="o">&lt;-</span> <span class="nf">subset</span><span class="p">(</span><span class="n">iris</span><span class="p">,</span> <span class="n">Sepal.Length</span> <span class="o">&lt;=</span><span class="m">4.4</span><span class="p">,</span> <span class="n">select</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="n">Sepal.Length</span><span class="o">:</span><span class="n">Species</span><span class="p">))</span>
+<span class="o">&gt;</span> <span class="nf">typeof</span><span class="p">(</span><span class="n">newiris_3</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="s">&quot;list&quot;</span>
+<span class="o">&gt;</span> <span class="n">newiris_3</span>
+   <span class="n">Sepal.Length</span> <span class="n">Sepal.Width</span> <span class="n">Petal.Length</span> <span class="n">Petal.Width</span> <span class="n">Species</span>
+<span class="m">9</span>           <span class="m">4.4</span>         <span class="m">2.9</span>          <span class="m">1.4</span>         <span class="m">0.2</span>  <span class="n">setosa</span>
+<span class="m">14</span>          <span class="m">4.3</span>         <span class="m">3.0</span>          <span class="m">1.1</span>         <span class="m">0.1</span>  <span class="n">setosa</span>
+<span class="m">39</span>          <span class="m">4.4</span>         <span class="m">3.0</span>          <span class="m">1.3</span>         <span class="m">0.2</span>  <span class="n">setosa</span>
+<span class="m">43</span>          <span class="m">4.4</span>         <span class="m">3.2</span>          <span class="m">1.3</span>         <span class="m">0.2</span>  <span class="n">setosa</span>
+<span class="o">&gt;</span> <span class="n">newiris_5</span> <span class="o">&lt;-</span> <span class="nf">subset</span><span class="p">(</span><span class="n">iris</span><span class="p">,</span> <span class="n">Sepal.Length</span> <span class="o">&lt;=</span><span class="m">4.4</span><span class="p">,</span> <span class="n">select</span><span class="o">=</span><span class="n">Sepal.Length</span><span class="o">:</span><span class="n">Species</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="n">newiris_5</span>
+   <span class="n">Sepal.Length</span> <span class="n">Sepal.Width</span> <span class="n">Petal.Length</span> <span class="n">Petal.Width</span> <span class="n">Species</span>
+<span class="m">9</span>           <span class="m">4.4</span>         <span class="m">2.9</span>          <span class="m">1.4</span>         <span class="m">0.2</span>  <span class="n">setosa</span>
+<span class="m">14</span>          <span class="m">4.3</span>         <span class="m">3.0</span>          <span class="m">1.1</span>         <span class="m">0.1</span>  <span class="n">setosa</span>
+<span class="m">39</span>          <span class="m">4.4</span>         <span class="m">3.0</span>          <span class="m">1.3</span>         <span class="m">0.2</span>  <span class="n">setosa</span>
+<span class="m">43</span>          <span class="m">4.4</span>         <span class="m">3.2</span>          <span class="m">1.3</span>         <span class="m">0.2</span>  <span class="n">setosa</span>
+<span class="c1"># 随机抽样</span>
+<span class="o">&gt;</span> <span class="n">iris_sample</span> <span class="o">&lt;-</span> <span class="n">iris</span><span class="nf">[sample</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">iris</span><span class="p">),</span> <span class="m">3</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">),</span><span class="n">]</span>
+<span class="o">&gt;</span> <span class="n">iris_sample</span>
+    <span class="n">Sepal.Length</span> <span class="n">Sepal.Width</span> <span class="n">Petal.Length</span> <span class="n">Petal.Width</span>   <span class="n">Species</span>
+<span class="m">107</span>          <span class="m">4.9</span>         <span class="m">2.5</span>          <span class="m">4.5</span>         <span class="m">1.7</span> <span class="n">virginica</span>
+<span class="m">21</span>           <span class="m">5.4</span>         <span class="m">3.4</span>          <span class="m">1.7</span>         <span class="m">0.2</span>    <span class="n">setosa</span>
+<span class="m">17</span>           <span class="m">5.4</span>         <span class="m">3.9</span>          <span class="m">1.3</span>         <span class="m">0.4</span>    <span class="n">setosa</span>
+<span class="o">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>SQL 操作数据框
+在数据框上使用SQL的select语句，sqldf()</p></li>
+</ul>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">iris_sqldf</span> <span class="o">&lt;-</span> <span class="nf">sqldf</span><span class="p">(</span><span class="s">&quot;select * from iris where Species=&#39;virginica&#39;&quot;</span><span class="p">,</span> <span class="n">row.name</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="n">iris_sqldf</span>
+    <span class="n">Sepal.Length</span> <span class="n">Sepal.Width</span> <span class="n">Petal.Length</span> <span class="n">Petal.Width</span>   <span class="n">Species</span>
+<span class="m">101</span>          <span class="m">6.3</span>         <span class="m">3.3</span>          <span class="m">6.0</span>         <span class="m">2.5</span> <span class="n">virginica</span>
+<span class="m">102</span>          <span class="m">5.8</span>         <span class="m">2.7</span>          <span class="m">5.1</span>         <span class="m">1.9</span> <span class="n">virginica</span>
+<span class="m">103</span>          <span class="m">7.1</span>         <span class="m">3.0</span>          <span class="m">5.9</span>         <span class="m">2.1</span> <span class="n">virginica</span>
+</pre></div>
 </div>
 </div>
 <div class="section" id="id4">
@@ -269,8 +537,216 @@
 <li><p>数据处理难题</p></li>
 <li><p>数值和字符处理函数</p></li>
 <li><p>数据处理难题的解决方案</p></li>
-<li><p>处理确实数据的高级方法</p></li>
+<li><p>处理缺失数据的高级方法</p></li>
 </ul>
+</div></blockquote>
+<ul>
+<li><p>数学函数</p>
+<p>R基础的数据处理函数，可以分为数值（数学、统计、概率）函数和字符处理函数。</p>
+<ul class="simple">
+<li><p>常用数学函数
+绝对值abs()，平方根sqrt()，不小于x的最小整数ceiling(x)，不大于x的最大证书floor(x)，向0的方向截取x中的整数部分trunc(x)，将x舍入为指定位的小数round(x, digits=n)，将x摄入为指定的有效数字位数signif(x, digits=n)，对x取以n为底的对数log(x, base=n)</p></li>
+<li><p>统计函数
+平均数mean，中位数median，标准差sd，方差var，绝对中位差mad，分位数quantile，值域range，求和sum，滞后差分diff，最小值min，最大值max，为数据对象x按列进行中心化(center=TRUE)或标准化scale(x, center=TRUE, scale=TRUE)
+默认情况下，函数scale()对矩阵或数据框的指定列进行均值为0，标准差为1的标准化，非常有用。在非数值型列上使用scale()会报错
+newdata &lt;- transform(mydata, myvar = scale(myvar)*SD+M) 将变量myvar标准化为均值为M、标准差为SD的变量</p></li>
+<li><p>概率函数
+概率函数通常用来生成特征已知的模拟数据，以及在用户编写的统计函数中计算概率值。
+[dpqr] distribution_abbreviation()
+其中第一个字母表示其所分布的某一方面:
+d = 密度函数（density）
+p = 分布函数（distribution function）
+q = 分位数函数（quantile function）
+r = 生成随机数（随机偏差）</p></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<div><table class="docutils align-default">
+<colgroup>
+<col style="width: 37%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>缩写</p></th>
+<th class="head"><p>分布名称</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>beta</p></td>
+<td><p>Beta分布</p></td>
+</tr>
+<tr class="row-odd"><td><p>binom</p></td>
+<td><p>二项分布</p></td>
+</tr>
+<tr class="row-even"><td><p>cauchy</p></td>
+<td><p>柯西分布</p></td>
+</tr>
+<tr class="row-odd"><td><p>chisq</p></td>
+<td><p>（非中心）卡方分布</p></td>
+</tr>
+<tr class="row-even"><td><p>exp</p></td>
+<td><p>指数分布</p></td>
+</tr>
+<tr class="row-odd"><td><p>f</p></td>
+<td><p>F分布</p></td>
+</tr>
+<tr class="row-even"><td><p>gamma</p></td>
+<td><p>Gamma分布</p></td>
+</tr>
+<tr class="row-odd"><td><p>geom</p></td>
+<td><p>几何分布</p></td>
+</tr>
+<tr class="row-even"><td><p>hyper</p></td>
+<td><p>超几何分布</p></td>
+</tr>
+<tr class="row-odd"><td><p>lnorm</p></td>
+<td><p>对数正态分布</p></td>
+</tr>
+<tr class="row-even"><td><p>logis</p></td>
+<td><p>Logistic分布</p></td>
+</tr>
+<tr class="row-odd"><td><p>multinom</p></td>
+<td><p>多项分布</p></td>
+</tr>
+<tr class="row-even"><td><p>nbinom</p></td>
+<td><p>负二项分布</p></td>
+</tr>
+<tr class="row-odd"><td><p>norm</p></td>
+<td><p>正态分布</p></td>
+</tr>
+<tr class="row-even"><td><p>pois</p></td>
+<td><p>泊松分布</p></td>
+</tr>
+<tr class="row-odd"><td><p>signrank</p></td>
+<td><p>Wilcoxon符号轶分布</p></td>
+</tr>
+<tr class="row-even"><td><p>t</p></td>
+<td><p>t分布</p></td>
+</tr>
+<tr class="row-odd"><td><p>unif</p></td>
+<td><p>均匀分布</p></td>
+</tr>
+<tr class="row-even"><td><p>weibull</p></td>
+<td><p>Weibull分布</p></td>
+</tr>
+<tr class="row-odd"><td><p>wilcox</p></td>
+<td><p>Wilcoxon轶和分布</p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<ul>
+<li><p>数据清洗</p>
+<dl class="simple">
+<dt>常用字符处理函数：</dt><dd><p>计算x中字符数量nchar(x)
+提取或替换一个字符向量中的子串substr(x, start, stop)
+在x中搜索某种模式grep(pattern, x, ignore, case=FALSE, fixed=FALSE)，若fixed=FALSE，则pattern为一个正则表达式。若fixed=TRUE，则pattern为一个文本字符串，返回值为匹配的下标
+在x中搜索某种模式，并以文本replacement替换，sub(pattern, replacement, x, ignore.case=FALSE, fixed=FALSE)，若fixed=FALSE，则pattern为一个正则表达式。若fixed=TRUE，则pattern为一个文本字符串
+在split处分割字符向量x中的元素，fixed如grep与sub，strsplit(x, split, fixed=FALSE)
+连接字符串paste(…, sep=””)，sep为分隔符
+大写转换toupper(x)
+小写转换tolower(x)</p>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>函数grep()、sub()和strsplit()能够搜索某个文本字符串（fixed=TRUE）或某个正则表达式（fixed=FALSE，默认为FALSE），正则表达式为文本模式匹配提供了一套清晰简练的语法，了解更多参考正则表达式regular expression</p>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">x</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#39;ab&#39;</span><span class="p">,</span><span class="s">&#39;cde&#39;</span><span class="p">,</span><span class="s">&#39;fghijk&#39;</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="n">x</span>
+<span class="n">[1]</span> <span class="s">&quot;ab&quot;</span>     <span class="s">&quot;cde&quot;</span>    <span class="s">&quot;fghijk&quot;</span>
+<span class="o">&gt;</span> <span class="nf">length</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="m">3</span>
+<span class="o">&gt;</span> <span class="n">x[3]</span>
+<span class="n">[1]</span> <span class="s">&quot;fghijk&quot;</span>
+<span class="o">&gt;</span> <span class="nf">nchar</span><span class="p">(</span><span class="n">x[2]</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="m">3</span>
+<span class="o">&gt;</span> <span class="nf">nchar</span><span class="p">(</span><span class="n">x[3]</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="m">6</span>
+<span class="o">&gt;</span> <span class="nf">nchar</span><span class="p">(</span><span class="n">x[1]</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="m">2</span>
+<span class="o">&gt;</span> <span class="nf">substr</span><span class="p">(</span><span class="n">x[3]</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span><span class="m">5</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="s">&quot;ghij&quot;</span>
+<span class="o">&gt;</span>
+<span class="o">&gt;</span> <span class="nf">grep</span><span class="p">(</span><span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;b&quot;</span><span class="p">,</span><span class="s">&quot;A&quot;</span><span class="p">,</span><span class="s">&quot;c&quot;</span><span class="p">,</span><span class="s">&quot;A&quot;</span><span class="p">),</span> <span class="n">fixed</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="m">2</span> <span class="m">4</span>
+<span class="o">&gt;</span> <span class="nf">grep</span><span class="p">(</span><span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;b&quot;</span><span class="p">,</span><span class="s">&quot;A&quot;</span><span class="p">,</span><span class="s">&quot;c&quot;</span><span class="p">),</span> <span class="n">fixed</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="m">2</span>
+
+<span class="o">&gt;</span> <span class="nf">paste</span><span class="p">(</span><span class="s">&quot;y&quot;</span><span class="p">,</span> <span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">&quot;-&quot;</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="s">&quot;y-1&quot;</span> <span class="s">&quot;y-2&quot;</span> <span class="s">&quot;y-3&quot;</span>
+<span class="o">&gt;</span>
+
+
+其他实用函数
+  对象<span class="n">x的长度</span>：<span class="nf">length</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+  生成一个序列：<span class="nf">seq</span><span class="p">(</span><span class="n">from</span><span class="p">,</span> <span class="n">to</span><span class="p">,</span> <span class="n">by</span><span class="p">)</span>
+  将<span class="n">x重复n次</span>：<span class="nf">rep</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+  创建美观的分割点：<span class="nf">pretty</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+  连接<span class="n">...中的对象</span>：<span class="nf">cat</span><span class="p">(</span><span class="kc">...</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="s">&quot;myfile&quot;</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="nf">seq</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">10</span><span class="p">,</span><span class="m">5</span><span class="p">)</span>
+<span class="n">[1]</span>  <span class="m">1</span>  <span class="m">6</span> <span class="m">11</span> <span class="m">16</span>
+
+<span class="o">&gt;</span> <span class="nf">rep</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">,</span><span class="m">2</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">1</span> <span class="m">2</span> <span class="m">3</span>
+<span class="o">&gt;</span> <span class="nf">rep</span><span class="p">(</span><span class="m">5</span><span class="p">,</span><span class="m">10</span><span class="p">)</span>
+ <span class="n">[1]</span> <span class="m">5</span> <span class="m">5</span> <span class="m">5</span> <span class="m">5</span> <span class="m">5</span> <span class="m">5</span> <span class="m">5</span> <span class="m">5</span> <span class="m">5</span> <span class="m">5</span>
+<span class="o">&gt;</span>
+<span class="o">&gt;</span> <span class="nf">cut</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span><span class="m">5</span><span class="p">)</span>
+ <span class="n">[1</span><span class="nf">] </span><span class="p">(</span><span class="m">0.991</span><span class="p">,</span><span class="m">2.8</span><span class="nf">] </span><span class="p">(</span><span class="m">0.991</span><span class="p">,</span><span class="m">2.8</span><span class="nf">] </span><span class="p">(</span><span class="m">2.8</span><span class="p">,</span><span class="m">4.6</span><span class="nf">]   </span><span class="p">(</span><span class="m">2.8</span><span class="p">,</span><span class="m">4.6</span><span class="nf">]   </span><span class="p">(</span><span class="m">4.6</span><span class="p">,</span><span class="m">6.4</span><span class="nf">]   </span><span class="p">(</span><span class="m">4.6</span><span class="p">,</span><span class="m">6.4</span><span class="n">]</span>
+ <span class="n">[7</span><span class="nf">] </span><span class="p">(</span><span class="m">6.4</span><span class="p">,</span><span class="m">8.2</span><span class="nf">]   </span><span class="p">(</span><span class="m">6.4</span><span class="p">,</span><span class="m">8.2</span><span class="nf">]   </span><span class="p">(</span><span class="m">8.2</span><span class="p">,</span><span class="m">10</span><span class="nf">]    </span><span class="p">(</span><span class="m">8.2</span><span class="p">,</span><span class="m">10</span><span class="n">]</span>
+<span class="n">Levels</span><span class="o">:</span> <span class="p">(</span><span class="m">0.991</span><span class="p">,</span><span class="m">2.8</span><span class="nf">] </span><span class="p">(</span><span class="m">2.8</span><span class="p">,</span><span class="m">4.6</span><span class="nf">] </span><span class="p">(</span><span class="m">4.6</span><span class="p">,</span><span class="m">6.4</span><span class="nf">] </span><span class="p">(</span><span class="m">6.4</span><span class="p">,</span><span class="m">8.2</span><span class="nf">] </span><span class="p">(</span><span class="m">8.2</span><span class="p">,</span><span class="m">10</span><span class="n">]</span>
+<span class="o">&gt;</span> <span class="nf">pretty</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span>
+<span class="n">[1]</span>  <span class="m">0</span>  <span class="m">5</span> <span class="m">10</span>
+<span class="o">&gt;</span> <span class="nf">pretty</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="m">5</span><span class="p">)</span>
+<span class="n">[1]</span>  <span class="m">0</span>  <span class="m">2</span>  <span class="m">4</span>  <span class="m">6</span>  <span class="m">8</span> <span class="m">10</span>
+<span class="o">&gt;</span> <span class="n">firstname</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;Vic&quot;</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="n">firstname</span>
+<span class="n">[1]</span> <span class="s">&quot;Vic&quot;</span>
+<span class="o">&gt;</span> <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">,</span> <span class="n">firstname</span><span class="p">,</span> <span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="n">hello</span> <span class="n">Vic</span>
+<span class="o">&gt;</span>
+</pre></div>
+</div>
+<ul>
+<li><p>将函数应用于矩阵和数据框</p>
+<p>R中提供了apply()函数，可以将任意函数“应用”到矩阵、数组、数据框的任何维度，格式如下：
+apply(x, MARGIN, FUN, …) x为数据对象，MARGIN是维度下标（矩阵或数据框MARGIN=1表示行，MARGIN=2表示列），FUN是由你指定的函数，而…包含了任何想要传递给FUN的参数
+apply()可把函数应用到数组/矩阵/数据框的某个维度上
+lapply()与sapply()则将函数应用到列表list上
+将一个求均值的函数应用到矩阵所有行与所有列，样例代码如下：</p>
+</li>
+</ul>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">sfdata</span> <span class="o">&lt;-</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">rnorm</span><span class="p">(</span><span class="m">20</span><span class="p">),</span> <span class="n">nrow</span><span class="o">=</span><span class="m">5</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="n">sfdata</span>
+           <span class="n">[</span><span class="p">,</span><span class="m">1</span><span class="n">]</span>        <span class="n">[</span><span class="p">,</span><span class="m">2</span><span class="n">]</span>         <span class="n">[</span><span class="p">,</span><span class="m">3</span><span class="n">]</span>        <span class="n">[</span><span class="p">,</span><span class="m">4</span><span class="n">]</span>
+<span class="n">[1</span><span class="p">,</span><span class="n">]</span>  <span class="m">0.6531234</span> <span class="m">-1.44524449</span>  <span class="m">1.020830090</span>  <span class="m">0.04615841</span>
+<span class="n">[2</span><span class="p">,</span><span class="n">]</span> <span class="m">-3.3208655</span> <span class="m">-0.49716791</span>  <span class="m">0.009787577</span> <span class="m">-1.36340204</span>
+<span class="n">[3</span><span class="p">,</span><span class="n">]</span> <span class="m">-0.1022215</span> <span class="m">-0.08201499</span>  <span class="m">0.067866033</span>  <span class="m">0.34209709</span>
+<span class="n">[4</span><span class="p">,</span><span class="n">]</span>  <span class="m">0.1355523</span> <span class="m">-0.83764166</span>  <span class="m">1.420953707</span>  <span class="m">0.25286233</span>
+<span class="n">[5</span><span class="p">,</span><span class="n">]</span>  <span class="m">0.5651459</span> <span class="m">-0.03760827</span> <span class="m">-0.713492718</span>  <span class="m">0.48885481</span>
+<span class="c1"># 计算5行均值</span>
+<span class="o">&gt;</span> <span class="nf">apply</span><span class="p">(</span><span class="n">sfdata</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="n">mean</span><span class="p">)</span>
+<span class="n">[1]</span>  <span class="m">0.06871686</span> <span class="m">-1.29291197</span>  <span class="m">0.05643166</span>  <span class="m">0.24293166</span>  <span class="m">0.07572492</span>
+<span class="c1"># 计算4列均值</span>
+<span class="o">&gt;</span> <span class="nf">apply</span><span class="p">(</span><span class="n">sfdata</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="n">mean</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="m">-0.41385309</span> <span class="m">-0.57993547</span>  <span class="m">0.36118894</span> <span class="m">-0.04668588</span>
+<span class="c1"># 计算截尾均值，截尾均值位于中间60%的数据，最高和最高20%的值均被忽略</span>
+<span class="o">&gt;</span> <span class="nf">apply</span><span class="p">(</span><span class="n">sfdata</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">trim</span><span class="o">=</span><span class="m">0.2</span><span class="p">)</span>
+<span class="n">[1]</span>  <span class="m">0.1994922</span> <span class="m">-0.4722749</span>  <span class="m">0.3661612</span>  <span class="m">0.2137059</span>
+<span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>5. 总结数据<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<blockquote>
+<div><p>分析两变量间关系的基本方法，包括相关性、t检验、卡方检验和非参数方法</p>
 </div></blockquote>
 <dl class="simple">
 <dt>参考：</dt><dd><ol class="arabic simple">
@@ -289,7 +765,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="dataAnalysisModel.html" class="btn btn-neutral float-right" title="面向对象编程" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="dataAnalysisModel.html" class="btn btn-neutral float-right" title="数据分析模型" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="oop.html" class="btn btn-neutral float-left" title="面向对象编程" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

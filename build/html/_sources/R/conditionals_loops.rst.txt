@@ -9,6 +9,7 @@ Conditionals and Loops 条件循环
  如果满足条件，则执行程序，否则执行下一个条件并退出，其中条件必须是一个被解析为T或F的表达式，所以尽可能让条件简单:
  条件控制语句写法：if (condition) {expr1} else {expr2}
  else不能单独成一行，它的前边必须有内容，如"}" 或者expr1表达式
+ ifelse结构是if-else结构比较紧凑的向量化版本，语法为：ifelse(condition, statement1, statement2),当希望结构的输入输出都是向量时，请使用ifelse
 
 .. code:: r
 
@@ -123,8 +124,31 @@ Conditionals and Loops 条件循环
   #[1] "hello world"
   #[1] "hello world"
 
+6. switch结构
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-6. break next
+    switch根据一个表达式的值选择语句执行，语法为：
+    switch(expr, ...)
+    其中...表示expr的各种可能输出值绑定的语句。
+
+.. code:: r
+  
+  > sfdate <- function(type) {
+  + switch (type,
+  +   long = format(Sys.time(), "%A %B %d %Y"),
+  +   short = format(Sys.time(), "%y-%m-%d"),
+  +   cat(type, "is not a recognized type\n")
+  + )
+  + }
+  > sfdate("long")
+  [1] "星期日 十一月 24 2019"
+  > sfdate("short")
+  [1] "19-11-24"
+  > 
+  
+
+
+7. break next
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - **break**
