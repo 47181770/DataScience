@@ -17,8 +17,65 @@
     * Fisher精确检验：fisher.test()
       原假设：边界固定的列联表中行和列是相互独立的
     * Cochran-Mantel-Haenszel卡方检验：mantelhaen.test()
-      原假设：两个名义变量在第三个变量的每一层中都是条件独立的
-      
+      原假设：两个名义变量在第三个变量的每一层中都是条件独立的，用于3变量之间的检验
+
+
+
+.. code:: r
+
+  # 两变量之间的独立性检验
+  library("vcd")
+  mytable4 <- xtabs(~Treatment + Improved, data=Arthritis)
+  mantelhaen.test(mytable4)
+  #Error in mantelhaen.test(mytable4) : 'x'必需是三维陣列
+  chisq.test(mytable4)
+  #        Pearson's Chi-squared test
+
+  #data:  mytable4
+  #X-squared = 13.055, df = 2, p-value = 0.001463
+
+  > fisher.test(mytable4)
+
+          Fisher's Exact Test for Count Data
+  
+  data:  mytable4
+  p-value = 0.001393
+  alternative hypothesis: two.sided
+
+  > mytable4
+           Improved
+  Treatment None Some Marked
+    Placebo   29    7      7
+    Treated   13    7     21
+  > 
+  # 检验治疗情况和改善效果在性别的每个水平下是否独立
+  > mytable5 <- xtabs(~Treatment + Improved + Sex, data=Arthritis)
+  > mantelhaen.test(mytable5)
+
+        Cochran-Mantel-Haenszel test
+
+  data:  mytable3
+  Cochran-Mantel-Haenszel M^2 = 14.632, df = 2, p-value = 0.0006647 # 从p值看相互独立的概率低，具有相关性。
+
+  > mytable6 <- xtabs(~Treatment + Improved, data=Arthritis)
+  > mytable6
+           Improved
+  Treatment None Some Marked
+    Placebo   29    7      7
+    Treated   13    7     21
+  > assocstats(mytable6)
+                      X^2 df  P(> X^2)
+  Likelihood Ratio 13.530  2 0.0011536
+  Pearson          13.055  2 0.0014626
+
+  Phi-Coefficient   : NA 
+  Contingency Coeff.: 0.367 
+  Cramer's V        : 0.394 
+  > kappa(mytable6)
+  [1] 2.760342
+  > 
+
+
 
 - 相关性度量
 

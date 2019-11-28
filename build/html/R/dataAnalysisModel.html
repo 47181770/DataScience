@@ -186,10 +186,65 @@
 <li><p>Fisher精确检验：fisher.test()
 原假设：边界固定的列联表中行和列是相互独立的</p></li>
 <li><p>Cochran-Mantel-Haenszel卡方检验：mantelhaen.test()
-原假设：两个名义变量在第三个变量的每一层中都是条件独立的</p></li>
+原假设：两个名义变量在第三个变量的每一层中都是条件独立的，用于3变量之间的检验</p></li>
 </ul>
 </div></blockquote>
 </li>
+</ul>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># 两变量之间的独立性检验</span>
+<span class="nf">library</span><span class="p">(</span><span class="s">&quot;vcd&quot;</span><span class="p">)</span>
+<span class="n">mytable4</span> <span class="o">&lt;-</span> <span class="nf">xtabs</span><span class="p">(</span><span class="o">~</span><span class="n">Treatment</span> <span class="o">+</span> <span class="n">Improved</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">Arthritis</span><span class="p">)</span>
+<span class="nf">mantelhaen.test</span><span class="p">(</span><span class="n">mytable4</span><span class="p">)</span>
+<span class="c1">#Error in mantelhaen.test(mytable4) : &#39;x&#39;必需是三维陣列</span>
+<span class="nf">chisq.test</span><span class="p">(</span><span class="n">mytable4</span><span class="p">)</span>
+<span class="c1">#        Pearson&#39;s Chi-squared test</span>
+
+<span class="c1">#data:  mytable4</span>
+<span class="c1">#X-squared = 13.055, df = 2, p-value = 0.001463</span>
+
+<span class="o">&gt;</span> <span class="nf">fisher.test</span><span class="p">(</span><span class="n">mytable4</span><span class="p">)</span>
+
+        <span class="n">Fisher</span><span class="s">&#39;s Exact Test for Count Data</span>
+
+<span class="s">data:  mytable4</span>
+<span class="s">p-value = 0.001393</span>
+<span class="s">alternative hypothesis: two.sided</span>
+
+<span class="s">&gt; mytable4</span>
+<span class="s">         Improved</span>
+<span class="s">Treatment None Some Marked</span>
+<span class="s">  Placebo   29    7      7</span>
+<span class="s">  Treated   13    7     21</span>
+<span class="s">&gt;</span>
+<span class="s"># 检验治疗情况和改善效果在性别的每个水平下是否独立</span>
+<span class="s">&gt; mytable5 &lt;- xtabs(~Treatment + Improved + Sex, data=Arthritis)</span>
+<span class="s">&gt; mantelhaen.test(mytable5)</span>
+
+<span class="s">      Cochran-Mantel-Haenszel test</span>
+
+<span class="s">data:  mytable3</span>
+<span class="s">Cochran-Mantel-Haenszel M^2 = 14.632, df = 2, p-value = 0.0006647 # 从p值看相互独立的概率低，具有相关性。</span>
+
+<span class="s">&gt; mytable6 &lt;- xtabs(~Treatment + Improved, data=Arthritis)</span>
+<span class="s">&gt; mytable6</span>
+<span class="s">         Improved</span>
+<span class="s">Treatment None Some Marked</span>
+<span class="s">  Placebo   29    7      7</span>
+<span class="s">  Treated   13    7     21</span>
+<span class="s">&gt; assocstats(mytable6)</span>
+<span class="s">                    X^2 df  P(&gt; X^2)</span>
+<span class="s">Likelihood Ratio 13.530  2 0.0011536</span>
+<span class="s">Pearson          13.055  2 0.0014626</span>
+
+<span class="s">Phi-Coefficient   : NA</span>
+<span class="s">Contingency Coeff.: 0.367</span>
+<span class="s">Cramer&#39;</span><span class="n">s</span> <span class="n">V</span>        <span class="o">:</span> <span class="m">0.394</span>
+<span class="o">&gt;</span> <span class="nf">kappa</span><span class="p">(</span><span class="n">mytable6</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="m">2.760342</span>
+<span class="o">&gt;</span>
+</pre></div>
+</div>
+<ul>
 <li><p>相关性度量</p>
 <blockquote>
 <div><ul class="simple">
