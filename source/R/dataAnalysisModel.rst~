@@ -8,11 +8,16 @@
   许多的数据分析问题都可以归结为统计检验问题，如新的投资策略能否跑赢指数基金的收益？
   要解答如上问题，需要提出一个原假设，设计一个实验，搜集所需数据并进行分析。
 
-- 三种基本检验方法
+- 三种基本显著性检验方法
+    显著性检验评估了是否存在充分的证据以**拒绝变量间相互独立的原假设**，如果可以拒绝原假设，那么就转向衡量相关性强弱的相关性度量
 
     * 卡方独立性Pearson's Chi-squared test检验：chisq.test()
+      对二维表的行变量和列变量进行卡方独立性检验，计算的p值表示从总体中抽取的样本行变量与列变量是相互独立的概率。如果p<0.05说明看上去存在着某种关系，也就是说两个变量之间独立的概率低；如果p>0.05则说明两个变量之间独立的概率高，也就是不存在关系，相互独立。
     * Fisher精确检验：fisher.test()
+      原假设：边界固定的列联表中行和列是相互独立的
     * Cochran-Mantel-Haenszel卡方检验：mantelhaen.test()
+      原假设：两个名义变量在第三个变量的每一层中都是条件独立的
+      
 
 - 相关性度量
 
@@ -31,14 +36,23 @@
       Kendall's Tau相关系数是一种非参数的等级相关度量
 
     如上三种相关系数可以用cor()函数计算，而cov()函数可以用来计算协方差：
+
     cor(x, use= , method=) ; cov(x, use= , method=)
+
     x为矩阵或数据框；
+
     use指定缺失数据的处理方式（默认为everything，可选为all.obs不存在缺失数据-遇缺失数据则报错、complete.obs行删除、pairwise.complete.obs成对删除）
+
     method指定相关系数类型默认为pearson。可选类型：pearson、spearman或kendall
+
     计算好相关系数以后，如何对他们进行统计显著性检验呢？常用的原假设为变量间不相关（即总体的相关系数为0）：
+
     cor.test(x, y, alternative = , method = )
+
     x和y为要检验相关性的变量
+
     alternative 用来指定进行双侧检验或单侧检验（取值为：two.side、less或greater），当研究的假设为总体的相关系数小于0时，请使用alternative = "less"，研究的假设为总体的相关系数大于0时，使用alternative = "greater"，默认为two.side总体相关系数不等于0.
+
     method可选类型：pearson、spearman或kendall
     遗憾的是cor.test每次只能检验一种相关关系。psych包中提供的corr.test()函数可以计算相关矩阵并进行显著性检验
 
