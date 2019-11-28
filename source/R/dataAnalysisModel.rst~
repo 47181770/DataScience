@@ -32,14 +32,14 @@
   #        Pearson's Chi-squared test
 
   #data:  mytable4
-  #X-squared = 13.055, df = 2, p-value = 0.001463
+  #X-squared = 13.055, df = 2, p-value = 0.001463  # 从p值看相互独立的概率低，具有一定相关性
 
   > fisher.test(mytable4)
 
           Fisher's Exact Test for Count Data
   
   data:  mytable4
-  p-value = 0.001393
+  p-value = 0.001393  # 从p值看相互独立的概率低，具有一定相关性
   alternative hypothesis: two.sided
 
   > mytable4
@@ -55,7 +55,7 @@
         Cochran-Mantel-Haenszel test
 
   data:  mytable3
-  Cochran-Mantel-Haenszel M^2 = 14.632, df = 2, p-value = 0.0006647 # 从p值看相互独立的概率低，具有相关性。
+  Cochran-Mantel-Haenszel M^2 = 14.632, df = 2, p-value = 0.0006647 # 从p值看相互独立的概率低，具有一定相关性
 
   > mytable6 <- xtabs(~Treatment + Improved, data=Arthritis)
   > mytable6
@@ -105,7 +105,52 @@
 
     计算好相关系数以后，如何对他们进行统计显著性检验呢？常用的原假设为变量间不相关（即总体的相关系数为0）：
 
-    cor.test(x, y, alternative = , method = )
+    如果对某一组变量与另一组变量之间的关系感兴趣时，cor仍然非常有用
+
+
+.. code:: r
+
+  > x <- sfstats[,c("Population", "Income", "Illiteracy", "HS Grad")]
+  > y <- sfstats[,c("Life Exp", "Murder")]
+  > cor(x,y)
+                Life Exp     Murder
+  Population -0.06805195  0.3436428
+  Income      0.34025534 -0.2300776
+  Illiteracy -0.58847793  0.7029752
+  HS Grad     0.58221620 -0.4879710
+  > 
+  
+  # 可以判断一组变量与另一组变量之间的关系 
+  # cor.test 检验某种相关系数的显著性，如检查文盲率Illiteracy与谋杀Murder之间的相关性
+  > cor.test(sfstats[,3], sfstats[,5])
+
+          Pearson's product-moment correlation
+
+  data:  sfstats[, 3] and sfstats[, 5]
+  t = 6.8479, df = 48, p-value = 1.258e-08
+  alternative hypothesis: true correlation is not equal to 0
+  95 percent confidence interval:
+   0.5279280 0.8207295
+  sample estimates:
+        cor 
+  0.7029752 
+  
+  > head(sfstats)
+             Population Income Illiteracy Life Exp Murder HS Grad
+  Alabama          3615   3624        2.1    69.05   15.1    41.3
+  Alaska            365   6315        1.5    69.31   11.3    66.7
+  Arizona          2212   4530        1.8    70.55    7.8    58.1
+  Arkansas         2110   3378        1.9    70.66   10.1    39.9
+  California      21198   5114        1.1    71.71   10.3    62.6
+  Colorado         2541   4884        0.7    72.06    6.8    63.9
+  > colnames(sfstats)
+  [1] "Population" "Income"     "Illiteracy" "Life Exp"   "Murder"     "HS Grad"   
+  >
+  
+ 
+
+
+  cor.test(x, y, alternative = , method = )
 
     x和y为要检验相关性的变量
 
@@ -136,9 +181,18 @@
 
 .. code:: r
 
-  # 使用state.x77美国数据集
+  # 使用state.x77美国50个州的人口、收入、文盲率、预期寿命、谋杀率、高中毕业率数据集
   > sfstates <- state.x77[,1:6]
   > library(psych)
+  > cor(sfstats)
+              Population     Income Illiteracy    Life Exp     Murder     HS Grad
+  Population  1.00000000  0.2082276  0.1076224 -0.06805195  0.3436428 -0.09848975
+  Income      0.20822756  1.0000000 -0.4370752  0.34025534 -0.2300776  0.61993232
+  Illiteracy  0.10762237 -0.4370752  1.0000000 -0.58847793  0.7029752 -0.65718861
+  Life Exp   -0.06805195  0.3402553 -0.5884779  1.00000000 -0.7808458  0.58221620
+  Murder      0.34364275 -0.2300776  0.7029752 -0.78084575  1.0000000 -0.48797102
+  HS Grad    -0.09848975  0.6199323 -0.6571886  0.58221620 -0.4879710  1.00000000
+  
   > corr.test(sfstates, use = "complete", method = "pearson")
   Call:corr.test(x = sfstates, use = "complete", method = "pearson")
   Correlation matrix 

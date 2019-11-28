@@ -200,14 +200,14 @@
 <span class="c1">#        Pearson&#39;s Chi-squared test</span>
 
 <span class="c1">#data:  mytable4</span>
-<span class="c1">#X-squared = 13.055, df = 2, p-value = 0.001463</span>
+<span class="c1">#X-squared = 13.055, df = 2, p-value = 0.001463  # 从p值看相互独立的概率低，具有一定相关性</span>
 
 <span class="o">&gt;</span> <span class="nf">fisher.test</span><span class="p">(</span><span class="n">mytable4</span><span class="p">)</span>
 
         <span class="n">Fisher</span><span class="s">&#39;s Exact Test for Count Data</span>
 
 <span class="s">data:  mytable4</span>
-<span class="s">p-value = 0.001393</span>
+<span class="s">p-value = 0.001393  # 从p值看相互独立的概率低，具有一定相关性</span>
 <span class="s">alternative hypothesis: two.sided</span>
 
 <span class="s">&gt; mytable4</span>
@@ -223,7 +223,7 @@
 <span class="s">      Cochran-Mantel-Haenszel test</span>
 
 <span class="s">data:  mytable3</span>
-<span class="s">Cochran-Mantel-Haenszel M^2 = 14.632, df = 2, p-value = 0.0006647 # 从p值看相互独立的概率低，具有相关性。</span>
+<span class="s">Cochran-Mantel-Haenszel M^2 = 14.632, df = 2, p-value = 0.0006647 # 从p值看相互独立的概率低，具有一定相关性</span>
 
 <span class="s">&gt; mytable6 &lt;- xtabs(~Treatment + Improved, data=Arthritis)</span>
 <span class="s">&gt; mytable6</span>
@@ -270,36 +270,91 @@ Kendall’s Tau相关系数是一种非参数的等级相关度量</p></li>
 <p>use指定缺失数据的处理方式（默认为everything，可选为all.obs不存在缺失数据-遇缺失数据则报错、complete.obs行删除、pairwise.complete.obs成对删除）</p>
 <p>method指定相关系数类型默认为pearson。可选类型：pearson、spearman或kendall</p>
 <p>计算好相关系数以后，如何对他们进行统计显著性检验呢？常用的原假设为变量间不相关（即总体的相关系数为0）：</p>
-<p>cor.test(x, y, alternative = , method = )</p>
-<p>x和y为要检验相关性的变量</p>
-<p>alternative 用来指定进行双侧检验或单侧检验（取值为：two.side、less或greater），当研究的假设为总体的相关系数小于0时，请使用alternative = “less”，研究的假设为总体的相关系数大于0时，使用alternative = “greater”，默认为two.side总体相关系数不等于0.</p>
-<p>method可选类型：pearson、spearman或kendall
-遗憾的是cor.test每次只能检验一种相关关系。psych包中提供的corr.test()函数可以计算相关矩阵并进行显著性检验</p>
-<ul>
-<li><p>偏相关系数
-偏相关是指在控制一个或多个定量变量时，另外两个定量变量之间的相互关系，常用于社会科学的研究中。使用ggm的pcor()函数计算偏相关系数，在多元正态性的假设下，ggm中的pcor.test()函数可以用来检验在控制一个或多个额外变量时两个变量之间的条件独立性。
-pcor(u, S)
-u是一个数值向量
-S为变量的协方差阵</p>
-<p>pcor.test(r, q, n)
-r 是由pcor计算得到的偏相关系数
-q 为要控制的变量数（以数值表示位置）
-n 为样本大小
-psych包中的r.test()提供了多种实用性的显著性检验方法，参阅help(r.test)：
-1. 某种相关系数的显著性
-2. 两个独立相关系数的差异是否显著
-3. 两个基于一个共享变量得到的非独立相关系数的差异是否显著
-4. 两个基于完全不同的变量得到的非独立相关系数的差异是否显著</p>
-</li>
-<li><p>多分格（polychoric）相关系数</p></li>
-<li><p>多系列（polyserial）相关系数</p></li>
-</ul>
+<p>如果对某一组变量与另一组变量之间的关系感兴趣时，cor仍然非常有用</p>
 </div></blockquote>
 </li>
 </ul>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># 使用state.x77美国数据集</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span>&gt; x &lt;- sfstats[,c(&quot;Population&quot;, &quot;Income&quot;, &quot;Illiteracy&quot;, &quot;HS Grad&quot;)]
+&gt; y &lt;- sfstats[,c(&quot;Life Exp&quot;, &quot;Murder&quot;)]
+&gt; cor(x,y)
+              Life Exp     Murder
+Population -0.06805195  0.3436428
+Income      0.34025534 -0.2300776
+Illiteracy -0.58847793  0.7029752
+HS Grad     0.58221620 -0.4879710
+&gt;
+
+# 可以判断一组变量与另一组变量之间的关系
+# cor.test 检验某种相关系数的显著性，如检查文盲率Illiteracy与谋杀Murder之间的相关性
+&gt; cor.test(sfstats[,3], sfstats[,5])
+
+        Pearson&#39;s product-moment correlation
+
+data:  sfstats[, 3] and sfstats[, 5]
+t = 6.8479, df = 48, p-value = 1.258e-08
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.5279280 0.8207295
+sample estimates:
+      cor
+0.7029752
+
+&gt; head(sfstats)
+           Population Income Illiteracy Life Exp Murder HS Grad
+Alabama          3615   3624        2.1    69.05   15.1    41.3
+Alaska            365   6315        1.5    69.31   11.3    66.7
+Arizona          2212   4530        1.8    70.55    7.8    58.1
+Arkansas         2110   3378        1.9    70.66   10.1    39.9
+California      21198   5114        1.1    71.71   10.3    62.6
+Colorado         2541   4884        0.7    72.06    6.8    63.9
+&gt; colnames(sfstats)
+[1] &quot;Population&quot; &quot;Income&quot;     &quot;Illiteracy&quot; &quot;Life Exp&quot;   &quot;Murder&quot;     &quot;HS Grad&quot;
+&gt;
+
+
+
+
+cor.test(x, y, alternative = , method = )
+
+  x和y为要检验相关性的变量
+
+  alternative 用来指定进行双侧检验或单侧检验（取值为：two.side、less或greater），当研究的假设为总体的相关系数小于0时，请使用alternative = &quot;less&quot;，研究的假设为总体的相关系数大于0时，使用alternative = &quot;greater&quot;，默认为two.side总体相关系数不等于0.
+
+  method可选类型：pearson、spearman或kendall
+  遗憾的是cor.test每次只能检验一种相关关系。psych包中提供的corr.test()函数可以计算相关矩阵并进行显著性检验
+
+  * 偏相关系数
+    偏相关是指在控制一个或多个定量变量时，另外两个定量变量之间的相互关系，常用于社会科学的研究中。使用ggm的pcor()函数计算偏相关系数，在多元正态性的假设下，ggm中的pcor.test()函数可以用来检验在控制一个或多个额外变量时两个变量之间的条件独立性。
+    pcor(u, S)
+    u是一个数值向量
+    S为变量的协方差阵
+
+    pcor.test(r, q, n)
+    r 是由pcor计算得到的偏相关系数
+    q 为要控制的变量数（以数值表示位置）
+    n 为样本大小
+    psych包中的r.test()提供了多种实用性的显著性检验方法，参阅help(r.test)：
+    1. 某种相关系数的显著性
+    2. 两个独立相关系数的差异是否显著
+    3. 两个基于一个共享变量得到的非独立相关系数的差异是否显著
+    4. 两个基于完全不同的变量得到的非独立相关系数的差异是否显著
+
+  * 多分格（polychoric）相关系数
+  * 多系列（polyserial）相关系数
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># 使用state.x77美国50个州的人口、收入、文盲率、预期寿命、谋杀率、高中毕业率数据集</span>
 <span class="o">&gt;</span> <span class="n">sfstates</span> <span class="o">&lt;-</span> <span class="n">state.x77[</span><span class="p">,</span><span class="m">1</span><span class="o">:</span><span class="m">6</span><span class="n">]</span>
 <span class="o">&gt;</span> <span class="nf">library</span><span class="p">(</span><span class="n">psych</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="nf">cor</span><span class="p">(</span><span class="n">sfstats</span><span class="p">)</span>
+            <span class="n">Population</span>     <span class="n">Income</span> <span class="n">Illiteracy</span>    <span class="n">Life</span> <span class="n">Exp</span>     <span class="n">Murder</span>     <span class="n">HS</span> <span class="n">Grad</span>
+<span class="n">Population</span>  <span class="m">1.00000000</span>  <span class="m">0.2082276</span>  <span class="m">0.1076224</span> <span class="m">-0.06805195</span>  <span class="m">0.3436428</span> <span class="m">-0.09848975</span>
+<span class="n">Income</span>      <span class="m">0.20822756</span>  <span class="m">1.0000000</span> <span class="m">-0.4370752</span>  <span class="m">0.34025534</span> <span class="m">-0.2300776</span>  <span class="m">0.61993232</span>
+<span class="n">Illiteracy</span>  <span class="m">0.10762237</span> <span class="m">-0.4370752</span>  <span class="m">1.0000000</span> <span class="m">-0.58847793</span>  <span class="m">0.7029752</span> <span class="m">-0.65718861</span>
+<span class="n">Life</span> <span class="n">Exp</span>   <span class="m">-0.06805195</span>  <span class="m">0.3402553</span> <span class="m">-0.5884779</span>  <span class="m">1.00000000</span> <span class="m">-0.7808458</span>  <span class="m">0.58221620</span>
+<span class="n">Murder</span>      <span class="m">0.34364275</span> <span class="m">-0.2300776</span>  <span class="m">0.7029752</span> <span class="m">-0.78084575</span>  <span class="m">1.0000000</span> <span class="m">-0.48797102</span>
+<span class="n">HS</span> <span class="n">Grad</span>    <span class="m">-0.09848975</span>  <span class="m">0.6199323</span> <span class="m">-0.6571886</span>  <span class="m">0.58221620</span> <span class="m">-0.4879710</span>  <span class="m">1.00000000</span>
+
 <span class="o">&gt;</span> <span class="nf">corr.test</span><span class="p">(</span><span class="n">sfstates</span><span class="p">,</span> <span class="n">use</span> <span class="o">=</span> <span class="s">&quot;complete&quot;</span><span class="p">,</span> <span class="n">method</span> <span class="o">=</span> <span class="s">&quot;pearson&quot;</span><span class="p">)</span>
 <span class="n">Call</span><span class="o">:</span><span class="nf">corr.test</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">sfstates</span><span class="p">,</span> <span class="n">use</span> <span class="o">=</span> <span class="s">&quot;complete&quot;</span><span class="p">,</span> <span class="n">method</span> <span class="o">=</span> <span class="s">&quot;pearson&quot;</span><span class="p">)</span>
 <span class="n">Correlation</span> <span class="n">matrix</span>
