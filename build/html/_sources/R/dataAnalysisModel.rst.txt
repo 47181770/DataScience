@@ -107,6 +107,36 @@
 
     如果对某一组变量与另一组变量之间的关系感兴趣时，cor仍然非常有用
 
+    cor.test(x, y, alternative = , method = )
+
+    x和y为要检验相关性的变量
+
+    alternative 用来指定进行双侧检验或单侧检验（取值为：two.side、less或greater），当研究的假设为总体的相关系数小于0时，请使用alternative = "less"，研究的假设为总体的相关系数大于0时，使用alternative = "greater"，默认为two.side总体相关系数不等于0.
+
+    method可选类型：pearson、spearman或kendall
+    遗憾的是cor.test每次只能检验一种相关关系。psych包中提供的corr.test()函数可以计算相关矩阵并进行显著性检验
+
+    * 偏相关系数
+      偏相关是指在控制一个或多个定量变量时，另外两个定量变量之间的相互关系，常用于社会科学的研究中。使用ggm的pcor()函数计算偏相关系数，在多元正态性的假设下，ggm中的pcor.test()函数可以用来检验在控制一个或多个额外变量时两个变量之间的条件独立性。
+      pcor(u, S)
+      u是一个数值向量
+      S为变量的协方差阵
+      
+      pcor.test(r, q, n)
+      r 是由pcor计算得到的偏相关系数
+      q 为要控制的变量数（以数值表示位置）
+      n 为样本大小
+      psych包中的r.test()提供了多种实用性的显著性检验方法，参阅help(r.test)：
+      1. 某种相关系数的显著性
+      2. 两个独立相关系数的差异是否显著
+      3. 两个基于一个共享变量得到的非独立相关系数的差异是否显著
+      4. 两个基于完全不同的变量得到的非独立相关系数的差异是否显著
+
+    * 多分格（polychoric）相关系数
+    * 多系列（polyserial）相关系数
+
+
+
 
 
 
@@ -151,37 +181,6 @@
 
  
 
-
-
-
-  cor.test(x, y, alternative = , method = )
-
-    x和y为要检验相关性的变量
-
-    alternative 用来指定进行双侧检验或单侧检验（取值为：two.side、less或greater），当研究的假设为总体的相关系数小于0时，请使用alternative = "less"，研究的假设为总体的相关系数大于0时，使用alternative = "greater"，默认为two.side总体相关系数不等于0.
-
-    method可选类型：pearson、spearman或kendall
-    遗憾的是cor.test每次只能检验一种相关关系。psych包中提供的corr.test()函数可以计算相关矩阵并进行显著性检验
-
-    * 偏相关系数
-      偏相关是指在控制一个或多个定量变量时，另外两个定量变量之间的相互关系，常用于社会科学的研究中。使用ggm的pcor()函数计算偏相关系数，在多元正态性的假设下，ggm中的pcor.test()函数可以用来检验在控制一个或多个额外变量时两个变量之间的条件独立性。
-      pcor(u, S)
-      u是一个数值向量
-      S为变量的协方差阵
-      
-      pcor.test(r, q, n)
-      r 是由pcor计算得到的偏相关系数
-      q 为要控制的变量数（以数值表示位置）
-      n 为样本大小
-      psych包中的r.test()提供了多种实用性的显著性检验方法，参阅help(r.test)：
-      1. 某种相关系数的显著性
-      2. 两个独立相关系数的差异是否显著
-      3. 两个基于一个共享变量得到的非独立相关系数的差异是否显著
-      4. 两个基于完全不同的变量得到的非独立相关系数的差异是否显著
-
-    * 多分格（polychoric）相关系数
-    * 多系列（polyserial）相关系数
-    
 
 .. code:: r
 
