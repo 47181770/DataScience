@@ -73,7 +73,7 @@
   Cramer's V        : 0.394 
   > kappa(mytable6)
   [1] 2.760342
-  > 
+   
 
 
 
@@ -103,17 +103,20 @@
 
     method指定相关系数类型默认为pearson。可选类型：pearson、spearman或kendall
 
-    计算好相关系数以后，如何对他们进行统计显著性检验呢？常用的原假设为变量间不相关（即总体的相关系数为0）：
+    计算好相关系数以后，如何对他们进行统计显著性检验呢？常用的原假设为变量间不相关（即总体的相关系数为0）.
 
     如果对某一组变量与另一组变量之间的关系感兴趣时，cor仍然非常有用
 
 
+
+
 .. code:: r
 
+  > library(vcd)
   > x <- sfstats[,c("Population", "Income", "Illiteracy", "HS Grad")]
   > y <- sfstats[,c("Life Exp", "Murder")]
   > cor(x,y)
-                Life Exp     Murder
+                  Life Exp     Murder
   Population -0.06805195  0.3436428
   Income      0.34025534 -0.2300776
   Illiteracy -0.58847793  0.7029752
@@ -124,17 +127,17 @@
   # cor.test 检验某种相关系数的显著性，如检查文盲率Illiteracy与谋杀Murder之间的相关性
   > cor.test(sfstats[,3], sfstats[,5])
 
-          Pearson's product-moment correlation
+  #        Pearson's product-moment correlation
 
-  data:  sfstats[, 3] and sfstats[, 5]
-  t = 6.8479, df = 48, p-value = 1.258e-08
-  alternative hypothesis: true correlation is not equal to 0
-  95 percent confidence interval:
-   0.5279280 0.8207295
-  sample estimates:
-        cor 
-  0.7029752 
-  
+  #data:  sfstats[, 3] and sfstats[, 5]
+  #t = 6.8479, df = 48, p-value = 1.258e-08
+  #alternative hypothesis: true correlation is not equal to 0
+  #95 percent confidence interval:
+  # 0.5279280 0.8207295
+  #sample estimates:
+  #      cor 
+  #0.7029752 
+  #> 
   > head(sfstats)
              Population Income Illiteracy Life Exp Murder HS Grad
   Alabama          3615   3624        2.1    69.05   15.1    41.3
@@ -145,10 +148,8 @@
   Colorado         2541   4884        0.7    72.06    6.8    63.9
   > colnames(sfstats)
   [1] "Population" "Income"     "Illiteracy" "Life Exp"   "Murder"     "HS Grad"   
-  >
-  
- 
 
+ 
 
   cor.test(x, y, alternative = , method = )
 
@@ -251,10 +252,13 @@
 
   讲解如何对数值型结果变量和一系列数值型和（或）类别型预测变量之间的关系建模
 
-
-
 - **回归**
+  回归模型的假设条件很苛刻：结果或响应变量要是数值型，并且必须是来自正态分布的随机抽样。（很多情况数据并不满足正态分布）
 
+  * 回归模型：数据满足正态分布
+    回归分析是统计学的核心，是一个广义的概念，通常用于基于一个或多个预测变量（自变量或解释变量）来预测响应变量（也称因变量、结果变量）。回归分析可用来挑选与响应变量相关的解释变量，可以描述两者的关系，也可以生成一个方程等式来预测一个响应变量的值。
+
+  * 数据来源于未知或混合分布，分析方法参考重抽样与自助法
 
 - **方差分析**
 

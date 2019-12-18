@@ -241,7 +241,6 @@
 <span class="s">Cramer&#39;</span><span class="n">s</span> <span class="n">V</span>        <span class="o">:</span> <span class="m">0.394</span>
 <span class="o">&gt;</span> <span class="nf">kappa</span><span class="p">(</span><span class="n">mytable6</span><span class="p">)</span>
 <span class="n">[1]</span> <span class="m">2.760342</span>
-<span class="o">&gt;</span>
 </pre></div>
 </div>
 <ul>
@@ -269,78 +268,77 @@ Kendall’s Tau相关系数是一种非参数的等级相关度量</p></li>
 <p>x为矩阵或数据框；</p>
 <p>use指定缺失数据的处理方式（默认为everything，可选为all.obs不存在缺失数据-遇缺失数据则报错、complete.obs行删除、pairwise.complete.obs成对删除）</p>
 <p>method指定相关系数类型默认为pearson。可选类型：pearson、spearman或kendall</p>
-<p>计算好相关系数以后，如何对他们进行统计显著性检验呢？常用的原假设为变量间不相关（即总体的相关系数为0）：</p>
+<p>计算好相关系数以后，如何对他们进行统计显著性检验呢？常用的原假设为变量间不相关（即总体的相关系数为0）.</p>
 <p>如果对某一组变量与另一组变量之间的关系感兴趣时，cor仍然非常有用</p>
 </div></blockquote>
 </li>
 </ul>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span>&gt; x &lt;- sfstats[,c(&quot;Population&quot;, &quot;Income&quot;, &quot;Illiteracy&quot;, &quot;HS Grad&quot;)]
-&gt; y &lt;- sfstats[,c(&quot;Life Exp&quot;, &quot;Murder&quot;)]
-&gt; cor(x,y)
-              Life Exp     Murder
-Population -0.06805195  0.3436428
-Income      0.34025534 -0.2300776
-Illiteracy -0.58847793  0.7029752
-HS Grad     0.58221620 -0.4879710
-&gt;
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="nf">library</span><span class="p">(</span><span class="n">vcd</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="n">x</span> <span class="o">&lt;-</span> <span class="n">sfstats[</span><span class="p">,</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Population&quot;</span><span class="p">,</span> <span class="s">&quot;Income&quot;</span><span class="p">,</span> <span class="s">&quot;Illiteracy&quot;</span><span class="p">,</span> <span class="s">&quot;HS Grad&quot;</span><span class="p">)</span><span class="n">]</span>
+<span class="o">&gt;</span> <span class="n">y</span> <span class="o">&lt;-</span> <span class="n">sfstats[</span><span class="p">,</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Life Exp&quot;</span><span class="p">,</span> <span class="s">&quot;Murder&quot;</span><span class="p">)</span><span class="n">]</span>
+<span class="o">&gt;</span> <span class="nf">cor</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+                <span class="n">Life</span> <span class="n">Exp</span>     <span class="n">Murder</span>
+<span class="n">Population</span> <span class="m">-0.06805195</span>  <span class="m">0.3436428</span>
+<span class="n">Income</span>      <span class="m">0.34025534</span> <span class="m">-0.2300776</span>
+<span class="n">Illiteracy</span> <span class="m">-0.58847793</span>  <span class="m">0.7029752</span>
+<span class="n">HS</span> <span class="n">Grad</span>     <span class="m">0.58221620</span> <span class="m">-0.4879710</span>
+<span class="o">&gt;</span>
 
-# 可以判断一组变量与另一组变量之间的关系
-# cor.test 检验某种相关系数的显著性，如检查文盲率Illiteracy与谋杀Murder之间的相关性
-&gt; cor.test(sfstats[,3], sfstats[,5])
+<span class="c1"># 可以判断一组变量与另一组变量之间的关系</span>
+<span class="c1"># cor.test 检验某种相关系数的显著性，如检查文盲率Illiteracy与谋杀Murder之间的相关性</span>
+<span class="o">&gt;</span> <span class="nf">cor.test</span><span class="p">(</span><span class="n">sfstats[</span><span class="p">,</span><span class="m">3</span><span class="n">]</span><span class="p">,</span> <span class="n">sfstats[</span><span class="p">,</span><span class="m">5</span><span class="n">]</span><span class="p">)</span>
 
-        Pearson&#39;s product-moment correlation
+<span class="c1">#        Pearson&#39;s product-moment correlation</span>
 
-data:  sfstats[, 3] and sfstats[, 5]
-t = 6.8479, df = 48, p-value = 1.258e-08
-alternative hypothesis: true correlation is not equal to 0
-95 percent confidence interval:
- 0.5279280 0.8207295
-sample estimates:
-      cor
-0.7029752
-
-&gt; head(sfstats)
-           Population Income Illiteracy Life Exp Murder HS Grad
-Alabama          3615   3624        2.1    69.05   15.1    41.3
-Alaska            365   6315        1.5    69.31   11.3    66.7
-Arizona          2212   4530        1.8    70.55    7.8    58.1
-Arkansas         2110   3378        1.9    70.66   10.1    39.9
-California      21198   5114        1.1    71.71   10.3    62.6
-Colorado         2541   4884        0.7    72.06    6.8    63.9
-&gt; colnames(sfstats)
-[1] &quot;Population&quot; &quot;Income&quot;     &quot;Illiteracy&quot; &quot;Life Exp&quot;   &quot;Murder&quot;     &quot;HS Grad&quot;
-&gt;
-
-
+<span class="c1">#data:  sfstats[, 3] and sfstats[, 5]</span>
+<span class="c1">#t = 6.8479, df = 48, p-value = 1.258e-08</span>
+<span class="c1">#alternative hypothesis: true correlation is not equal to 0</span>
+<span class="c1">#95 percent confidence interval:</span>
+<span class="c1"># 0.5279280 0.8207295</span>
+<span class="c1">#sample estimates:</span>
+<span class="c1">#      cor</span>
+<span class="c1">#0.7029752</span>
+<span class="c1">#&gt;</span>
+<span class="o">&gt;</span> <span class="nf">head</span><span class="p">(</span><span class="n">sfstats</span><span class="p">)</span>
+           <span class="n">Population</span> <span class="n">Income</span> <span class="n">Illiteracy</span> <span class="n">Life</span> <span class="n">Exp</span> <span class="n">Murder</span> <span class="n">HS</span> <span class="n">Grad</span>
+<span class="n">Alabama</span>          <span class="m">3615</span>   <span class="m">3624</span>        <span class="m">2.1</span>    <span class="m">69.05</span>   <span class="m">15.1</span>    <span class="m">41.3</span>
+<span class="n">Alaska</span>            <span class="m">365</span>   <span class="m">6315</span>        <span class="m">1.5</span>    <span class="m">69.31</span>   <span class="m">11.3</span>    <span class="m">66.7</span>
+<span class="n">Arizona</span>          <span class="m">2212</span>   <span class="m">4530</span>        <span class="m">1.8</span>    <span class="m">70.55</span>    <span class="m">7.8</span>    <span class="m">58.1</span>
+<span class="n">Arkansas</span>         <span class="m">2110</span>   <span class="m">3378</span>        <span class="m">1.9</span>    <span class="m">70.66</span>   <span class="m">10.1</span>    <span class="m">39.9</span>
+<span class="n">California</span>      <span class="m">21198</span>   <span class="m">5114</span>        <span class="m">1.1</span>    <span class="m">71.71</span>   <span class="m">10.3</span>    <span class="m">62.6</span>
+<span class="n">Colorado</span>         <span class="m">2541</span>   <span class="m">4884</span>        <span class="m">0.7</span>    <span class="m">72.06</span>    <span class="m">6.8</span>    <span class="m">63.9</span>
+<span class="o">&gt;</span> <span class="nf">colnames</span><span class="p">(</span><span class="n">sfstats</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="s">&quot;Population&quot;</span> <span class="s">&quot;Income&quot;</span>     <span class="s">&quot;Illiteracy&quot;</span> <span class="s">&quot;Life Exp&quot;</span>   <span class="s">&quot;Murder&quot;</span>     <span class="s">&quot;HS Grad&quot;</span>
 
 
-cor.test(x, y, alternative = , method = )
 
-  x和y为要检验相关性的变量
+<span class="nf">cor.test</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">alternative</span> <span class="o">=</span> <span class="p">,</span> <span class="n">method</span> <span class="o">=</span> <span class="p">)</span>
 
-  alternative 用来指定进行双侧检验或单侧检验（取值为：two.side、less或greater），当研究的假设为总体的相关系数小于0时，请使用alternative = &quot;less&quot;，研究的假设为总体的相关系数大于0时，使用alternative = &quot;greater&quot;，默认为two.side总体相关系数不等于0.
+  <span class="n">x和y为要检验相关性的变量</span>
 
-  method可选类型：pearson、spearman或kendall
-  遗憾的是cor.test每次只能检验一种相关关系。psych包中提供的corr.test()函数可以计算相关矩阵并进行显著性检验
+  <span class="n">alternative</span> 用来指定进行双侧检验或单侧检验（取值为：<span class="n">two.side</span>、<span class="n">less或greater</span>），当研究的假设为总体的相关系数小于<span class="m">0</span>时，请使用<span class="n">alternative</span> <span class="o">=</span> <span class="s">&quot;less&quot;</span>，研究的假设为总体的相关系数大于<span class="m">0</span>时，使用<span class="n">alternative</span> <span class="o">=</span> <span class="s">&quot;greater&quot;</span>，默认为<span class="n">two.side总体相关系数不等于0.</span>
 
-  * 偏相关系数
-    偏相关是指在控制一个或多个定量变量时，另外两个定量变量之间的相互关系，常用于社会科学的研究中。使用ggm的pcor()函数计算偏相关系数，在多元正态性的假设下，ggm中的pcor.test()函数可以用来检验在控制一个或多个额外变量时两个变量之间的条件独立性。
-    pcor(u, S)
-    u是一个数值向量
-    S为变量的协方差阵
+  <span class="n">method可选类型</span>：<span class="n">pearson</span>、<span class="n">spearman或kendall</span>
+  遗憾的是<span class="n">cor.test每次只能检验一种相关关系</span>。<span class="nf">psych包中提供的corr.test</span><span class="p">()</span>函数可以计算相关矩阵并进行显著性检验
 
-    pcor.test(r, q, n)
-    r 是由pcor计算得到的偏相关系数
-    q 为要控制的变量数（以数值表示位置）
-    n 为样本大小
-    psych包中的r.test()提供了多种实用性的显著性检验方法，参阅help(r.test)：
-    1. 某种相关系数的显著性
-    2. 两个独立相关系数的差异是否显著
-    3. 两个基于一个共享变量得到的非独立相关系数的差异是否显著
-    4. 两个基于完全不同的变量得到的非独立相关系数的差异是否显著
+  <span class="o">*</span> 偏相关系数
+    偏相关是指在控制一个或多个定量变量时，另外两个定量变量之间的相互关系，常用于社会科学的研究中。使用<span class="nf">ggm的pcor</span><span class="p">()</span>函数计算偏相关系数，在多元正态性的假设下，<span class="nf">ggm中的pcor.test</span><span class="p">()</span>函数可以用来检验在控制一个或多个额外变量时两个变量之间的条件独立性。
+    <span class="nf">pcor</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">S</span><span class="p">)</span>
+    <span class="n">u是一个数值向量</span>
+    <span class="n">S为变量的协方差阵</span>
 
-  * 多分格（polychoric）相关系数
-  * 多系列（polyserial）相关系数
+    <span class="nf">pcor.test</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+    <span class="n">r</span> 是由<span class="n">pcor计算得到的偏相关系数</span>
+    <span class="n">q</span> 为要控制的变量数（以数值表示位置）
+    <span class="n">n</span> 为样本大小
+    <span class="nf">psych包中的r.test</span><span class="p">()</span>提供了多种实用性的显著性检验方法，参阅<span class="nf">help</span><span class="p">(</span><span class="n">r.test</span><span class="p">)</span>：
+    <span class="m">1</span><span class="n">. 某种相关系数的显著性</span>
+    <span class="m">2</span><span class="n">. 两个独立相关系数的差异是否显著</span>
+    <span class="m">3</span><span class="n">. 两个基于一个共享变量得到的非独立相关系数的差异是否显著</span>
+    <span class="m">4</span><span class="n">. 两个基于完全不同的变量得到的非独立相关系数的差异是否显著</span>
+
+  <span class="o">*</span> 多分格（<span class="n">polychoric</span>）相关系数
+  <span class="o">*</span> 多系列（<span class="n">polyserial</span>）相关系数
 </pre></div>
 </div>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># 使用state.x77美国50个州的人口、收入、文盲率、预期寿命、谋杀率、高中毕业率数据集</span>
@@ -410,7 +408,14 @@ y为指定对称分布的类型，可以是数值型向量、指定概率分布�
 <p>讲解如何对数值型结果变量和一系列数值型和（或）类别型预测变量之间的关系建模</p>
 </div>
 <ul class="simple">
-<li><p><strong>回归</strong></p></li>
+<li><p><strong>回归</strong>
+回归模型的假设条件很苛刻：结果或响应变量要是数值型，并且必须是来自正态分布的随机抽样。（很多情况数据并不满足正态分布），回归有许多特殊的变种，对于回归模型的拟合，R提供了200+个函数，参考`r_regression`_</p>
+<ul>
+<li><p>回归模型：数据满足正态分布
+回归分析是统计学的核心，是一个广义的概念，通常用于基于一个或多个预测变量（自变量或解释变量）来预测响应变量（也称因变量、结果变量）。回归分析可用来挑选与响应变量相关的解释变量，可以描述两者的关系，也可以生成一个方程等式来预测一个响应变量的值。</p></li>
+<li><p>数据来源于未知或混合分布，分析方法参考重抽样与自助法</p></li>
+</ul>
+</li>
 <li><p><strong>方差分析</strong></p></li>
 <li><p><strong>功效分析</strong></p></li>
 <li><p><strong>重抽样与自助法</strong></p></li>
