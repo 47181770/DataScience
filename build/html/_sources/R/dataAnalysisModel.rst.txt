@@ -151,6 +151,9 @@
 
  
 
+
+
+
   cor.test(x, y, alternative = , method = )
 
     x和y为要检验相关性的变量
