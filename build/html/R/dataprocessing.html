@@ -95,7 +95,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#id3">3. 基本数据管理</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id4">4. 高级数据管理</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id5">5. R读取其他格式数据</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id6">5. 总结数据</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">6. 总结数据</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="dataAnalysisModel.html">数据分析</a></li>
@@ -754,15 +754,64 @@ lapply()与sapply()则将函数应用到列表list上
 
 
 
+<span class="m">5.2</span> <span class="n">R读取Excel</span> <span class="n">xls与xlsx文件</span>
+    比较好用的包<span class="n">gdata</span>、<span class="n">xlsx</span>。<span class="n">xlsx使用样例如下</span>：
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="nf">library</span><span class="p">(</span><span class="s">&quot;xlsx&quot;</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">df</span> <span class="o">&lt;-</span> <span class="nf">read.xlsx</span><span class="p">(</span><span class="s">&quot;D:/bap/allstocks.xls&quot;</span><span class="p">,</span> <span class="n">sheetIndex</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">encoding</span> <span class="o">=</span> <span class="s">&#39;UTF-8&#39;</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="nf">head</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="c1">#  NA.   ts_code symbol     name area industry list_date</span>
+<span class="c1">#1   0 000001.SZ 000001 平安银行 深圳     银行  19910403</span>
+<span class="c1">#2   1 000002.SZ 000002    万科A 深圳 全国地产  19910129</span>
+<span class="c1">#3   2 000004.SZ 000004 国农科技 深圳 生物制药  19910114</span>
 
-<span class="m">5.2</span> <span class="n">R读取Excel数据</span>
 
-<span class="m">5.3</span> <span class="n">R读取text数据</span>
+
+<span class="m">5.3</span> <span class="n">R读取text文件</span>
+    使用<span class="nf">R读取txt文件直接使用read.table</span><span class="p">()</span>方法，不需要额外包，样例如下：
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">df_text</span> <span class="o">&lt;-</span>  <span class="nf">read.table</span><span class="p">(</span><span class="s">&quot;D:/Books/HKU-BusinessAnalytics/bap/000970t.txt&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">T</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="nf">head</span><span class="p">(</span><span class="n">df_text</span><span class="p">)</span>
+    <span class="n">ts_code</span> <span class="n">ann_date</span> <span class="n">end_date</span>    <span class="n">eps</span> <span class="n">dt_eps</span> <span class="n">total_revenue_ps</span>
+<span class="m">1</span> <span class="m">000970</span><span class="n">.SZ</span> <span class="m">20191026</span> <span class="m">20190930</span> <span class="m">0.1470</span> <span class="m">0.1470</span>           <span class="m">2.7711</span>
+<span class="m">2</span> <span class="m">000970</span><span class="n">.SZ</span> <span class="m">20190817</span> <span class="m">20190630</span> <span class="m">0.0940</span> <span class="m">0.0940</span>           <span class="m">1.7654</span>
+<span class="m">3</span> <span class="m">000970</span><span class="n">.SZ</span> <span class="m">20190427</span> <span class="m">20190331</span> <span class="m">0.0415</span> <span class="m">0.0415</span>           <span class="m">0.8642</span>
+<span class="m">4</span> <span class="m">000970</span><span class="n">.SZ</span> <span class="m">20190321</span> <span class="m">20181231</span> <span class="m">0.2330</span> <span class="m">0.2330</span>           <span class="m">3.9096</span>
+<span class="m">5</span> <span class="m">000970</span><span class="n">.SZ</span> <span class="m">20181026</span> <span class="m">20180930</span> <span class="m">0.1760</span> <span class="m">0.1760</span>           <span class="m">2.8239</span>
+<span class="m">6</span> <span class="m">000970</span><span class="n">.SZ</span> <span class="m">20180818</span> <span class="m">20180630</span> <span class="m">0.1054</span> <span class="m">0.1054</span>           <span class="m">1.8482</span>
+<span class="o">&gt;</span> <span class="nf">head</span><span class="p">(</span><span class="n">df_text</span><span class="o">$</span><span class="n">ts_code</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="m">000970</span><span class="n">.SZ</span> <span class="m">000970</span><span class="n">.SZ</span> <span class="m">000970</span><span class="n">.SZ</span> <span class="m">000970</span><span class="n">.SZ</span> <span class="m">000970</span><span class="n">.SZ</span> <span class="m">000970</span><span class="n">.SZ</span>
+<span class="n">Levels</span><span class="o">:</span> <span class="m">000970</span><span class="n">.SZ</span>
+<span class="o">&gt;</span>
+
+
+
+
+<span class="m">5.4</span> <span class="n">R读取数据库数据</span>
+    <span class="n">R读取Oracle数据库需要用ROracle包</span>，如下样例为<span class="n">R从Oracle数据库中读取表数据</span>：
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">ROracle</span><span class="p">)</span>
+<span class="n">drv</span> <span class="o">&lt;-</span> <span class="nf">dbDriver</span><span class="p">(</span><span class="s">&quot;Oracle&quot;</span><span class="p">)</span>
+<span class="n">host</span> <span class="o">&lt;-</span> <span class="s">&quot;oracledbserver01&quot;</span>
+<span class="n">port</span> <span class="o">&lt;-</span> <span class="m">1526</span>
+<span class="n">sid</span> <span class="o">&lt;-</span> <span class="s">&quot;pdbbi&quot;</span>
+<span class="n">connect.string</span> <span class="o">&lt;-</span> <span class="nf">paste</span><span class="p">(</span>
+ <span class="s">&quot;(DESCRIPTION=&quot;</span><span class="p">,</span>
+ <span class="s">&quot;(ADDRESS=(PROTOCOL=tcp)(HOST=&quot;</span><span class="p">,</span> <span class="n">host</span><span class="p">,</span> <span class="s">&quot;)(PORT=&quot;</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="s">&quot;))&quot;</span><span class="p">,</span>
+ <span class="s">&quot;(CONNECT_DATA=(SERVER = DEDICATED)(SERVICE_NAME=&quot;</span><span class="p">,</span> <span class="n">sid</span><span class="p">,</span> <span class="s">&quot;)))&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
+ <span class="n">conn</span> <span class="o">&lt;-</span> <span class="nf">dbConnect</span><span class="p">(</span><span class="n">drv</span><span class="p">,</span> <span class="n">username</span> <span class="o">=</span> <span class="s">&quot;rquser&quot;</span><span class="p">,</span> <span class="n">password</span> <span class="o">=</span> <span class="s">&quot;rquser_password&quot;</span><span class="p">,</span> <span class="n">dbname</span> <span class="o">=</span> <span class="n">connect.string</span><span class="p">)</span>
+<span class="nf">dbReadTable</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="s">&quot;TEST_1&quot;</span><span class="p">)</span>
+<span class="n">rs</span> <span class="o">&lt;-</span> <span class="nf">dbSendQuery</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="s">&quot;select DATE1, OPEN,HIGH,LOW,CLOSE,volumn,Adjusted from DM_BUILDING_DEAL_F_V where  cbld_name like &#39;128%&#39; order by 1,2&quot;</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">&lt;-</span> <span class="nf">fetch</span><span class="p">(</span><span class="n">rs</span><span class="p">)</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="id6">
-<h2>5. 总结数据<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
+<h2>6. 总结数据<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
 <blockquote>
 <div><p>分析两变量间关系的基本方法，包括相关性、t检验、卡方检验和非参数方法
 详细记录在下一章节：数据分析</p>

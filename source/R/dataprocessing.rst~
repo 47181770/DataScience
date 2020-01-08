@@ -488,18 +488,68 @@ R数据处理
 
 .. code:: r
 
-  > sfdata <- read.csv('D:/Books/HKU-BusinessAnalytics/bap/000970.csv')
+  > sfdata <- read.csv('D:/bap/000970.csv')
   > head(sfdata)
-
 
  
 
-  5.2 R读取Excel数据
+  5.2 R读取Excel xls与xlsx文件
+      比较好用的包gdata、xlsx。xlsx使用样例如下：
 
-  5.3 R读取text数据
+.. code:: r
+
+  > library("xlsx")
+  > > df <- read.xlsx("D:/bap/allstocks.xls", sheetIndex = 1, encoding = 'UTF-8')
+  > head(df)
+  #  NA.   ts_code symbol     name area industry list_date
+  #1   0 000001.SZ 000001 平安银行 深圳     银行  19910403
+  #2   1 000002.SZ 000002    万科A 深圳 全国地产  19910129
+  #3   2 000004.SZ 000004 国农科技 深圳 生物制药  19910114
+
+ 
+
+  5.3 R读取text文件
+      使用R读取txt文件直接使用read.table()方法，不需要额外包，样例如下：
+
+.. code:: r
+  
+  > df_text <-  read.table("D:/Books/HKU-BusinessAnalytics/bap/000970t.txt", header=T)
+  > head(df_text)
+      ts_code ann_date end_date    eps dt_eps total_revenue_ps
+  1 000970.SZ 20191026 20190930 0.1470 0.1470           2.7711
+  2 000970.SZ 20190817 20190630 0.0940 0.0940           1.7654
+  3 000970.SZ 20190427 20190331 0.0415 0.0415           0.8642
+  4 000970.SZ 20190321 20181231 0.2330 0.2330           3.9096
+  5 000970.SZ 20181026 20180930 0.1760 0.1760           2.8239
+  6 000970.SZ 20180818 20180630 0.1054 0.1054           1.8482
+  > head(df_text$ts_code)
+  [1] 000970.SZ 000970.SZ 000970.SZ 000970.SZ 000970.SZ 000970.SZ
+  Levels: 000970.SZ
+  > 
 
 
-5. 总结数据
+  5.4 R读取数据库数据
+      R读取Oracle数据库需要用ROracle包，如下样例为R从Oracle数据库中读取表数据：
+
+.. code:: r 
+
+  library(ROracle)
+  drv <- dbDriver("Oracle")
+  host <- "oracledbserver01"
+  port <- 1526
+  sid <- "pdbbi"
+  connect.string <- paste(
+   "(DESCRIPTION=",
+   "(ADDRESS=(PROTOCOL=tcp)(HOST=", host, ")(PORT=", port, "))",
+   "(CONNECT_DATA=(SERVER = DEDICATED)(SERVICE_NAME=", sid, ")))", sep = "")
+   conn <- dbConnect(drv, username = "rquser", password = "rquser_password", dbname = connect.string)
+  dbReadTable(conn, "TEST_1")
+  rs <- dbSendQuery(conn, "select DATE1, OPEN,HIGH,LOW,CLOSE,volumn,Adjusted from DM_BUILDING_DEAL_F_V where  cbld_name like '128%' order by 1,2")
+  data <- fetch(rs)
+  head(data)
+
+
+6. 总结数据
 ~~~~~~~~~~~~~~~~~~~~~~
 
   分析两变量间关系的基本方法，包括相关性、t检验、卡方检验和非参数方法
