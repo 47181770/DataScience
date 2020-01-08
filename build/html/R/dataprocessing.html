@@ -94,7 +94,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#id2">2. 数值摘要</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id3">3. 基本数据管理</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id4">4. 高级数据管理</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id5">5. 总结数据</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">5. R读取其他格式数据</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">5. 总结数据</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="dataAnalysisModel.html">数据分析</a></li>
@@ -744,7 +745,24 @@ lapply()与sapply()则将函数应用到列表list上
 </div>
 </div>
 <div class="section" id="id5">
-<h2>5. 总结数据<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<h2>5. R读取其他格式数据<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<blockquote>
+<div><p>5.1 R读取CSV数据</p>
+</div></blockquote>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">sfdata</span> <span class="o">&lt;-</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&#39;D:/bap/000970.csv&#39;</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="nf">head</span><span class="p">(</span><span class="n">sfdata</span><span class="p">)</span>
+
+
+
+
+<span class="m">5.2</span> <span class="n">R读取Excel数据</span>
+
+<span class="m">5.3</span> <span class="n">R读取text数据</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>5. 总结数据<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
 <blockquote>
 <div><p>分析两变量间关系的基本方法，包括相关性、t检验、卡方检验和非参数方法
 详细记录在下一章节：数据分析</p>
