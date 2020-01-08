@@ -746,18 +746,20 @@ lapply()与sapply()则将函数应用到列表list上
 </div>
 <div class="section" id="id5">
 <h2>5. R读取其他格式数据<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
-<blockquote>
-<div><p>5.1 R读取CSV数据</p>
-</div></blockquote>
+<ul class="simple">
+<li><p>5.1 R读取CSV数据</p></li>
+</ul>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">sfdata</span> <span class="o">&lt;-</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&#39;D:/bap/000970.csv&#39;</span><span class="p">)</span>
 <span class="o">&gt;</span> <span class="nf">head</span><span class="p">(</span><span class="n">sfdata</span><span class="p">)</span>
-
-
-
-<span class="m">5.2</span> <span class="n">R读取Excel</span> <span class="n">xls与xlsx文件</span>
-    比较好用的包<span class="n">gdata</span>、<span class="n">xlsx</span>。<span class="n">xlsx使用样例如下</span>：
 </pre></div>
 </div>
+<ul class="simple">
+<li><dl class="simple">
+<dt>5.2 R读取Excel xls与xlsx文件</dt><dd><p>比较好用的包gdata、xlsx。xlsx使用样例如下：</p>
+</dd>
+</dl>
+</li>
+</ul>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="nf">library</span><span class="p">(</span><span class="s">&quot;xlsx&quot;</span><span class="p">)</span>
 <span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">df</span> <span class="o">&lt;-</span> <span class="nf">read.xlsx</span><span class="p">(</span><span class="s">&quot;D:/bap/allstocks.xls&quot;</span><span class="p">,</span> <span class="n">sheetIndex</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">encoding</span> <span class="o">=</span> <span class="s">&#39;UTF-8&#39;</span><span class="p">)</span>
 <span class="o">&gt;</span> <span class="nf">head</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
@@ -765,13 +767,15 @@ lapply()与sapply()则将函数应用到列表list上
 <span class="c1">#1   0 000001.SZ 000001 平安银行 深圳     银行  19910403</span>
 <span class="c1">#2   1 000002.SZ 000002    万科A 深圳 全国地产  19910129</span>
 <span class="c1">#3   2 000004.SZ 000004 国农科技 深圳 生物制药  19910114</span>
-
-
-
-<span class="m">5.3</span> <span class="n">R读取text文件</span>
-    使用<span class="nf">R读取txt文件直接使用read.table</span><span class="p">()</span>方法，不需要额外包，样例如下：
 </pre></div>
 </div>
+<ul class="simple">
+<li><dl class="simple">
+<dt>5.3 R读取text文件</dt><dd><p>使用R读取txt文件直接使用read.table()方法，不需要额外包，样例如下：</p>
+</dd>
+</dl>
+</li>
+</ul>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">df_text</span> <span class="o">&lt;-</span>  <span class="nf">read.table</span><span class="p">(</span><span class="s">&quot;D:/Books/HKU-BusinessAnalytics/bap/000970t.txt&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">T</span><span class="p">)</span>
 <span class="o">&gt;</span> <span class="nf">head</span><span class="p">(</span><span class="n">df_text</span><span class="p">)</span>
     <span class="n">ts_code</span> <span class="n">ann_date</span> <span class="n">end_date</span>    <span class="n">eps</span> <span class="n">dt_eps</span> <span class="n">total_revenue_ps</span>
@@ -785,14 +789,15 @@ lapply()与sapply()则将函数应用到列表list上
 <span class="n">[1]</span> <span class="m">000970</span><span class="n">.SZ</span> <span class="m">000970</span><span class="n">.SZ</span> <span class="m">000970</span><span class="n">.SZ</span> <span class="m">000970</span><span class="n">.SZ</span> <span class="m">000970</span><span class="n">.SZ</span> <span class="m">000970</span><span class="n">.SZ</span>
 <span class="n">Levels</span><span class="o">:</span> <span class="m">000970</span><span class="n">.SZ</span>
 <span class="o">&gt;</span>
-
-
-
-
-<span class="m">5.4</span> <span class="n">R读取数据库数据</span>
-    <span class="n">R读取Oracle数据库需要用ROracle包</span>，如下样例为<span class="n">R从Oracle数据库中读取表数据</span>：
 </pre></div>
 </div>
+<ul class="simple">
+<li><dl class="simple">
+<dt>5.4 R读取数据库数据</dt><dd><p>R读取Oracle数据库需要用ROracle包，如下样例为R从Oracle数据库中读取表数据：</p>
+</dd>
+</dl>
+</li>
+</ul>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">ROracle</span><span class="p">)</span>
 <span class="n">drv</span> <span class="o">&lt;-</span> <span class="nf">dbDriver</span><span class="p">(</span><span class="s">&quot;Oracle&quot;</span><span class="p">)</span>
 <span class="n">host</span> <span class="o">&lt;-</span> <span class="s">&quot;oracledbserver01&quot;</span>
