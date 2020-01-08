@@ -545,7 +545,6 @@ R数据处理
    "(ADDRESS=(PROTOCOL=tcp)(HOST=", host, ")(PORT=", port, "))",
    "(CONNECT_DATA=(SERVER = DEDICATED)(SERVICE_NAME=", sid, ")))", sep = "")
    conn <- dbConnect(drv, username = "rquser", password = "rquser_password", dbname = connect.string)
-  dbReadTable(conn, "TEST_1")
   rs <- dbSendQuery(conn, "select DATE1, OPEN,HIGH,LOW,CLOSE,volumn,Adjusted from DM_BUILDING_DEAL_F_V where  cbld_name like '128%' order by 1,2")
   data <- fetch(rs)
   head(data)

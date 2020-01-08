@@ -484,7 +484,7 @@ R数据处理
 5. R读取其他格式数据
 ~~~~~~~~~~~~~~~~~~~~~~
 
-  5.1 R读取CSV数据
+-  5.1 R读取CSV数据
 
 .. code:: r
 
@@ -493,7 +493,7 @@ R数据处理
 
  
 
-  5.2 R读取Excel xls与xlsx文件
+-  5.2 R读取Excel xls与xlsx文件
       比较好用的包gdata、xlsx。xlsx使用样例如下：
 
 .. code:: r
@@ -508,7 +508,7 @@ R数据处理
 
  
 
-  5.3 R读取text文件
+-  5.3 R读取text文件
       使用R读取txt文件直接使用read.table()方法，不需要额外包，样例如下：
 
 .. code:: r
@@ -530,7 +530,7 @@ R数据处理
  
 
 
-  5.4 R读取数据库数据
+-  5.4 R读取数据库数据
       R读取Oracle数据库需要用ROracle包，如下样例为R从Oracle数据库中读取表数据：
 
 .. code:: r 
