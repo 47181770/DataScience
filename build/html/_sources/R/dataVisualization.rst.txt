@@ -18,11 +18,11 @@
     * 将为每个变量显示多少个数据点？
     * 在一段时间内还是在项目或组之间显示值？ 
 
-.. image:: _static/pic_suggestion.PNG
+.. image:: _static/pic_suggestion.png
    :height: 660
    :width: 913
    :scale: 75 
-   :alt: alternate text
+   :alt: 图形选择建议
    :align: center
 
 -----------------------------------------
