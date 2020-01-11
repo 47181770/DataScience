@@ -67,6 +67,10 @@
 美学层:Aesthetics       x-axis / y-axis / color / fill / size / lables / alpha / shape /
                         linear width / linear type
 几何层:Geometries       point / line / histogram / bar / boxplot
+面:Facets               columns / rows
+统计层:Statistics       binning / smoothing / desciptive / inferential
+坐标层:Coordinates      cartesian / fixed / polar / limits
+主题: Themes            non-data ink
 ===================== ===================================================================
 
 

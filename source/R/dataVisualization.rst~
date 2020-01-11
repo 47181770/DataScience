@@ -64,6 +64,9 @@
 
 ===================== ===================================================================
 数据层:Data             数据框data frame
+美学层:Aesthetics       x-axis / y-axis / color / fill / size / lables / alpha / shape /
+                        linear width / linear type
+几何层:Geometries       point / line / histogram / bar / boxplot
 ===================== ===================================================================
 
 
