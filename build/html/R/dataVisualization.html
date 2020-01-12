@@ -222,6 +222,7 @@
 <li><p>3D 图</p></li>
 <li><p>相关图</p></li>
 <li><p>交互图</p></li>
+<li><p>词云</p></li>
 </ol>
 </dd>
 </dl>
@@ -271,55 +272,77 @@ linear width / linear type</p></td>
 <ul>
 <li><p>散点图</p>
 <blockquote>
-<div><p>散点图用于查看简单散点图或两个及多个连续变量之间的关系。</p>
+<div><p>散点图用于简化数据检查并轻松可视化数据，常用于或两个及多个连续变量之间的关系。</p>
 <ol class="arabic simple">
 <li><p>简单散点图</p></li>
 <li><p>两个连续变量之间的关系</p></li>
-<li><p>多个连续变量之间的关系</p></li>
+<li><p>多个连续变量之间的关系（散点图矩阵）</p></li>
 </ol>
 </div></blockquote>
 </li>
 <li><p>直方图</p>
 <blockquote>
 <div><p>直方图用于绘制连续变量，将数据分段，显示各段频率分布。</p>
-<p>1）</p>
 </div></blockquote>
 </li>
-<li><dl>
-<dt>条形/折线图</dt><dd><p>用于绘制分类变量或者连续变量和分类变量的组合。</p>
-<p>1）&gt; library(devtools)</p>
-</dd>
-</dl>
+<li><p>条形/折线图</p>
+<blockquote>
+<div><p>用于绘制分类变量或者连续变量和分类变量的组合。</p>
+</div></blockquote>
 </li>
-<li><dl class="simple">
-<dt>箱型图</dt><dd><p>用于绘制分类变量和连续变量的组合。对于可视化数据分布和检测异常值非常有用。（显示具有统计意义的数字最小/25百分点/中位数/75百分点/最大值）</p>
-</dd>
-</dl>
+<li><p>箱型图</p>
+<blockquote>
+<div><p>用于绘制分类变量和连续变量的组合。对于可视化数据分布和检测异常值非常有用。（显示具有统计意义的数字最小/25百分点/中位数/75百分点/最大值）</p>
+</div></blockquote>
 </li>
-<li><dl class="simple">
-<dt>面积图</dt><dd><p>用于显示变量或者数据集的连续性，常用于时间序列图，也可用于绘制连续变量并分析潜在趋势。</p>
-</dd>
-</dl>
+<li><p>面积图</p>
+<blockquote>
+<div><p>用于显示变量或者数据集的连续性，常用于时间序列图，也可用于绘制连续变量并分析潜在趋势。</p>
+</div></blockquote>
 </li>
 <li><p>热图</p>
 <blockquote>
 <div><p>通过颜色强度（密度）来探索二维图像中两个或三个或多个变量之间的关系。</p>
 </div></blockquote>
 </li>
-<li><p>马赛克图</p></li>
-<li><p>地图</p></li>
-<li><p>3D 图</p></li>
+<li><p>马赛克图</p>
+<blockquote>
+<div><p>有效的用于绘制分类数据，其中数据区域显示相对比例。</p>
+</div></blockquote>
+</li>
+<li><p>地图</p>
+<blockquote>
+<div><p>在地图上标注数据。</p>
+</div></blockquote>
+</li>
+<li><p>3D 图</p>
+<blockquote>
+<div><p>显示3D图。</p>
+</div></blockquote>
+</li>
 <li><dl class="simple">
 <dt>相关图</dt><dd><p>用于测试数据集中可用变量之间的关联程度。矩阵的单元格通过着色显示相关值，颜色深浅/强度确定变量之间相关值高低。</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple">
-<dt>交互图</dt><dd><p>用于</p>
+<dt>交互图</dt><dd><p>建议使用plotly包绘制交互式图表，plotly支持将所生成的可视化图表保存到我们的个人网站，也可以将可视化结果嵌入到网页文件，可以在网页上进行图表观察与操作。plotly绘图工具库基于React和Flask，支持R、Python、D3.js等多种语言。</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>词云</dt><dd><p>用于分词（中英文）后的词频图形化展示。</p>
 </dd>
 </dl>
 </li>
 </ul>
+<dl class="simple">
+<dt>参考：</dt><dd><ol class="arabic simple">
+<li><p>R Top 50 ggplot2 可视化，<a class="reference external" href="http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html">R_ggplot2_Visualization</a></p></li>
+<li><p>R 可视化图形库，<a class="reference external" href="https://www.r-graph-gallery.com/">R_data2visualzation</a></p></li>
+</ol>
+</dd>
+</dl>
 </div>
 </div>
 
