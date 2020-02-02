@@ -184,6 +184,10 @@
 <span class="nf">colnames</span><span class="p">(</span><span class="n">housing.df</span><span class="p">)</span>
 <span class="n">[1]</span> <span class="s">&quot;TOTAL.VALUE&quot;</span> <span class="s">&quot;TAX&quot;</span>         <span class="s">&quot;LOT.SQFT&quot;</span>    <span class="s">&quot;YR.BUILT&quot;</span>    <span class="s">&quot;GROSS.AREA&quot;</span>  <span class="s">&quot;LIVING.AREA&quot;</span> <span class="s">&quot;FLOORS&quot;</span>      <span class="s">&quot;ROOMS&quot;</span>       <span class="s">&quot;BEDROOMS&quot;</span>    <span class="s">&quot;FULL.BATH&quot;</span>
 <span class="n">[11]</span> <span class="s">&quot;HALF.BATH&quot;</span>   <span class="s">&quot;KITCHEN&quot;</span>     <span class="s">&quot;FIREPLACE&quot;</span>   <span class="s">&quot;REMODEL&quot;</span>
+<span class="c1"># 打印列表变量，与colnames同</span>
+<span class="nf">names</span><span class="p">(</span><span class="n">housing.df</span><span class="p">)</span>
+ <span class="n">[1]</span> <span class="s">&quot;TOTAL.VALUE&quot;</span> <span class="s">&quot;TAX&quot;</span>         <span class="s">&quot;LOT.SQFT&quot;</span>    <span class="s">&quot;YR.BUILT&quot;</span>    <span class="s">&quot;GROSS.AREA&quot;</span>  <span class="s">&quot;LIVING.AREA&quot;</span> <span class="s">&quot;FLOORS&quot;</span>      <span class="s">&quot;ROOMS&quot;</span>       <span class="s">&quot;BEDROOMS&quot;</span>    <span class="s">&quot;FULL.BATH&quot;</span>
+<span class="n">[11]</span> <span class="s">&quot;HALF.BATH&quot;</span>   <span class="s">&quot;KITCHEN&quot;</span>     <span class="s">&quot;FIREPLACE&quot;</span>   <span class="s">&quot;REMODEL&quot;</span>
 <span class="c1"># 显示行名</span>
 <span class="nf">rownames</span><span class="p">(</span><span class="n">housing.df</span><span class="p">)</span>
 
@@ -260,6 +264,53 @@
 <span class="m">5711</span>       <span class="m">368.9</span> <span class="m">4640</span>     <span class="m">6416</span>     <span class="m">1950</span>       <span class="m">2995</span>        <span class="m">1321</span>    <span class="m">1.0</span>     <span class="m">5</span>        <span class="m">2</span>         <span class="m">1</span>         <span class="m">0</span>       <span class="m">1</span>         <span class="m">1</span>  <span class="n">Recent</span>
 <span class="m">1749</span>       <span class="m">361.5</span> <span class="m">4547</span>     <span class="m">8162</span>     <span class="m">1954</span>       <span class="m">2660</span>        <span class="m">1457</span>    <span class="m">1.5</span>     <span class="m">6</span>        <span class="m">3</span>         <span class="m">2</span>         <span class="m">0</span>       <span class="m">1</span>         <span class="m">1</span>     <span class="n">Old</span>
 <span class="o">&gt;</span>
+<span class="c1"># oversample houses with over 10 rooms</span>
+<span class="c1">## ifelse(housing.df$ROOMS&gt;10,0.9,0.1) 如果房间数大于10，则值为0.9，否则为0.01</span>
+<span class="c1">## prob 是被用来抽样的向量元素的一个概率权重的向量</span>
+<span class="n">s</span> <span class="o">&lt;-</span> <span class="nf">sample</span><span class="p">(</span><span class="nf">row.names</span><span class="p">(</span><span class="n">housing.df</span><span class="p">),</span> <span class="m">5</span><span class="p">,</span> <span class="n">prob</span> <span class="o">=</span> <span class="nf">ifelse</span><span class="p">(</span><span class="n">housing.df</span><span class="o">$</span><span class="n">ROOMS</span><span class="o">&gt;</span><span class="m">10</span><span class="p">,</span> <span class="m">0.9</span><span class="p">,</span> <span class="m">0.01</span><span class="p">))</span>
+<span class="n">housing.df[s</span><span class="p">,</span><span class="n">]</span>
+
+<span class="c1"># 打印可读格式的列名</span>
+
+<span class="o">&gt;</span> <span class="nf">t</span><span class="p">(</span><span class="nf">names</span><span class="p">(</span><span class="n">housing.df</span><span class="p">))</span>
+     <span class="n">[</span><span class="p">,</span><span class="m">1</span><span class="n">]</span>          <span class="n">[</span><span class="p">,</span><span class="m">2</span><span class="n">]</span>  <span class="n">[</span><span class="p">,</span><span class="m">3</span><span class="n">]</span>       <span class="n">[</span><span class="p">,</span><span class="m">4</span><span class="n">]</span>       <span class="n">[</span><span class="p">,</span><span class="m">5</span><span class="n">]</span>         <span class="n">[</span><span class="p">,</span><span class="m">6</span><span class="n">]</span>          <span class="n">[</span><span class="p">,</span><span class="m">7</span><span class="n">]</span>     <span class="n">[</span><span class="p">,</span><span class="m">8</span><span class="n">]</span>    <span class="n">[</span><span class="p">,</span><span class="m">9</span><span class="n">]</span>       <span class="n">[</span><span class="p">,</span><span class="m">10</span><span class="n">]</span>       <span class="n">[</span><span class="p">,</span><span class="m">11</span><span class="n">]</span>       <span class="n">[</span><span class="p">,</span><span class="m">12</span><span class="n">]</span>
+<span class="n">[1</span><span class="p">,</span><span class="n">]</span> <span class="s">&quot;TOTAL.VALUE&quot;</span> <span class="s">&quot;TAX&quot;</span> <span class="s">&quot;LOT.SQFT&quot;</span> <span class="s">&quot;YR.BUILT&quot;</span> <span class="s">&quot;GROSS.AREA&quot;</span> <span class="s">&quot;LIVING.AREA&quot;</span> <span class="s">&quot;FLOORS&quot;</span> <span class="s">&quot;ROOMS&quot;</span> <span class="s">&quot;BEDROOMS&quot;</span> <span class="s">&quot;FULL.BATH&quot;</span> <span class="s">&quot;HALF.BATH&quot;</span> <span class="s">&quot;KITCHEN&quot;</span>
+     <span class="n">[</span><span class="p">,</span><span class="m">13</span><span class="n">]</span>       <span class="n">[</span><span class="p">,</span><span class="m">14</span><span class="n">]</span>
+<span class="n">[1</span><span class="p">,</span><span class="n">]</span> <span class="s">&quot;FIREPLACE&quot;</span> <span class="s">&quot;REMODEL&quot;</span>
+<span class="o">&gt;</span> <span class="n">y</span> <span class="o">&lt;-</span> <span class="nf">t</span><span class="p">(</span><span class="nf">names</span><span class="p">(</span><span class="n">housing.df</span><span class="p">))</span>
+<span class="o">&gt;</span> <span class="nf">typeof</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="s">&quot;character&quot;</span>
+<span class="o">&gt;</span> <span class="nf">dim</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="n">[1]</span>  <span class="m">1</span> <span class="m">14</span>
+<span class="o">&gt;</span> <span class="nf">t</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+     <span class="n">[</span><span class="p">,</span><span class="m">1</span><span class="n">]</span>
+ <span class="n">[1</span><span class="p">,</span><span class="n">]</span> <span class="s">&quot;TOTAL.VALUE&quot;</span>
+ <span class="n">[2</span><span class="p">,</span><span class="n">]</span> <span class="s">&quot;TAX&quot;</span>
+ <span class="n">[3</span><span class="p">,</span><span class="n">]</span> <span class="s">&quot;LOT.SQFT&quot;</span>
+ <span class="n">[4</span><span class="p">,</span><span class="n">]</span> <span class="s">&quot;YR.BUILT&quot;</span>
+ <span class="n">[5</span><span class="p">,</span><span class="n">]</span> <span class="s">&quot;GROSS.AREA&quot;</span>
+ <span class="n">[6</span><span class="p">,</span><span class="n">]</span> <span class="s">&quot;LIVING.AREA&quot;</span>
+ <span class="n">[7</span><span class="p">,</span><span class="n">]</span> <span class="s">&quot;FLOORS&quot;</span>
+ <span class="n">[8</span><span class="p">,</span><span class="n">]</span> <span class="s">&quot;ROOMS&quot;</span>
+ <span class="n">[9</span><span class="p">,</span><span class="n">]</span> <span class="s">&quot;BEDROOMS&quot;</span>
+ <span class="n">[10</span><span class="p">,</span><span class="n">]</span> <span class="s">&quot;FULL.BATH&quot;</span>
+ <span class="n">[11</span><span class="p">,</span><span class="n">]</span> <span class="s">&quot;HALF.BATH&quot;</span>
+ <span class="n">[12</span><span class="p">,</span><span class="n">]</span> <span class="s">&quot;KITCHEN&quot;</span>
+ <span class="n">[13</span><span class="p">,</span><span class="n">]</span> <span class="s">&quot;FIREPLACE&quot;</span>
+ <span class="n">[14</span><span class="p">,</span><span class="n">]</span> <span class="s">&quot;REMODEL&quot;</span>
+<span class="c1"># 修改第一列的名字&quot;TOTAL.VALUE&quot; 为 TOTAL_VALUE</span>
+<span class="o">&gt;</span> <span class="nf">colnames</span><span class="p">(</span><span class="n">housing.df</span><span class="p">)</span><span class="n">[1]</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;TOTAL_VALUE&quot;</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="nf">colnames</span><span class="p">(</span><span class="n">housing.df</span><span class="p">)</span>
+ <span class="n">[1]</span> <span class="s">&quot;TOTAL_VALUE&quot;</span> <span class="s">&quot;TAX&quot;</span>         <span class="s">&quot;LOT.SQFT&quot;</span>    <span class="s">&quot;YR.BUILT&quot;</span>    <span class="s">&quot;GROSS.AREA&quot;</span>  <span class="s">&quot;LIVING.AREA&quot;</span> <span class="s">&quot;FLOORS&quot;</span>      <span class="s">&quot;ROOMS&quot;</span>       <span class="s">&quot;BEDROOMS&quot;</span>    <span class="s">&quot;FULL.BATH&quot;</span>
+ <span class="n">[11]</span> <span class="s">&quot;HALF.BATH&quot;</span>   <span class="s">&quot;KITCHEN&quot;</span>     <span class="s">&quot;FIREPLACE&quot;</span>   <span class="s">&quot;REMODEL&quot;</span>
+ <span class="o">&gt;</span>
+<span class="c1"># 显示列为因子变量或者整数变量</span>
+<span class="o">&gt;</span> <span class="nf">class</span><span class="p">(</span><span class="n">housing.df</span><span class="o">$</span><span class="n">REMODEL</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="s">&quot;factor&quot;</span>
+<span class="o">&gt;</span> <span class="nf">class</span><span class="p">(</span><span class="n">housing.df[</span><span class="p">,</span> <span class="m">14</span><span class="n">]</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="s">&quot;factor&quot;</span>
+<span class="o">&gt;</span> <span class="nf">class</span><span class="p">(</span><span class="n">housing.df[</span><span class="p">,</span> <span class="m">13</span><span class="n">]</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="s">&quot;integer&quot;</span>
 </pre></div>
 </div>
 </div>

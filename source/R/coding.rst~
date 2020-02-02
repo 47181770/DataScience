@@ -18,6 +18,10 @@ R 代码样例
  colnames(housing.df)
  [1] "TOTAL.VALUE" "TAX"         "LOT.SQFT"    "YR.BUILT"    "GROSS.AREA"  "LIVING.AREA" "FLOORS"      "ROOMS"       "BEDROOMS"    "FULL.BATH"  
  [11] "HALF.BATH"   "KITCHEN"     "FIREPLACE"   "REMODEL"    
+ # 打印列表变量，与colnames同 
+ names(housing.df)
+  [1] "TOTAL.VALUE" "TAX"         "LOT.SQFT"    "YR.BUILT"    "GROSS.AREA"  "LIVING.AREA" "FLOORS"      "ROOMS"       "BEDROOMS"    "FULL.BATH"  
+ [11] "HALF.BATH"   "KITCHEN"     "FIREPLACE"   "REMODEL" 
  # 显示行名
  rownames(housing.df)
  
@@ -79,7 +83,61 @@ R 代码样例
  ## 每个列的汇总统计信息
  summary(housing.df) 
 
+ # 随机采样观测点
+ ## 数据框的行数
+ row.names(housing.df)
+ ## 对数据框随机采样5个观测点
+ s <- sample(row.names(housing.df), 5)
+ s
+ [1] "330"  "1799" "3913" "5711" "1749"
+ > housing.df[s,]
+      TOTAL.VALUE  TAX LOT.SQFT YR.BUILT GROSS.AREA LIVING.AREA FLOORS ROOMS BEDROOMS FULL.BATH HALF.BATH KITCHEN FIREPLACE REMODEL
+ 330        310.7 3908     6465     1960       1948        1404    1.0     5        3         1         1       1         1    None
+ 1799       323.2 4065     4794     1900       2443        1171    1.5     6        3         1         1       1         0  Recent
+ 3913       360.0 4528     8005     1950       2891        1042    1.0     6        2         1         0       1         1    None
+ 5711       368.9 4640     6416     1950       2995        1321    1.0     5        2         1         0       1         1  Recent
+ 1749       361.5 4547     8162     1954       2660        1457    1.5     6        3         2         0       1         1     Old
+ > 
+ # oversample houses with over 10 rooms 
+ ## ifelse(housing.df$ROOMS>10,0.9,0.1) 如果房间数大于10，则值为0.9，否则为0.01
+ ## prob 是被用来抽样的向量元素的一个概率权重的向量
+ s <- sample(row.names(housing.df), 5, prob = ifelse(housing.df$ROOMS>10, 0.9, 0.01)) 
+ housing.df[s,]
 
+ # 打印可读格式的列名
+
+ > t(names(housing.df))
+      [,1]          [,2]  [,3]       [,4]       [,5]         [,6]          [,7]     [,8]    [,9]       [,10]       [,11]       [,12]    
+ [1,] "TOTAL.VALUE" "TAX" "LOT.SQFT" "YR.BUILT" "GROSS.AREA" "LIVING.AREA" "FLOORS" "ROOMS" "BEDROOMS" "FULL.BATH" "HALF.BATH" "KITCHEN"
+      [,13]       [,14]    
+ [1,] "FIREPLACE" "REMODEL"
+ > y <- t(names(housing.df))
+ > typeof(y)
+ [1] "character"
+ > dim(y)
+ [1]  1 14
+ > t(y)
+      [,1]         
+  [1,] "TOTAL.VALUE"
+  [2,] "TAX"        
+  [3,] "LOT.SQFT"   
+  [4,] "YR.BUILT"   
+  [5,] "GROSS.AREA" 
+  [6,] "LIVING.AREA"
+  [7,] "FLOORS"     
+  [8,] "ROOMS"      
+  [9,] "BEDROOMS"   
+  [10,] "FULL.BATH"  
+  [11,] "HALF.BATH"  
+  [12,] "KITCHEN"    
+  [13,] "FIREPLACE"  
+  [14,] "REMODEL"    
+ # 修改第一列的名字"TOTAL.VALUE" 为 TOTAL_VALUE
+ > colnames(housing.df)[1] <- c("TOTAL_VALUE")
+ > colnames(housing.df)
+  [1] "TOTAL_VALUE" "TAX"         "LOT.SQFT"    "YR.BUILT"    "GROSS.AREA"  "LIVING.AREA" "FLOORS"      "ROOMS"       "BEDROOMS"    "FULL.BATH"  
+  [11] "HALF.BATH"   "KITCHEN"     "FIREPLACE"   "REMODEL"    
+  > 
 
 
 
