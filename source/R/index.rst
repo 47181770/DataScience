@@ -15,6 +15,7 @@ R
    dataprocessing.rst
    dataAnalysisModel.rst
    dataVisualization.rst
+   coding.rst
 
 参考资源
 
