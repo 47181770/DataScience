@@ -138,9 +138,71 @@ R 代码样例
   [1] "TOTAL_VALUE" "TAX"         "LOT.SQFT"    "YR.BUILT"    "GROSS.AREA"  "LIVING.AREA" "FLOORS"      "ROOMS"       "BEDROOMS"    "FULL.BATH"  
   [11] "HALF.BATH"   "KITCHEN"     "FIREPLACE"   "REMODEL"    
   > 
+ # 显示列类型：为因子变量或者整数变量或数字变量
+ > class(housing.df$REMODEL)
+ [1] "factor"
+ > class(housing.df[, 14])
+ [1] "factor"
+ # 显示因子变量的类别
+ > levels(housing.df[,14])
+ [1] "None"   "Old"    "Recent"
+ > class(housing.df[, 13])
+ [1] "integer"
+ > class(housing.df[, 1])
+ [1] "numeric"
+
+ # 创建二进制虚拟变量dummy variables
+ ## 使用model.matrix() 转换分类变量为一系列的虚拟变量
+ ## 注意：虚拟变量转完后为矩阵格式，必须转换矩阵格式数据至数据框 
+
+ xtotal <- model.matrix(~ 0 + BEDROOMS + REMODEL, data = housing.df) 
+ > names(xtotal)
+ NULL <- 注意 
+ > colnames(xtotal)
+ [1] "BEDROOMS"      "REMODELNone"   "REMODELOld"    "REMODELRecent"
+ > typeof(xtotal)
+ [1] "double"
+ > class(xtotal)
+ [1] "matrix"
+ # 因为xtotal为矩阵，所以无法使用数据框的语法
+ > xtotal$BEDROOMS
+ Error in xtotal$BEDROOMS : $ operator is invalid for atomic vectors
+ > xtotal.df <- as.data.frame(xtotal)
+ > class(xtotal.df)
+ [1] "data.frame"
+ > names(xtotal.df)
+ [1] "BEDROOMS"      "REMODELNone"   "REMODELOld"    "REMODELRecent"
+ # 检查虚拟变量的列
+ > t(t(names(xtotal.df)))
+     [,1]           
+ [1,] "BEDROOMS"     
+ [2,] "REMODELNone"  
+ [3,] "REMODELOld"   
+ [4,] "REMODELRecent"
+ >  head(xtotal.df)
+  BEDROOMS REMODELNone REMODELOld REMODELRecent
+  1        3           1          0             0
+  2        4           0          0             1
+  3        4           1          0             0
+  4        5           1          0             0
+  5        3           1          0             0
+  6        3           0          1             0
+  # 删除最后一列REMODELRecent
+  > head(xtotal.df[,-4])
+  BEDROOMS REMODELNone REMODELOld
+  1        3           1          0
+  2        4           0          0
+  3        4           1          0
+  4        5           1          0
+  5        3           1          0
+  6        3           0          1
+  > 
+  
+  # 处理缺失数据
 
 
 
+ 
 -----------------------------------------
 
 

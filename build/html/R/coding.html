@@ -304,13 +304,67 @@
  <span class="n">[1]</span> <span class="s">&quot;TOTAL_VALUE&quot;</span> <span class="s">&quot;TAX&quot;</span>         <span class="s">&quot;LOT.SQFT&quot;</span>    <span class="s">&quot;YR.BUILT&quot;</span>    <span class="s">&quot;GROSS.AREA&quot;</span>  <span class="s">&quot;LIVING.AREA&quot;</span> <span class="s">&quot;FLOORS&quot;</span>      <span class="s">&quot;ROOMS&quot;</span>       <span class="s">&quot;BEDROOMS&quot;</span>    <span class="s">&quot;FULL.BATH&quot;</span>
  <span class="n">[11]</span> <span class="s">&quot;HALF.BATH&quot;</span>   <span class="s">&quot;KITCHEN&quot;</span>     <span class="s">&quot;FIREPLACE&quot;</span>   <span class="s">&quot;REMODEL&quot;</span>
  <span class="o">&gt;</span>
-<span class="c1"># 显示列为因子变量或者整数变量</span>
+<span class="c1"># 显示列类型：为因子变量或者整数变量或数字变量</span>
 <span class="o">&gt;</span> <span class="nf">class</span><span class="p">(</span><span class="n">housing.df</span><span class="o">$</span><span class="n">REMODEL</span><span class="p">)</span>
 <span class="n">[1]</span> <span class="s">&quot;factor&quot;</span>
 <span class="o">&gt;</span> <span class="nf">class</span><span class="p">(</span><span class="n">housing.df[</span><span class="p">,</span> <span class="m">14</span><span class="n">]</span><span class="p">)</span>
 <span class="n">[1]</span> <span class="s">&quot;factor&quot;</span>
+<span class="c1"># 显示因子变量的类别</span>
+<span class="o">&gt;</span> <span class="nf">levels</span><span class="p">(</span><span class="n">housing.df[</span><span class="p">,</span><span class="m">14</span><span class="n">]</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="s">&quot;None&quot;</span>   <span class="s">&quot;Old&quot;</span>    <span class="s">&quot;Recent&quot;</span>
 <span class="o">&gt;</span> <span class="nf">class</span><span class="p">(</span><span class="n">housing.df[</span><span class="p">,</span> <span class="m">13</span><span class="n">]</span><span class="p">)</span>
 <span class="n">[1]</span> <span class="s">&quot;integer&quot;</span>
+<span class="o">&gt;</span> <span class="nf">class</span><span class="p">(</span><span class="n">housing.df[</span><span class="p">,</span> <span class="m">1</span><span class="n">]</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="s">&quot;numeric&quot;</span>
+
+<span class="c1"># 创建二进制虚拟变量dummy variables</span>
+<span class="c1">## 使用model.matrix() 转换分类变量为一系列的虚拟变量</span>
+<span class="c1">## 注意：虚拟变量转完后为矩阵格式，必须转换矩阵格式数据至数据框</span>
+
+<span class="n">xtotal</span> <span class="o">&lt;-</span> <span class="nf">model.matrix</span><span class="p">(</span><span class="o">~</span> <span class="m">0</span> <span class="o">+</span> <span class="n">BEDROOMS</span> <span class="o">+</span> <span class="n">REMODEL</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">housing.df</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="nf">names</span><span class="p">(</span><span class="n">xtotal</span><span class="p">)</span>
+<span class="kc">NULL</span> <span class="o">&lt;-</span> 注意
+<span class="o">&gt;</span> <span class="nf">colnames</span><span class="p">(</span><span class="n">xtotal</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="s">&quot;BEDROOMS&quot;</span>      <span class="s">&quot;REMODELNone&quot;</span>   <span class="s">&quot;REMODELOld&quot;</span>    <span class="s">&quot;REMODELRecent&quot;</span>
+<span class="o">&gt;</span> <span class="nf">typeof</span><span class="p">(</span><span class="n">xtotal</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="s">&quot;double&quot;</span>
+<span class="o">&gt;</span> <span class="nf">class</span><span class="p">(</span><span class="n">xtotal</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="s">&quot;matrix&quot;</span>
+<span class="c1"># 因为xtotal为矩阵，所以无法使用数据框的语法</span>
+<span class="o">&gt;</span> <span class="n">xtotal</span><span class="o">$</span><span class="n">BEDROOMS</span>
+<span class="n">Error</span> <span class="n">in</span> <span class="n">xtotal</span><span class="o">$</span><span class="n">BEDROOMS</span> <span class="o">:</span> <span class="o">$</span> <span class="n">operator</span> <span class="n">is</span> <span class="n">invalid</span> <span class="n">for</span> <span class="n">atomic</span> <span class="n">vectors</span>
+<span class="o">&gt;</span> <span class="n">xtotal.df</span> <span class="o">&lt;-</span> <span class="nf">as.data.frame</span><span class="p">(</span><span class="n">xtotal</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="nf">class</span><span class="p">(</span><span class="n">xtotal.df</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="s">&quot;data.frame&quot;</span>
+<span class="o">&gt;</span> <span class="nf">names</span><span class="p">(</span><span class="n">xtotal.df</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="s">&quot;BEDROOMS&quot;</span>      <span class="s">&quot;REMODELNone&quot;</span>   <span class="s">&quot;REMODELOld&quot;</span>    <span class="s">&quot;REMODELRecent&quot;</span>
+<span class="c1"># 检查虚拟变量的列</span>
+<span class="o">&gt;</span> <span class="nf">t</span><span class="p">(</span><span class="nf">t</span><span class="p">(</span><span class="nf">names</span><span class="p">(</span><span class="n">xtotal.df</span><span class="p">)))</span>
+    <span class="n">[</span><span class="p">,</span><span class="m">1</span><span class="n">]</span>
+<span class="n">[1</span><span class="p">,</span><span class="n">]</span> <span class="s">&quot;BEDROOMS&quot;</span>
+<span class="n">[2</span><span class="p">,</span><span class="n">]</span> <span class="s">&quot;REMODELNone&quot;</span>
+<span class="n">[3</span><span class="p">,</span><span class="n">]</span> <span class="s">&quot;REMODELOld&quot;</span>
+<span class="n">[4</span><span class="p">,</span><span class="n">]</span> <span class="s">&quot;REMODELRecent&quot;</span>
+<span class="o">&gt;</span>  <span class="nf">head</span><span class="p">(</span><span class="n">xtotal.df</span><span class="p">)</span>
+ <span class="n">BEDROOMS</span> <span class="n">REMODELNone</span> <span class="n">REMODELOld</span> <span class="n">REMODELRecent</span>
+ <span class="m">1</span>        <span class="m">3</span>           <span class="m">1</span>          <span class="m">0</span>             <span class="m">0</span>
+ <span class="m">2</span>        <span class="m">4</span>           <span class="m">0</span>          <span class="m">0</span>             <span class="m">1</span>
+ <span class="m">3</span>        <span class="m">4</span>           <span class="m">1</span>          <span class="m">0</span>             <span class="m">0</span>
+ <span class="m">4</span>        <span class="m">5</span>           <span class="m">1</span>          <span class="m">0</span>             <span class="m">0</span>
+ <span class="m">5</span>        <span class="m">3</span>           <span class="m">1</span>          <span class="m">0</span>             <span class="m">0</span>
+ <span class="m">6</span>        <span class="m">3</span>           <span class="m">0</span>          <span class="m">1</span>             <span class="m">0</span>
+ <span class="c1"># 删除最后一列REMODELRecent</span>
+ <span class="o">&gt;</span> <span class="nf">head</span><span class="p">(</span><span class="n">xtotal.df[</span><span class="p">,</span><span class="m">-4</span><span class="n">]</span><span class="p">)</span>
+ <span class="n">BEDROOMS</span> <span class="n">REMODELNone</span> <span class="n">REMODELOld</span>
+ <span class="m">1</span>        <span class="m">3</span>           <span class="m">1</span>          <span class="m">0</span>
+ <span class="m">2</span>        <span class="m">4</span>           <span class="m">0</span>          <span class="m">0</span>
+ <span class="m">3</span>        <span class="m">4</span>           <span class="m">1</span>          <span class="m">0</span>
+ <span class="m">4</span>        <span class="m">5</span>           <span class="m">1</span>          <span class="m">0</span>
+ <span class="m">5</span>        <span class="m">3</span>           <span class="m">1</span>          <span class="m">0</span>
+ <span class="m">6</span>        <span class="m">3</span>           <span class="m">0</span>          <span class="m">1</span>
+ <span class="o">&gt;</span>
+
+ <span class="c1"># 处理缺失数据</span>
 </pre></div>
 </div>
 </div>
