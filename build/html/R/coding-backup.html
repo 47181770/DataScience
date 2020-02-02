@@ -1,0 +1,532 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>R 代码样例 &mdash; Data Science 1.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Data Science
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../README1.html">Data Science数据科学路线图</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../machinelearning/index.html">机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../businessanalysis/index.html">Business Analysis 业务分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../managementmodel/index.html">管理模型</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Data Science</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>R 代码样例</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/R/coding-backup.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="r">
+<h1>R 代码样例<a class="headerlink" href="#r" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id1">
+<h2>1. 数据处理<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>以波士顿WEST ROXBURY (BOSTON) 房产价值数据集为例！</p>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span># 读取WEST ROXBURY西罗克斯伯里数据集
+housing.df &lt;- read.csv(&quot;D:\\dataset\\WestRoxbury.csv&quot;, header=TRUE)
+# 读取数据集的行、列数
+dim(housing.df)
+# 显示数据框的列名
+colnames(housing.df)
+[1] &quot;TOTAL.VALUE&quot; &quot;TAX&quot;         &quot;LOT.SQFT&quot;    &quot;YR.BUILT&quot;    &quot;GROSS.AREA&quot;  &quot;LIVING.AREA&quot; &quot;FLOORS&quot;      &quot;ROOMS&quot;       &quot;BEDROOMS&quot;    &quot;FULL.BATH&quot;
+[11] &quot;HALF.BATH&quot;   &quot;KITCHEN&quot;     &quot;FIREPLACE&quot;   &quot;REMODEL&quot;
+# 打印列表变量，与colnames同
+names(housing.df)
+ [1] &quot;TOTAL.VALUE&quot; &quot;TAX&quot;         &quot;LOT.SQFT&quot;    &quot;YR.BUILT&quot;    &quot;GROSS.AREA&quot;  &quot;LIVING.AREA&quot; &quot;FLOORS&quot;      &quot;ROOMS&quot;       &quot;BEDROOMS&quot;    &quot;FULL.BATH&quot;
+[11] &quot;HALF.BATH&quot;   &quot;KITCHEN&quot;     &quot;FIREPLACE&quot;   &quot;REMODEL&quot;
+# 显示行名
+rownames(housing.df)
+
+# 查看前6行数据
+head(housing.df)
+# 查看前10条记录
+head(housing.df, 10)
+TOTAL.VALUE  TAX LOT.SQFT YR.BUILT GROSS.AREA LIVING.AREA FLOORS ROOMS BEDROOMS FULL.BATH HALF.BATH KITCHEN FIREPLACE REMODEL
+      344.2 4330     9965     1880       2436        1352      2     6        3         1         1       1         0    None
+      412.6 5190     6590     1945       3108        1976      2    10        4         2         1       1         0  Recent
+      330.1 4152     7500     1890       2294        1371      2     8        4         1         1       1         0    None
+# 查看后10条记录
+tail(housing.df, 10)
+# 在新的窗格窗口查看数据
+View(housing.df)
+
+# 练习显示不同数据子集
+
+## 显示第一列的前10行
+housing.df[1:10, 1]
+## 显示所有列的前6行
+housing.df[1:6,]
+## 显示前六列的第五条记录
+housing.df[5, 1:6]
+  TOTAL.VALUE  TAX LOT.SQFT YR.BUILT GROSS.AREA LIVING.AREA
+5       331.5 4170     5000     1910       2370        1438
+## 显示前10列的第5条记录
+housing.df[5, 1:10]
+ TOTAL.VALUE  TAX LOT.SQFT YR.BUILT GROSS.AREA LIVING.AREA FLOORS ROOMS BEDROOMS FULL.BATH
+5       331.5 4170     5000     1910       2370        1438      2     7        3         2
+
+## 显示某些列的第五条记录
+ housing.df[5, c(1:2,8,11:14)]
+ TOTAL.VALUE  TAX ROOMS HALF.BATH KITCHEN FIREPLACE REMODEL
+ 5       331.5 4170     7         0       1         0    None
+ housing.df[5, c(1,5,12)]
+ TOTAL.VALUE GROSS.AREA KITCHEN
+ 5       331.5       2370       1
+## 显示第一列的所有行
+housing.df[, 1]
+## 显示第一~第二列的所有行
+housing.df[, 1:2]
+## 显示第一列所有行的另一种方法
+housing.df$TOTAL_VALUE
+## 显示第一列的前六行
+housing.df$TOTAL.VALUE[1:6]
+[1] 344.2 412.6 330.1 498.6 331.5 337.4
+## 显示第一列的长度
+&gt; length(housing.df$TOTAL.VALUE)
+[1] 5802
+&gt; length(housing.df$TAX)
+[1] 5802
+## 显示第一列TOTAL.VALUE的均值
+&gt; mean(housing.df$TOTAL.VALUE)
+[1] 392.6857
+## 显示第一列TOTAL.VALUE的中位数
+&gt; median(housing.df$TOTAL.VALUE)
+[1] 375.9
+## 每个列的汇总统计信息
+summary(housing.df)
+
+# 随机采样观测点
+## 数据框的行数
+row.names(housing.df)
+## 对数据框随机采样5个观测点
+s &lt;- sample(row.names(housing.df), 5)
+s
+[1] &quot;330&quot;  &quot;1799&quot; &quot;3913&quot; &quot;5711&quot; &quot;1749&quot;
+&gt; housing.df[s,]
+     TOTAL.VALUE  TAX LOT.SQFT YR.BUILT GROSS.AREA LIVING.AREA FLOORS ROOMS BEDROOMS FULL.BATH HALF.BATH KITCHEN FIREPLACE REMODEL
+330        310.7 3908     6465     1960       1948        1404    1.0     5        3         1         1       1         1    None
+1799       323.2 4065     4794     1900       2443        1171    1.5     6        3         1         1       1         0  Recent
+3913       360.0 4528     8005     1950       2891        1042    1.0     6        2         1         0       1         1    None
+5711       368.9 4640     6416     1950       2995        1321    1.0     5        2         1         0       1         1  Recent
+1749       361.5 4547     8162     1954       2660        1457    1.5     6        3         2         0       1         1     Old
+&gt;
+# oversample houses with over 10 rooms
+## ifelse(housing.df$ROOMS&gt;10,0.9,0.1) 如果房间数大于10，则值为0.9，否则为0.01
+## prob 是被用来抽样的向量元素的一个概率权重的向量
+s &lt;- sample(row.names(housing.df), 5, prob = ifelse(housing.df$ROOMS&gt;10, 0.9, 0.01))
+housing.df[s,]
+
+# 打印可读格式的列名
+
+&gt; t(names(housing.df))
+     [,1]          [,2]  [,3]       [,4]       [,5]         [,6]          [,7]     [,8]    [,9]       [,10]       [,11]       [,12]
+[1,] &quot;TOTAL.VALUE&quot; &quot;TAX&quot; &quot;LOT.SQFT&quot; &quot;YR.BUILT&quot; &quot;GROSS.AREA&quot; &quot;LIVING.AREA&quot; &quot;FLOORS&quot; &quot;ROOMS&quot; &quot;BEDROOMS&quot; &quot;FULL.BATH&quot; &quot;HALF.BATH&quot; &quot;KITCHEN&quot;
+     [,13]       [,14]
+[1,] &quot;FIREPLACE&quot; &quot;REMODEL&quot;
+&gt; y &lt;- t(names(housing.df))
+&gt; typeof(y)
+[1] &quot;character&quot;
+&gt; dim(y)
+[1]  1 14
+&gt; t(y)
+     [,1]
+ [1,] &quot;TOTAL.VALUE&quot;
+ [2,] &quot;TAX&quot;
+ [3,] &quot;LOT.SQFT&quot;
+ [4,] &quot;YR.BUILT&quot;
+ [5,] &quot;GROSS.AREA&quot;
+ [6,] &quot;LIVING.AREA&quot;
+ [7,] &quot;FLOORS&quot;
+ [8,] &quot;ROOMS&quot;
+ [9,] &quot;BEDROOMS&quot;
+ [10,] &quot;FULL.BATH&quot;
+ [11,] &quot;HALF.BATH&quot;
+ [12,] &quot;KITCHEN&quot;
+ [13,] &quot;FIREPLACE&quot;
+ [14,] &quot;REMODEL&quot;
+# 修改第一列的名字&quot;TOTAL.VALUE&quot; 为 TOTAL_VALUE
+&gt; colnames(housing.df)[1] &lt;- c(&quot;TOTAL_VALUE&quot;)
+&gt; colnames(housing.df)
+ [1] &quot;TOTAL_VALUE&quot; &quot;TAX&quot;         &quot;LOT.SQFT&quot;    &quot;YR.BUILT&quot;    &quot;GROSS.AREA&quot;  &quot;LIVING.AREA&quot; &quot;FLOORS&quot;      &quot;ROOMS&quot;       &quot;BEDROOMS&quot;    &quot;FULL.BATH&quot;
+ [11] &quot;HALF.BATH&quot;   &quot;KITCHEN&quot;     &quot;FIREPLACE&quot;   &quot;REMODEL&quot;
+ &gt;
+# 显示列类型：为因子变量或者整数变量或数字变量
+&gt; class(housing.df$REMODEL)
+[1] &quot;factor&quot;
+&gt; class(housing.df[, 14])
+[1] &quot;factor&quot;
+# 显示因子变量的类别
+&gt; levels(housing.df[,14])
+[1] &quot;None&quot;   &quot;Old&quot;    &quot;Recent&quot;
+&gt; class(housing.df[, 13])
+[1] &quot;integer&quot;
+&gt; class(housing.df[, 1])
+[1] &quot;numeric&quot;
+
+# 创建二进制虚拟变量dummy variables
+## 使用model.matrix() 转换分类变量为一系列的虚拟变量
+## 注意：虚拟变量转完后为矩阵格式，必须转换矩阵格式数据至数据框
+
+xtotal &lt;- model.matrix(~ 0 + BEDROOMS + REMODEL, data = housing.df)
+&gt; names(xtotal)
+NULL  #注意
+&gt; colnames(xtotal)
+[1] &quot;BEDROOMS&quot;      &quot;REMODELNone&quot;   &quot;REMODELOld&quot;    &quot;REMODELRecent&quot;
+&gt; typeof(xtotal)
+[1] &quot;double&quot;
+&gt; class(xtotal)
+[1] &quot;matrix&quot;
+# 因为xtotal为矩阵，所以无法使用数据框的语法
+&gt; xtotal$BEDROOMS
+#Error in xtotal$BEDROOMS : $ operator is invalid for atomic vectors
+&gt; xtotal.df &lt;- as.data.frame(xtotal)
+&gt; class(xtotal.df)
+[1] &quot;data.frame&quot;
+&gt; names(xtotal.df)
+[1] &quot;BEDROOMS&quot;      &quot;REMODELNone&quot;   &quot;REMODELOld&quot;    &quot;REMODELRecent&quot;
+# 检查虚拟变量的列
+&gt; t(t(names(xtotal.df)))
+    [,1]
+[1,] &quot;BEDROOMS&quot;
+[2,] &quot;REMODELNone&quot;
+[3,] &quot;REMODELOld&quot;
+[4,] &quot;REMODELRecent&quot;
+&gt;  head(xtotal.df)
+ BEDROOMS REMODELNone REMODELOld REMODELRecent
+ 1        3           1          0             0
+ 2        4           0          0             1
+ 3        4           1          0             0
+ 4        5           1          0             0
+ 5        3           1          0             0
+ 6        3           0          1             0
+ # 删除最后一列REMODELRecent
+&gt; head(xtotal.df[,-4])
+ BEDROOMS REMODELNone REMODELOld
+ 1        3           1          0
+ 2        4           0          0
+ 3        4           1          0
+ 4        5           1          0
+ 5        3           1          0
+ 6        3           0          1
+&gt;
+
+ # 利用中位数处理缺失数据
+ # 随机找10条记录，把BEDROOMS改为NA
+&gt; rows.missing10 &lt;- sample(row.names(housing.df), 10)
+&gt; rows.missing10
+ [1] &quot;4012&quot; &quot;5071&quot; &quot;2849&quot; &quot;2900&quot; &quot;2378&quot; &quot;4650&quot; &quot;1446&quot; &quot;2159&quot; &quot;3476&quot; &quot;1948&quot;
+&gt; housing.df[rows.missing10,]$BEDROOMS &lt;- NA
+&gt; housing.df[rows.missing10,]$BEDROOMS
+ [1] NA NA NA NA NA NA NA NA NA NA
+ ## 检查BEDROOMS列，已经有10条空记录了，其中中位数为3
+&gt; summary(housing.df$BEDROOMS)
+  Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s
+  1.00    3.00    3.00    3.23    4.00    9.00      10
+ ## 把BEDROOMS为NA的列，替换为中位数3，注意使用na.rm = TRUE 是为了在计算中位数时忽略缺失值
+&gt; median(housing.df$BEDROOMS)
+ [1] NA # 计算中位数如果包括了为空的列，则中位数是NA
+&gt; median(housing.df$BEDROOMS, na.rm = TRUE)
+ [1] 3
+ # 将NA值替换为中位数
+&gt; housing.df[rows.missing10,]$BEDROOMS &lt;- median(housing.df$BEDROOMS, na.rm = TRUE)
+&gt; housing.df[rows.missing10,]$BEDROOMS
+   [1] 3 3 3 3 3 3 3 3 3 3
+&gt; summary(housing.df$BEDROOMS)
+  Min. 1st Qu.  Median    Mean 3rd Qu.    Max.
+ 1.000   3.000   3.000   3.229   4.000   9.000
+
+ # 将数据集分成训练集、验证集、测试集
+ ## set.seed()用于设定随机数种子,在重新运行代码或调试程序或者做展示的时候，结果可重复性是很重要的，所以设定此值
+ ## set.seed(?)中的数字，代表设置的是第几号种子，不会参与运算，是个标记
+&gt; set.seed(1)
+&gt; dim(housing.df)[1]
+[1] 5802
+&gt; train.rows
+  [1] &quot;2580&quot; &quot;1530&quot; &quot;4439&quot; &quot;4136&quot; &quot;4633&quot; &quot;4344&quot; &quot;1222&quot; &quot;2426&quot; &quot;2087&quot; &quot;2483&quot; &quot;2858&quot; &quot;5510&quot; &quot;5400&quot; &quot;1696&quot; &quot;526&quot;  &quot;1069&quot; &quot;5522&quot; &quot;22&quot;   &quot;5491&quot;
+ [20] &quot;1128&quot; &quot;983&quot;  &quot;1791&quot; &quot;5612&quot; &quot;3910&quot; &quot;5736&quot; &quot;1639&quot; &quot;4939&quot; &quot;465&quot;  &quot;5092&quot; &quot;5645&quot; &quot;1200&quot; &quot;3863&quot; &quot;1134&quot; &quot;84&quot;   &quot;1895&quot; &quot;3101&quot; &quot;5261&quot; &quot;2300&quot;
+ #......
+&gt; train.data &lt;- housing.df[train.rows,]
+&gt; head(train.data)
+     TOTAL_VALUE  TAX LOT.SQFT YR.BUILT GROSS.AREA LIVING.AREA FLOORS ROOMS BEDROOMS FULL.BATH HALF.BATH KITCHEN FIREPLACE REMODEL
+ 2580       469.8 5910     4700     1912       3978        2499      2     8        4         1         1       1         1     Old
+ 1530       476.0 5988    12180     1965       3591        2167      1     8        3         2         0       1         1  Recent
+ 4439       416.2 5235     4440     1935       3074        1832      2     8        4         2         0       1         0    None
+ 4136       413.4 5200     5696     1951       2773        1544      2     7        3         1         1       1         1    None
+ 4633       445.9 5609     5500     1920       3890        2110      2     9        4         1         2       1         1    None
+ 4344       355.2 4468     3999     1960       2458        1372      2     6        2         1         1       1         1    None
+ # 请观察train.rows 的前六个行数与head(train.data)的前六行对比
+ ## 将不在训练集的其他40%记录划给验证集，setdiff(x,y)是求向量x与y中不同的元素（只取x中不同的元素）
+&gt; valid.rows &lt;- setdiff(row.names(housing.df), train.rows)
+&gt; valid.rows
+  [1] &quot;2&quot;    &quot;5&quot;    &quot;6&quot;    &quot;8&quot;    &quot;9&quot;    &quot;10&quot;   &quot;11&quot;   &quot;12&quot;   &quot;16&quot;   &quot;20&quot;   &quot;21&quot;   &quot;23&quot;   &quot;24&quot;   &quot;25&quot;   &quot;31&quot;   &quot;33&quot;   &quot;35&quot;   &quot;37&quot;   &quot;42&quot;
+&gt; setdiff(1:5, 2:6)
+[1] 1
+&gt; valid.data &lt;- housing.df[valid.rows,]
+&gt; head(valid.data)
+## 确认最终数据集按照60:40比例分割
+&gt; dim(valid.data)
+[1] 2321   14
+&gt; dim(train.data)[1]
+[1] 3481
+&gt; dim(housing.df)[1] * 0.6
+[1] 3481.2
+&gt; dim(housing.df)[1]
+[1] 5802
+&gt; dim(housing.df)[1] * 0.4
+[1] 2320.8
+
+# 将数据集按照训练集50%、验证集30%、测试集20%划分
+&gt; train2.rows &lt;- sample(row.names(housing.df), dim(housing.df)[1] * 0.5)
+&gt; dim(train2.rows)
+NULL
+&gt; summary(train2.rows)
+  Length     Class      Mode
+    2901 character character
+&gt; head(train2.rows)
+[1] &quot;1182&quot; &quot;3409&quot; &quot;5296&quot; &quot;5442&quot; &quot;4956&quot; &quot;2316&quot;
+&gt; train2.data &lt;- housing.df[train2.rows,]
+&gt; dim(train2.data)
+[1] 2901
+</pre></div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="id2">
+<h2>2. 数据集说明<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 76%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>TOTAL VALUE</p></td>
+<td><p>房产估价总值，单位：千美元</p></td>
+</tr>
+<tr class="row-even"><td><p>TAX</p></td>
+<td><p>税单金额根据总评估价值乘以税率，单位：美元</p></td>
+</tr>
+<tr class="row-odd"><td><p>LOT SQ FT</p></td>
+<td><p>总平方英尺数</p></td>
+</tr>
+<tr class="row-even"><td><p>YR BUILT</p></td>
+<td><p>房产建成年份</p></td>
+</tr>
+<tr class="row-odd"><td><p>GROSS AREA</p></td>
+<td><p>总建筑面积</p></td>
+</tr>
+<tr class="row-even"><td><p>LIVING AREA</p></td>
+<td><p>房产的总居住面积</p></td>
+</tr>
+<tr class="row-odd"><td><p>FLOORS</p></td>
+<td><p>楼层数</p></td>
+</tr>
+<tr class="row-even"><td><p>ROOMS</p></td>
+<td><p>房间数</p></td>
+</tr>
+<tr class="row-odd"><td><p>BEDROOMS</p></td>
+<td><p>卧室数</p></td>
+</tr>
+<tr class="row-even"><td><p>FULL BATH</p></td>
+<td><p>全浴总数</p></td>
+</tr>
+<tr class="row-odd"><td><p>HALF BATH</p></td>
+<td><p>半浴总数</p></td>
+</tr>
+<tr class="row-even"><td><p>KITCHEN</p></td>
+<td><p>厨房总数</p></td>
+</tr>
+<tr class="row-odd"><td><p>FIREPLACE</p></td>
+<td><p>壁炉总数</p></td>
+</tr>
+<tr class="row-even"><td><p>REMODEL</p></td>
+<td><p>何时重装修的？(Recent/Old/None)</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="simple">
+<dt>参考：</dt><dd><ol class="arabic simple">
+<li><p>R 数据处理，<a class="reference external" href="DataMiningforBusinessAnalyticsConceptsTechniquesandApplicationsinR">R_data_mining</a></p></li>
+</ol>
+</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Shaofei Wang
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

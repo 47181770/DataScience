@@ -77,7 +77,7 @@ R 代码样例
  ## 显示第一列TOTAL.VALUE的均值 
  > mean(housing.df$TOTAL.VALUE)
  [1] 392.6857
- ## 显示第一列TOTAL.VALUE的中位数
+ # 显示第一列TOTAL.VALUE的中位数
  > median(housing.df$TOTAL.VALUE)
  [1] 375.9
  ## 每个列的汇总统计信息
@@ -157,7 +157,7 @@ R 代码样例
 
  xtotal <- model.matrix(~ 0 + BEDROOMS + REMODEL, data = housing.df) 
  > names(xtotal)
- NULL <- 注意 
+ NULL  #注意 
  > colnames(xtotal)
  [1] "BEDROOMS"      "REMODELNone"   "REMODELOld"    "REMODELRecent"
  > typeof(xtotal)
@@ -166,7 +166,7 @@ R 代码样例
  [1] "matrix"
  # 因为xtotal为矩阵，所以无法使用数据框的语法
  > xtotal$BEDROOMS
- Error in xtotal$BEDROOMS : $ operator is invalid for atomic vectors
+ #Error in xtotal$BEDROOMS : $ operator is invalid for atomic vectors
  > xtotal.df <- as.data.frame(xtotal)
  > class(xtotal.df)
  [1] "data.frame"
@@ -188,7 +188,7 @@ R 代码样例
   5        3           1          0             0
   6        3           0          1             0
   # 删除最后一列REMODELRecent
-  > head(xtotal.df[,-4])
+ > head(xtotal.df[,-4])
   BEDROOMS REMODELNone REMODELOld
   1        3           1          0
   2        4           0          0
@@ -196,17 +196,98 @@ R 代码样例
   4        5           1          0
   5        3           1          0
   6        3           0          1
-  > 
-  
-  # 处理缺失数据
+ > 
+ # 利用中位数处理缺失数据
+ # 随机找10条记录，把BEDROOMS改为NA
+ > rows.missing10 <- sample(row.names(housing.df), 10)
+ > rows.missing10
+  [1] "4012" "5071" "2849" "2900" "2378" "4650" "1446" "2159" "3476" "1948"
+ > housing.df[rows.missing10,]$BEDROOMS <- NA
+ > housing.df[rows.missing10,]$BEDROOMS
+ [1] NA NA NA NA NA NA NA NA NA NA
+ # 检查BEDROOMS列，已经有10条空记录了，其中中位数为3
+ > summary(housing.df$BEDROOMS)
+ #  Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+ #  1.00    3.00    3.00    3.23    4.00    9.00      10  
+ # 把BEDROOMS为NA的列，替换为中位数3，注意使用na.rm = TRUE 是为了在计算中位数时忽略缺失值
+ > median(housing.df$BEDROOMS)
+  [1] NA # 计算中位数如果包括了为空的列，则中位数是NA
+ > median(housing.df$BEDROOMS, na.rm = TRUE)
+  [1] 3
+  # 将NA值替换为中位数 
+ > housing.df[rows.missing10,]$BEDROOMS <- median(housing.df$BEDROOMS, na.rm = TRUE)
+ > housing.df[rows.missing10,]$BEDROOMS
+    [1] 3 3 3 3 3 3 3 3 3 3
+ > summary(housing.df$BEDROOMS)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  1.000   3.000   3.000   3.229   4.000   9.000 
+  # 将数据集分成训练集、验证集、测试集
+  ## set.seed()用于设定随机数种子,在重新运行代码或调试程序或者做展示的时候，结果可重复性是很重要的，所以设定此值
+  ## set.seed(?)中的数字，代表设置的是第几号种子，不会参与运算，是个标记
+ > set.seed(1)
+ > dim(housing.df)[1]
+ [1] 5802
+ > train.rows
+   [1] "2580" "1530" "4439" "4136" "4633" "4344" "1222" "2426" "2087" "2483" "2858" "5510" "5400" "1696" "526"  "1069" "5522" "22"   "5491"
+  [20] "1128" "983"  "1791" "5612" "3910" "5736" "1639" "4939" "465"  "5092" "5645" "1200" "3863" "1134" "84"   "1895" "3101" "5261" "2300"
+  #......
+ > train.data <- housing.df[train.rows,]
+ > head(train.data)
+      TOTAL_VALUE  TAX LOT.SQFT YR.BUILT GROSS.AREA LIVING.AREA FLOORS ROOMS BEDROOMS FULL.BATH HALF.BATH KITCHEN FIREPLACE REMODEL
+  2580       469.8 5910     4700     1912       3978        2499      2     8        4         1         1       1         1     Old
+  1530       476.0 5988    12180     1965       3591        2167      1     8        3         2         0       1         1  Recent
+  4439       416.2 5235     4440     1935       3074        1832      2     8        4         2         0       1         0    None
+  4136       413.4 5200     5696     1951       2773        1544      2     7        3         1         1       1         1    None
+  4633       445.9 5609     5500     1920       3890        2110      2     9        4         1         2       1         1    None
+  4344       355.2 4468     3999     1960       2458        1372      2     6        2         1         1       1         1    None
+  # 请观察train.rows 的前六个行数与head(train.data)的前六行对比
+  ## 将不在训练集的其他40%记录划给验证集，setdiff(x,y)是求向量x与y中不同的元素（只取x中不同的元素）
+ > valid.rows <- setdiff(row.names(housing.df), train.rows)
+ > valid.rows
+   [1] "2"    "5"    "6"    "8"    "9"    "10"   "11"   "12"   "16"   "20"   "21"   "23"   "24"   "25"   "31"   "33"   "35"   "37"   "42" 
+ > setdiff(1:5, 2:6)
+ [1] 1
+ > valid.data <- housing.df[valid.rows,]
+ > head(valid.data)
+ ## 确认最终数据集按照60:40比例分割
+ > dim(valid.data)
+ [1] 2321   14
+ > dim(train.data)[1]
+ [1] 3481
+ > dim(housing.df)[1] * 0.6
+ [1] 3481.2
+ > dim(housing.df)[1] 
+ [1] 5802
+ > dim(housing.df)[1] * 0.4
+ [1] 2320.8
+ # 将数据集按照训练集50%、验证集30%、测试集20%划分
+ > train2.rows <- sample(row.names(housing.df), dim(housing.df)[1] * 0.5)
+ > dim(train2.rows)
+ NULL
+ > summary(train2.rows)
+   Length     Class      Mode 
+     2901 character character 
+ > head(train2.rows)
+ [1] "1182" "3409" "5296" "5442" "4956" "2316"
+ > train2.data <- housing.df[train2.rows,]
+ > dim(train2.data)
+ [1] 2901   
+ > valid2.rows <- sample(setdiff(row.names(housing.df), train2.rows), dim(housing.df)[1] * 0.3)
+ > valid.data <- housing.df[valid2.rows, ]
+ > dim(valid.data)
+ [1] 1740   14
+ > dim(housing.df)[1] * 0.3
+ [1] 1740.6
+ > 
 
 
 
- 
+啊啊
+
 -----------------------------------------
 
 
-数据集说明
+2. 数据集说明
 ~~~~~~~~~~~~~~~~~~~~
 
 
@@ -233,4 +314,3 @@ REMODEL                 何时重装修的？(Recent/Old/None)
    1. R 数据处理，`R_data_mining`_
 
 .. _R_data_mining: Data Mining for Business Analytics Concepts Techniques and Applications in R 
-

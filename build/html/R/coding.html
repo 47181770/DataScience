@@ -94,7 +94,7 @@
 <li class="toctree-l2"><a class="reference internal" href="dataVisualization.html">数据可视化</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">R 代码样例</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1">1. 数据处理</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">数据集说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">2. 数据集说明</a></li>
 </ul>
 </li>
 </ul>
@@ -243,7 +243,7 @@
 <span class="c1">## 显示第一列TOTAL.VALUE的均值</span>
 <span class="o">&gt;</span> <span class="nf">mean</span><span class="p">(</span><span class="n">housing.df</span><span class="o">$</span><span class="n">TOTAL.VALUE</span><span class="p">)</span>
 <span class="n">[1]</span> <span class="m">392.6857</span>
-<span class="c1">## 显示第一列TOTAL.VALUE的中位数</span>
+<span class="c1"># 显示第一列TOTAL.VALUE的中位数</span>
 <span class="o">&gt;</span> <span class="nf">median</span><span class="p">(</span><span class="n">housing.df</span><span class="o">$</span><span class="n">TOTAL.VALUE</span><span class="p">)</span>
 <span class="n">[1]</span> <span class="m">375.9</span>
 <span class="c1">## 每个列的汇总统计信息</span>
@@ -323,7 +323,7 @@
 
 <span class="n">xtotal</span> <span class="o">&lt;-</span> <span class="nf">model.matrix</span><span class="p">(</span><span class="o">~</span> <span class="m">0</span> <span class="o">+</span> <span class="n">BEDROOMS</span> <span class="o">+</span> <span class="n">REMODEL</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">housing.df</span><span class="p">)</span>
 <span class="o">&gt;</span> <span class="nf">names</span><span class="p">(</span><span class="n">xtotal</span><span class="p">)</span>
-<span class="kc">NULL</span> <span class="o">&lt;-</span> 注意
+<span class="kc">NULL</span>  <span class="c1">#注意</span>
 <span class="o">&gt;</span> <span class="nf">colnames</span><span class="p">(</span><span class="n">xtotal</span><span class="p">)</span>
 <span class="n">[1]</span> <span class="s">&quot;BEDROOMS&quot;</span>      <span class="s">&quot;REMODELNone&quot;</span>   <span class="s">&quot;REMODELOld&quot;</span>    <span class="s">&quot;REMODELRecent&quot;</span>
 <span class="o">&gt;</span> <span class="nf">typeof</span><span class="p">(</span><span class="n">xtotal</span><span class="p">)</span>
@@ -332,7 +332,7 @@
 <span class="n">[1]</span> <span class="s">&quot;matrix&quot;</span>
 <span class="c1"># 因为xtotal为矩阵，所以无法使用数据框的语法</span>
 <span class="o">&gt;</span> <span class="n">xtotal</span><span class="o">$</span><span class="n">BEDROOMS</span>
-<span class="n">Error</span> <span class="n">in</span> <span class="n">xtotal</span><span class="o">$</span><span class="n">BEDROOMS</span> <span class="o">:</span> <span class="o">$</span> <span class="n">operator</span> <span class="n">is</span> <span class="n">invalid</span> <span class="n">for</span> <span class="n">atomic</span> <span class="n">vectors</span>
+<span class="c1">#Error in xtotal$BEDROOMS : $ operator is invalid for atomic vectors</span>
 <span class="o">&gt;</span> <span class="n">xtotal.df</span> <span class="o">&lt;-</span> <span class="nf">as.data.frame</span><span class="p">(</span><span class="n">xtotal</span><span class="p">)</span>
 <span class="o">&gt;</span> <span class="nf">class</span><span class="p">(</span><span class="n">xtotal.df</span><span class="p">)</span>
 <span class="n">[1]</span> <span class="s">&quot;data.frame&quot;</span>
@@ -354,7 +354,7 @@
  <span class="m">5</span>        <span class="m">3</span>           <span class="m">1</span>          <span class="m">0</span>             <span class="m">0</span>
  <span class="m">6</span>        <span class="m">3</span>           <span class="m">0</span>          <span class="m">1</span>             <span class="m">0</span>
  <span class="c1"># 删除最后一列REMODELRecent</span>
- <span class="o">&gt;</span> <span class="nf">head</span><span class="p">(</span><span class="n">xtotal.df[</span><span class="p">,</span><span class="m">-4</span><span class="n">]</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="nf">head</span><span class="p">(</span><span class="n">xtotal.df[</span><span class="p">,</span><span class="m">-4</span><span class="n">]</span><span class="p">)</span>
  <span class="n">BEDROOMS</span> <span class="n">REMODELNone</span> <span class="n">REMODELOld</span>
  <span class="m">1</span>        <span class="m">3</span>           <span class="m">1</span>          <span class="m">0</span>
  <span class="m">2</span>        <span class="m">4</span>           <span class="m">0</span>          <span class="m">0</span>
@@ -362,15 +362,96 @@
  <span class="m">4</span>        <span class="m">5</span>           <span class="m">1</span>          <span class="m">0</span>
  <span class="m">5</span>        <span class="m">3</span>           <span class="m">1</span>          <span class="m">0</span>
  <span class="m">6</span>        <span class="m">3</span>           <span class="m">0</span>          <span class="m">1</span>
- <span class="o">&gt;</span>
-
- <span class="c1"># 处理缺失数据</span>
+<span class="o">&gt;</span>
+<span class="c1"># 利用中位数处理缺失数据</span>
+<span class="c1"># 随机找10条记录，把BEDROOMS改为NA</span>
+<span class="o">&gt;</span> <span class="n">rows.missing10</span> <span class="o">&lt;-</span> <span class="nf">sample</span><span class="p">(</span><span class="nf">row.names</span><span class="p">(</span><span class="n">housing.df</span><span class="p">),</span> <span class="m">10</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="n">rows.missing10</span>
+ <span class="n">[1]</span> <span class="s">&quot;4012&quot;</span> <span class="s">&quot;5071&quot;</span> <span class="s">&quot;2849&quot;</span> <span class="s">&quot;2900&quot;</span> <span class="s">&quot;2378&quot;</span> <span class="s">&quot;4650&quot;</span> <span class="s">&quot;1446&quot;</span> <span class="s">&quot;2159&quot;</span> <span class="s">&quot;3476&quot;</span> <span class="s">&quot;1948&quot;</span>
+<span class="o">&gt;</span> <span class="n">housing.df[rows.missing10</span><span class="p">,</span><span class="n">]</span><span class="o">$</span><span class="n">BEDROOMS</span> <span class="o">&lt;-</span> <span class="kc">NA</span>
+<span class="o">&gt;</span> <span class="n">housing.df[rows.missing10</span><span class="p">,</span><span class="n">]</span><span class="o">$</span><span class="n">BEDROOMS</span>
+<span class="n">[1]</span> <span class="kc">NA</span> <span class="kc">NA</span> <span class="kc">NA</span> <span class="kc">NA</span> <span class="kc">NA</span> <span class="kc">NA</span> <span class="kc">NA</span> <span class="kc">NA</span> <span class="kc">NA</span> <span class="kc">NA</span>
+<span class="c1"># 检查BEDROOMS列，已经有10条空记录了，其中中位数为3</span>
+<span class="o">&gt;</span> <span class="nf">summary</span><span class="p">(</span><span class="n">housing.df</span><span class="o">$</span><span class="n">BEDROOMS</span><span class="p">)</span>
+<span class="c1">#  Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s</span>
+<span class="c1">#  1.00    3.00    3.00    3.23    4.00    9.00      10</span>
+<span class="c1"># 把BEDROOMS为NA的列，替换为中位数3，注意使用na.rm = TRUE 是为了在计算中位数时忽略缺失值</span>
+<span class="o">&gt;</span> <span class="nf">median</span><span class="p">(</span><span class="n">housing.df</span><span class="o">$</span><span class="n">BEDROOMS</span><span class="p">)</span>
+ <span class="n">[1]</span> <span class="kc">NA</span> <span class="c1"># 计算中位数如果包括了为空的列，则中位数是NA</span>
+<span class="o">&gt;</span> <span class="nf">median</span><span class="p">(</span><span class="n">housing.df</span><span class="o">$</span><span class="n">BEDROOMS</span><span class="p">,</span> <span class="n">na.rm</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+ <span class="n">[1]</span> <span class="m">3</span>
+ <span class="c1"># 将NA值替换为中位数</span>
+<span class="o">&gt;</span> <span class="n">housing.df[rows.missing10</span><span class="p">,</span><span class="n">]</span><span class="o">$</span><span class="n">BEDROOMS</span> <span class="o">&lt;-</span> <span class="nf">median</span><span class="p">(</span><span class="n">housing.df</span><span class="o">$</span><span class="n">BEDROOMS</span><span class="p">,</span> <span class="n">na.rm</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="n">housing.df[rows.missing10</span><span class="p">,</span><span class="n">]</span><span class="o">$</span><span class="n">BEDROOMS</span>
+   <span class="n">[1]</span> <span class="m">3</span> <span class="m">3</span> <span class="m">3</span> <span class="m">3</span> <span class="m">3</span> <span class="m">3</span> <span class="m">3</span> <span class="m">3</span> <span class="m">3</span> <span class="m">3</span>
+<span class="o">&gt;</span> <span class="nf">summary</span><span class="p">(</span><span class="n">housing.df</span><span class="o">$</span><span class="n">BEDROOMS</span><span class="p">)</span>
+  <span class="n">Min.</span> <span class="m">1</span><span class="n">st</span> <span class="n">Qu.</span>  <span class="n">Median</span>    <span class="n">Mean</span> <span class="m">3</span><span class="n">rd</span> <span class="n">Qu.</span>    <span class="n">Max.</span>
+ <span class="m">1.000</span>   <span class="m">3.000</span>   <span class="m">3.000</span>   <span class="m">3.229</span>   <span class="m">4.000</span>   <span class="m">9.000</span>
+ <span class="c1"># 将数据集分成训练集、验证集、测试集</span>
+ <span class="c1">## set.seed()用于设定随机数种子,在重新运行代码或调试程序或者做展示的时候，结果可重复性是很重要的，所以设定此值</span>
+ <span class="c1">## set.seed(?)中的数字，代表设置的是第几号种子，不会参与运算，是个标记</span>
+<span class="o">&gt;</span> <span class="nf">set.seed</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="nf">dim</span><span class="p">(</span><span class="n">housing.df</span><span class="p">)</span><span class="n">[1]</span>
+<span class="n">[1]</span> <span class="m">5802</span>
+<span class="o">&gt;</span> <span class="n">train.rows</span>
+  <span class="n">[1]</span> <span class="s">&quot;2580&quot;</span> <span class="s">&quot;1530&quot;</span> <span class="s">&quot;4439&quot;</span> <span class="s">&quot;4136&quot;</span> <span class="s">&quot;4633&quot;</span> <span class="s">&quot;4344&quot;</span> <span class="s">&quot;1222&quot;</span> <span class="s">&quot;2426&quot;</span> <span class="s">&quot;2087&quot;</span> <span class="s">&quot;2483&quot;</span> <span class="s">&quot;2858&quot;</span> <span class="s">&quot;5510&quot;</span> <span class="s">&quot;5400&quot;</span> <span class="s">&quot;1696&quot;</span> <span class="s">&quot;526&quot;</span>  <span class="s">&quot;1069&quot;</span> <span class="s">&quot;5522&quot;</span> <span class="s">&quot;22&quot;</span>   <span class="s">&quot;5491&quot;</span>
+ <span class="n">[20]</span> <span class="s">&quot;1128&quot;</span> <span class="s">&quot;983&quot;</span>  <span class="s">&quot;1791&quot;</span> <span class="s">&quot;5612&quot;</span> <span class="s">&quot;3910&quot;</span> <span class="s">&quot;5736&quot;</span> <span class="s">&quot;1639&quot;</span> <span class="s">&quot;4939&quot;</span> <span class="s">&quot;465&quot;</span>  <span class="s">&quot;5092&quot;</span> <span class="s">&quot;5645&quot;</span> <span class="s">&quot;1200&quot;</span> <span class="s">&quot;3863&quot;</span> <span class="s">&quot;1134&quot;</span> <span class="s">&quot;84&quot;</span>   <span class="s">&quot;1895&quot;</span> <span class="s">&quot;3101&quot;</span> <span class="s">&quot;5261&quot;</span> <span class="s">&quot;2300&quot;</span>
+ <span class="c1">#......</span>
+<span class="o">&gt;</span> <span class="n">train.data</span> <span class="o">&lt;-</span> <span class="n">housing.df[train.rows</span><span class="p">,</span><span class="n">]</span>
+<span class="o">&gt;</span> <span class="nf">head</span><span class="p">(</span><span class="n">train.data</span><span class="p">)</span>
+     <span class="n">TOTAL_VALUE</span>  <span class="n">TAX</span> <span class="n">LOT.SQFT</span> <span class="n">YR.BUILT</span> <span class="n">GROSS.AREA</span> <span class="n">LIVING.AREA</span> <span class="n">FLOORS</span> <span class="n">ROOMS</span> <span class="n">BEDROOMS</span> <span class="n">FULL.BATH</span> <span class="n">HALF.BATH</span> <span class="n">KITCHEN</span> <span class="n">FIREPLACE</span> <span class="n">REMODEL</span>
+ <span class="m">2580</span>       <span class="m">469.8</span> <span class="m">5910</span>     <span class="m">4700</span>     <span class="m">1912</span>       <span class="m">3978</span>        <span class="m">2499</span>      <span class="m">2</span>     <span class="m">8</span>        <span class="m">4</span>         <span class="m">1</span>         <span class="m">1</span>       <span class="m">1</span>         <span class="m">1</span>     <span class="n">Old</span>
+ <span class="m">1530</span>       <span class="m">476.0</span> <span class="m">5988</span>    <span class="m">12180</span>     <span class="m">1965</span>       <span class="m">3591</span>        <span class="m">2167</span>      <span class="m">1</span>     <span class="m">8</span>        <span class="m">3</span>         <span class="m">2</span>         <span class="m">0</span>       <span class="m">1</span>         <span class="m">1</span>  <span class="n">Recent</span>
+ <span class="m">4439</span>       <span class="m">416.2</span> <span class="m">5235</span>     <span class="m">4440</span>     <span class="m">1935</span>       <span class="m">3074</span>        <span class="m">1832</span>      <span class="m">2</span>     <span class="m">8</span>        <span class="m">4</span>         <span class="m">2</span>         <span class="m">0</span>       <span class="m">1</span>         <span class="m">0</span>    <span class="n">None</span>
+ <span class="m">4136</span>       <span class="m">413.4</span> <span class="m">5200</span>     <span class="m">5696</span>     <span class="m">1951</span>       <span class="m">2773</span>        <span class="m">1544</span>      <span class="m">2</span>     <span class="m">7</span>        <span class="m">3</span>         <span class="m">1</span>         <span class="m">1</span>       <span class="m">1</span>         <span class="m">1</span>    <span class="n">None</span>
+ <span class="m">4633</span>       <span class="m">445.9</span> <span class="m">5609</span>     <span class="m">5500</span>     <span class="m">1920</span>       <span class="m">3890</span>        <span class="m">2110</span>      <span class="m">2</span>     <span class="m">9</span>        <span class="m">4</span>         <span class="m">1</span>         <span class="m">2</span>       <span class="m">1</span>         <span class="m">1</span>    <span class="n">None</span>
+ <span class="m">4344</span>       <span class="m">355.2</span> <span class="m">4468</span>     <span class="m">3999</span>     <span class="m">1960</span>       <span class="m">2458</span>        <span class="m">1372</span>      <span class="m">2</span>     <span class="m">6</span>        <span class="m">2</span>         <span class="m">1</span>         <span class="m">1</span>       <span class="m">1</span>         <span class="m">1</span>    <span class="n">None</span>
+ <span class="c1"># 请观察train.rows 的前六个行数与head(train.data)的前六行对比</span>
+ <span class="c1">## 将不在训练集的其他40%记录划给验证集，setdiff(x,y)是求向量x与y中不同的元素（只取x中不同的元素）</span>
+<span class="o">&gt;</span> <span class="n">valid.rows</span> <span class="o">&lt;-</span> <span class="nf">setdiff</span><span class="p">(</span><span class="nf">row.names</span><span class="p">(</span><span class="n">housing.df</span><span class="p">),</span> <span class="n">train.rows</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="n">valid.rows</span>
+  <span class="n">[1]</span> <span class="s">&quot;2&quot;</span>    <span class="s">&quot;5&quot;</span>    <span class="s">&quot;6&quot;</span>    <span class="s">&quot;8&quot;</span>    <span class="s">&quot;9&quot;</span>    <span class="s">&quot;10&quot;</span>   <span class="s">&quot;11&quot;</span>   <span class="s">&quot;12&quot;</span>   <span class="s">&quot;16&quot;</span>   <span class="s">&quot;20&quot;</span>   <span class="s">&quot;21&quot;</span>   <span class="s">&quot;23&quot;</span>   <span class="s">&quot;24&quot;</span>   <span class="s">&quot;25&quot;</span>   <span class="s">&quot;31&quot;</span>   <span class="s">&quot;33&quot;</span>   <span class="s">&quot;35&quot;</span>   <span class="s">&quot;37&quot;</span>   <span class="s">&quot;42&quot;</span>
+<span class="o">&gt;</span> <span class="nf">setdiff</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">,</span> <span class="m">2</span><span class="o">:</span><span class="m">6</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="m">1</span>
+<span class="o">&gt;</span> <span class="n">valid.data</span> <span class="o">&lt;-</span> <span class="n">housing.df[valid.rows</span><span class="p">,</span><span class="n">]</span>
+<span class="o">&gt;</span> <span class="nf">head</span><span class="p">(</span><span class="n">valid.data</span><span class="p">)</span>
+<span class="c1">## 确认最终数据集按照60:40比例分割</span>
+<span class="o">&gt;</span> <span class="nf">dim</span><span class="p">(</span><span class="n">valid.data</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="m">2321</span>   <span class="m">14</span>
+<span class="o">&gt;</span> <span class="nf">dim</span><span class="p">(</span><span class="n">train.data</span><span class="p">)</span><span class="n">[1]</span>
+<span class="n">[1]</span> <span class="m">3481</span>
+<span class="o">&gt;</span> <span class="nf">dim</span><span class="p">(</span><span class="n">housing.df</span><span class="p">)</span><span class="n">[1]</span> <span class="o">*</span> <span class="m">0.6</span>
+<span class="n">[1]</span> <span class="m">3481.2</span>
+<span class="o">&gt;</span> <span class="nf">dim</span><span class="p">(</span><span class="n">housing.df</span><span class="p">)</span><span class="n">[1]</span>
+<span class="n">[1]</span> <span class="m">5802</span>
+<span class="o">&gt;</span> <span class="nf">dim</span><span class="p">(</span><span class="n">housing.df</span><span class="p">)</span><span class="n">[1]</span> <span class="o">*</span> <span class="m">0.4</span>
+<span class="n">[1]</span> <span class="m">2320.8</span>
+<span class="c1"># 将数据集按照训练集50%、验证集30%、测试集20%划分</span>
+<span class="o">&gt;</span> <span class="n">train2.rows</span> <span class="o">&lt;-</span> <span class="nf">sample</span><span class="p">(</span><span class="nf">row.names</span><span class="p">(</span><span class="n">housing.df</span><span class="p">),</span> <span class="nf">dim</span><span class="p">(</span><span class="n">housing.df</span><span class="p">)</span><span class="n">[1]</span> <span class="o">*</span> <span class="m">0.5</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="nf">dim</span><span class="p">(</span><span class="n">train2.rows</span><span class="p">)</span>
+<span class="kc">NULL</span>
+<span class="o">&gt;</span> <span class="nf">summary</span><span class="p">(</span><span class="n">train2.rows</span><span class="p">)</span>
+  <span class="n">Length</span>     <span class="n">Class</span>      <span class="n">Mode</span>
+    <span class="m">2901</span> <span class="n">character</span> <span class="n">character</span>
+<span class="o">&gt;</span> <span class="nf">head</span><span class="p">(</span><span class="n">train2.rows</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="s">&quot;1182&quot;</span> <span class="s">&quot;3409&quot;</span> <span class="s">&quot;5296&quot;</span> <span class="s">&quot;5442&quot;</span> <span class="s">&quot;4956&quot;</span> <span class="s">&quot;2316&quot;</span>
+<span class="o">&gt;</span> <span class="n">train2.data</span> <span class="o">&lt;-</span> <span class="n">housing.df[train2.rows</span><span class="p">,</span><span class="n">]</span>
+<span class="o">&gt;</span> <span class="nf">dim</span><span class="p">(</span><span class="n">train2.data</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="m">2901</span>
+<span class="o">&gt;</span> <span class="n">valid2.rows</span> <span class="o">&lt;-</span> <span class="nf">sample</span><span class="p">(</span><span class="nf">setdiff</span><span class="p">(</span><span class="nf">row.names</span><span class="p">(</span><span class="n">housing.df</span><span class="p">),</span> <span class="n">train2.rows</span><span class="p">),</span> <span class="nf">dim</span><span class="p">(</span><span class="n">housing.df</span><span class="p">)</span><span class="n">[1]</span> <span class="o">*</span> <span class="m">0.3</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="n">valid.data</span> <span class="o">&lt;-</span> <span class="n">housing.df[valid2.rows</span><span class="p">,</span> <span class="n">]</span>
+<span class="o">&gt;</span> <span class="nf">dim</span><span class="p">(</span><span class="n">valid.data</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="m">1740</span>   <span class="m">14</span>
+<span class="o">&gt;</span> <span class="nf">dim</span><span class="p">(</span><span class="n">housing.df</span><span class="p">)</span><span class="n">[1]</span> <span class="o">*</span> <span class="m">0.3</span>
+<span class="n">[1]</span> <span class="m">1740.6</span>
+<span class="o">&gt;</span>
 </pre></div>
 </div>
+<p>啊啊</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="id2">
-<h2>数据集说明<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<h2>2. 数据集说明<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 24%" />

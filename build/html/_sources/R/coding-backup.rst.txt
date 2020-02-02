@@ -8,7 +8,9 @@ R 代码样例
 .. tip::
    以波士顿WEST ROXBURY (BOSTON) 房产价值数据集为例！
 
+
 .. code:: r
+
 
  # 读取WEST ROXBURY西罗克斯伯里数据集
  housing.df <- read.csv("D:\\dataset\\WestRoxbury.csv", header=TRUE)
@@ -77,7 +79,7 @@ R 代码样例
  ## 显示第一列TOTAL.VALUE的均值 
  > mean(housing.df$TOTAL.VALUE)
  [1] 392.6857
- # 显示第一列TOTAL.VALUE的中位数
+ ## 显示第一列TOTAL.VALUE的中位数
  > median(housing.df$TOTAL.VALUE)
  [1] 375.9
  ## 每个列的汇总统计信息
@@ -197,19 +199,20 @@ R 代码样例
   5        3           1          0
   6        3           0          1
  > 
- # 利用中位数处理缺失数据
- # 随机找10条记录，把BEDROOMS改为NA
+  
+  # 利用中位数处理缺失数据
+  # 随机找10条记录，把BEDROOMS改为NA
  > rows.missing10 <- sample(row.names(housing.df), 10)
  > rows.missing10
   [1] "4012" "5071" "2849" "2900" "2378" "4650" "1446" "2159" "3476" "1948"
  > housing.df[rows.missing10,]$BEDROOMS <- NA
  > housing.df[rows.missing10,]$BEDROOMS
- [1] NA NA NA NA NA NA NA NA NA NA
- # 检查BEDROOMS列，已经有10条空记录了，其中中位数为3
+  [1] NA NA NA NA NA NA NA NA NA NA
+  ## 检查BEDROOMS列，已经有10条空记录了，其中中位数为3
  > summary(housing.df$BEDROOMS)
- #  Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
- #  1.00    3.00    3.00    3.23    4.00    9.00      10  
- # 把BEDROOMS为NA的列，替换为中位数3，注意使用na.rm = TRUE 是为了在计算中位数时忽略缺失值
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+   1.00    3.00    3.00    3.23    4.00    9.00      10  
+  ## 把BEDROOMS为NA的列，替换为中位数3，注意使用na.rm = TRUE 是为了在计算中位数时忽略缺失值
  > median(housing.df$BEDROOMS)
   [1] NA # 计算中位数如果包括了为空的列，则中位数是NA
  > median(housing.df$BEDROOMS, na.rm = TRUE)
@@ -221,6 +224,7 @@ R 代码样例
  > summary(housing.df$BEDROOMS)
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
   1.000   3.000   3.000   3.229   4.000   9.000 
+
   # 将数据集分成训练集、验证集、测试集
   ## set.seed()用于设定随机数种子,在重新运行代码或调试程序或者做展示的时候，结果可重复性是很重要的，所以设定此值
   ## set.seed(?)中的数字，代表设置的是第几号种子，不会参与运算，是个标记
@@ -260,6 +264,7 @@ R 代码样例
  [1] 5802
  > dim(housing.df)[1] * 0.4
  [1] 2320.8
+  
  # 将数据集按照训练集50%、验证集30%、测试集20%划分
  > train2.rows <- sample(row.names(housing.df), dim(housing.df)[1] * 0.5)
  > dim(train2.rows)
@@ -275,7 +280,7 @@ R 代码样例
 
 
 
-啊啊
+
 
 -----------------------------------------
 
@@ -307,3 +312,4 @@ REMODEL                 何时重装修的？(Recent/Old/None)
    1. R 数据处理，`R_data_mining`_
 
 .. _R_data_mining: Data Mining for Business Analytics Concepts Techniques and Applications in R 
+
