@@ -261,6 +261,7 @@ R 代码样例
  > dim(housing.df)[1] * 0.4
  [1] 2320.8
  # 将数据集按照训练集50%、验证集30%、测试集20%划分
+ # 训练集为总数的50%
  > train2.rows <- sample(row.names(housing.df), dim(housing.df)[1] * 0.5)
  > dim(train2.rows)
  NULL
@@ -272,6 +273,25 @@ R 代码样例
  > train2.data <- housing.df[train2.rows,]
  > dim(train2.data)
  [1] 2901   
+ # 利用setdiff获取训练集以外的50%记录，并取其中的30%
+ > valid2.rows <- sample(setdiff(row.names(housing.df), train2.rows), dim(housing.df)[1] * 0.3)
+ > valid2.data <- housing.df[valid2.rows, ]
+ > dim(valid.data)
+ [1] 1740   14
+ > dim(housing.df)[1] * 0.3
+ [1] 1740.6
+ > 
+ # 利用setdiff获取总数据集 减 训练集+验证集(union(x,y)) 以外的20%
+ > test2.rows <- setdiff(row.names(housing.df), union(train2.rows,valid2.rows))
+ > test2.data <- housing.df[test2.rows, ]
+ > dim(test2.data)
+ [1] 1161   14
+ > dim(housing.df)[1] * 0.2
+ [1] 1160.4
+ # 检查创建的这三个数据子集
+ > summary(train2.data)
+ > summary(valid2.data)
+ > summary(test2.data)
 
 
 
