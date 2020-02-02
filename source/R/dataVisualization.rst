@@ -121,6 +121,11 @@
     用于分词（中英文）后的词频图形化展示。
 
 
+4. R可视化代码样例
+~~~~~~~~~~~~~~~~~~~~
+
+
+
 参考：
    1. R Top 50 ggplot2 可视化，`R_ggplot2_Visualization`_
    2. R 可视化图形库，`R_data2visualzation`_
