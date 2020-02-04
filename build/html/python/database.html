@@ -390,7 +390,7 @@
 <span class="kn">import</span> <span class="nn">datetime</span>
 
 
-<span class="k">def</span> <span class="nf">get_tx_fy</span><span class="p">():</span>
+<span class="k">def</span> <span class="nf">get_fy</span><span class="p">():</span>
 
     <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://view.inews.qq.com/g2/getOnsInfo?name=disease_h5&#39;</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
@@ -408,7 +408,7 @@
     <span class="k">return</span> <span class="n">lastupdate</span><span class="p">,</span> <span class="n">chinaadd</span><span class="p">[</span><span class="s1">&#39;confirm&#39;</span><span class="p">],</span> <span class="n">chinaadd</span><span class="p">[</span><span class="s1">&#39;suspect&#39;</span><span class="p">],</span> <span class="n">chinaadd</span><span class="p">[</span><span class="s1">&#39;dead&#39;</span><span class="p">],</span> <span class="n">chinaadd</span><span class="p">[</span><span class="s1">&#39;heal&#39;</span><span class="p">],</span> <span class="n">chinaTotal</span><span class="p">[</span><span class="s1">&#39;confirm&#39;</span><span class="p">],</span> <span class="n">chinaTotal</span><span class="p">[</span><span class="s1">&#39;suspect&#39;</span><span class="p">],</span> <span class="n">chinaTotal</span><span class="p">[</span><span class="s1">&#39;dead&#39;</span><span class="p">],</span> <span class="n">chinaTotal</span><span class="p">[</span><span class="s1">&#39;heal&#39;</span><span class="p">]</span>
 
 
-<span class="n">feiyan</span> <span class="o">=</span> <span class="n">get_tx_fy</span><span class="p">()</span>
+<span class="n">feiyan</span> <span class="o">=</span> <span class="n">get_fy</span><span class="p">()</span>
 <span class="n">last_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">feiyan</span><span class="p">)</span>
 </pre></div>

@@ -227,7 +227,7 @@
  import datetime
 
 
- def get_tx_fy():
+ def get_fy():
 
      url = 'https://view.inews.qq.com/g2/getOnsInfo?name=disease_h5'
      result = requests.get(url)
@@ -245,7 +245,7 @@
      return lastupdate, chinaadd['confirm'], chinaadd['suspect'], chinaadd['dead'], chinaadd['heal'], chinaTotal['confirm'], chinaTotal['suspect'], chinaTotal['dead'], chinaTotal['heal']
 
 
- feiyan = get_tx_fy()
+ feiyan = get_fy()
  last_date = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
  print(feiyan)
 
