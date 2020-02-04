@@ -93,6 +93,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#mysql">2. MySQL数据库编程</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#influxdb">3. Influxdb时序数据库编程</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#python-for-hadoop">4. Python for Hadoop数据库编程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#python-for-api">5. Python for API 数据编程</a></li>
 </ul>
 </li>
 </ul>
@@ -375,6 +376,43 @@
 <li><p><strong>数据库操作</strong></p></li>
 <li><p><strong>Hadoop 与Apache Kylin</strong></p></li>
 </ul>
+</div>
+<div class="section" id="python-for-api">
+<h2>5. Python for API 数据编程<a class="headerlink" href="#python-for-api" title="永久链接至标题">¶</a></h2>
+<ul>
+<li><p><strong>从网上RESTful API获取数据</strong></p>
+<p>获取的数据格式转换为json格式，通过字典读取获取相应的数值</p>
+</li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+
+
+<span class="k">def</span> <span class="nf">get_tx_fy</span><span class="p">():</span>
+
+    <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://view.inews.qq.com/g2/getOnsInfo?name=disease_h5&#39;</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">res_json</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">res_json</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">res_json</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">])</span>
+    <span class="n">chinaTotal</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;chinaTotal&#39;</span><span class="p">]</span>
+    <span class="n">chinaadd</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;chinaAdd&#39;</span><span class="p">]</span>
+    <span class="n">lastupdate</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;lastUpdateTime&#39;</span><span class="p">]</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;更新时间为 {} &#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lastupdate</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;现在比上一日增：确诊人数{}， 疑似人数{}， 死亡人数{}，治愈人数{} &#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">chinaadd</span><span class="p">[</span><span class="s1">&#39;confirm&#39;</span><span class="p">],</span> <span class="n">chinaadd</span><span class="p">[</span><span class="s1">&#39;suspect&#39;</span><span class="p">],</span> <span class="n">chinaadd</span><span class="p">[</span><span class="s1">&#39;dead&#39;</span><span class="p">],</span><span class="n">chinaadd</span><span class="p">[</span><span class="s1">&#39;heal&#39;</span><span class="p">]))</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;确诊总人数为{}， 总疑似人数{}， 总死亡人数{}， 总治愈人数{}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">chinaTotal</span><span class="p">[</span><span class="s1">&#39;confirm&#39;</span><span class="p">],</span> <span class="n">chinaTotal</span><span class="p">[</span><span class="s1">&#39;suspect&#39;</span><span class="p">],</span> <span class="n">chinaTotal</span><span class="p">[</span><span class="s1">&#39;dead&#39;</span><span class="p">],</span> <span class="n">chinaTotal</span><span class="p">[</span><span class="s1">&#39;heal&#39;</span><span class="p">]))</span>
+
+    <span class="k">return</span> <span class="n">lastupdate</span><span class="p">,</span> <span class="n">chinaadd</span><span class="p">[</span><span class="s1">&#39;confirm&#39;</span><span class="p">],</span> <span class="n">chinaadd</span><span class="p">[</span><span class="s1">&#39;suspect&#39;</span><span class="p">],</span> <span class="n">chinaadd</span><span class="p">[</span><span class="s1">&#39;dead&#39;</span><span class="p">],</span> <span class="n">chinaadd</span><span class="p">[</span><span class="s1">&#39;heal&#39;</span><span class="p">],</span> <span class="n">chinaTotal</span><span class="p">[</span><span class="s1">&#39;confirm&#39;</span><span class="p">],</span> <span class="n">chinaTotal</span><span class="p">[</span><span class="s1">&#39;suspect&#39;</span><span class="p">],</span> <span class="n">chinaTotal</span><span class="p">[</span><span class="s1">&#39;dead&#39;</span><span class="p">],</span> <span class="n">chinaTotal</span><span class="p">[</span><span class="s1">&#39;heal&#39;</span><span class="p">]</span>
+
+
+<span class="n">feiyan</span> <span class="o">=</span> <span class="n">get_tx_fy</span><span class="p">()</span>
+<span class="n">last_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">feiyan</span><span class="p">)</span>
+</pre></div>
+</div>
 <p>参考：</p>
 <blockquote>
 <div><ol class="arabic simple">

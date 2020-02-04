@@ -212,6 +212,43 @@
 - **Hadoop 与Apache Kylin**
 
 
+5. Python for API 数据编程
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- **从网上RESTful API获取数据**
+
+  获取的数据格式转换为json格式，通过字典读取获取相应的数值
+  
+.. code:: python
+
+ # -*- coding: utf-8 -*-
+ import requests
+ import json
+ import datetime
+
+
+ def get_tx_fy():
+
+     url = 'https://view.inews.qq.com/g2/getOnsInfo?name=disease_h5'
+     result = requests.get(url)
+     res_json = json.loads(result.text)
+     print(res_json)
+     data = json.loads(res_json['data'])
+     chinaTotal = data['chinaTotal']
+     chinaadd = data['chinaAdd']
+     lastupdate = data['lastUpdateTime']
+
+     print('更新时间为 {} '.format(lastupdate))
+     print('现在比上一日增：确诊人数{}， 疑似人数{}， 死亡人数{}，治愈人数{} '.format(chinaadd['confirm'], chinaadd['suspect'], chinaadd['dead'],chinaadd['heal']))
+     print('确诊总人数为{}， 总疑似人数{}， 总死亡人数{}， 总治愈人数{}'.format(chinaTotal['confirm'], chinaTotal['suspect'], chinaTotal['dead'], chinaTotal['heal']))
+
+     return lastupdate, chinaadd['confirm'], chinaadd['suspect'], chinaadd['dead'], chinaadd['heal'], chinaTotal['confirm'], chinaTotal['suspect'], chinaTotal['dead'], chinaTotal['heal']
+
+
+ feiyan = get_tx_fy()
+ last_date = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+ print(feiyan)
+
 
 
 参考：
