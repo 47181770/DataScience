@@ -12,7 +12,7 @@
  ============================= ======================================================================================
 
 
-- 回归
+- 线性回归
  
 
  ============================================================= ========================================================
@@ -95,14 +95,67 @@
  hist(all.residuals, breaks=200, xlab="Residuals", main = "")
  # 根据summary(car.lm.pred)数据设置breaks
  breaks = c(-5900,-800,0,100,800,50000)
- # xlim - 设置横坐标, freq=T为频数，FALSE为密度面积
+ # xlim - 设置横坐标, freq=T为频数，FALSE为密度面积 参考下图
  hist(all.residuals, breaks=breaks, xlab="Residuals", freq = FALSE, main = "", col = "pink", xlim = c(-10000,60000))
  hist(all.residuals, breaks=breaks, xlab="Residuals", freq = TRUE, main = "", col = "pink", xlim = c(-10000,60000))
+
+ # 使用regsubsets()来执行穷尽搜索
+ # 类别预测因子必须要手工转换成虚拟变量
+ library(leaps)
+ head(car.df1k)
+ # 创建Fule_type的虚拟变量
+ Fuel_Type <- as.data.frame(model.matrix( ~ 0 + Fuel_Type, car.df1k))
+ head(Fuel_Type)
+ # 使用3个虚拟变量列替换Fuel_Type列
+ train.car.df1k <- cbind(car.df1k[, -4], Fuel_Type)
+ head(train.car.df1k)
+ > search <- regsubsets(Price ~ ., data = train.car.df1k, nbest = 1, nvmax = dim(train.car.df1k)[2], method = 'exhaustive', really.big = TRUE)
+ Reordering variables and trying again:
+ # 运行时间超长。不适合使用R在本地服务器执行穷尽搜索
+
+
 
 下图为残差密度直方图：
 
 .. image:: _static/hist_lm_density.PNG
    :align: center
+
+
+
+预测因子（变量）选择
+  线性回归中预测因子选择非常重要，直接决定了模型的正确性。减少自变量（预测因子）的数量有两种方法：
+  第一穷尽搜索Exhaustive Search：不建议在R中使用，效率极低，速度极慢
+  第二共有三种流行的迭代搜索算法：前向选择forward selection，后向评估backward elimination，逐步回归stepwise regression
+
+
+.. code:: r
+
+ # 使用step()运行逐步回归
+ # set directions = "forward" "backward" "both"
+ car.lm.step.both <- step(car.lm, direction = "both")
+ summary(car.lm.step.both)
+ # 检查哪一个变量应该删除，此统计结果给出了需要保留的六个特征
+ Call:
+ ## 如下是重点
+ lm(formula = Price ~ Age_08_04 + KM + Fuel_Type + HP + Quarterly_Tax + 
+     Weight, data = train.df1k)
+ 
+ Residuals:
+     Min      1Q  Median      3Q     Max 
+ -8959.9  -833.1   -16.8   835.3  5058.9 
+ # 其他逐步回归方法结果 
+ car.lm.step.forward <- step(car.lm, direction = "forward")
+ summary(car.lm.step.forward)
+ car.lm.step.backward <- step(car.lm, direction = "backward")
+ summary(car.lm.step.backward)
+  
+ # 线性模型准确性检查，对比不同模型的ME, RMSE, MAE, MPE, MAPE值
+ # 根据选择的6特征变量的模型来预测验证，检查模型预测的准确性
+ car.lm.step.pred <- predict(car.lm.step.both, valid.df1k)
+ > accuracy(car.lm.step.pred, valid.df1k$Price)
+               ME     RMSE      MAE        MPE     MAPE
+ Test set 59.26886 1334.978 1024.979 -0.4212544 9.357492 
+
 
 -----------------------------------------------------------------------
 

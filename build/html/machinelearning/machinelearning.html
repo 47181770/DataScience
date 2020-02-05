@@ -186,7 +186,7 @@
 </table>
 </div></blockquote>
 <ul class="simple">
-<li><p>回归</p></li>
+<li><p>线性回归</p></li>
 </ul>
 <blockquote>
 <div><table class="docutils align-default">
@@ -305,13 +305,60 @@
 <span class="nf">hist</span><span class="p">(</span><span class="n">all.residuals</span><span class="p">,</span> <span class="n">breaks</span><span class="o">=</span><span class="m">200</span><span class="p">,</span> <span class="n">xlab</span><span class="o">=</span><span class="s">&quot;Residuals&quot;</span><span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
 <span class="c1"># 根据summary(car.lm.pred)数据设置breaks</span>
 <span class="n">breaks</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">-5900</span><span class="p">,</span><span class="m">-800</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">100</span><span class="p">,</span><span class="m">800</span><span class="p">,</span><span class="m">50000</span><span class="p">)</span>
-<span class="c1"># xlim - 设置横坐标, freq=T为频数，FALSE为密度面积</span>
+<span class="c1"># xlim - 设置横坐标, freq=T为频数，FALSE为密度面积 参考下图</span>
 <span class="nf">hist</span><span class="p">(</span><span class="n">all.residuals</span><span class="p">,</span> <span class="n">breaks</span><span class="o">=</span><span class="n">breaks</span><span class="p">,</span> <span class="n">xlab</span><span class="o">=</span><span class="s">&quot;Residuals&quot;</span><span class="p">,</span> <span class="n">freq</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;pink&quot;</span><span class="p">,</span> <span class="n">xlim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">-10000</span><span class="p">,</span><span class="m">60000</span><span class="p">))</span>
 <span class="nf">hist</span><span class="p">(</span><span class="n">all.residuals</span><span class="p">,</span> <span class="n">breaks</span><span class="o">=</span><span class="n">breaks</span><span class="p">,</span> <span class="n">xlab</span><span class="o">=</span><span class="s">&quot;Residuals&quot;</span><span class="p">,</span> <span class="n">freq</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;pink&quot;</span><span class="p">,</span> <span class="n">xlim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">-10000</span><span class="p">,</span><span class="m">60000</span><span class="p">))</span>
+
+<span class="c1"># 使用regsubsets()来执行穷尽搜索</span>
+<span class="c1"># 类别预测因子必须要手工转换成虚拟变量</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">leaps</span><span class="p">)</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">car.df1k</span><span class="p">)</span>
+<span class="c1"># 创建Fule_type的虚拟变量</span>
+<span class="n">Fuel_Type</span> <span class="o">&lt;-</span> <span class="nf">as.data.frame</span><span class="p">(</span><span class="nf">model.matrix</span><span class="p">(</span> <span class="o">~</span> <span class="m">0</span> <span class="o">+</span> <span class="n">Fuel_Type</span><span class="p">,</span> <span class="n">car.df1k</span><span class="p">))</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">Fuel_Type</span><span class="p">)</span>
+<span class="c1"># 使用3个虚拟变量列替换Fuel_Type列</span>
+<span class="n">train.car.df1k</span> <span class="o">&lt;-</span> <span class="nf">cbind</span><span class="p">(</span><span class="n">car.df1k[</span><span class="p">,</span> <span class="m">-4</span><span class="n">]</span><span class="p">,</span> <span class="n">Fuel_Type</span><span class="p">)</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">train.car.df1k</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="n">search</span> <span class="o">&lt;-</span> <span class="nf">regsubsets</span><span class="p">(</span><span class="n">Price</span> <span class="o">~</span> <span class="n">.,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">train.car.df1k</span><span class="p">,</span> <span class="n">nbest</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">nvmax</span> <span class="o">=</span> <span class="nf">dim</span><span class="p">(</span><span class="n">train.car.df1k</span><span class="p">)</span><span class="n">[2]</span><span class="p">,</span> <span class="n">method</span> <span class="o">=</span> <span class="s">&#39;exhaustive&#39;</span><span class="p">,</span> <span class="n">really.big</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+<span class="n">Reordering</span> <span class="n">variables</span> <span class="n">and</span> <span class="n">trying</span> <span class="n">again</span><span class="o">:</span>
+<span class="c1"># 运行时间超长。不适合使用R在本地服务器执行穷尽搜索</span>
 </pre></div>
 </div>
 <p>下图为残差密度直方图：</p>
 <img alt="../_images/hist_lm_density.PNG" class="align-center" src="../_images/hist_lm_density.PNG" />
+<dl class="simple">
+<dt>预测因子（变量）选择</dt><dd><p>线性回归中预测因子选择非常重要，直接决定了模型的正确性。减少自变量（预测因子）的数量有两种方法：
+第一穷尽搜索Exhaustive Search：不建议在R中使用，效率极低，速度极慢
+第二共有三种流行的迭代搜索算法：前向选择forward selection，后向评估backward elimination，逐步回归stepwise regression</p>
+</dd>
+</dl>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># 使用step()运行逐步回归</span>
+<span class="c1"># set directions = &quot;forward&quot; &quot;backward&quot; &quot;both&quot;</span>
+<span class="n">car.lm.step.both</span> <span class="o">&lt;-</span> <span class="nf">step</span><span class="p">(</span><span class="n">car.lm</span><span class="p">,</span> <span class="n">direction</span> <span class="o">=</span> <span class="s">&quot;both&quot;</span><span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">car.lm.step.both</span><span class="p">)</span>
+<span class="c1"># 检查哪一个变量应该删除，此统计结果给出了需要保留的六个特征</span>
+<span class="n">Call</span><span class="o">:</span>
+<span class="c1">## 如下是重点</span>
+<span class="nf">lm</span><span class="p">(</span><span class="n">formula</span> <span class="o">=</span> <span class="n">Price</span> <span class="o">~</span> <span class="n">Age_08_04</span> <span class="o">+</span> <span class="n">KM</span> <span class="o">+</span> <span class="n">Fuel_Type</span> <span class="o">+</span> <span class="n">HP</span> <span class="o">+</span> <span class="n">Quarterly_Tax</span> <span class="o">+</span>
+    <span class="n">Weight</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">train.df1k</span><span class="p">)</span>
+
+<span class="n">Residuals</span><span class="o">:</span>
+    <span class="n">Min</span>      <span class="m">1</span><span class="n">Q</span>  <span class="n">Median</span>      <span class="m">3</span><span class="n">Q</span>     <span class="n">Max</span>
+<span class="m">-8959.9</span>  <span class="m">-833.1</span>   <span class="m">-16.8</span>   <span class="m">835.3</span>  <span class="m">5058.9</span>
+<span class="c1"># 其他逐步回归方法结果</span>
+<span class="n">car.lm.step.forward</span> <span class="o">&lt;-</span> <span class="nf">step</span><span class="p">(</span><span class="n">car.lm</span><span class="p">,</span> <span class="n">direction</span> <span class="o">=</span> <span class="s">&quot;forward&quot;</span><span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">car.lm.step.forward</span><span class="p">)</span>
+<span class="n">car.lm.step.backward</span> <span class="o">&lt;-</span> <span class="nf">step</span><span class="p">(</span><span class="n">car.lm</span><span class="p">,</span> <span class="n">direction</span> <span class="o">=</span> <span class="s">&quot;backward&quot;</span><span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">car.lm.step.backward</span><span class="p">)</span>
+
+<span class="c1"># 线性模型准确性检查，对比不同模型的ME, RMSE, MAE, MPE, MAPE值</span>
+<span class="c1"># 根据选择的6特征变量的模型来预测验证，检查模型预测的准确性</span>
+<span class="n">car.lm.step.pred</span> <span class="o">&lt;-</span> <span class="nf">predict</span><span class="p">(</span><span class="n">car.lm.step.both</span><span class="p">,</span> <span class="n">valid.df1k</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="nf">accuracy</span><span class="p">(</span><span class="n">car.lm.step.pred</span><span class="p">,</span> <span class="n">valid.df1k</span><span class="o">$</span><span class="n">Price</span><span class="p">)</span>
+              <span class="n">ME</span>     <span class="n">RMSE</span>      <span class="n">MAE</span>        <span class="n">MPE</span>     <span class="n">MAPE</span>
+<span class="n">Test</span> <span class="n">set</span> <span class="m">59.26886</span> <span class="m">1334.978</span> <span class="m">1024.979</span> <span class="m">-0.4212544</span> <span class="m">9.357492</span>
+</pre></div>
+</div>
 <hr class="docutils" />
 <ul class="simple">
 <li><p>聚类</p></li>
