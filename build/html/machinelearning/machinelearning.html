@@ -170,60 +170,69 @@
 <li><p>回归</p></li>
 <li><p>推荐</p></li>
 </ul>
-<table class="docutils align-default">
+<blockquote>
+<div><table class="docutils align-default">
 <colgroup>
-<col style="width: 6%" />
+<col style="width: 51%" />
 <col style="width: 49%" />
-<col style="width: 45%" />
 </colgroup>
 <thead>
-<tr class="row-odd"><th class="head"><p>语言</p></th>
-<th class="head"><p>Python 代码</p></th>
+<tr class="row-odd"><th class="head"><p>Python 代码</p></th>
 <th class="head"><p>R 代码</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>线</p></td>
-<td><p># 值必须是数值型</p></td>
-<td><p># 值必须是数值型</p></td>
+<tr class="row-even"><td><p># Import 相关的库</p></td>
+<td><p># 获取数据集（训练集、验证集、测试集）</p></td>
 </tr>
-<tr class="row-odd"><td><p>性</p></td>
-<td><p>from sklearn import linear_model</p></td>
+<tr class="row-odd"><td><p># 获取数据集（训练集、验证集、测试集）</p></td>
+<td><p># 确定特征变量与应变量</p></td>
+</tr>
+<tr class="row-even"><td><p># 确定特征变量与应变量</p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>回</p></td>
-<td><p>x_train = input_variables_values_training_datasets</p></td>
+<tr class="row-odd"><td><p># 值必须是数值型</p></td>
+<td><p># 值必须是数值型</p></td>
+</tr>
+<tr class="row-even"><td><p>from sklearn import linear_model</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>x_train = input_variables_values_training_datasets</p></td>
 <td><p>x_train &lt;- input_variables_values_training_datasets</p></td>
 </tr>
-<tr class="row-odd"><td><p>归</p></td>
-<td><dl>
-<dt>y_train = target_variables_values_training_datasets</dt><dd><p>x_test = input_variables_values_test_datasets
-# 创建线性回归对象
-linear = linear_model.LinearRegression()
-# 利用训练集训练模型
-# 检查分数
-linear.fit(x_train, y_train)
-linear.score(x_train, y_train)</p>
-<p># 预测输出
-predicted = linear.predict(x_test)</p>
-</dd>
-</dl>
-</td>
-<td><dl>
-<dt>y_train &lt;- target_variables_values_training_datasets</dt><dd><p>x_test  &lt;- input_variables_values_test_datasets</p>
-<p>x&lt;- cbind(x_train, y_train)
-# 利用训练集训练模型
-# 检查分数
-linear &lt;- lm(y_train ~ ., data = x)
-summary(linear)</p>
-<p># 预测输出
-predicted = predict(linear, x_test)</p>
-</dd>
-</dl>
-</td>
+<tr class="row-even"><td><p>y_train = target_variables_values_training_datasets</p></td>
+<td><p>y_train &lt;- target_variables_values_training_datasets</p></td>
+</tr>
+<tr class="row-odd"><td><p>x_test = input_variables_values_test_datasets</p></td>
+<td><p>x_test  &lt;- input_variables_values_test_datasets</p></td>
+</tr>
+<tr class="row-even"><td><p># 创建线性回归对象</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>linear = linear_model.LinearRegression()</p></td>
+<td><p>x&lt;- cbind(x_train, y_train)</p></td>
+</tr>
+<tr class="row-even"><td><p># 利用训练集训练模型</p></td>
+<td><p># 利用训练集训练模型</p></td>
+</tr>
+<tr class="row-odd"><td><p># 检查分数</p></td>
+<td><p># 检查分数</p></td>
+</tr>
+<tr class="row-even"><td><p>linear.fit(x_train, y_train)</p></td>
+<td><p>linear &lt;- lm(y_train ~ ., data = x)</p></td>
+</tr>
+<tr class="row-odd"><td><p>linear.score(x_train, y_train)</p></td>
+<td><p>summary(linear)</p></td>
+</tr>
+<tr class="row-even"><td><p># 预测输出</p></td>
+<td><p># 预测输出</p></td>
+</tr>
+<tr class="row-odd"><td><p>predicted = linear.predict(x_test)</p></td>
+<td><p>predicted = predict(linear, x_test)</p></td>
 </tr>
 </tbody>
 </table>
+</div></blockquote>
 <hr class="docutils" />
 <table class="docutils align-default">
 <colgroup>

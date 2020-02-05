@@ -14,28 +14,28 @@
 
 - 推荐
 
-======= ============================================================= ========================================================
-语言                        Python 代码                                             R 代码
-======= ============================================================= ========================================================
-         # Import 相关的库                                             # 获取数据集（训练集、验证集、测试集） 
+ ============================================================= ========================================================
+                        Python 代码                                             R 代码
+ ============================================================= ========================================================
+       # Import 相关的库                                             # 获取数据集（训练集、验证集、测试集） 
         # 获取数据集（训练集、验证集、测试集）                        # 确定特征变量与应变量
         # 确定特征变量与应变量
-线       # 值必须是数值型                                              # 值必须是数值型
-性       from sklearn import linear_model
-回       x_train = input_variables_values_training_datasets            x_train <- input_variables_values_training_datasets
-归       y_train = target_variables_values_training_datasets           y_train <- target_variables_values_training_datasets
-          x_test = input_variables_values_test_datasets                 x_test  <- input_variables_values_test_datasets
-          # 创建线性回归对象                                            
-          linear = linear_model.LinearRegression()                      x<- cbind(x_train, y_train)
-          # 利用训练集训练模型                                          # 利用训练集训练模型
-          # 检查分数                                                    # 检查分数
-          linear.fit(x_train, y_train)                                  linear <- lm(y_train ~ ., data = x)
-          linear.score(x_train, y_train)                                summary(linear)
- 
-          # 预测输出                                                    # 预测输出
-          predicted = linear.predict(x_test)                            predicted = predict(linear, x_test)
+       # 值必须是数值型                                              # 值必须是数值型
+       from sklearn import linear_model
+       x_train = input_variables_values_training_datasets            x_train <- input_variables_values_training_datasets
+       y_train = target_variables_values_training_datasets           y_train <- target_variables_values_training_datasets
+         x_test = input_variables_values_test_datasets                 x_test  <- input_variables_values_test_datasets
+         # 创建线性回归对象                                            
+         linear = linear_model.LinearRegression()                      x<- cbind(x_train, y_train)
+         # 利用训练集训练模型                                          # 利用训练集训练模型
+         # 检查分数                                                    # 检查分数
+        linear.fit(x_train, y_train)                                  linear <- lm(y_train ~ ., data = x)
+         linear.score(x_train, y_train)                                summary(linear)
 
-======= ============================================================= ========================================================
+         # 预测输出                                                    # 预测输出
+         predicted = linear.predict(x_test)                            predicted = predict(linear, x_test)
+
+ ============================================================= ========================================================
 
 
 -----------------------------------------------------------------------
