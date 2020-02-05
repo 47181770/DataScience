@@ -326,12 +326,12 @@
 </div>
 <p>下图为残差密度直方图：</p>
 <img alt="../_images/hist_lm_density.PNG" class="align-center" src="../_images/hist_lm_density.PNG" />
-<dl class="simple">
-<dt>预测因子（变量）选择</dt><dd><p>线性回归中预测因子选择非常重要，直接决定了模型的正确性。减少自变量（预测因子）的数量有两种方法：
-第一穷尽搜索Exhaustive Search：不建议在R中使用，效率极低，速度极慢
-第二共有三种流行的迭代搜索算法：前向选择forward selection，后向评估backward elimination，逐步回归stepwise regression</p>
-</dd>
-</dl>
+<ul class="simple">
+<li><p>预测因子（变量）选择
+线性回归中预测因子选择非常重要，直接决定了模型的正确性。减少自变量（预测因子）的数量有两种方法：
+1. 穷尽搜索Exhaustive Search：不建议在R中使用，效率极低，速度极慢
+2. 共有三种流行的迭代搜索算法：前向选择forward selection，后向评估backward elimination，逐步回归stepwise regression</p></li>
+</ul>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># 使用step()运行逐步回归</span>
 <span class="c1"># set directions = &quot;forward&quot; &quot;backward&quot; &quot;both&quot;</span>
 <span class="n">car.lm.step.both</span> <span class="o">&lt;-</span> <span class="nf">step</span><span class="p">(</span><span class="n">car.lm</span><span class="p">,</span> <span class="n">direction</span> <span class="o">=</span> <span class="s">&quot;both&quot;</span><span class="p">)</span>
