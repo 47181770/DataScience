@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>机器学习 &mdash; Data Science 1.0 文档</title>
+  <title>机器学习代码样例 &mdash; Data Science 1.0 文档</title>
   
 
   
@@ -87,7 +87,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../R/index.html">R</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">机器学习</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">机器学习</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">机器学习代码样例</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../businessanalysis/index.html">Business Analysis 业务分析</a></li>
@@ -139,7 +139,7 @@
         
           <li><a href="index.html">机器学习</a> &raquo;</li>
         
-      <li>机器学习</li>
+      <li>机器学习代码样例</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -159,7 +159,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="id1">
-<h1>机器学习<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<h1>机器学习代码样例<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
 <ul class="simple">
 <li><p>分类</p>
 <ul>
@@ -183,29 +183,40 @@
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>多</p></td>
-<td><p># 获取数据集（训练集、验证集、测试集）</p></td>
-<td><p># 确定特征变量与应变量</p></td>
-</tr>
-<tr class="row-odd"><td><p>元</p></td>
-<td><p># 确定特征变量与应变量</p></td>
-<td></td>
-</tr>
 <tr class="row-even"><td><p>线</p></td>
 <td><p># 值必须是数值型</p></td>
 <td><p># 值必须是数值型</p></td>
 </tr>
 <tr class="row-odd"><td><p>性</p></td>
-<td></td>
+<td><p>from sklearn import linear_model</p></td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>回</p></td>
-<td></td>
-<td></td>
+<td><p>x_train = input_variables_values_training_datasets</p></td>
+<td><p>x_train &lt;- input_variables_values_training_datasets</p></td>
 </tr>
 <tr class="row-odd"><td><p>归</p></td>
-<td></td>
-<td></td>
+<td><p>y_train = target_variables_values_training_datasets
+x_test = input_variables_values_test_datasets
+# 创建线性回归对象
+linear = linear_model.LinearRegression()
+# 利用训练集训练模型
+# 检查分数
+linear.fit(x_train, y_train)
+linear.score(x_train, y_train)</p>
+<p># 预测输出
+predicted = linear.predict(x_test)</p>
+</td>
+<td><p>y_train &lt;- target_variables_values_training_datasets
+x_test  &lt;- input_variables_values_test_datasets</p>
+<p>x&lt;- cbind(x_train, y_train)
+# 利用训练集训练模型
+# 检查分数
+linear &lt;- lm(y_train ~ ., data = x)
+summary(linear)</p>
+<p># 预测输出
+predicted = predict(linear, x_test)</p>
+</td>
 </tr>
 </tbody>
 </table>
