@@ -39,6 +39,46 @@
  ============================================================= ========================================================
 
 
+.. code:r 
+
+ car.df <- read.csv("D://Books//HKU-BusinessAnalytics//bap//ToyotaCorolla.csv")
+ head(car.df)
+ dim(car.df)
+ dim(car.df[,1])
+ dim(car.df)[1]
+ length(car.df[,1])
+ car.df1k <- car.df[1:1000,]
+ head(car.df1k)
+ dim(car.df1k)
+ colnames(car.df1k)
+ t(t(colnames(car.df1k)))
+ selected.var <- c(3,4,7,8,9,10,12,13,14,17,18)
+ set.seed(1)
+ set.seed(2)
+ train.index <- sample(c(1:1000), 600)
+ head(train.index)
+ train.df1k <- car.df1k[train.indx, selected.var]
+ train.df1k <- car.df1k[train.index, selected.var]
+ head(train.df1k)
+ valid.df1k <- car.df1k[-train.index, selected.var]
+ car.lm <- lm(Price ~., data = train.df1k)
+ summary(car.lm)
+ options(scipen = 999)
+ summary(car.lm)
+ library(forecast)
+ install.packages("forecast")
+ library(forecast)
+ summary(car.lm)
+ car.lm.pred <- predict(car.lm, valid.df1k)
+ options(scipen=999, digits = 0)
+ ?options
+ accuracy(car.lm.pred, valid.df1k$Price)
+ head(car.lm.pred[1:20])
+ colnames(car.lm.pred)
+ summary(car.lm.pred)
+ car.lm.pred 
+
+
 -----------------------------------------------------------------------
 
 - 聚类
