@@ -196,8 +196,8 @@
 <td><p>x_train &lt;- input_variables_values_training_datasets</p></td>
 </tr>
 <tr class="row-odd"><td><p>归</p></td>
-<td><p>y_train = target_variables_values_training_datasets
-x_test = input_variables_values_test_datasets
+<td><dl>
+<dt>y_train = target_variables_values_training_datasets</dt><dd><p>x_test = input_variables_values_test_datasets
 # 创建线性回归对象
 linear = linear_model.LinearRegression()
 # 利用训练集训练模型
@@ -206,9 +206,11 @@ linear.fit(x_train, y_train)
 linear.score(x_train, y_train)</p>
 <p># 预测输出
 predicted = linear.predict(x_test)</p>
+</dd>
+</dl>
 </td>
-<td><p>y_train &lt;- target_variables_values_training_datasets
-x_test  &lt;- input_variables_values_test_datasets</p>
+<td><dl>
+<dt>y_train &lt;- target_variables_values_training_datasets</dt><dd><p>x_test  &lt;- input_variables_values_test_datasets</p>
 <p>x&lt;- cbind(x_train, y_train)
 # 利用训练集训练模型
 # 检查分数
@@ -216,6 +218,8 @@ linear &lt;- lm(y_train ~ ., data = x)
 summary(linear)</p>
 <p># 预测输出
 predicted = predict(linear, x_test)</p>
+</dd>
+</dl>
 </td>
 </tr>
 </tbody>

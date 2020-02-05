@@ -24,16 +24,16 @@
 性       from sklearn import linear_model
 回       x_train = input_variables_values_training_datasets            x_train <- input_variables_values_training_datasets
 归       y_train = target_variables_values_training_datasets           y_train <- target_variables_values_training_datasets
-         x_test = input_variables_values_test_datasets                 x_test  <- input_variables_values_test_datasets
-         # 创建线性回归对象                                            
-         linear = linear_model.LinearRegression()                      x<- cbind(x_train, y_train)
-         # 利用训练集训练模型                                          # 利用训练集训练模型
-         # 检查分数                                                    # 检查分数
-         linear.fit(x_train, y_train)                                  linear <- lm(y_train ~ ., data = x)
-         linear.score(x_train, y_train)                                summary(linear)
-
-         # 预测输出                                                    # 预测输出
-         predicted = linear.predict(x_test)                            predicted = predict(linear, x_test)
+          x_test = input_variables_values_test_datasets                 x_test  <- input_variables_values_test_datasets
+          # 创建线性回归对象                                            
+          linear = linear_model.LinearRegression()                      x<- cbind(x_train, y_train)
+          # 利用训练集训练模型                                          # 利用训练集训练模型
+          # 检查分数                                                    # 检查分数
+          linear.fit(x_train, y_train)                                  linear <- lm(y_train ~ ., data = x)
+          linear.score(x_train, y_train)                                summary(linear)
+ 
+          # 预测输出                                                    # 预测输出
+          predicted = linear.predict(x_test)                            predicted = predict(linear, x_test)
 
 ======= ============================================================= ========================================================
 
