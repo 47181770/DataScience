@@ -99,6 +99,8 @@
  hist(all.residuals, breaks=breaks, xlab="Residuals", freq = FALSE, main = "", col = "pink", xlim = c(-10000,60000))
  hist(all.residuals, breaks=breaks, xlab="Residuals", freq = TRUE, main = "", col = "pink", xlim = c(-10000,60000))
 
+.. image:: _static/hist_lm_density.PNG
+   :align: center
 
 -----------------------------------------------------------------------
 

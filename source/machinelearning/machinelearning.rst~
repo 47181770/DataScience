@@ -41,30 +41,39 @@
 
 .. code:r 
 
- car.df <- read.csv("D://Books//HKU-BusinessAnalytics//bap//ToyotaCorolla.csv")
+ # 读取丰田车数据
+ car.df <- read.csv("D://Books//bap//ToyotaCorolla.csv")
  head(car.df)
  dim(car.df)
+ # 查看行记录数
  dim(car.df[,1])
  dim(car.df)[1]
  length(car.df[,1])
+ # 取1000条记录
  car.df1k <- car.df[1:1000,]
  head(car.df1k)
  dim(car.df1k)
+ # 查看列名
  colnames(car.df1k)
  t(t(colnames(car.df1k)))
+ # 去相应的列
  selected.var <- c(3,4,7,8,9,10,12,13,14,17,18)
- set.seed(1)
+ # 设置种子
  set.seed(2)
+ # 随机采样取600条记录
  train.index <- sample(c(1:1000), 600)
  head(train.index)
- train.df1k <- car.df1k[train.indx, selected.var]
+ # 设定训练集与验证集
  train.df1k <- car.df1k[train.index, selected.var]
  head(train.df1k)
  valid.df1k <- car.df1k[-train.index, selected.var]
+ # 线性回归模型lm算法来分析价格与各列的关系
  car.lm <- lm(Price ~., data = train.df1k)
  summary(car.lm)
+ # options scipen取消科学计数法
  options(scipen = 999)
  summary(car.lm)
+ # 加载预测包
  library(forecast)
  install.packages("forecast")
  library(forecast)
@@ -77,7 +86,21 @@
  colnames(car.lm.pred)
  summary(car.lm.pred)
  car.lm.pred 
+ # 生成预测值与实际值的数据框
+ x <- data.frame("Predicted" = car.lm.pred[1:20], "Actual_Price" = valid.df1k$Price[1:20])
+ x['Residual'] <- x['Actual_Price'] - x['Predicted']
+ # 残差计算
+ all.residuals <- valid.df1k$Price - car.lm.pred
+ # 预览直方图
+ hist(all.residuals, breaks=200, xlab="Residuals", main = "")
+ # 根据summary(car.lm.pred)数据设置breaks
+ breaks = c(-5900,-800,0,100,800,50000)
+ # xlim - 设置横坐标, freq=T为频数，FALSE为密度面积
+ hist(all.residuals, breaks=breaks, xlab="Residuals", freq = FALSE, main = "", col = "pink", xlim = c(-10000,60000))
+ hist(all.residuals, breaks=breaks, xlab="Residuals", freq = TRUE, main = "", col = "pink", xlim = c(-10000,60000))
 
+.. image:: _static/hist_lm_density.PNG
+   :align: center
 
 -----------------------------------------------------------------------
 
