@@ -254,6 +254,8 @@
 <span class="nf">row.names</span><span class="p">(</span><span class="n">housing.df</span><span class="p">)</span>
 <span class="c1">## 对数据框随机采样5个观测点</span>
 <span class="n">s</span> <span class="o">&lt;-</span> <span class="nf">sample</span><span class="p">(</span><span class="nf">row.names</span><span class="p">(</span><span class="n">housing.df</span><span class="p">),</span> <span class="m">5</span><span class="p">)</span>
+<span class="c1">## 也可以采用计算的方式采样观测点，隔5条记录取用1条记录，用which方法</span>
+<span class="n">s</span> <span class="o">&lt;-</span> <span class="nf">which</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="n">housing.df[</span><span class="p">,</span><span class="m">1</span><span class="n">]</span><span class="p">)</span> <span class="o">%%</span> <span class="m">5</span> <span class="o">==</span> <span class="m">0</span><span class="p">)</span>
 <span class="n">s</span>
 <span class="n">[1]</span> <span class="s">&quot;330&quot;</span>  <span class="s">&quot;1799&quot;</span> <span class="s">&quot;3913&quot;</span> <span class="s">&quot;5711&quot;</span> <span class="s">&quot;1749&quot;</span>
 <span class="o">&gt;</span> <span class="n">housing.df[s</span><span class="p">,</span><span class="n">]</span>

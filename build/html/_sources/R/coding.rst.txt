@@ -88,6 +88,8 @@ R 代码样例
  row.names(housing.df)
  ## 对数据框随机采样5个观测点
  s <- sample(row.names(housing.df), 5)
+ ## 也可以采用计算的方式采样观测点，隔5条记录取用1条记录，用which方法
+ s <- which(1:length(housing.df[,1]) %% 5 == 0) 
  s
  [1] "330"  "1799" "3913" "5711" "1749"
  > housing.df[s,]
