@@ -344,6 +344,95 @@ R 代码样例
  4       4  No       Large   Truthful
  9       9  No       Large Fraudulent
 
+ # 利用数据集进行 朴素贝叶斯 计算
+
+ # 引用e1071 朴素贝叶斯程序包
+ library(e1071)
+ df.nb2 <- naiveBayes(Status ~ ., data = df[, c(2,3,4)])
+ df.nb2
+ Naive Bayes Classifier for Discrete Predictors
+ 
+ Call:
+ naiveBayes.default(x = X, y = Y, laplace = laplace)
+ 
+ A-priori probabilities:
+ Y
+ Fraudulent   Truthful 
+        0.4        0.6 
+ 
+ Conditional probabilities:
+             plt
+ Y                   No       Yes
+   Fraudulent 0.2500000 0.7500000
+   Truthful   0.8333333 0.1666667
+ 
+             CompanySize
+ Y                Large     Small
+   Fraudulent 0.7500000 0.2500000
+   Truthful   0.3333333 0.6666667
+ > prop.table(table(df$Status, df$CompanySize, df$plt), margin=1)
+ , ,  = No
+ 
+             
+                  Large     Small
+   Fraudulent 0.2500000 0.0000000
+   Truthful   0.3333333 0.5000000
+ 
+ , ,  = Yes
+ 
+             
+                  Large     Small
+   Fraudulent 0.5000000 0.2500000
+   Truthful   0.0000000 0.1666667
+ 
+ # P(fraudulent|PriorLegal = y, Size = small) = 
+ # P(PriorLegal = yes, Size = small|fraudulent) * P(fraudulent) / 
+ # P(PriorLegal = yes, Size = small|fraudulent) * P(fraudulent) + P(PriorLegal = yes, Size = small|Truthful) * P(Truthful)
+ # 把所有欺诈的记录找出来，求取在欺诈记录中，有法律麻烦plt=yes的概率：3/4 小公司的概率：1/4
+ > subset(df_nb, df_nb$Status == 'Fraudulent')
+   plt CompanySize     Status
+ 7  Yes       Small Fraudulent
+ 8  Yes       Large Fraudulent
+ 9   No       Large Fraudulent
+ 10 Yes       Large Fraudulent
+ # P(PriorLegal = yes|fraudulent) = 3/4 
+ #
+ # P(Size = small|fraudulent) = 1/4
+
+ # P(fraudulent)
+ > dim(subset(df_nb, df_nb$Status == 'Fraudulent'))[1]/dim(df_nb)[1]
+ [1] 0.4
+ # 分子为：P(PriorLegal = yes, Size = small|fraudulent) * P(fraudulent) =
+ # P(PriorLegal = yes|fraudulent) * P(Size = small|fraudulent) * P(fraudulent)
+ > 3/4 * 1/4 * 0.4
+ [1]  0.075
+ # 把所有诚实的记录找出来，求取在诚实的记录中，有法律麻烦plt=yes的概率，小公司的概率：
+ > subset(df_nb, df_nb$Status == 'Truthful')
+  plt CompanySize   Status
+ 1 Yes       Small Truthful
+ 2  No       Small Truthful
+ 3  No       Large Truthful
+ 4  No       Large Truthful
+ 5  No       Small Truthful
+ 6  No       Small Truthful
+ 
+ # 求取分母另一项：P(PriorLegal = yes|Truthful) * P(Size = small|Truthful) * P(Truthful)
+ # P(PriorLegal = yes|Truthful) 为 1/6
+ # P(Size = small|Truthful) 为 4/6
+ # P(Truthful) = 6/10
+ # P(PriorLegal = yes|Truthful) * P(Size = small|Truthful) * P(Truthful) = 
+ > 1/6 * 4/6 * 6/10 
+ [1] 0.067
+ 
+ # P(fraudulent|PriorLegal = y, Size = small) = 0.075 / ( 0.075 + 0.067) 约为0.053
+ [1] 0.0528
+ # 同理，可以用同样的方法计算
+ # P(fraudulent|PriorLegal = y, Size = large) = 0.87
+ # P(fraudulent|PriorLegal = n, Size = small) = 0.07
+ # P(fraudulent|PriorLegal = n, Size = large) = 0.31
+
+ # 注意这些朴素贝叶斯概率和精确贝叶斯概率有多接近
+ # 尽管他们不相等，但是他们会导致 相同的 分类，概率的排序甚至比概率本身更接近于准确的贝叶斯方法
 
 
 -----------------------------------------
@@ -372,7 +461,7 @@ FIREPLACE               壁炉总数
 REMODEL                 何时重装修的？(Recent/Old/None)
 ===================== ===================================================================
 
-- 数据集2 （用于完全（精确）贝叶斯计算）
+- 数据集2 （用于完全（精确）贝叶斯计算/朴素贝叶斯计算）
 
  ============= ============================================
   company       公司序号
