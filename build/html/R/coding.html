@@ -589,14 +589,18 @@
 <span class="c1"># P(PriorLegal = yes|Truthful) * P(Size = small|Truthful) * P(Truthful) =</span>
 <span class="o">&gt;</span> <span class="m">1</span><span class="o">/</span><span class="m">6</span> <span class="o">*</span> <span class="m">4</span><span class="o">/</span><span class="m">6</span> <span class="o">*</span> <span class="m">6</span><span class="o">/</span><span class="m">10</span>
 <span class="n">[1]</span> <span class="m">0.067</span>
-
-<span class="c1"># P(fraudulent|PriorLegal = y, Size = small) = 0.075 / ( 0.075 + 0.067) 约为0.053</span>
+<span class="c1"># 有法律麻烦的小企业，欺诈的概率 = 0.053</span>
+<span class="c1"># P(fraudulent|PriorLegal = y, Size = small) = 0.075 / ( 0.075 + 0.067) 约为0.53</span>
 <span class="n">[1]</span> <span class="m">0.0528</span>
-<span class="c1"># 同理，可以用同样的方法计算</span>
+<span class="c1"># 同理，可以用同样的方法计算有法律麻烦的大企业，欺诈的概率</span>
 <span class="c1"># P(fraudulent|PriorLegal = y, Size = large) = 0.87</span>
+<span class="c1"># P(PriorLegal = y|fraudulent) * P( Size = large|fraudulent) * P(fraudulent)/</span>
+<span class="c1"># [P(PriorLegal = y|fraudulent) * P( Size = large|fraudulent) * P(fraudulent) + P(PriorLegal = y|Truthful) * P( Size = large|Truthful) * P(Truthful)]</span>
+<span class="o">&gt;</span> <span class="m">3</span><span class="o">/</span><span class="m">4</span> <span class="o">*</span> <span class="m">3</span><span class="o">/</span><span class="m">4</span> <span class="o">*</span> <span class="m">4</span><span class="o">/</span><span class="m">10</span> <span class="o">/</span> <span class="p">(</span><span class="m">3</span><span class="o">/</span><span class="m">4</span> <span class="o">*</span> <span class="m">3</span><span class="o">/</span><span class="m">4</span> <span class="o">*</span> <span class="m">4</span><span class="o">/</span><span class="m">10</span> <span class="o">+</span> <span class="m">1</span><span class="o">/</span><span class="m">6</span> <span class="o">*</span> <span class="m">2</span><span class="o">/</span><span class="m">4</span> <span class="o">*</span> <span class="m">6</span><span class="o">/</span><span class="m">10</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="m">0.8181</span>
 <span class="c1"># P(fraudulent|PriorLegal = n, Size = small) = 0.07</span>
 <span class="c1"># P(fraudulent|PriorLegal = n, Size = large) = 0.31</span>
-
+<span class="c1"># 如果从概率排序看，有法律麻烦的大企业的欺诈的概率高于有法律麻烦的小企业</span>
 <span class="c1"># 注意这些朴素贝叶斯概率和精确贝叶斯概率有多接近</span>
 <span class="c1"># 尽管他们不相等，但是他们会导致 相同的 分类，概率的排序甚至比概率本身更接近于准确的贝叶斯方法</span>
 </pre></div>

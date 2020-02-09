@@ -423,14 +423,18 @@ R 代码样例
  # P(PriorLegal = yes|Truthful) * P(Size = small|Truthful) * P(Truthful) = 
  > 1/6 * 4/6 * 6/10 
  [1] 0.067
- 
- # P(fraudulent|PriorLegal = y, Size = small) = 0.075 / ( 0.075 + 0.067) 约为0.053
+ # 有法律麻烦的小企业，欺诈的概率 = 0.053 
+ # P(fraudulent|PriorLegal = y, Size = small) = 0.075 / ( 0.075 + 0.067) 约为0.53
  [1] 0.0528
- # 同理，可以用同样的方法计算
+ # 同理，可以用同样的方法计算有法律麻烦的大企业，欺诈的概率
  # P(fraudulent|PriorLegal = y, Size = large) = 0.87
+ # P(PriorLegal = y|fraudulent) * P( Size = large|fraudulent) * P(fraudulent)/
+ # [P(PriorLegal = y|fraudulent) * P( Size = large|fraudulent) * P(fraudulent) + P(PriorLegal = y|Truthful) * P( Size = large|Truthful) * P(Truthful)]
+ > 3/4 * 3/4 * 4/10 / (3/4 * 3/4 * 4/10 + 1/6 * 2/4 * 6/10) 
+ [1] 0.8181
  # P(fraudulent|PriorLegal = n, Size = small) = 0.07
  # P(fraudulent|PriorLegal = n, Size = large) = 0.31
-
+ # 如果从概率排序看，有法律麻烦的大企业的欺诈的概率高于有法律麻烦的小企业
  # 注意这些朴素贝叶斯概率和精确贝叶斯概率有多接近
  # 尽管他们不相等，但是他们会导致 相同的 分类，概率的排序甚至比概率本身更接近于准确的贝叶斯方法
 
