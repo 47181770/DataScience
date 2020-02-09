@@ -296,7 +296,7 @@ R 代码样例
  > summary(test2.data)
 
 
- # 利用数据集2进行Complete（Exact）贝叶斯计算
+ # 利用数据集2进行Complete（Exact）精确贝叶斯计算
 
  ## 
  df <- read.csv(("D:\\Books\\dataset\\company10.csv"))
