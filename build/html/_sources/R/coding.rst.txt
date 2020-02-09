@@ -296,6 +296,54 @@ R 代码样例
  > summary(test2.data)
 
 
+ # 利用数据集2进行Complete（Exact）贝叶斯计算
+
+ ## 
+ df <- read.csv(("D:\\Books\\dataset\\company10.csv"))
+ > df
+    company plt CompanySize     Status
+ 1        1 Yes       Small   Truthful
+ 2        2  No       Small   Truthful
+ 3        3  No       Large   Truthful
+ 4        4  No       Large   Truthful
+ 5        5  No       Small   Truthful
+ 6        6  No       Small   Truthful
+ 7        7 Yes       Small Fraudulent
+ 8        8 Yes       Large Fraudulent
+ 9        9  No       Large Fraudulent
+ 10      10 Yes       Large Fraudulent
+
+
+ # 计算有法律麻烦的小公司，欺诈的概率 P(fraudulent|PriorLegal = y,Size = small) = 1/2=0.5
+ dfsmall <- subset(df, df$plt == 'Yes' & df$CompanySize == 'Small')
+ dfsmall
+   company plt CompanySize     Status
+ 1       1 Yes       Small   Truthful
+ 7       7 Yes       Small Fraudulent
+ 
+ # 计算有法律麻烦的大公司，欺诈的概率P(fraudulent|PriorLegal = y,Size = large) = 2/2 = 1 
+ dflarge <- subset(df, df$plt == 'Yes' & df$CompanySize == 'Large')
+ > dflarge
+   company plt CompanySize     Status
+ 8        8 Yes       Large Fraudulent
+ 10      10 Yes       Large Fraudulent
+
+ # 计算没有法律麻烦的小公司，欺诈的概率P(fraudulent|PriorLegal = n,Size = small) = 0/3 = 0
+ > dfNsmall <- subset(df, df$plt == 'No' & df$CompanySize == 'Small')
+ > dfNsmall
+   company plt CompanySize   Status
+ 2       2  No       Small Truthful
+ 5       5  No       Small Truthful
+ 6       6  No       Small Truthful
+
+ # 计算没有法律麻烦的大公司，欺诈的概率 P(fraudulent|PriorLegal = n,Size = large) = 1/3 = 0.33
+ > dfNlarge <- subset(df, df$plt == 'No' & df$CompanySize == 'Large')
+ > dfNlarge
+   company plt CompanySize     Status
+ 3       3  No       Large   Truthful
+ 4       4  No       Large   Truthful
+ 9       9  No       Large Fraudulent
+
 
 
 -----------------------------------------
@@ -304,6 +352,8 @@ R 代码样例
 2. 数据集说明
 ~~~~~~~~~~~~~~~~~~~~
 
+
+- 数据集1
 
 ===================== ===================================================================
 TOTAL VALUE             房产估价总值，单位：千美元
@@ -322,6 +372,14 @@ FIREPLACE               壁炉总数
 REMODEL                 何时重装修的？(Recent/Old/None)
 ===================== ===================================================================
 
+- 数据集2 （用于完全（精确）贝叶斯计算）
+
+ ============= ============================================
+  company       公司序号
+  PLT           Prior Legal Trouble 法律上的麻烦
+  Companysize   公司大小（large 或small）
+  Status        真实的Truthful，欺骗的Fraudulent
+ ============= ============================================
 
 
 参考：
