@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Business Analysis 业务分析 &mdash; Data Science 1.0 文档</title>
+  <title>机器学习评估预测性能 &mdash; Data Science 1.0 文档</title>
   
 
   
@@ -36,8 +36,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜索" href="../search.html" />
-    <link rel="next" title="Business Analysis 业务分析" href="businessanalysis.html" />
-    <link rel="prev" title="机器学习评估预测性能" href="../machinelearning/evaluationpredictiveperformance.html" /> 
+    <link rel="next" title="Business Analysis 业务分析" href="../businessanalysis/index.html" />
+    <link rel="prev" title="机器学习代码样例" href="machinelearning.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -86,11 +86,15 @@
 <li class="toctree-l1"><a class="reference internal" href="../README1.html">Data Science数据科学路线图</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../R/index.html">R</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../machinelearning/index.html">机器学习</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Business Analysis 业务分析</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="businessanalysis.html">Business Analysis 业务分析</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">机器学习</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="machinelearning.html">机器学习代码样例</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">机器学习评估预测性能</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">预测精度测量</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../businessanalysis/index.html">Business Analysis 业务分析</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../managementmodel/index.html">管理模型</a></li>
 </ul>
 
@@ -137,13 +141,15 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>Business Analysis 业务分析</li>
+          <li><a href="index.html">机器学习</a> &raquo;</li>
+        
+      <li>机器学习评估预测性能</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/businessanalysis/index.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/machinelearning/evaluationpredictiveperformance.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -156,18 +162,57 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="business-analysis">
-<h1>Business Analysis 业务分析<a class="headerlink" href="#business-analysis" title="永久链接至标题">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="businessanalysis.html">Business Analysis 业务分析</a></li>
-</ul>
-</div>
-<p>参考资源</p>
+  <div class="section" id="id1">
+<h1>机器学习评估预测性能<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
 <blockquote>
-<div><p>[1] 营销管理
-[2] MBA类书籍</p>
+<div><p>首先，机器学习预测模型的准确性并不等同于拟合优度。
+经典的性能统计度量的目的是找到一个模型，它能很好地适应模型所训练的数据。在这里我们感兴趣的是，应用新记录时的有高准确率的模型。</p>
 </div></blockquote>
+<div class="section" id="id2">
+<h2>预测精度测量<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<blockquote>
+<div><blockquote>
+<div><p>一些流行的预测精度数值测量</p>
+</div></blockquote>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>简写</p></th>
+<th class="head"><p>描述</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>ME Mean Error</p></td>
+<td><p>Mean Error 平均误差，可能有正负值</p></td>
+</tr>
+<tr class="row-odd"><td><p>MAE</p></td>
+<td><p>Mean Absolute Error/deviation 平均绝对误差/偏差 与ME相似，但为误差的绝对值，为正值</p></td>
+</tr>
+<tr class="row-even"><td><p>MPE</p></td>
+<td><p>Mean Percentage Error 平均百分比误差</p></td>
+</tr>
+<tr class="row-odd"><td><p>MAPE</p></td>
+<td><p>Mean Absolute Percentage error 平均绝对百分比误差</p></td>
+</tr>
+<tr class="row-even"><td><p>RMSE</p></td>
+<td><p>Root Mean Squared error 均方根误差</p></td>
+</tr>
+</tbody>
+</table>
+<p>如下为各个指标的计算公式：</p>
+</div></blockquote>
+<img alt="../_images/predictivemeasure.PNG" class="align-center" src="../_images/predictivemeasure.PNG" />
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># 根据选择的6特征变量的模型来预测验证，检查模型预测的准确性</span>
+<span class="n">car.lm.step.pred</span> <span class="o">&lt;-</span> <span class="nf">predict</span><span class="p">(</span><span class="n">car.lm.step.both</span><span class="p">,</span> <span class="n">valid.df1k</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="nf">accuracy</span><span class="p">(</span><span class="n">car.lm.step.pred</span><span class="p">,</span> <span class="n">valid.df1k</span><span class="o">$</span><span class="n">Price</span><span class="p">)</span>
+              <span class="n">ME</span>     <span class="n">RMSE</span>      <span class="n">MAE</span>        <span class="n">MPE</span>     <span class="n">MAPE</span>
+<span class="n">Test</span> <span class="n">set</span> <span class="m">59.26886</span> <span class="m">1334.978</span> <span class="m">1024.979</span> <span class="m">-0.4212544</span> <span class="m">9.357492</span>
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -178,10 +223,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="businessanalysis.html" class="btn btn-neutral float-right" title="Business Analysis 业务分析" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../businessanalysis/index.html" class="btn btn-neutral float-right" title="Business Analysis 业务分析" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../machinelearning/evaluationpredictiveperformance.html" class="btn btn-neutral float-left" title="机器学习评估预测性能" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="machinelearning.html" class="btn btn-neutral float-left" title="机器学习代码样例" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

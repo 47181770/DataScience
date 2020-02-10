@@ -10,6 +10,8 @@
    :maxdepth: 2
 
    machinelearning.rst
+   evaluationpredictiveperformance.rst
+
 
 参考资源
 
