@@ -545,10 +545,41 @@ R数据处理
    "(ADDRESS=(PROTOCOL=tcp)(HOST=", host, ")(PORT=", port, "))",
    "(CONNECT_DATA=(SERVER = DEDICATED)(SERVICE_NAME=", sid, ")))", sep = "")
    conn <- dbConnect(drv, username = "rquser", password = "rquser_password", dbname = connect.string)
-  dbReadTable(conn, "TEST_1")
   rs <- dbSendQuery(conn, "select DATE1, OPEN,HIGH,LOW,CLOSE,volumn,Adjusted from DM_BUILDING_DEAL_F_V where  cbld_name like '128%' order by 1,2")
   data <- fetch(rs)
   head(data)
+
+- 5.5 R处理股票数据
+     R语言处理股票时序数据，用到TTR包计算移动平均值（平滑）
+
+.. code:: r
+
+ # 将数据框dataframe的列YYYYMMDD字符串转为YYYYMMDD时间日期列 - OK
+ > stock.df.wsf <- read.csv("d:\\bap\\stock.csv")
+ > as.Date(paste(stock.df.wsf$trade_date), "%Y%m%d") 
+ > stock.df.wsf['trade_date'] <-  as.Date(paste(stock.df.wsf$trade_date), "%Y%m%d")
+ > class(stock.df.wsf$trade_date)
+ [1] "Date"
+ > test['MA3'] <- SMA(test$buy_mle_amount,3)
+ Error in SMA(test$buy_mle_amount, 3) : could not find function "SMA"
+ > library(TTR)
+ Warning message:
+ 程辑包‘TTR’是用R版本3.6.2 来建造的 
+ # 计算连续3天的移动平均值
+ > test['MA3'] <- SMA(test$buy_mle_amount,3)
+ yy <- subset(test, test$trace_date>'2020-1-1')
+ # 利用ggplot2作图
+ > p2 <- ggplot(yy, aes(x=yy$trade_date)) +
+     + geom_line(aes(y=yy$MA3), size=1, color='red') +
+     + geom_line(aes(y=yy$MA5), size=1, color='blue') +
+     + geom_line(aes(y=yy$MA10), size=1, color='black') 
+
+
+
+
+.. image:: _static/rggplot01.PNG
+   :align: center
+
 
 
 6. 总结数据

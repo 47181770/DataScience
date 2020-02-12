@@ -814,6 +814,35 @@ lapply()与sapply()则将函数应用到列表list上
 <span class="nf">head</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </pre></div>
 </div>
+<ul class="simple">
+<li><dl class="simple">
+<dt>5.5 R处理股票数据</dt><dd><p>R语言处理股票时序数据，用到TTR包计算移动平均值（平滑）</p>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># 将数据框dataframe的列YYYYMMDD字符串转为YYYYMMDD时间日期列 - OK</span>
+<span class="o">&gt;</span> <span class="n">stock.df.wsf</span> <span class="o">&lt;-</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;d:\\bap\\stock.csv&quot;</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="nf">as.Date</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="n">stock.df.wsf</span><span class="o">$</span><span class="n">trade_date</span><span class="p">),</span> <span class="s">&quot;%Y%m%d&quot;</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="n">stock.df.wsf[</span><span class="s">&#39;trade_date&#39;</span><span class="n">]</span> <span class="o">&lt;-</span>  <span class="nf">as.Date</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="n">stock.df.wsf</span><span class="o">$</span><span class="n">trade_date</span><span class="p">),</span> <span class="s">&quot;%Y%m%d&quot;</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="nf">class</span><span class="p">(</span><span class="n">stock.df.wsf</span><span class="o">$</span><span class="n">trade_date</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="s">&quot;Date&quot;</span>
+<span class="o">&gt;</span> <span class="n">test[</span><span class="s">&#39;MA3&#39;</span><span class="n">]</span> <span class="o">&lt;-</span> <span class="nf">SMA</span><span class="p">(</span><span class="n">test</span><span class="o">$</span><span class="n">buy_mle_amount</span><span class="p">,</span><span class="m">3</span><span class="p">)</span>
+<span class="n">Error</span> <span class="n">in</span> <span class="nf">SMA</span><span class="p">(</span><span class="n">test</span><span class="o">$</span><span class="n">buy_mle_amount</span><span class="p">,</span> <span class="m">3</span><span class="p">)</span> <span class="o">:</span> <span class="n">could</span> <span class="n">not</span> <span class="n">find</span> <span class="n">function</span> <span class="s">&quot;SMA&quot;</span>
+<span class="o">&gt;</span> <span class="nf">library</span><span class="p">(</span><span class="n">TTR</span><span class="p">)</span>
+<span class="n">Warning</span> <span class="n">message</span><span class="o">:</span>
+程辑包‘<span class="n">TTR</span>’是用<span class="n">R版本3.6.2</span> 来建造的
+<span class="c1"># 计算连续3天的移动平均值</span>
+<span class="o">&gt;</span> <span class="n">test[</span><span class="s">&#39;MA3&#39;</span><span class="n">]</span> <span class="o">&lt;-</span> <span class="nf">SMA</span><span class="p">(</span><span class="n">test</span><span class="o">$</span><span class="n">buy_mle_amount</span><span class="p">,</span><span class="m">3</span><span class="p">)</span>
+<span class="n">yy</span> <span class="o">&lt;-</span> <span class="nf">subset</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">test</span><span class="o">$</span><span class="n">trace_date</span><span class="o">&gt;</span><span class="s">&#39;2020-1-1&#39;</span><span class="p">)</span>
+<span class="c1"># 利用ggplot2作图</span>
+<span class="o">&gt;</span> <span class="n">p2</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">yy</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">yy</span><span class="o">$</span><span class="n">trade_date</span><span class="p">))</span> <span class="o">+</span>
+    <span class="o">+</span> <span class="nf">geom_line</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">yy</span><span class="o">$</span><span class="n">MA3</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="m">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;red&#39;</span><span class="p">)</span> <span class="o">+</span>
+    <span class="o">+</span> <span class="nf">geom_line</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">yy</span><span class="o">$</span><span class="n">MA5</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="m">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;blue&#39;</span><span class="p">)</span> <span class="o">+</span>
+    <span class="o">+</span> <span class="nf">geom_line</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">yy</span><span class="o">$</span><span class="n">MA10</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="m">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;black&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../_images/rggplot01.PNG" class="align-center" src="../_images/rggplot01.PNG" />
 </div>
 <div class="section" id="id6">
 <h2>6. 总结数据<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
