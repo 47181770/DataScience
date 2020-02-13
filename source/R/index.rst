@@ -16,6 +16,7 @@ R
    dataAnalysisModel.rst
    dataVisualization.rst
    coding.rst
+   timeseries.rst
 
 参考资源
 

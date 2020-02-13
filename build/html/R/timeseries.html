@@ -1,0 +1,360 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>R 代码处理时序数据 &mdash; Data Science 1.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="机器学习" href="../machinelearning/index.html" />
+    <link rel="prev" title="R 代码样例" href="coding.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Data Science
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../README1.html">Data Science数据科学路线图</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">R</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="datastructure.html">R数据类型与数据结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conditionals_loops.html">Conditionals and Loops 条件循环</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oop.html">面向对象编程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataprocessing.html">R数据处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataAnalysisModel.html">数据分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataVisualization.html">数据可视化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coding.html">R 代码样例</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">R 代码处理时序数据</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">1. 股票数据处理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">2. 数据集说明</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../machinelearning/index.html">机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../businessanalysis/index.html">Business Analysis 业务分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../managementmodel/index.html">管理模型</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Data Science</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">R</a> &raquo;</li>
+        
+      <li>R 代码处理时序数据</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/R/timeseries.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="r">
+<h1>R 代码处理时序数据<a class="headerlink" href="#r" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id1">
+<h2>1. 股票数据处理<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>以如意集团002193股票数据集为例，本分析方法仅为了便于说明如何用R处理时序数据，不构成投资建议！</p>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># 读取002193股票资金流入流出数据</span>
+<span class="n">ruyi</span> <span class="o">&lt;-</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;D:\\stocks\\002193_zj.csv&quot;</span><span class="p">)</span>
+<span class="c1"># 读取数据集的行、列数</span>
+<span class="nf">dim</span><span class="p">(</span><span class="n">ruyi</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="m">2214</span>   <span class="m">21</span>
+<span class="c1"># 显示数据框的列名</span>
+<span class="o">&gt;</span> <span class="nf">colnames</span><span class="p">(</span><span class="n">ruyi</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="s">&quot;X&quot;</span>               <span class="s">&quot;ts_code&quot;</span>         <span class="s">&quot;trade_date&quot;</span>      <span class="s">&quot;buy_sm_vol&quot;</span>      <span class="s">&quot;buy_sm_amount&quot;</span>   <span class="s">&quot;sell_sm_vol&quot;</span>     <span class="s">&quot;sell_sm_amount&quot;</span>  <span class="s">&quot;buy_md_vol&quot;</span>
+<span class="n">[9]</span> <span class="s">&quot;buy_md_amount&quot;</span>   <span class="s">&quot;sell_md_vol&quot;</span>     <span class="s">&quot;sell_md_amount&quot;</span>  <span class="s">&quot;buy_lg_vol&quot;</span>      <span class="s">&quot;buy_lg_amount&quot;</span>   <span class="s">&quot;sell_lg_vol&quot;</span>     <span class="s">&quot;sell_lg_amount&quot;</span>  <span class="s">&quot;buy_elg_vol&quot;</span>
+<span class="n">[17]</span> <span class="s">&quot;buy_elg_amount&quot;</span>  <span class="s">&quot;sell_elg_vol&quot;</span>    <span class="s">&quot;sell_elg_amount&quot;</span> <span class="s">&quot;net_mf_vol&quot;</span>      <span class="s">&quot;net_mf_amount&quot;</span>
+<span class="o">&gt;</span> <span class="nf">t</span><span class="p">(</span><span class="nf">t</span><span class="p">(</span><span class="nf">colnames</span><span class="p">(</span><span class="n">ruyi</span><span class="p">)))</span>
+      <span class="n">[</span><span class="p">,</span><span class="m">1</span><span class="n">]</span>
+ <span class="n">[1</span><span class="p">,</span><span class="n">]</span> <span class="s">&quot;X&quot;</span>
+ <span class="n">[2</span><span class="p">,</span><span class="n">]</span> <span class="s">&quot;ts_code&quot;</span>
+ <span class="n">[3</span><span class="p">,</span><span class="n">]</span> <span class="s">&quot;trade_date&quot;</span>
+ <span class="n">[4</span><span class="p">,</span><span class="n">]</span> <span class="s">&quot;buy_sm_vol&quot;</span>
+ <span class="n">[5</span><span class="p">,</span><span class="n">]</span> <span class="s">&quot;buy_sm_amount&quot;</span>
+ <span class="n">[6</span><span class="p">,</span><span class="n">]</span> <span class="s">&quot;sell_sm_vol&quot;</span>
+ <span class="n">[7</span><span class="p">,</span><span class="n">]</span> <span class="s">&quot;sell_sm_amount&quot;</span>
+ <span class="n">[8</span><span class="p">,</span><span class="n">]</span> <span class="s">&quot;buy_md_vol&quot;</span>
+ <span class="n">[9</span><span class="p">,</span><span class="n">]</span> <span class="s">&quot;buy_md_amount&quot;</span>
+<span class="n">[10</span><span class="p">,</span><span class="n">]</span> <span class="s">&quot;sell_md_vol&quot;</span>
+<span class="n">[11</span><span class="p">,</span><span class="n">]</span> <span class="s">&quot;sell_md_amount&quot;</span>
+<span class="n">[12</span><span class="p">,</span><span class="n">]</span> <span class="s">&quot;buy_lg_vol&quot;</span>
+<span class="n">[13</span><span class="p">,</span><span class="n">]</span> <span class="s">&quot;buy_lg_amount&quot;</span>
+<span class="n">[14</span><span class="p">,</span><span class="n">]</span> <span class="s">&quot;sell_lg_vol&quot;</span>
+<span class="n">[15</span><span class="p">,</span><span class="n">]</span> <span class="s">&quot;sell_lg_amount&quot;</span>
+<span class="n">[16</span><span class="p">,</span><span class="n">]</span> <span class="s">&quot;buy_elg_vol&quot;</span>
+<span class="n">[17</span><span class="p">,</span><span class="n">]</span> <span class="s">&quot;buy_elg_amount&quot;</span>
+<span class="n">[18</span><span class="p">,</span><span class="n">]</span> <span class="s">&quot;sell_elg_vol&quot;</span>
+<span class="n">[19</span><span class="p">,</span><span class="n">]</span> <span class="s">&quot;sell_elg_amount&quot;</span>
+<span class="n">[20</span><span class="p">,</span><span class="n">]</span> <span class="s">&quot;net_mf_vol&quot;</span>
+<span class="n">[21</span><span class="p">,</span><span class="n">]</span> <span class="s">&quot;net_mf_amount&quot;</span>
+<span class="o">&gt;</span>
+<span class="c1"># 显示行名</span>
+<span class="nf">rownames</span><span class="p">(</span><span class="n">housing.df</span><span class="p">)</span>
+
+<span class="c1"># 查看前6行数据</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">ruyi</span><span class="p">)</span>
+<span class="c1"># 查看前10条记录</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">ruyi</span><span class="p">,</span> <span class="m">10</span><span class="p">)</span>
+<span class="c1"># 查看后10条记录</span>
+<span class="nf">tail</span><span class="p">(</span><span class="n">ruyi</span><span class="p">,</span> <span class="m">10</span><span class="p">)</span>
+<span class="c1"># 在新的窗格窗口查看数据</span>
+<span class="nf">View</span><span class="p">(</span><span class="n">ruyi</span><span class="p">)</span>
+
+<span class="c1"># 处理缺失值，把NA数据替换成0</span>
+<span class="n">ruyi</span><span class="nf">[is.na</span><span class="p">(</span><span class="n">ruyi</span><span class="p">)</span><span class="n">]</span> <span class="o">&lt;-</span> <span class="m">0</span>
+<span class="c1"># 把交易日期列转换成日期</span>
+<span class="n">ruyi[</span><span class="s">&#39;trade_date&#39;</span><span class="n">]</span> <span class="o">&lt;-</span> <span class="nf">as.Date</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="n">ruyi</span><span class="o">$</span><span class="n">trade_date</span><span class="p">),</span> <span class="s">&#39;%Y%m%d&#39;</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="nf">class</span><span class="p">(</span><span class="n">ruyi</span><span class="o">$</span><span class="n">trade_date</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="s">&quot;Date&quot;</span>
+<span class="c1"># 对数据进行排序</span>
+<span class="n">ruyi2</span> <span class="o">&lt;-</span> <span class="n">ruyi</span><span class="nf">[order</span><span class="p">(</span><span class="n">ruyi</span><span class="o">$</span><span class="n">trade_date</span><span class="p">),</span><span class="n">]</span>
+<span class="o">&gt;</span> <span class="nf">head</span><span class="p">(</span><span class="n">ruyi2</span><span class="p">)</span>
+        <span class="n">X</span>   <span class="n">ts_code</span> <span class="n">trade_date</span> <span class="n">buy_sm_vol</span> <span class="n">buy_sm_amount</span> <span class="n">sell_sm_vol</span> <span class="n">sell_sm_amount</span> <span class="n">buy_md_vol</span> <span class="n">buy_md_amount</span> <span class="n">sell_md_vol</span>
+<span class="m">2214</span> <span class="m">2213</span> <span class="m">002193</span><span class="n">.SZ</span> <span class="m">2010-01-05</span>      <span class="m">11125</span>       <span class="m">1328.24</span>       <span class="m">11219</span>        <span class="m">1340.84</span>      <span class="m">12660</span>       <span class="m">1513.23</span>       <span class="m">12282</span>
+<span class="m">2213</span> <span class="m">2212</span> <span class="m">002193</span><span class="n">.SZ</span> <span class="m">2010-01-06</span>      <span class="m">18786</span>       <span class="m">2316.96</span>       <span class="m">22333</span>        <span class="m">2757.52</span>      <span class="m">21872</span>       <span class="m">2695.81</span>       <span class="m">20731</span>
+<span class="m">2212</span> <span class="m">2211</span> <span class="m">002193</span><span class="n">.SZ</span> <span class="m">2010-01-07</span>      <span class="m">31785</span>       <span class="m">4051.61</span>       <span class="m">45876</span>        <span class="m">5847.48</span>      <span class="m">38483</span>       <span class="m">4899.21</span>       <span class="m">42006</span>
+<span class="m">2211</span> <span class="m">2210</span> <span class="m">002193</span><span class="n">.SZ</span> <span class="m">2010-01-08</span>      <span class="m">28123</span>       <span class="m">3682.86</span>       <span class="m">30216</span>        <span class="m">3961.44</span>      <span class="m">34764</span>       <span class="m">4555.62</span>       <span class="m">33629</span>
+<span class="m">2210</span> <span class="m">2209</span> <span class="m">002193</span><span class="n">.SZ</span> <span class="m">2010-01-11</span>      <span class="m">24439</span>       <span class="m">3307.78</span>       <span class="m">24211</span>        <span class="m">3283.48</span>      <span class="m">33010</span>       <span class="m">4482.70</span>       <span class="m">34771</span>
+<span class="o">&gt;</span> <span class="nf">tail</span><span class="p">(</span><span class="n">ruyi2</span><span class="p">)</span>
+  <span class="n">X</span>   <span class="n">ts_code</span> <span class="n">trade_date</span> <span class="n">buy_sm_vol</span> <span class="n">buy_sm_amount</span> <span class="n">sell_sm_vol</span> <span class="n">sell_sm_amount</span> <span class="n">buy_md_vol</span> <span class="n">buy_md_amount</span> <span class="n">sell_md_vol</span> <span class="n">sell_md_amount</span>
+<span class="m">6</span> <span class="m">5</span> <span class="m">002193</span><span class="n">.SZ</span> <span class="m">2020-02-05</span>      <span class="m">15311</span>       <span class="m">1009.27</span>       <span class="m">15200</span>        <span class="m">1007.62</span>      <span class="m">20766</span>       <span class="m">1371.21</span>       <span class="m">22050</span>        <span class="m">1460.13</span>
+<span class="m">5</span> <span class="m">4</span> <span class="m">002193</span><span class="n">.SZ</span> <span class="m">2020-02-06</span>      <span class="m">15728</span>       <span class="m">1063.92</span>       <span class="m">16657</span>        <span class="m">1130.76</span>      <span class="m">18941</span>       <span class="m">1283.98</span>       <span class="m">15824</span>        <span class="m">1071.89</span>
+<span class="m">4</span> <span class="m">3</span> <span class="m">002193</span><span class="n">.SZ</span> <span class="m">2020-02-07</span>      <span class="m">23592</span>       <span class="m">1657.57</span>       <span class="m">23692</span>        <span class="m">1671.36</span>      <span class="m">22413</span>       <span class="m">1576.68</span>       <span class="m">22615</span>        <span class="m">1585.79</span>
+<span class="m">3</span> <span class="m">2</span> <span class="m">002193</span><span class="n">.SZ</span> <span class="m">2020-02-10</span>      <span class="m">15974</span>       <span class="m">1130.13</span>       <span class="m">13684</span>         <span class="m">968.75</span>      <span class="m">21284</span>       <span class="m">1506.34</span>       <span class="m">18207</span>        <span class="m">1288.05</span>
+<span class="m">2</span> <span class="m">1</span> <span class="m">002193</span><span class="n">.SZ</span> <span class="m">2020-02-11</span>      <span class="m">16383</span>       <span class="m">1135.64</span>        <span class="m">9369</span>         <span class="m">649.33</span>       <span class="m">9790</span>        <span class="m">679.32</span>       <span class="m">15698</span>        <span class="m">1089.58</span>
+<span class="m">1</span> <span class="m">0</span> <span class="m">002193</span><span class="n">.SZ</span> <span class="m">2020-02-12</span>      <span class="m">11004</span>        <span class="m">769.27</span>       <span class="m">14431</span>        <span class="m">1010.05</span>      <span class="m">15465</span>       <span class="m">1081.28</span>       <span class="m">13204</span>         <span class="m">923.56</span>
+
+<span class="c1"># 计算累计三、五、十、二十、三十天的移动净流入和</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">TTR</span><span class="p">)</span>
+<span class="n">ruyi2[</span><span class="s">&#39;summa3&#39;</span><span class="n">]</span> <span class="o">&lt;-</span> <span class="nf">SMA</span><span class="p">(</span><span class="n">ruyi2</span><span class="o">$</span><span class="n">net_mf_amount</span><span class="p">,</span> <span class="m">3</span><span class="p">)</span> <span class="o">*</span> <span class="m">3</span>
+<span class="n">ruyi2[</span><span class="s">&#39;summa5&#39;</span><span class="n">]</span> <span class="o">&lt;-</span> <span class="nf">SMA</span><span class="p">(</span><span class="n">ruyi2</span><span class="o">$</span><span class="n">net_mf_amount</span><span class="p">,</span> <span class="m">5</span><span class="p">)</span> <span class="o">*</span> <span class="m">5</span>
+<span class="n">ruyi2[</span><span class="s">&#39;summa10&#39;</span><span class="n">]</span> <span class="o">&lt;-</span> <span class="nf">SMA</span><span class="p">(</span><span class="n">ruyi2</span><span class="o">$</span><span class="n">net_mf_amount</span><span class="p">,</span> <span class="m">10</span><span class="p">)</span> <span class="o">*</span> <span class="m">10</span>
+<span class="n">ruyi2[</span><span class="s">&#39;summa40&#39;</span><span class="n">]</span> <span class="o">&lt;-</span> <span class="nf">SMA</span><span class="p">(</span><span class="n">ruyi2</span><span class="o">$</span><span class="n">net_mf_amount</span><span class="p">,</span> <span class="m">40</span><span class="p">)</span> <span class="o">*</span> <span class="m">40</span>
+<span class="c1"># 查看是否计算正确</span>
+<span class="o">&gt;</span> <span class="nf">tail</span><span class="p">(</span><span class="n">ruyi2[</span><span class="p">,</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">19</span><span class="o">:</span><span class="m">28</span><span class="p">)</span><span class="n">]</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="nf">tail</span><span class="p">(</span><span class="n">ruyi2[</span><span class="p">,</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">19</span><span class="o">:</span><span class="m">28</span><span class="p">)</span><span class="n">]</span><span class="p">)</span>
+ <span class="n">X</span> <span class="n">trade_date</span> <span class="n">sell_elg_amount</span> <span class="n">net_mf_vol</span> <span class="n">net_mf_amount</span> <span class="n">total_buy</span>  <span class="n">buy_sm</span>  <span class="n">buy_md</span>   <span class="n">summa3</span>   <span class="n">summa5</span>  <span class="n">summa10</span>  <span class="n">summa40</span>
+<span class="m">6</span> <span class="m">5</span> <span class="m">2020-02-05</span>            <span class="m">0.00</span>       <span class="m">3264</span>        <span class="m">212.98</span>     <span class="m">-1.65</span>    <span class="m">1.65</span>  <span class="m">-88.92</span>   <span class="m">817.44</span>  <span class="m">-355.32</span> <span class="m">-2041.66</span> <span class="m">-6591.12</span>
+<span class="m">5</span> <span class="m">4</span> <span class="m">2020-02-06</span>            <span class="m">0.00</span>       <span class="m">-321</span>        <span class="m">-19.04</span>     <span class="m">66.84</span>  <span class="m">-66.84</span>  <span class="m">212.09</span>   <span class="m">296.67</span>   <span class="m">-16.86</span> <span class="m">-1599.25</span> <span class="m">-6585.54</span>
+<span class="m">4</span> <span class="m">3</span> <span class="m">2020-02-07</span>          <span class="m">167.99</span>      <span class="m">-1842</span>       <span class="m">-121.44</span>     <span class="m">13.79</span>  <span class="m">-13.79</span>   <span class="m">-9.11</span>    <span class="m">72.50</span>   <span class="m">676.96</span> <span class="m">-1230.83</span> <span class="m">-6502.50</span>
+<span class="m">3</span> <span class="m">2</span> <span class="m">2020-02-10</span>            <span class="m">0.00</span>      <span class="m">-8350</span>       <span class="m">-588.38</span>   <span class="m">-161.39</span>  <span class="m">161.38</span>  <span class="m">218.29</span>  <span class="m">-728.86</span>  <span class="m">-413.15</span> <span class="m">-1480.64</span> <span class="m">-7216.87</span>
+<span class="m">2</span> <span class="m">1</span> <span class="m">2020-02-11</span>            <span class="m">0.00</span>     <span class="m">-10659</span>       <span class="m">-737.75</span>   <span class="m">-486.32</span>  <span class="m">486.31</span> <span class="m">-410.26</span> <span class="m">-1447.57</span> <span class="m">-1253.63</span> <span class="m">-2390.93</span> <span class="m">-7728.08</span>
+<span class="m">1</span> <span class="m">0</span> <span class="m">2020-02-12</span>            <span class="m">0.00</span>       <span class="m">2607</span>        <span class="m">185.86</span>    <span class="m">240.79</span> <span class="m">-240.78</span>  <span class="m">157.72</span> <span class="m">-1140.27</span> <span class="m">-1280.75</span> <span class="m">-1636.07</span> <span class="m">-7552.36</span>
+<span class="c1"># 筛选2019-11-1 至今的数据</span>
+<span class="n">ruyi3</span> <span class="o">&lt;-</span> <span class="nf">subset</span><span class="p">(</span><span class="n">ruyi2</span><span class="p">,</span> <span class="n">ruyi2</span><span class="o">$</span><span class="n">trade_date</span> <span class="o">&gt;</span> <span class="s">&#39;2019-11-1&#39;</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="n">p3</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">ruyi3</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">ruyi3</span><span class="o">$</span><span class="n">trade_date</span><span class="p">))</span> <span class="o">+</span>
+<span class="o">+</span> <span class="nf">geom_line</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">ruyi3</span><span class="o">$</span><span class="n">total_buy</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="m">1</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&#39;red&#39;</span><span class="p">)</span> <span class="o">+</span>
+<span class="o">+</span> <span class="nf">geom_line</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">ruyi3</span><span class="o">$</span><span class="n">net_mf_amount</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="m">1</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&#39;blue&#39;</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="n">p3</span>
+<span class="c1"># 显示如下图</span>
+</pre></div>
+</div>
+<img alt="../_images/zijin.PNG" class="align-center" src="../_images/zijin.PNG" />
+</div>
+<hr class="docutils" />
+<div class="section" id="id2">
+<h2>2. 数据集说明<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><p>股票数据集</p></li>
+</ul>
+<blockquote>
+<div><table class="docutils align-default">
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 76%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>ts_code</p></td>
+<td><p>股票代码</p></td>
+</tr>
+<tr class="row-even"><td><p>trade_date</p></td>
+<td><p>交易日期</p></td>
+</tr>
+<tr class="row-odd"><td><p>net_mf_amount</p></td>
+<td><p>净流入额（万元）</p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<dl class="simple">
+<dt>参考：</dt><dd><ol class="arabic simple">
+<li><p>R 金融数据分析</p></li>
+</ol>
+</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../machinelearning/index.html" class="btn btn-neutral float-right" title="机器学习" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="coding.html" class="btn btn-neutral float-left" title="R 代码样例" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Shaofei Wang
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
