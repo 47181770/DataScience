@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>R 代码样例 &mdash; Data Science 1.0 文档</title>
+  <title>R 代码通用数据处理 &mdash; Data Science 1.0 文档</title>
   
 
   
@@ -92,8 +92,8 @@
 <li class="toctree-l2"><a class="reference internal" href="dataprocessing.html">R数据处理</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dataAnalysisModel.html">数据分析</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dataVisualization.html">数据可视化</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">R 代码样例</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1">1. 数据处理</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">R 代码通用数据处理</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">1. 房产/公司数据处理</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id2">2. 数据集说明</a></li>
 </ul>
 </li>
@@ -150,7 +150,7 @@
         
           <li><a href="index.html">R</a> &raquo;</li>
         
-      <li>R 代码样例</li>
+      <li>R 代码通用数据处理</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -170,12 +170,12 @@
            <div itemprop="articleBody">
             
   <div class="section" id="r">
-<h1>R 代码样例<a class="headerlink" href="#r" title="永久链接至标题">¶</a></h1>
+<h1>R 代码通用数据处理<a class="headerlink" href="#r" title="永久链接至标题">¶</a></h1>
 <div class="section" id="id1">
-<h2>1. 数据处理<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<h2>1. 房产/公司数据处理<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
-<p>以波士顿WEST ROXBURY (BOSTON) 房产价值数据集为例！</p>
+<p>以波士顿WEST ROXBURY (BOSTON) 房产价值数据集、公司的数据集为例！</p>
 </div>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># 读取WEST ROXBURY西罗克斯伯里数据集</span>
 <span class="n">housing.df</span> <span class="o">&lt;-</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;D:\\dataset\\WestRoxbury.csv&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
@@ -613,7 +613,8 @@
 <ul class="simple">
 <li><p>数据集1</p></li>
 </ul>
-<table class="docutils align-default">
+<blockquote>
+<div><table class="docutils align-default">
 <colgroup>
 <col style="width: 24%" />
 <col style="width: 76%" />
@@ -663,6 +664,7 @@
 </tr>
 </tbody>
 </table>
+</div></blockquote>
 <ul class="simple">
 <li><p>数据集2 （用于完全（精确）贝叶斯计算/朴素贝叶斯计算）</p></li>
 </ul>
