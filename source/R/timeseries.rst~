@@ -108,7 +108,7 @@ R 代码处理时序数据
  
  
  
-.. image:: _static/zijin.PNG 
+.. image:: _static/zijin.png
    :align: center
  
  
