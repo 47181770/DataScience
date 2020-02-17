@@ -773,7 +773,7 @@ lapply()与sapply()则将函数应用到列表list上
 </div>
 <ul class="simple">
 <li><dl class="simple">
-<dt>5.3 R读取text文件</dt><dd><p>使用R读取txt文件直接使用read.table()方法，不需要额外包，样例如下：</p>
+<dt>5.3 R读取text文件表</dt><dd><p>使用R读取txt文件直接使用read.table()方法，不需要额外包，样例如下：</p>
 </dd>
 </dl>
 </li>
@@ -795,7 +795,19 @@ lapply()与sapply()则将函数应用到列表list上
 </div>
 <ul class="simple">
 <li><dl class="simple">
-<dt>5.4 R读取数据库数据</dt><dd><p>R读取Oracle数据库需要用ROracle包，如下样例为R从Oracle数据库中读取表数据：</p>
+<dt>5.4 R逐行读取text文件（非表）</dt><dd><p>使用R readLines逐行读取文本数据（常用于文本分析）</p>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">x</span> <span class="o">&lt;-</span> <span class="nf">readLines</span><span class="p">(</span><span class="s">&quot;D:\\Books\\2020.txt&quot;</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="nf">head</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="nf">tail</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><dl class="simple">
+<dt>5.5 R读取数据库数据</dt><dd><p>R读取Oracle数据库需要用ROracle包，如下样例为R从Oracle数据库中读取表数据：</p>
 </dd>
 </dl>
 </li>
@@ -843,7 +855,7 @@ lapply()与sapply()则将函数应用到列表list上
     <span class="o">+</span> <span class="nf">geom_line</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">yy</span><span class="o">$</span><span class="n">MA10</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="m">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;black&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="../_images/rggplot01.PNG" class="align-center" src="../_images/rggplot01.PNG" />
+<img alt="../_images/rggplot01.png" class="align-center" src="../_images/rggplot01.png" />
 </div>
 <div class="section" id="id6">
 <h2>6. 总结数据<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>

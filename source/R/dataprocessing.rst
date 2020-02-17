@@ -508,7 +508,7 @@ R数据处理
 
  
 
--  5.3 R读取text文件
+-  5.3 R读取text文件表
       使用R读取txt文件直接使用read.table()方法，不需要额外包，样例如下：
 
 .. code:: r
@@ -528,9 +528,16 @@ R数据处理
   > 
   
  
+-  5.4 R逐行读取text文件（非表）
+       使用R readLines逐行读取文本数据（常用于文本分析）
 
+.. code:: r
 
--  5.4 R读取数据库数据
+  > x <- readLines("D:\\Books\\2020.txt")
+  > head(x)
+  > tail(x)
+
+-  5.5 R读取数据库数据
       R读取Oracle数据库需要用ROracle包，如下样例为R从Oracle数据库中读取表数据：
 
 .. code:: r 
@@ -577,7 +584,7 @@ R数据处理
 
 
 
-.. image:: _static/rggplot01.PNG
+.. image:: _static/rggplot01.png
    :align: center
 
 
