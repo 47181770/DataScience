@@ -10,7 +10,11 @@
    :maxdepth: 2
 
    machinelearning.rst
+   ml-lm.rst
+   ml-bayesian
+   ml-tfidf
    evaluationpredictiveperformance.rst
+
 
 
 参考资源

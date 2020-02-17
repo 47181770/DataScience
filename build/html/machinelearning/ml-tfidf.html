@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>机器学习算法-贝叶斯 &mdash; Data Science 1.0 文档</title>
+  <title>机器学习算法-TFIDF &mdash; Data Science 1.0 文档</title>
   
 
   
@@ -36,8 +36,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜索" href="../search.html" />
-    <link rel="next" title="机器学习算法-TFIDF" href="ml-tfidf.html" />
-    <link rel="prev" title="机器学习-回归" href="ml-lm.html" /> 
+    <link rel="next" title="机器学习评估预测性能" href="evaluationpredictiveperformance.html" />
+    <link rel="prev" title="机器学习算法-贝叶斯" href="ml-bayesian.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -89,8 +89,8 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">机器学习</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="machinelearning.html">机器学习代码样例</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ml-lm.html">机器学习-回归</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">机器学习算法-贝叶斯</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ml-tfidf.html">机器学习算法-TFIDF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ml-bayesian.html">机器学习算法-贝叶斯</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">机器学习算法-TFIDF</a></li>
 <li class="toctree-l2"><a class="reference internal" href="evaluationpredictiveperformance.html">机器学习评估预测性能</a></li>
 </ul>
 </li>
@@ -143,13 +143,13 @@
         
           <li><a href="index.html">机器学习</a> &raquo;</li>
         
-      <li>机器学习算法-贝叶斯</li>
+      <li>机器学习算法-TFIDF</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/machinelearning/ml-bayesian.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/machinelearning/ml-tfidf.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -162,18 +162,29 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="id1">
-<h1>机器学习算法-贝叶斯<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+  <div class="section" id="tfidf">
+<h1>机器学习算法-TFIDF<a class="headerlink" href="#tfidf" title="永久链接至标题">¶</a></h1>
 <ul>
-<li><p>朴素贝叶斯分类</p>
-<p>完全（精确）贝叶斯计算与朴素贝叶斯计算样例。</p>
+<li><p>TF-IDF（单文本词频-逆文档频率）</p>
+<p>TF-IDF 是对搜索关键词的重要性的度量，具备很强的理论依据，就是不精通搜索的人，直接采用TF-IDF，效果也不会差。</p>
 <ol class="arabic simple">
-<li><p>用10条记录计算有法律麻烦的大小公司欺诈的可能性 - 贝叶斯 &amp; 朴素贝叶斯（样例1）</p></li>
-<li><p>利用FlightDelays.csv数据集来预测航班误点可能性 - 朴素贝叶斯（样例2）</p></li>
+<li><dl class="simple">
+<dt>TF，term Frequency：用关键词**次数**除以网页总字数，也叫关键字频率：</dt><dd><p>如某网页有1000个字，原子能 的 应用分别出现了2次、35次、5次，那么他们的词频分别是0.002、0.035、0.005 ，这三个数相加，和0.042就是相应的一个网页和查询“原子能的应用”的单文本词频</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>IDF，Inverse Document Frequency逆文本频率指数：</dt><dd><p>假定一个关键词w在Dw个网页中出现，那么Dw越大，w的权重越小，反之亦然。
+假设中文网页数是十亿，停止词“的”在每个网页中都有，那么Dw=10亿。 他的公式就是log(D/Dw) = log(10亿/10亿）=log(1) = 0；</p>
+</dd>
+</dl>
+</li>
 </ol>
+<p>如果原子能在200万个网页中出现，那么公式是log(10亿/200万)=log(500)=8.96，那么权重就是8.96。
+所以，一段文本的相关性就由如下公式：TF1 * IDF1 + TF2 * IDF2 + TF3 * IDF3 … + TFn * IDFn</p>
 </li>
 </ul>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># 利用数据集2进行Complete（Exact）精确贝叶斯计算</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># 利用数据集2进行TF-IDF计算</span>
 
 <span class="c1">##</span>
 <span class="n">df</span> <span class="o">&lt;-</span> <span class="nf">read.csv</span><span class="p">((</span><span class="s">&quot;D:\\Books\\dataset\\company10.csv&quot;</span><span class="p">))</span>
@@ -709,10 +720,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="ml-tfidf.html" class="btn btn-neutral float-right" title="机器学习算法-TFIDF" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="evaluationpredictiveperformance.html" class="btn btn-neutral float-right" title="机器学习评估预测性能" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="ml-lm.html" class="btn btn-neutral float-left" title="机器学习-回归" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="ml-bayesian.html" class="btn btn-neutral float-left" title="机器学习算法-贝叶斯" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -12,6 +12,7 @@
    machinelearning.rst
    ml-lm.rst
    ml-bayesian
+   ml-tfidf
    evaluationpredictiveperformance.rst
 
 
