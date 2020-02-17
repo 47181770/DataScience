@@ -20,7 +20,7 @@
 .. code:: r
 
 
- # 利用数据集2进行Complete（Exact）精确贝叶斯计算
+ # 利用数据集2进行TF-IDF计算
  
  ##
  df <- read.csv(("D:\\Books\\dataset\\company10.csv"))
