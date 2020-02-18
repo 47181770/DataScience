@@ -92,6 +92,7 @@
 <li class="toctree-l2"><a class="reference internal" href="ml-bayesian.html">机器学习-贝叶斯</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">机器学习-TFIDF</a></li>
 <li class="toctree-l2"><a class="reference internal" href="evaluationpredictiveperformance.html">机器学习评估预测性能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oracleml4python.html">Oracle机器学习 for Python</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../businessanalysis/index.html">Business Analysis 业务分析</a></li>
@@ -373,7 +374,11 @@
 <p>生成词云图如下：</p>
 <img alt="../_images/2020cio.png" class="align-center" src="../_images/2020cio.png" />
 <dl class="simple">
-<dt>参考：</dt><dd><p>隐性语义分析（LSA）是一种自然语言处理NLP中用到的方法，其通过“矢量语义空间”来提取文档与词中的“概念”，进而分析文档与词之间的关系。LSA的基本假设是，如果两个词多次出现在同一文档中，则这两个词在语义上具有相似性。LSA使用大量的文本上构建一个矩阵，这个矩阵的一行代表一个词，一列代表一个文档，矩阵元素代表该词在该文档中出现的次数，然后在此矩阵上使用奇异值分解（SVD）来保留列信息的情况下减少矩阵行数，之后每两个词语的相似性则可以通过其行向量的cos值（或者归一化之后使用向量点乘）来进行标示，此值越接近于1则说明两个词语越相似，越接近于0则说明越不相似。</p>
+<dt>参考：</dt><dd><ol class="arabic simple">
+<li><p>隐性语义分析（LSA）是一种自然语言处理NLP中用到的方法，其通过“矢量语义空间”来提取文档与词中的“概念”，进而分析文档与词之间的关系。LSA的基本假设是，如果两个词多次出现在同一文档中，则这两个词在语义上具有相似性。LSA使用大量的文本上构建一个矩阵，这个矩阵的一行代表一个词，一列代表一个文档，矩阵元素代表该词在该文档中出现的次数，然后在此矩阵上使用奇异值分解（SVD）来保留列信息的情况下减少矩阵行数，之后每两个词语的相似性则可以通过其行向量的cos值（或者归一化之后使用向量点乘）来进行标示，此值越接近于1则说明两个词语越相似，越接近于0则说明越不相似。</p></li>
+<li><p>新闻归类、主题归类：余弦定理（准确性高，大数据量慢）</p></li>
+<li><p>超大规模文本粗分类：奇异值分解得到粗分类结果，再利用个计算向量余弦的方法得到比较精确的结果</p></li>
+</ol>
 </dd>
 </dl>
 </div>

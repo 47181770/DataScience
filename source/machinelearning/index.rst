@@ -14,6 +14,7 @@
    ml-bayesian
    ml-tfidf
    evaluationpredictiveperformance.rst
+   oracleml4python.rst
 
 
 
