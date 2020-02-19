@@ -37,7 +37,7 @@
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜索" href="../search.html" />
     <link rel="next" title="Oracle机器学习 for Python" href="oracleml4python.html" />
-    <link rel="prev" title="样例-TFIDF" href="ml-tfidf.html" /> 
+    <link rel="prev" title="样例- k-NN k近邻" href="ml-knn.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -91,8 +91,13 @@
 <li class="toctree-l2"><a class="reference internal" href="ml-lm.html">样例-回归</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ml-bayesian.html">样例-贝叶斯</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ml-tfidf.html">样例-TFIDF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ml-knn.html">样例- k-NN k近邻</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">机器学习评估预测性能</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id2">预测精度测量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#f1">查准率、查全率与F1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rocauc">ROC与AUC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">代价敏感错误率与代价曲线</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">比较检验</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="oracleml4python.html">Oracle机器学习 for Python</a></li>
@@ -217,6 +222,94 @@
 </pre></div>
 </div>
 </div>
+<div class="section" id="f1">
+<h2>查准率、查全率与F1<a class="headerlink" href="#f1" title="永久链接至标题">¶</a></h2>
+<blockquote>
+<div><p>错误率和精度虽常用，但并不能满足所有任务需求，比如检索出的信息是用户感兴趣的信息，需要用其他性能度量。“查准率Precision”与“查全率Recall”更为适用此类需求的性能度量。以二分类为例，语句分类结果混淆矩阵如下：</p>
+</div></blockquote>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 41%" />
+<col style="width: 41%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>真实情况</p></th>
+<th class="head"><p>预测结果 - 正例</p></th>
+<th class="head"><p>预测结果 - 反例</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>正例</p></td>
+<td><p>TP (真正例)</p></td>
+<td><p>FN (假反例)</p></td>
+</tr>
+<tr class="row-odd"><td><p>反例</p></td>
+<td><p>FP (假正例)</p></td>
+<td><p>TN (真反例)</p></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div><p>查准率与查全率的计算公式为：</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>查准率（准确率） P = TP / (TP + FP)</p></li>
+<li><p>查全率（召回率） R = TP / (TP + FN)</p></li>
+</ol>
+</div></blockquote>
+<p>查准率与查全率是一对矛盾的度量。以横轴为查全率，纵轴为查准率作图“P-R曲线”，在进行模型性能比较时，若一个学习器的P-R曲线被另一个学习器曲线完全“包住”，可以断定后者性能优于前者。
+度量F1是基于查准率与查全率的调和平均，公式为： F1 = 2 * P * R / (P + R)
+与算术平均(P + R)/2 与几何平均sqrt(P*R)相比，调和平均更重视较小值。</p>
+<p>说明：</p>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li><p>此处隐式假设了错误的均等代价</p></li>
+<li><p>非均等代价顾名思义</p></li>
+</ol>
+</div></blockquote>
+</div></blockquote>
+</div>
+<div class="section" id="rocauc">
+<h2>ROC与AUC<a class="headerlink" href="#rocauc" title="永久链接至标题">¶</a></h2>
+<blockquote>
+<div><p>ROC全称是“受试者工作特征”（Receiver Operating Characteristic）曲线，ROC曲线纵轴是“真正例率True Positive Rate:TPR”，横轴是“假正例率False Positive Rate:FPR”，两者分别定义为：
+TPR = TP/(TP + FN)
+FPR = FP/(TN + FP)
+与P-R图相似，若一个学习器的ROC曲线被另一个学习器的曲线完全“包住”，则可断言后者性能优于前者。若两个曲线产生交叉，一定要进行比较，则比较合适的判据是比较ROC曲线下的面积，即AUC(Area Under ROC Curve)</p>
+</div></blockquote>
+</div>
+<div class="section" id="id3">
+<h2>代价敏感错误率与代价曲线<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<blockquote>
+<div><p>结合现实任务如错误的把健康病人归类为患者或者把患者归类为健康人，会造成严重的安全事故，为权衡不同类型错误所造成的不同损失，可为错误赋予“非均等代价 unequal cost”，在非均等代价下，ROC曲线不能直接反映出学习器的期望总体代价，代价曲线（Cost Curve）可以达到目的，代价曲线的横轴为取值[0,1]的正例概率代价，纵轴是取值为[0,1]的归一化代价。</p>
+</div></blockquote>
+</div>
+<div class="section" id="id4">
+<h2>比较检验<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<blockquote>
+<div><p>机器学习中性能比较非常负责，涉及到如下几个重要的因素：</p>
+<blockquote>
+<div><blockquote>
+<div><ol class="arabic simple">
+<li><p>希望比较的是模型的泛化性能，而这里比较的是验证集/测试集的性能，对比结果未必相同</p></li>
+<li><p>测试集性能与测试集本身选择有很大关系</p></li>
+<li><p>很多机器学习算法本身具备一定的随机性</p></li>
+</ol>
+</div></blockquote>
+<p>基于如上，使用如下适当的方法对学习器、模型性能进行比较：</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>假设检验</p></li>
+<li><p>交叉验证t检验</p></li>
+<li><p>McNemar 检验</p></li>
+<li><p>Friedman检验与Nemenyi后续检验</p></li>
+<li><p>偏差与方差</p></li>
+</ol>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</div>
 </div>
 
 
@@ -230,7 +323,7 @@
         <a href="oracleml4python.html" class="btn btn-neutral float-right" title="Oracle机器学习 for Python" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="ml-tfidf.html" class="btn btn-neutral float-left" title="样例-TFIDF" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="ml-knn.html" class="btn btn-neutral float-left" title="样例- k-NN k近邻" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

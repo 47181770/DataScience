@@ -11,8 +11,9 @@
 
    machinelearning.rst
    ml-lm.rst
-   ml-bayesian
-   ml-tfidf
+   ml-bayesian.rst
+   ml-tfidf.rst
+   ml-knn.rst
    evaluationpredictiveperformance.rst
    oracleml4python.rst
 

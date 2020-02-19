@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>机器学习概览 &mdash; Data Science 1.0 文档</title>
+  <title>样例- k-NN k近邻 &mdash; Data Science 1.0 文档</title>
   
 
   
@@ -36,8 +36,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜索" href="../search.html" />
-    <link rel="next" title="样例-回归" href="ml-lm.html" />
-    <link rel="prev" title="机器学习" href="index.html" /> 
+    <link rel="next" title="机器学习评估预测性能" href="evaluationpredictiveperformance.html" />
+    <link rel="prev" title="样例-TFIDF" href="ml-tfidf.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -87,11 +87,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../R/index.html">R</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">机器学习</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">机器学习概览</a></li>
+<li class="toctree-l2"><a class="reference internal" href="machinelearning.html">机器学习概览</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ml-lm.html">样例-回归</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ml-bayesian.html">样例-贝叶斯</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ml-tfidf.html">样例-TFIDF</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ml-knn.html">样例- k-NN k近邻</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">样例- k-NN k近邻</a></li>
 <li class="toctree-l2"><a class="reference internal" href="evaluationpredictiveperformance.html">机器学习评估预测性能</a></li>
 <li class="toctree-l2"><a class="reference internal" href="oracleml4python.html">Oracle机器学习 for Python</a></li>
 </ul>
@@ -145,13 +145,13 @@
         
           <li><a href="index.html">机器学习</a> &raquo;</li>
         
-      <li>机器学习概览</li>
+      <li>样例- k-NN k近邻</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/machinelearning/machinelearning.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/machinelearning/ml-knn.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -164,48 +164,55 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="id1">
-<h1>机器学习概览<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
-<blockquote>
-<div><p>机器学习算法分为三大类：监督学习、非监督学习、新兴机器学习</p>
-<p>监督学习中，主要有三大类预测输出变量的类型：</p>
+  <div class="section" id="k-nn-k">
+<h1>样例- k-NN k近邻<a class="headerlink" href="#k-nn-k" title="永久链接至标题">¶</a></h1>
+<ul>
+<li><p>k-NN（k-Nearest Neighbors k近邻）</p>
+<p>k近邻算法是一种常用的监督学习算法，主要用于分类也可用于回归，是一个理论上成熟，应用最简单的机器学习算法之一。没有显式的训练过程，训练时间开销为零，是“懒惰学习 Lazy learning”的注明代表。应用领域在计算机视觉、推荐系统（如歌曲、影视等），数据缺失值预处理亦可。
+k近邻工作机制：</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li><p>预测数值变量：如房价</p></li>
-<li><p>预测类成员：预测类别变量，如会不会采购？</p></li>
-<li><p>倾向性预测</p></li>
+<li><p>给定测试样本，基于某种距离度量（如欧氏距离等），计算已知数据集中的点与当前点的距离</p></li>
+<li><p>按距离递增次序排序，找出训练集中与其最靠近的k个训练样本</p></li>
+<li><p>基于这k个“邻居”的信息，选取与当前数据点最近的k个点（简而言之：给一个新的数据时，离它最近的 k 个点中，哪个类别多，这个数据就属于哪一类）</p></li>
+<li><p>“投票法”：选择k个样本中出现最多的类别标记作为预测结果</p></li>
+<li><p>“平均法”：回归任务中，将这k个样本的实值输出标记的平均值作为预测结果</p></li>
+<li><p>“加权平均”或“加权投票”：基于距离远近进行，距离越近，样本权重越大</p></li>
 </ol>
 </div></blockquote>
-<dl class="simple">
-<dt>关于分类预测，要注意分类器的两种给不同的预测用法：</dt><dd><ol class="arabic simple">
-<li><p>分类：目标是用于预测新记录属于哪个类成员；</p></li>
-<li><p>排序：目标是在一组新记录中检测最有可能属于某个兴趣类别的记录，按概率排序；</p></li>
-</ol>
-</dd>
-</dl>
-<table class="docutils align-default">
+<p>kNN算法优缺点如下：</p>
+</li>
+</ul>
+<blockquote>
+<div><table class="docutils align-default">
 <colgroup>
 <col style="width: 25%" />
 <col style="width: 75%" />
 </colgroup>
 <thead>
-<tr class="row-odd"><th class="head"><p>类别</p></th>
-<th class="head"><p>算法</p></th>
+<tr class="row-odd"><th class="head"><p>优点</p></th>
+<th class="head"><p>缺点</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>监督学习</p></td>
-<td><p>线性回归，逻辑回归，kNN k近邻，决策树，随机森林Random Forest</p></td>
+<tr class="row-even"><td><p>简单且有效</p></td>
+<td><p>在发现特征之间关系上的能力有限，类别评分不像概率评分</p></td>
 </tr>
-<tr class="row-odd"><td><p>非监督学习</p></td>
-<td><p>k-Means k均值，聚类，关联规则Apriori，协同过滤</p></td>
+<tr class="row-odd"><td><p>对数据的分布没有要求</p></td>
+<td><p>分类阶段慢</p></td>
 </tr>
-<tr class="row-even"><td><p>新兴机器学习</p></td>
-<td><p>半监督学习，强化学习，马尔科夫决策过程，Q Learning</p></td>
+<tr class="row-even"><td><p>训练阶段很快（训练与重训）</p></td>
+<td><p>新记录预测，全部重计算复杂度高、空间复杂度高，需大量的内存，如何实时预测？</p></td>
+</tr>
+<tr class="row-odd"><td><p>泛化错误率不超贝叶斯2倍</p></td>
+<td><p>样本不平衡时，预测偏差大</p></td>
 </tr>
 </tbody>
 </table>
 </div></blockquote>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># 利用数据集进行kNN计算</span>
+</pre></div>
+</div>
 </div>
 
 
@@ -216,10 +223,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="ml-lm.html" class="btn btn-neutral float-right" title="样例-回归" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="evaluationpredictiveperformance.html" class="btn btn-neutral float-right" title="机器学习评估预测性能" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral float-left" title="机器学习" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="ml-tfidf.html" class="btn btn-neutral float-left" title="样例-TFIDF" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
