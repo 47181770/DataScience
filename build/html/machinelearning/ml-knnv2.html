@@ -1,0 +1,448 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>样例- k-NN k近邻 &mdash; Data Science 1.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Data Science
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../README1.html">Data Science数据科学路线图</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../R/index.html">R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../businessanalysis/index.html">Business Analysis 业务分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../managementmodel/index.html">管理模型</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Data Science</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>样例- k-NN k近邻</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/machinelearning/ml-knnv2.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="k-nn-k">
+<h1>样例- k-NN k近邻<a class="headerlink" href="#k-nn-k" title="永久链接至标题">¶</a></h1>
+<ul>
+<li><p>k-NN（k-Nearest Neighbors k近邻）</p>
+<p>k近邻算法是一种常用的监督学习算法，主要用于分类也可用于回归，是一个理论上成熟，应用最简单的机器学习算法之一。没有显式的训练过程，训练时间开销为零，是“懒惰学习 Lazy learning”的注明代表。应用领域在计算机视觉、推荐系统（如歌曲、影视等），数据缺失值预处理亦可。
+k近邻工作机制：</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>给定测试样本，基于某种距离度量（如欧氏距离等），计算已知数据集中的点与当前点的距离</p></li>
+<li><p>按距离递增次序排序，找出训练集中与其最靠近的k个训练样本</p></li>
+<li><p>基于这k个“邻居”的信息，选取与当前数据点最近的k个点（简而言之：给一个新的数据时，离它最近的 k 个点中，哪个类别多，这个数据就属于哪一类）</p></li>
+<li><p>“投票法”：选择k个样本中出现最多的类别标记作为预测结果</p></li>
+<li><p>“平均法”：回归任务中，将这k个样本的实值输出标记的平均值作为预测结果</p></li>
+<li><p>“加权平均”或“加权投票”：基于距离远近进行，距离越近，样本权重越大</p></li>
+</ol>
+</div></blockquote>
+<p>kNN算法优缺点如下：</p>
+</li>
+</ul>
+<blockquote>
+<div><table class="docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>优点</p></th>
+<th class="head"><p>缺点</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>简单且有效</p></td>
+<td><p>在发现特征之间关系上的能力有限，类别评分不像概率评分</p></td>
+</tr>
+<tr class="row-odd"><td><p>对数据的分布没有要求</p></td>
+<td><p>分类阶段慢</p></td>
+</tr>
+<tr class="row-even"><td><p>训练阶段很快（训练与重训）</p></td>
+<td><p>新记录预测，全部重计算复杂度高、空间复杂度高，需大量的内存，如何实时预测？</p></td>
+</tr>
+<tr class="row-odd"><td><p>泛化错误率不超贝叶斯2倍</p></td>
+<td><p>样本不平衡时，预测偏差大</p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<ul class="simple">
+<li><p>kNN预测代码样例</p></li>
+</ul>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span># 利用数据集RidingMowers进行kNN计算
+&gt; mower.df &lt;- read.csv(&quot;D:\\Books\\RidingMowers.csv&quot;)
+&gt; head(mower.df)
+  Income Lot_Size Ownership
+1   60.0     18.4     Owner
+2   85.5     16.8     Owner
+3   64.8     21.6     Owner
+4   61.5     20.8     Owner
+5   87.0     23.6     Owner
+6  110.1     19.2     Owner
+&gt; dim(mower.df)
+[1] 24  3
+&gt; mower.df &lt;- read.csv(&quot;D:\\Books\\HKU-BusinessAnalytics\\dataset\\RidingMowers.csv&quot;)
+&gt; head(mower.df)
+  Income Lot_Size Ownership
+1   60.0     18.4     Owner
+2   85.5     16.8     Owner
+3   64.8     21.6     Owner
+4   61.5     20.8     Owner
+5   87.0     23.6     Owner
+6  110.1     19.2     Owner
+&gt; dim(mower.df)
+[1] 24  3
+&gt; set.seed(100)
+&gt; train.index &lt;- sample(row.names(mower.df), 0.6 * dim(mower.df)[1])
+&gt; train.index
+ [1] &quot;10&quot; &quot;23&quot; &quot;6&quot;  &quot;16&quot; &quot;19&quot; &quot;14&quot; &quot;12&quot; &quot;22&quot; &quot;4&quot;  &quot;7&quot;  &quot;17&quot; &quot;2&quot;  &quot;15&quot; &quot;18&quot;
+&gt; length(train.index)
+[1] 14
+&gt; 24 * 0.6
+[1] 14.4
+&gt; valid.index &lt;- setdiff(row.names(mower.df), train.index)
+&gt; train.df &lt;- mower.df[train.index,]
+&gt; valid.df &lt;- mower.df[valid.index,]
+&gt; dim(train.df)
+[1] 14  3
+&gt; dim(valid.df)
+[1] 10  3
+&gt; new.df &lt;- data.frame(Income=60, Lot_Size=20)
+&gt; plot(Lot_Size ~ Income, data=train.df, pch=ifelse(train.df$Ownership==&quot;Owner&quot;, 1, 3))
+
+&gt; text(train.df$Income, train.df$Lot_Size, rownames(train.df), pos=4)
+&gt; text(60, 20, &quot;X&quot;)
+&gt; legend(&quot;topright&quot;, c(&quot;Owner&quot;, &quot;Nonowner&quot;, &quot;NewerPredict&quot;), pch=c(1,3,4))
+&gt; head(mower.df)
+  Income Lot_Size Ownership
+1   60.0     18.4     Owner
+2   85.5     16.8     Owner
+3   64.8     21.6     Owner
+4   61.5     20.8     Owner
+5   87.0     23.6     Owner
+6  110.1     19.2     Owner
+&gt; mower.norm.df &lt;- mower.df
+
+&gt; norm.values &lt;- preProcess(train.df[, 1:2], method=c(&quot;center&quot;, &quot;scale&quot;))
+Error in preProcess(train.df[, 1:2], method = c(&quot;center&quot;, &quot;scale&quot;)) :
+  could not find function &quot;preProcess&quot;
+&gt; library(caret)
+载入需要的程辑包：lattice
+载入需要的程辑包：ggplot2
+Warning messages:
+1: 程辑包‘caret’是用R版本3.6.2 来建造的
+2: 程辑包‘ggplot2’是用R版本3.6.2 来建造的
+&gt; norm.values &lt;- preProcess(train.df[, 1:2], method=c(&quot;center&quot;, &quot;scale&quot;))
+&gt; head(norm.values)
+$dim
+[1] 14  2
+
+$bc
+NULL
+
+&gt; norm.values
+Created from 14 samples and 2 variables
+
+Pre-processing:
+  - centered (2)
+  - ignored (0)
+  - scaled (2)
+&gt; train.norm.df[, 1:2] &lt;- predict(norm.values, train.df[, 1:2])
+&gt; train.norm.df
+       Income   Lot_Size Ownership
+10  0.9663169  1.1596670     Owner
+23 -0.7792879 -2.1260562  Nonowner
+6   1.6770275  0.3865557     Owner
+16 -1.1034716  0.9663892  Nonowner
+
+&gt; new.norm.df &lt;- predict(norm.values, new.df)
+
+&gt; library(FNN)
+Warning message:
+程辑包‘FNN’是用R版本3.6.2 来建造的
+&gt; NN &lt;- knn(train = train.norm.df[, 1:2], test = new.norm.df, cl=train.norm.df[, 3], k=3)
+
+&gt; row.names(train.norm.df)[attr(NN, &quot;nn.index&quot;)]
+[1] &quot;4&quot;  &quot;14&quot; &quot;16&quot;
+
+&gt; library(caret)
+&gt; train.norm.df &lt;- train.df
+&gt; valid.norm.df &lt;- valid.df
+&gt; mower.norm.df &lt;- mower.df
+&gt; train.norm.df[, 1:2] &lt;- predict(norm.values, train.df[, 1:2])
+&gt; valid.norm.df[, 1:2] &lt;- predict(norm.values, valid.df[, 1:2])
+&gt; mower.norm.df[, 1:2] &lt;- predict(norm.values, mower.df[, 1:2])
+&gt; accuracy.df &lt;- data.frame(k = seq(1, 14,1), accuracy = rep(0, 14))
+&gt; head(accuracy.df)
+  k accuracy
+1 1        0
+2 2        0
+3 3        0
+4 4        0
+5 5        0
+6 6        0
+
+&gt; knn.pred &lt;- knn(train = train.norm.df[, 1:2], test = valid.norm.df[, 1:2], cl=train.norm.df[,3], k=3)
+&gt; knn.pred
+ [1] Nonowner Owner    Owner    Owner    Owner    Nonowner Owner    Nonowner Nonowner Nonowner
+attr(,&quot;nn.index&quot;)
+      [,1] [,2] [,3]
+ [1,]   14   13   11
+ [2,]    9    6    7
+ [3,]    1    9    7
+ [4,]    1    7    9
+ [5,]    9    7    6
+ [6,]    6    9    4
+ [7,]    7    9    1
+ [8,]   13   14   11
+ [9,]    5   14   13
+[10,]    5    2   13
+attr(,&quot;nn.dist&quot;)
+           [,1]      [,2]      [,3]
+ [1,] 0.5923761 0.6131935 1.0697703
+ [2,] 0.4101667 0.6310080 1.0252026
+ [3,] 1.3757348 1.7186339 1.7572844
+ [4,] 0.8817142 1.1620776 1.1753323
+ [5,] 0.4965799 0.4987442 0.7763791
+ [6,] 0.5846398 0.7257086 0.8383294
+ [7,] 0.3155040 0.8068617 0.9465120
+ [8,] 0.5819745 0.7981022 0.8420827
+ [9,] 0.5348852 0.5846398 0.8200081
+[10,] 0.5988272 0.6310080 1.1620776
+Levels: Nonowner Owner
+&gt; confusionMatrix(knn.pred, valid.norm.df[,3])$overall[1]
+Accuracy
+     0.7
+&gt; confusionMatrix(knn.pred, valid.norm.df[,3])
+Confusion Matrix and Statistics
+
+          Reference
+Prediction Nonowner Owner
+  Nonowner        3     2
+  Owner           1     4
+
+               Accuracy : 0.7
+                 95% CI : (0.3475, 0.9333)
+    No Information Rate : 0.6
+    P-Value [Acc &gt; NIR] : 0.3823
+
+                  Kappa : 0.4
+
+ Mcnemar&#39;s Test P-Value : 1.0000
+
+            Sensitivity : 0.7500
+            Specificity : 0.6667
+         Pos Pred Value : 0.6000
+         Neg Pred Value : 0.8000
+             Prevalence : 0.4000
+         Detection Rate : 0.3000
+   Detection Prevalence : 0.5000
+      Balanced Accuracy : 0.7083
+
+       &#39;Positive&#39; Class : Nonowner
+
+&gt; for (i in 1:14){
++  knn.pred &lt;- knn(train = train.norm.df[, 1:2], test = valid.norm.df[, 1:2], cl = train.norm.df[, 3], k=i)
++  accuracy.df[i,2] &lt;- confusionMatrix(knn.pred, valid.norm.df[, 3])$overall[1]
++ }
+Warning messages:
+1: In confusionMatrix.default(knn.pred, valid.norm.df[, 3]) :
+  Levels are not in the same order for reference and data. Refactoring data to match.
+2: In confusionMatrix.default(knn.pred, valid.norm.df[, 3]) :
+  Levels are not in the same order for reference and data. Refactoring data to match.
+3: In confusionMatrix.default(knn.pred, valid.norm.df[, 3]) :
+  Levels are not in the same order for reference and data. Refactoring data to match.
+4: In confusionMatrix.default(knn.pred, valid.norm.df[, 3]) :
+  Levels are not in the same order for reference and data. Refactoring data to match.
+&gt; accuracy.df
+    k accuracy
+1   1      0.7
+2   2      0.6
+3   3      0.7
+4   4      0.6
+5   5      0.7
+6   6      0.6
+7   7      0.6
+8   8      0.6
+9   9      0.6
+10 10      0.4
+11 11      0.4
+12 12      0.4
+13 13      0.4
+14 14      0.4
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Shaofei Wang
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
