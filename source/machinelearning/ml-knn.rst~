@@ -206,7 +206,7 @@
  14 14      0.4
 
 
-.. image:: _static/knn.PNG
+.. image:: _static/knn.png
      :align: center
 
 
@@ -247,6 +247,6 @@
  Levels: Nonowner
 
 
-.. image:: _static/knnthinking.PNG
+.. image:: _static/knnthinking.png
      :align: center
 
