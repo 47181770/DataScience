@@ -14,6 +14,7 @@
    ml-bayesian.rst
    ml-tfidf.rst
    ml-knn.rst
+   ml-classification_tree.rst
    evaluationpredictiveperformance.rst
    oracleml4python.rst
 

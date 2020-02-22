@@ -1,0 +1,315 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>样例- 分类树、回归树 &mdash; Data Science 1.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="机器学习评估预测性能" href="evaluationpredictiveperformance.html" />
+    <link rel="prev" title="样例- k-NN k近邻" href="ml-knn.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Data Science
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../README1.html">Data Science数据科学路线图</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../R/index.html">R</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">机器学习</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="machinelearning.html">机器学习概览</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ml-lm.html">样例-回归</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ml-bayesian.html">样例-贝叶斯</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ml-tfidf.html">样例-TFIDF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ml-knn.html">样例- k-NN k近邻</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">样例- 分类树、回归树</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evaluationpredictiveperformance.html">机器学习评估预测性能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oracleml4python.html">Oracle机器学习 for Python</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../businessanalysis/index.html">Business Analysis 业务分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../managementmodel/index.html">管理模型</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Data Science</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">机器学习</a> &raquo;</li>
+        
+      <li>样例- 分类树、回归树</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/machinelearning/ml-classification_tree.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>样例- 分类树、回归树<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<blockquote>
+<div><p>在数据驱动的决策中，树最透明、最容易解释。分类树用于分类，回归树用于数值预测。分类树的两个核心思想是变量空间递归划分recursive partitioning的思想与使用验证集进行剪枝pruning，限制最大深度的的思想。
+算法学习目的是为了产生一棵泛化能力强，即处理未见示例能力强，基本流程遵循简单而直观的“分而治之”的策略。学习的关键是如何选择最优划分属性，希望树的分支节点所包含的样本尽可能属于同一类别。</p>
+</div></blockquote>
+<ul>
+<li><p>分类树（Classification Trees）</p>
+<p>分类树如何选择最优划分属性，希望树的分支节点所包含的样本尽可能属于同一类别，即节点的纯度Purity越来越高。在这里，每一片叶子都代表一个类别。</p>
+<p>分类树最优划分指标：</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>信息熵，公式如下：</p></li>
+</ol>
+</div></blockquote>
+</li>
+</ul>
+<img alt="../_images/entropy.png" class="align-center" src="../_images/entropy.png" />
+<ul class="simple">
+<li><ol class="arabic simple" start="2">
+<li><p>基尼杂质指数Gini Impurity Index，基尼杂质指数越小，纯度越高，选择那个使得划分后基尼指数最小的属性作为最优划分属性，公式如下：</p></li>
+</ol>
+</li>
+</ul>
+<img alt="../_images/giniimpurityindex.png" class="align-center" src="../_images/giniimpurityindex.png" />
+<ul>
+<li><ol class="arabic simple" start="3">
+<li><p>增益率：不常用</p></li>
+</ol>
+</li>
+<li><p>回归树（Regression Trees）</p>
+<p>回归树如何选择最优划分属性，一个典型的杂质测量是离末端节点偏差的平方和，等于误差的平方和。在这里，每一片叶子表示的是一个预测值，取值是连续的。</p>
+<p>TREE算法优缺点如下：</p>
+</li>
+</ul>
+<blockquote>
+<div><table class="docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>优点</p></th>
+<th class="head"><p>缺点</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>不需要转换变量</p></td>
+<td><p>对数据的变化敏感，细微的变化也会导致不同的分裂</p></td>
+</tr>
+<tr class="row-odd"><td><p>变量子集选择是自动化的</p></td>
+<td><p>非线性和非参数化</p></td>
+</tr>
+<tr class="row-even"><td><p>对异常值的鲁棒性非常强</p></td>
+<td><p>需要大量的数据集才能构造一个好的分类器</p></td>
+</tr>
+<tr class="row-odd"><td><p>泛化错误率不超贝叶斯2倍</p></td>
+<td><p>由于多次排序、剪枝导致计算资源消耗多</p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<ul>
+<li><p>模型性能提升</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><dl class="simple">
+<dt>随机森林Random Forests算法</dt><dd><p>随机森林测量不同预测因子的相关贡献，可以对“变量重要性”评分。</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Boosted Trees 提升树算法</dt><dd><p>提升树支持回归跟分类。</p>
+</dd>
+</dl>
+</li>
+</ol>
+</div></blockquote>
+</li>
+<li><p>决策树代码样例</p></li>
+</ul>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># 使用RidingMovers割草机的数据集</span>
+<span class="c1"># 1. 计算信息熵与基尼杂质指数</span>
+<span class="o">&gt;</span> <span class="n">mower.df</span> <span class="o">&lt;-</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;D:\\Books\\RidingMowers.csv&quot;</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="nf">head</span><span class="p">(</span><span class="n">mower.df</span><span class="p">)</span>
+  <span class="n">Income</span> <span class="n">Lot_Size</span> <span class="n">Ownership</span>
+<span class="m">1</span>   <span class="m">60.0</span>     <span class="m">18.4</span>     <span class="n">Owner</span>
+<span class="m">2</span>   <span class="m">85.5</span>     <span class="m">16.8</span>     <span class="n">Owner</span>
+<span class="m">3</span>   <span class="m">64.8</span>     <span class="m">21.6</span>     <span class="n">Owner</span>
+<span class="m">4</span>   <span class="m">61.5</span>     <span class="m">20.8</span>     <span class="n">Owner</span>
+<span class="m">5</span>   <span class="m">87.0</span>     <span class="m">23.6</span>     <span class="n">Owner</span>
+<span class="m">6</span>  <span class="m">110.1</span>     <span class="m">19.2</span>     <span class="n">Owner</span>
+<span class="o">&gt;</span> <span class="nf">dim</span><span class="p">(</span><span class="n">mower.df</span><span class="p">)</span>
+<span class="n">[1]</span> <span class="m">24</span>  <span class="m">3</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="evaluationpredictiveperformance.html" class="btn btn-neutral float-right" title="机器学习评估预测性能" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ml-knn.html" class="btn btn-neutral float-left" title="样例- k-NN k近邻" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Shaofei Wang
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
