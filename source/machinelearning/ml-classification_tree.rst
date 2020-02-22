@@ -16,14 +16,14 @@
 .. image:: _static/entropy.png
    :align: center
 
--
+.
 
      2. 基尼杂质指数Gini Impurity Index，基尼杂质指数越小，纯度越高，选择那个使得划分后基尼指数最小的属性作为最优划分属性，公式如下：
 
 .. image:: _static/giniimpurityindex.png
    :align: center
 
--
+.
 
      3. 增益率：不常用
 
