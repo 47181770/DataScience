@@ -168,12 +168,12 @@
   <div class="section" id="id1">
 <h1>样例- 分类树、回归树<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
 <blockquote>
-<div><p>在数据驱动的决策中，树最透明、最容易解释。分类树用于分类，回归树用于数值预测。分类树的两个核心思想是变量空间递归划分recursive partitioning的思想与使用验证集进行剪枝pruning，限制最大深度的的思想。
+<div><p>在数据驱动的决策中，树最透明、最容易解释。分类树用于分类，回归树用于数值预测。分类树的两个核心思想是变量空间递归划分recursive partitioning的思想与使用验证集进行剪枝pruning，限制树最大深度的的思想。
 算法学习目的是为了产生一棵泛化能力强，即处理未见示例能力强，基本流程遵循简单而直观的“分而治之”的策略。学习的关键是如何选择最优划分属性，希望树的分支节点所包含的样本尽可能属于同一类别。</p>
 </div></blockquote>
 <ul>
 <li><p>分类树（Classification Trees）</p>
-<p>分类树如何选择最优划分属性，希望树的分支节点所包含的样本尽可能属于同一类别，即节点的纯度Purity越来越高。在这里，每一片叶子都代表一个类别。</p>
+<p>分类树算法希望树的分支节点所包含的样本尽可能属于同一类别，即节点的纯度Purity越来越高。在这里，每一片叶子都代表一个类别。如何选择最优划分属性参考如下。</p>
 <p>分类树最优划分指标：</p>
 <blockquote>
 <div><ol class="arabic simple">
@@ -234,7 +234,7 @@
 <blockquote>
 <div><ol class="arabic simple">
 <li><dl class="simple">
-<dt>随机森林Random Forests算法</dt><dd><p>随机森林测量不同预测因子的相关贡献，可以对“变量重要性”评分。</p>
+<dt>随机森林Random Forests算法</dt><dd><p>随机森林测量不同预测因子的相关贡献，用于对“变量重要性”评分。</p>
 </dd>
 </dl>
 </li>
@@ -243,10 +243,11 @@
 </dd>
 </dl>
 </li>
+<li><p>注意：Random Forests与Boosted Trees的使用效果较好，但是会导致模型的可解释性大大降低</p></li>
 </ol>
 </div></blockquote>
 </li>
-<li><p>决策树代码样例</p></li>
+<li><p>分类树代码样例</p></li>
 </ul>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># 使用RidingMovers割草机的数据集</span>
 <span class="c1"># 1. 计算信息熵与基尼杂质指数</span>
@@ -262,6 +263,19 @@
 <span class="o">&gt;</span> <span class="nf">dim</span><span class="p">(</span><span class="n">mower.df</span><span class="p">)</span>
 <span class="n">[1]</span> <span class="m">24</span>  <span class="m">3</span>
 <span class="o">&gt;</span>
+<span class="o">&gt;</span> <span class="nf">library</span><span class="p">(</span><span class="n">rpart</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="nf">library</span><span class="p">(</span><span class="n">rpart.plot</span><span class="p">)</span>
+<span class="n">Error</span> <span class="n">in</span> <span class="nf">library</span><span class="p">(</span><span class="n">rpart.plot</span><span class="p">)</span> <span class="o">:</span> 不存在叫‘<span class="n">rpart.plot</span>’这个名字的程辑包
+<span class="c1"># 下载rpart.plot.zip文件，手工安装</span>
+<span class="c1"># 执行rpart()运行分类树，</span>
+<span class="c1"># 定义rpart.control决定树的深度</span>
+<span class="o">&gt;</span> <span class="n">calss.tree</span> <span class="o">&lt;-</span> <span class="nf">rpart</span><span class="p">(</span><span class="n">Ownership</span> <span class="o">~</span> <span class="n">.,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">mower.df</span><span class="p">,</span> <span class="n">control</span> <span class="o">=</span> <span class="nf">rpart.control</span><span class="p">(</span><span class="n">maxdepth</span> <span class="o">=</span> <span class="m">2</span><span class="p">),</span> <span class="n">method</span> <span class="o">=</span> <span class="s">&quot;class&quot;</span><span class="p">)</span>
+<span class="c1"># prp画出树，color,shape, information都可以显示</span>
+<span class="o">&gt;</span> <span class="nf">prp</span><span class="p">(</span><span class="n">class.tree3</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">extra</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">split.font</span> <span class="o">=</span> <span class="m">1</span> <span class="p">,</span> <span class="n">varlen</span> <span class="o">=</span> <span class="m">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../_images/classification_tree.PNG" class="align-center" src="../_images/classification_tree.PNG" />
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </div>
