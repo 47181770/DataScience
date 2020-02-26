@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>样例- 分类树、回归树 &mdash; Data Science 1.0 文档</title>
+  <title>样例- 逻辑回归 &mdash; Data Science 1.0 文档</title>
   
 
   
@@ -36,8 +36,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜索" href="../search.html" />
-    <link rel="next" title="样例- 逻辑回归" href="ml-glm.html" />
-    <link rel="prev" title="样例- k-NN k近邻" href="ml-knn.html" /> 
+    <link rel="next" title="机器学习评估预测性能" href="evaluationpredictiveperformance.html" />
+    <link rel="prev" title="样例- 分类树、回归树" href="ml-classification_tree.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -92,8 +92,8 @@
 <li class="toctree-l2"><a class="reference internal" href="ml-bayesian.html">样例-贝叶斯</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ml-tfidf.html">样例-TFIDF</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ml-knn.html">样例- k-NN k近邻</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">样例- 分类树、回归树</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ml-glm.html">样例- 逻辑回归</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ml-classification_tree.html">样例- 分类树、回归树</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">样例- 逻辑回归</a></li>
 <li class="toctree-l2"><a class="reference internal" href="evaluationpredictiveperformance.html">机器学习评估预测性能</a></li>
 <li class="toctree-l2"><a class="reference internal" href="oracleml4python.html">Oracle机器学习 for Python</a></li>
 </ul>
@@ -147,13 +147,13 @@
         
           <li><a href="index.html">机器学习</a> &raquo;</li>
         
-      <li>样例- 分类树、回归树</li>
+      <li>样例- 逻辑回归</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/machinelearning/ml-classification_tree.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/machinelearning/ml-glm.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -167,39 +167,29 @@
            <div itemprop="articleBody">
             
   <div class="section" id="id1">
-<h1>样例- 分类树、回归树<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<h1>样例- 逻辑回归<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
 <blockquote>
-<div><p>在数据驱动的决策中，树最透明、最容易解释。分类树用于分类，回归树用于数值预测。分类树的两个核心思想是变量空间递归划分recursive partitioning的思想与使用验证集进行剪枝pruning，限制树最大深度的的思想。
-算法学习目的是为了产生一棵泛化能力强，即处理未见示例能力强，基本流程遵循简单而直观的“分而治之”的策略。学习的关键是如何选择最优划分属性，希望树的分支节点所包含的样本尽可能属于同一类别。</p>
+<div><p>逻辑回归是一种非常强大和流行的分类方法，是小数据集也可以用来构造逻辑回归分类器。一旦模型建立，即使是大样本数据集的记录进行分类，计算速度也会更快成本更低便宜。
+逻辑回归扩展了线性回归的的思想。</p>
 </div></blockquote>
 <ul>
-<li><p>分类树（Classification Trees）</p>
-<p>分类树算法希望树的分支节点所包含的样本尽可能属于同一类别，即节点的纯度Purity越来越高。在这里，每一片叶子都代表一个类别。如何选择最优划分属性参考如下。</p>
-<p>分类树最优划分指标：</p>
+<li><p>逻辑回归（Logistic Regression）</p>
+<p>讨论使用系数与统计显著性来判断变量重要性，降维的变量选择算法。因为逻辑回归的因变量与自变量不是线性关系，所以不使用最小二乘法估计，而是使用最大似然估计。应用场景如下：</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li><p>信息熵，公式如下：</p></li>
+<li><p>将客户分类为退货与不退货的类型</p></li>
+<li><p>借贷信用评分</p></li>
+<li><p>计量经济学中描述选择行为</p></li>
+<li><p>二分类：如成功/失败，是/否，买/不买，存货/死亡等</p></li>
 </ol>
 </div></blockquote>
-</li>
-</ul>
-<img alt="../_images/entropy.png" class="align-center" src="../_images/entropy.png" />
-<p>.</p>
+<p>逻辑回归一般分为如下两个步骤：</p>
 <blockquote>
-<div><ol class="arabic simple" start="2">
-<li><p>基尼杂质指数Gini Impurity Index，基尼杂质指数越小，纯度越高，选择那个使得划分后基尼指数最小的属性作为最优划分属性，注意，Gini系数仅用于二分类，公式如下：</p></li>
+<div><ol class="arabic simple">
+<li><p>对属于每个类的“倾向”或“可能”进行估计</p></li>
+<li><p>我们使用这些概率的截止值，以便将每种情况归类到一个类</p></li>
 </ol>
 </div></blockquote>
-<img alt="../_images/giniimpurityindex.png" class="align-center" src="../_images/giniimpurityindex.png" />
-<p>.</p>
-<blockquote>
-<div><ol class="arabic simple" start="3">
-<li><p>增益率：不常用</p></li>
-</ol>
-</div></blockquote>
-<ul>
-<li><p>回归树（Regression Trees）</p>
-<p>回归树如何选择最优划分属性，一个典型的杂质测量是离末端节点偏差的平方和，等于误差的平方和。在这里，每一片叶子表示的是一个预测值，取值是连续的。</p>
 <p>TREE算法优缺点如下：</p>
 </li>
 </ul>
@@ -296,10 +286,10 @@ d. 使用权重投票对记录进行分类，对后期的树使用更高的权�
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="ml-glm.html" class="btn btn-neutral float-right" title="样例- 逻辑回归" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="evaluationpredictiveperformance.html" class="btn btn-neutral float-right" title="机器学习评估预测性能" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="ml-knn.html" class="btn btn-neutral float-left" title="样例- k-NN k近邻" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="ml-classification_tree.html" class="btn btn-neutral float-left" title="样例- 分类树、回归树" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
