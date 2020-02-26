@@ -18,7 +18,7 @@
 
 .
 
-     2. 基尼杂质指数Gini Impurity Index，基尼杂质指数越小，纯度越高，选择那个使得划分后基尼指数最小的属性作为最优划分属性，公式如下：
+     2. 基尼杂质指数Gini Impurity Index，基尼杂质指数越小，纯度越高，选择那个使得划分后基尼指数最小的属性作为最优划分属性，注意，Gini系数仅用于二分类，公式如下：
 
 .. image:: _static/giniimpurityindex.png
    :align: center
@@ -48,10 +48,17 @@
 - 模型性能提升
 
     1. 随机森林Random Forests算法
-           随机森林测量不同预测因子的相关贡献，用于对“变量重要性”评分。
+           随机森林测量不同预测因子的相关贡献，用于对“变量重要性”评分。步骤如下：
+           a. 从数据抽取多个采样样本，并进行替换（这种采样法叫bootstrap）
+           b. 在每个阶段使用预测因子的随机子集，为每个样本匹配一个分类树（回归树），从而获得一个“森林”
+           c. 结合各个树的预测/分类以获得改进的预测。用投票来分类，用平均来预测
 
     2. Boosted Trees 提升树算法
            提升树支持回归跟分类。
+           a. 画一个给出错误分类记录的更高选择概率的样本
+           b. 让树适应新样本
+           c. 重复上述a,b步骤
+           d. 使用权重投票对记录进行分类，对后期的树使用更高的权重
 
     3. 注意：Random Forests与Boosted Trees的使用效果较好，但是会导致模型的可解释性大大降低
 
@@ -79,7 +86,7 @@
  > library(rpart.plot)
  Error in library(rpart.plot) : 不存在叫‘rpart.plot’这个名字的程辑包
  # 下载rpart.plot.zip文件，手工安装
- # 执行rpart()运行分类树，
+ # 执行rpart()运行分类树，rpart函数split分割选项默认使用基尼系数，非默认参数为(split='information')
  # 定义rpart.control决定树的深度
  > calss.tree <- rpart(Ownership ~ ., data = mower.df, control = rpart.control(maxdepth = 2), method = "class")
  # prp画出树，color,shape, information都可以显示

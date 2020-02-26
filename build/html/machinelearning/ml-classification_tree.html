@@ -186,7 +186,7 @@
 <p>.</p>
 <blockquote>
 <div><ol class="arabic simple" start="2">
-<li><p>基尼杂质指数Gini Impurity Index，基尼杂质指数越小，纯度越高，选择那个使得划分后基尼指数最小的属性作为最优划分属性，公式如下：</p></li>
+<li><p>基尼杂质指数Gini Impurity Index，基尼杂质指数越小，纯度越高，选择那个使得划分后基尼指数最小的属性作为最优划分属性，注意，Gini系数仅用于二分类，公式如下：</p></li>
 </ol>
 </div></blockquote>
 <img alt="../_images/giniimpurityindex.png" class="align-center" src="../_images/giniimpurityindex.png" />
@@ -234,12 +234,19 @@
 <blockquote>
 <div><ol class="arabic simple">
 <li><dl class="simple">
-<dt>随机森林Random Forests算法</dt><dd><p>随机森林测量不同预测因子的相关贡献，用于对“变量重要性”评分。</p>
+<dt>随机森林Random Forests算法</dt><dd><p>随机森林测量不同预测因子的相关贡献，用于对“变量重要性”评分。步骤如下：
+a. 从数据抽取多个采样样本，并进行替换（这种采样法叫bootstrap）
+b. 在每个阶段使用预测因子的随机子集，为每个样本匹配一个分类树（回归树），从而获得一个“森林”
+c. 结合各个树的预测/分类以获得改进的预测。用投票来分类，用平均来预测</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple">
-<dt>Boosted Trees 提升树算法</dt><dd><p>提升树支持回归跟分类。</p>
+<dt>Boosted Trees 提升树算法</dt><dd><p>提升树支持回归跟分类。
+a. 画一个给出错误分类记录的更高选择概率的样本
+b. 让树适应新样本
+c. 重复上述a,b步骤
+d. 使用权重投票对记录进行分类，对后期的树使用更高的权重</p>
 </dd>
 </dl>
 </li>
@@ -267,7 +274,7 @@
 <span class="o">&gt;</span> <span class="nf">library</span><span class="p">(</span><span class="n">rpart.plot</span><span class="p">)</span>
 <span class="n">Error</span> <span class="n">in</span> <span class="nf">library</span><span class="p">(</span><span class="n">rpart.plot</span><span class="p">)</span> <span class="o">:</span> 不存在叫‘<span class="n">rpart.plot</span>’这个名字的程辑包
 <span class="c1"># 下载rpart.plot.zip文件，手工安装</span>
-<span class="c1"># 执行rpart()运行分类树，</span>
+<span class="c1"># 执行rpart()运行分类树，rpart函数split分割选项默认使用基尼系数，非默认参数为(split=&#39;information&#39;)</span>
 <span class="c1"># 定义rpart.control决定树的深度</span>
 <span class="o">&gt;</span> <span class="n">calss.tree</span> <span class="o">&lt;-</span> <span class="nf">rpart</span><span class="p">(</span><span class="n">Ownership</span> <span class="o">~</span> <span class="n">.,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">mower.df</span><span class="p">,</span> <span class="n">control</span> <span class="o">=</span> <span class="nf">rpart.control</span><span class="p">(</span><span class="n">maxdepth</span> <span class="o">=</span> <span class="m">2</span><span class="p">),</span> <span class="n">method</span> <span class="o">=</span> <span class="s">&quot;class&quot;</span><span class="p">)</span>
 <span class="c1"># prp画出树，color,shape, information都可以显示</span>
