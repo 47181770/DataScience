@@ -190,7 +190,7 @@
 <li><p>我们使用这些概率的截止值，以便将每种情况归类到一个类</p></li>
 </ol>
 </div></blockquote>
-<p>TREE算法优缺点如下：</p>
+<p>LR算法优缺点如下：</p>
 </li>
 </ul>
 <blockquote>
@@ -205,77 +205,15 @@
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>不需要转换变量</p></td>
-<td><p>对数据的变化敏感，细微的变化也会导致不同的分裂</p></td>
+<tr class="row-even"><td><p>计算代价不高，容易理解实现</p></td>
+<td><p>容易欠拟合，分类精度不高</p></td>
 </tr>
-<tr class="row-odd"><td><p>变量子集选择是自动化的</p></td>
-<td><p>非线性和非参数化</p></td>
-</tr>
-<tr class="row-even"><td><p>对缺失值异常值的鲁棒性非常强</p></td>
-<td><p>需要大量的数据集才能构造一个好的分类器</p></td>
-</tr>
-<tr class="row-odd"><td><p>泛化错误率不超贝叶斯2倍</p></td>
-<td><p>由于多次排序、剪枝导致计算资源消耗多</p></td>
+<tr class="row-odd"><td><p>对数据中的小噪声鲁棒性较好</p></td>
+<td><p>数据特征有缺失或特征空间很大时表现效果不好</p></td>
 </tr>
 </tbody>
 </table>
 </div></blockquote>
-<ul>
-<li><p>模型性能提升</p>
-<blockquote>
-<div><ol class="arabic simple">
-<li><dl class="simple">
-<dt>随机森林Random Forests算法</dt><dd><p>随机森林测量不同预测因子的相关贡献，用于对“变量重要性”评分。步骤如下：
-a. 从数据抽取多个采样样本，并进行替换（这种采样法叫bootstrap）
-b. 在每个阶段使用预测因子的随机子集，为每个样本匹配一个分类树（回归树），从而获得一个“森林”
-c. 结合各个树的预测/分类以获得改进的预测。用投票来分类，用平均来预测</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>Boosted Trees 提升树算法</dt><dd><p>提升树支持回归跟分类。
-a. 画一个给出错误分类记录的更高选择概率的样本
-b. 让树适应新样本
-c. 重复上述a,b步骤
-d. 使用权重投票对记录进行分类，对后期的树使用更高的权重</p>
-</dd>
-</dl>
-</li>
-<li><p>注意：Random Forests与Boosted Trees的使用效果较好，但是会导致模型的可解释性大大降低</p></li>
-</ol>
-</div></blockquote>
-</li>
-<li><p>分类树代码样例</p></li>
-</ul>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># 使用RidingMovers割草机的数据集</span>
-<span class="c1"># 1. 计算信息熵与基尼杂质指数</span>
-<span class="o">&gt;</span> <span class="n">mower.df</span> <span class="o">&lt;-</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;D:\\Books\\RidingMowers.csv&quot;</span><span class="p">)</span>
-<span class="o">&gt;</span> <span class="nf">head</span><span class="p">(</span><span class="n">mower.df</span><span class="p">)</span>
-  <span class="n">Income</span> <span class="n">Lot_Size</span> <span class="n">Ownership</span>
-<span class="m">1</span>   <span class="m">60.0</span>     <span class="m">18.4</span>     <span class="n">Owner</span>
-<span class="m">2</span>   <span class="m">85.5</span>     <span class="m">16.8</span>     <span class="n">Owner</span>
-<span class="m">3</span>   <span class="m">64.8</span>     <span class="m">21.6</span>     <span class="n">Owner</span>
-<span class="m">4</span>   <span class="m">61.5</span>     <span class="m">20.8</span>     <span class="n">Owner</span>
-<span class="m">5</span>   <span class="m">87.0</span>     <span class="m">23.6</span>     <span class="n">Owner</span>
-<span class="m">6</span>  <span class="m">110.1</span>     <span class="m">19.2</span>     <span class="n">Owner</span>
-<span class="o">&gt;</span> <span class="nf">dim</span><span class="p">(</span><span class="n">mower.df</span><span class="p">)</span>
-<span class="n">[1]</span> <span class="m">24</span>  <span class="m">3</span>
-<span class="o">&gt;</span>
-<span class="o">&gt;</span> <span class="nf">library</span><span class="p">(</span><span class="n">rpart</span><span class="p">)</span>
-<span class="o">&gt;</span> <span class="nf">library</span><span class="p">(</span><span class="n">rpart.plot</span><span class="p">)</span>
-<span class="n">Error</span> <span class="n">in</span> <span class="nf">library</span><span class="p">(</span><span class="n">rpart.plot</span><span class="p">)</span> <span class="o">:</span> 不存在叫‘<span class="n">rpart.plot</span>’这个名字的程辑包
-<span class="c1"># 下载rpart.plot.zip文件，手工安装</span>
-<span class="c1"># 执行rpart()运行分类树，rpart函数split分割选项默认使用基尼系数，非默认参数为(split=&#39;information&#39;)</span>
-<span class="c1"># 定义rpart.control决定树的深度</span>
-<span class="o">&gt;</span> <span class="n">calss.tree</span> <span class="o">&lt;-</span> <span class="nf">rpart</span><span class="p">(</span><span class="n">Ownership</span> <span class="o">~</span> <span class="n">.,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">mower.df</span><span class="p">,</span> <span class="n">control</span> <span class="o">=</span> <span class="nf">rpart.control</span><span class="p">(</span><span class="n">maxdepth</span> <span class="o">=</span> <span class="m">2</span><span class="p">),</span> <span class="n">method</span> <span class="o">=</span> <span class="s">&quot;class&quot;</span><span class="p">)</span>
-<span class="c1"># prp画出树，color,shape, information都可以显示</span>
-<span class="o">&gt;</span> <span class="nf">prp</span><span class="p">(</span><span class="n">class.tree3</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">extra</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">split.font</span> <span class="o">=</span> <span class="m">1</span> <span class="p">,</span> <span class="n">varlen</span> <span class="o">=</span> <span class="m">10</span><span class="p">)</span>
-</pre></div>
-</div>
-<img alt="../_images/classification_tree.PNG" class="align-center" src="../_images/classification_tree.PNG" />
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span>
-</pre></div>
-</div>
 </div>
 
 
