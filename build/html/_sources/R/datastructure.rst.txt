@@ -195,3 +195,6 @@ R在线帮助函数如下：
   * apropos("mean", mode="function") 列出名称中含有mean的所有可用函数
   * data() 列出当前已加载包中所含的所有可用示例数据集
   * vignette() 列出当前已安装包所有可用的vignette文档
+  * ?rnorm 访问帮助文件
+  * help.search("rnorm") 搜索帮助文件
+  * args("rnorm") 看参数
