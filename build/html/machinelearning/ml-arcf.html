@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>机器学习概览 &mdash; Data Science 1.0 文档</title>
+  <title>样例 - 关联规则与协同过滤 &mdash; Data Science 1.0 文档</title>
   
 
   
@@ -36,8 +36,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜索" href="../search.html" />
-    <link rel="next" title="样例 - 回归" href="ml-lm.html" />
-    <link rel="prev" title="机器学习" href="index.html" /> 
+    <link rel="next" title="机器学习评估预测性能" href="evaluationpredictiveperformance.html" />
+    <link rel="prev" title="样例 - 逻辑回归" href="ml-glm.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -87,14 +87,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../R/index.html">R</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">机器学习</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">机器学习概览</a></li>
+<li class="toctree-l2"><a class="reference internal" href="machinelearning.html">机器学习概览</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ml-lm.html">样例 - 回归</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ml-bayesian.html">样例 - 贝叶斯</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ml-tfidf.html">样例 - TFIDF</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ml-knn.html">样例 - k-NN k近邻</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ml-classification_tree.html">样例 - 分类树、回归树</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ml-glm.html">样例 - 逻辑回归</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ml-arcf.html">样例 - 关联规则与协同过滤</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">样例 - 关联规则与协同过滤</a></li>
 <li class="toctree-l2"><a class="reference internal" href="evaluationpredictiveperformance.html">机器学习评估预测性能</a></li>
 <li class="toctree-l2"><a class="reference internal" href="oracleml4python.html">Oracle机器学习 for Python</a></li>
 </ul>
@@ -148,13 +148,13 @@
         
           <li><a href="index.html">机器学习</a> &raquo;</li>
         
-      <li>机器学习概览</li>
+      <li>样例 - 关联规则与协同过滤</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/machinelearning/machinelearning.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/machinelearning/ml-arcf.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -168,43 +168,49 @@
            <div itemprop="articleBody">
             
   <div class="section" id="id1">
-<h1>机器学习概览<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<h1>样例 - 关联规则与协同过滤<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
 <blockquote>
-<div><p>机器学习算法分为三大类：监督学习、非监督学习、新兴机器学习</p>
-<p>监督学习中，主要有三大类预测输出变量的类型：</p>
+<div><p>本章节的关联规则与协同过滤是无监督学习方法。关联规则也叫“亲和力分析”与“购物篮分析”，用于预测那一类的产品组将会被购买。协同过滤分为User-Based 基于用户的协同过滤与Item-Based基于物品的协同过滤。
+基于用户的协同过滤是从一个用户开始，根据相似用户购买或喜欢的商品对初始用户进行推荐。
+基于物品的协同过滤是从用户正在考虑的物品开始，然后定位其他可能与第一个物品共同购买的物品。
+关联规则除了在市场交叉销售用途较广以外，还用在法律上定位剽窃，医学上定位症状。</p>
+</div></blockquote>
+<ul>
+<li><p>关联规则（Association Rules）</p>
+<p>关联规则常用在推荐系统中。应用场景如下：</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li><p>预测数值变量：如房价</p></li>
-<li><p>预测类成员：预测类别变量，如会不会采购？</p></li>
-<li><p>倾向性预测</p></li>
+<li><p>交叉销售</p></li>
+<li><p>促销</p></li>
+<li><p>目录设计</p></li>
+<li><p>根据购买模式识别客户群</p></li>
+<li><p>依据IF-THEN模式，判断经常一起买的商品</p></li>
 </ol>
 </div></blockquote>
-<dl class="simple">
-<dt>关于分类预测，要注意分类器的两种给不同的预测用法：</dt><dd><ol class="arabic simple">
-<li><p>分类：目标是用于预测新记录属于哪个类成员；</p></li>
-<li><p>排序：目标是在一组新记录中检测最有可能属于某个兴趣类别的记录，按概率排序；</p></li>
+<p>关联规则般分为如下两个步骤：</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>对属于每个类的“倾向”或“可能”进行估计</p></li>
+<li><p>我们使用这些概率的截止值，以便将每种情况归类到一个类</p></li>
 </ol>
-</dd>
-</dl>
-<table class="docutils align-default">
+</div></blockquote>
+<p>Apriori算法优缺点如下：</p>
+</li>
+</ul>
+<blockquote>
+<div><table class="docutils align-default">
 <colgroup>
-<col style="width: 25%" />
-<col style="width: 75%" />
+<col style="width: 26%" />
+<col style="width: 74%" />
 </colgroup>
 <thead>
-<tr class="row-odd"><th class="head"><p>类别</p></th>
-<th class="head"><p>算法</p></th>
+<tr class="row-odd"><th class="head"><p>优点</p></th>
+<th class="head"><p>缺点</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>监督学习</p></td>
-<td><p>线性回归，逻辑回归，kNN k近邻，决策树，随机森林Random Forest</p></td>
-</tr>
-<tr class="row-odd"><td><p>非监督学习</p></td>
-<td><p>k-Means k均值，聚类，关联规则Apriori，协同过滤</p></td>
-</tr>
-<tr class="row-even"><td><p>新兴机器学习</p></td>
-<td><p>半监督学习，强化学习，马尔科夫决策过程，Q Learning</p></td>
+<tr class="row-even"><td><p>计算代价低，非常快</p></td>
+<td><p>容易欠拟合，分类精度不高</p></td>
 </tr>
 </tbody>
 </table>
@@ -219,10 +225,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="ml-lm.html" class="btn btn-neutral float-right" title="样例 - 回归" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="evaluationpredictiveperformance.html" class="btn btn-neutral float-right" title="机器学习评估预测性能" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral float-left" title="机器学习" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="ml-glm.html" class="btn btn-neutral float-left" title="样例 - 逻辑回归" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -94,6 +94,7 @@
 <li class="toctree-l2"><a class="reference internal" href="ml-knn.html">样例 - k-NN k近邻</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ml-classification_tree.html">样例 - 分类树、回归树</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ml-glm.html">样例 - 逻辑回归</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ml-arcf.html">样例 - 关联规则与协同过滤</a></li>
 <li class="toctree-l2"><a class="reference internal" href="evaluationpredictiveperformance.html">机器学习评估预测性能</a></li>
 <li class="toctree-l2"><a class="reference internal" href="oracleml4python.html">Oracle机器学习 for Python</a></li>
 </ul>
@@ -168,8 +169,10 @@
             
   <div class="section" id="id1">
 <h1>样例 - 回归<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
-<ul class="simple">
-<li><p>线性回归</p></li>
+<ul>
+<li><p>线性回归</p>
+<p>线性回归是预测定量响应变量的一个有用的工具。</p>
+</li>
 </ul>
 <blockquote>
 <div><table class="docutils align-default">
@@ -342,6 +345,22 @@
 <span class="n">Test</span> <span class="n">set</span> <span class="m">59.26886</span> <span class="m">1334.978</span> <span class="m">1024.979</span> <span class="m">-0.4212544</span> <span class="m">9.357492</span>
 </pre></div>
 </div>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>线性回归存在的常见问题</p>
+</div>
+<p>常见问题说明及解决参考如下：</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>数据响应变量与预测变量非线性：使用残差图判断，残差计算使用函数residules(lm.fit)</p></li>
+<li><p>误差项自相关（时间序列非常常见）：邻近的残差机会相等，残差图判断</p></li>
+<li><p>误差项方差非恒定：残差图判断，如果呈漏斗状，则判断非恒定</p></li>
+<li><p>离群点：通过学生化残差计算可以判断，使用rstudent(lm.fit)计算</p></li>
+<li><p>高杠杆点：计算杠杆统计量，如果hi &gt; (p +1) / n 则属于高杠杆，使用hatvalues(lm.fit)计算</p></li>
+<li><p>共线性：预测变量的相关系数矩阵计算，多重共线性可以使用方差膨胀因子计算。函数：vif(lm.fit)，当VIF值大于5或10是确认存在共线性</p></li>
+<li><p>零假设H0：当响应变量与预测变量无关时，统计量F约等于1，当F &gt; 1时，拒绝响应变量与预测变量无关的零假设</p></li>
+</ol>
+</div></blockquote>
 </div>
 
 

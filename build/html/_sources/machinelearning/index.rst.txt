@@ -16,6 +16,7 @@
    ml-knn.rst
    ml-classification_tree.rst
    ml-glm.rst
+   ml-arcf.rst
    evaluationpredictiveperformance.rst
    oracleml4python.rst
 
