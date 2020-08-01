@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<html class="writer-html5" lang="zh-CN" >
 <head>
   <meta charset="utf-8">
   
@@ -12,28 +11,31 @@
   
 
   
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜索" href="../search.html" />
     <link rel="next" title="面向对象编程" href="oop.html" />
@@ -51,7 +53,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> Data Science
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> Data Science
           
 
           
@@ -74,6 +76,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -110,6 +113,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -148,7 +152,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="index.html">Python</a> &raquo;</li>
         
@@ -189,9 +193,9 @@
 
 <span class="n">x</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
-   <span class="k">print</span><span class="p">(</span><span class="s1">&#39;x is the right number: {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+   <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;x is the right number: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
 <span class="k">else</span><span class="p">:</span>
-   <span class="k">print</span><span class="p">(</span><span class="s1">&#39;x is the wrong number: {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+   <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;x is the wrong number: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
 <span class="c1">#输出: x is the right number: 3</span>
 </pre></div>
 </div>
@@ -201,13 +205,13 @@
 <p>参考如下多条件样例链式条件Chained conditionals:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;请输入一个字母:&quot;</span><span class="p">)</span>
 <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;a&#39;</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;输入的字母为:a&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;输入的字母为:a&#39;</span><span class="p">)</span>
 <span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;输入的字母为:b&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;输入的字母为:b&#39;</span><span class="p">)</span>
 <span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;输入的字母为:c&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;输入的字母为:c&#39;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;用户输入的字母不符合要求&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;用户输入的字母不符合要求&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -230,7 +234,7 @@
 <span class="k">for</span> <span class="n">pdb_name</span> <span class="ow">in</span> <span class="n">pdb_list</span><span class="p">:</span>
     <span class="c1"># 拼接一个插入的SQL语句，用于程序调用并执行</span>
     <span class="n">statement</span> <span class="o">=</span> <span class="s1">&#39;insert into DB_CLOUD_PDBS(PDB_NAME) VALUES&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">pdb_name</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">statement</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">statement</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -240,7 +244,7 @@
 <li><p>生成2 <sup>x</sup> 次方，x为0-10的数字，最大生成的值为2 <sup>10</sup> =1024</p></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">11</span><span class="p">):</span>   <span class="c1"># Generate numbers 0 to 10</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="o">**</span><span class="n">x</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="o">**</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -263,7 +267,7 @@
         <span class="n">guess_new</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;猜的数字小了，请重新输入数字: &#39;</span><span class="p">))</span>
     <span class="n">guess</span> <span class="o">=</span> <span class="n">guess_new</span>
 
-<span class="k">print</span><span class="p">(</span><span class="s1">&#39;恭喜你，猜对了&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;恭喜你，猜对了&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -287,11 +291,11 @@
 </li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
-   <span class="k">print</span><span class="p">(</span><span class="s2">&quot;---i1 is--{}---printed--&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+   <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---i1 is--</span><span class="si">{}</span><span class="s2">---printed--&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
-       <span class="k">print</span><span class="p">(</span><span class="s2">&quot;-j1-{}---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
+       <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-j1-</span><span class="si">{}</span><span class="s2">---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
        <span class="k">if</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
-           <span class="k">print</span><span class="p">(</span><span class="s2">&quot;--j2-{}---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
+           <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--j2-</span><span class="si">{}</span><span class="s2">---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
            <span class="k">break</span>
 </pre></div>
 </div>
@@ -308,13 +312,13 @@
 </li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
-   <span class="k">print</span><span class="p">(</span><span class="s2">&quot;---i1 is--{}---printed--&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+   <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---i1 is--</span><span class="si">{}</span><span class="s2">---printed--&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
-       <span class="k">print</span><span class="p">(</span><span class="s2">&quot;-j1-{}---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
+       <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-j1-</span><span class="si">{}</span><span class="s2">---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
        <span class="k">if</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
-           <span class="k">print</span><span class="p">(</span><span class="s2">&quot;--j2-{}---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
+           <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--j2-</span><span class="si">{}</span><span class="s2">---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
            <span class="k">continue</span>
-           <span class="k">print</span><span class="p">(</span><span class="s2">&quot;--j3-{}---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
+           <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--j3-</span><span class="si">{}</span><span class="s2">---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
 
 
 <span class="c1"># 注意观察i1 j2 j3值在循环中的变化</span>
@@ -334,13 +338,13 @@
 </li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;---i1 is--{}---printed--&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---i1 is--</span><span class="si">{}</span><span class="s2">---printed--&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;-j1-{}---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-j1-</span><span class="si">{}</span><span class="s2">---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
         <span class="k">if</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
-            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;--j2-{}---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--j2-</span><span class="si">{}</span><span class="s2">---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
             <span class="k">pass</span>
-            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;--j3-{}---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--j3-</span><span class="si">{}</span><span class="s2">---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>– <strong>exit()</strong></p>
@@ -350,13 +354,13 @@
 </ul>
 </div></blockquote>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;---i1 is--{}---printed--&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---i1 is--</span><span class="si">{}</span><span class="s2">---printed--&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;-j1-{}---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-j1-</span><span class="si">{}</span><span class="s2">---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
         <span class="k">if</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
-            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;--j2-{}---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
-            <span class="nb">exit</span><span class="p">()</span>
-            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;--j3-{}---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--j2-</span><span class="si">{}</span><span class="s2">---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
+            <span class="n">exit</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--j3-</span><span class="si">{}</span><span class="s2">---printed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
 </pre></div>
 </div>
 <div class="line-block">
@@ -391,11 +395,19 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Shaofei Wang
+        
+        &copy; 版权所有 2019, Shaofei Wang
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -406,7 +418,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

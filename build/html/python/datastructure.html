@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<html class="writer-html5" lang="zh-CN" >
 <head>
   <meta charset="utf-8">
   
@@ -12,28 +11,31 @@
   
 
   
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜索" href="../search.html" />
     <link rel="next" title="Conditionals and Loops 条件循环" href="conditionals_loops.html" />
@@ -51,7 +53,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> Data Science
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> Data Science
           
 
           
@@ -74,6 +76,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -107,6 +110,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -145,7 +149,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="index.html">Python</a> &raquo;</li>
         
@@ -207,7 +211,7 @@ try except finally raise for while lambda is  del</font><div class="line-block">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#导入keyword 模块</span>
 <span class="kn">import</span> <span class="nn">keyword</span>
 <span class="c1">#显示所有关键字</span>
-<span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">keyword</span><span class="o">.</span><span class="n">kwlist</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">keyword</span><span class="o">.</span><span class="n">kwlist</span><span class="p">))</span>
 <span class="c1"># 返回list</span>
 <span class="n">keyword</span><span class="o">.</span><span class="n">kwlist</span>
 <span class="p">[</span><span class="s1">&#39;False&#39;</span><span class="p">,</span> <span class="s1">&#39;None&#39;</span><span class="p">,</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="s1">&#39;and&#39;</span><span class="p">,</span> <span class="s1">&#39;as&#39;</span><span class="p">,</span> <span class="s1">&#39;assert&#39;</span><span class="p">,</span> <span class="s1">&#39;break&#39;</span><span class="p">,</span> <span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;continue&#39;</span><span class="p">,</span> <span class="s1">&#39;def&#39;</span><span class="p">,</span> <span class="s1">&#39;del&#39;</span><span class="p">,</span> <span class="s1">&#39;elif&#39;</span><span class="p">,</span> <span class="s1">&#39;else&#39;</span><span class="p">,</span> <span class="s1">&#39;except&#39;</span><span class="p">,</span> <span class="s1">&#39;finally&#39;</span><span class="p">,</span> <span class="s1">&#39;for&#39;</span><span class="p">,</span> <span class="s1">&#39;from&#39;</span><span class="p">,</span> <span class="s1">&#39;global&#39;</span><span class="p">,</span> <span class="s1">&#39;if&#39;</span><span class="p">,</span> <span class="s1">&#39;import&#39;</span><span class="p">,</span> <span class="s1">&#39;in&#39;</span><span class="p">,</span> <span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="s1">&#39;lambda&#39;</span><span class="p">,</span> <span class="s1">&#39;nonlocal&#39;</span><span class="p">,</span> <span class="s1">&#39;not&#39;</span><span class="p">,</span> <span class="s1">&#39;or&#39;</span><span class="p">,</span> <span class="s1">&#39;pass&#39;</span><span class="p">,</span> <span class="s1">&#39;raise&#39;</span><span class="p">,</span> <span class="s1">&#39;return&#39;</span><span class="p">,</span> <span class="s1">&#39;try&#39;</span><span class="p">,</span> <span class="s1">&#39;while&#39;</span><span class="p">,</span> <span class="s1">&#39;with&#39;</span><span class="p">,</span> <span class="s1">&#39;yield&#39;</span><span class="p">]</span>
@@ -248,14 +252,14 @@ try except finally raise for while lambda is  del</font><div class="line-block">
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">88</span>
 <span class="n">b</span> <span class="o">=</span> <span class="mi">8</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a</span> <span class="o">/</span> <span class="n">b</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a</span> <span class="o">//</span> <span class="n">b</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a</span> <span class="o">%</span> <span class="n">b</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a</span> <span class="o">**</span> <span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">/</span> <span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">//</span> <span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">%</span> <span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">**</span> <span class="n">b</span><span class="p">)</span>
 <span class="c1"># 使用type检查变量的类型</span>
-<span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">))</span> <span class="c1"># &lt;class &#39;int&#39;&gt;</span>
-<span class="k">print</span><span class="p">(</span><span class="s1">&#39;{0} + {1} 等于 {2}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">))</span> <span class="c1"># 88 + 8 等于 96</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">))</span> <span class="c1"># &lt;class &#39;int&#39;&gt;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{0}</span><span class="s1"> + </span><span class="si">{1}</span><span class="s1"> 等于 </span><span class="si">{2}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">))</span> <span class="c1"># 88 + 8 等于 96</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -363,7 +367,7 @@ try except finally raise for while lambda is  del</font><div class="line-block">
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">88</span>
 <span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="s1">&#39;abraceaddabra&#39;</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">not</span> <span class="ow">in</span> <span class="s1">&#39;abc&#39;</span><span class="p">}</span>
-<span class="k">print</span> <span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1"># 输出结果 {&#39;r&#39;, &#39;d&#39;, &#39;e&#39;}</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1"># 输出结果 {&#39;r&#39;, &#39;d&#39;, &#39;e&#39;}</span>
 </pre></div>
 </div>
 <p><strong>5. 字典</strong></p>
@@ -382,14 +386,14 @@ try except finally raise for while lambda is  del</font><div class="line-block">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 字典循环，同时取出关键字与对应值</span>
 <span class="n">phone</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;zhangsan&#39;</span><span class="p">:</span> <span class="mi">82668888</span><span class="p">,</span> <span class="s1">&#39;wangwu&#39;</span><span class="p">:</span> <span class="mi">95595</span><span class="p">}</span>
     <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">phone</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
     <span class="c1"># 输出</span>
     <span class="c1"># zhangsan 82668888</span>
     <span class="c1"># wangwu 95595</span>
 
 <span class="c1"># 序列循环,enumerate() 函数可以将索引位置和其对应的值</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="s1">&#39;wangwu&#39;</span><span class="p">,</span> <span class="s1">&#39;zhangsan&#39;</span><span class="p">,</span> <span class="s1">&#39;haha&#39;</span><span class="p">]):</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
  <span class="c1"># 输出</span>
  <span class="c1"># 0 wangwu</span>
  <span class="c1"># 1 zhangsan</span>
@@ -399,7 +403,7 @@ try except finally raise for while lambda is  del</font><div class="line-block">
 <span class="n">question</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;why&#39;</span><span class="p">,</span><span class="s1">&#39;how much&#39;</span><span class="p">]</span>
 <span class="n">answer</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;because ah&#39;</span><span class="p">,</span> <span class="s1">&#39;5$&#39;</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">q</span><span class="p">,</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">question</span><span class="p">,</span> <span class="n">answer</span><span class="p">):</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
    <span class="c1"># 输出</span>
    <span class="c1"># why because ah</span>
    <span class="c1"># how much 5$</span>
@@ -407,7 +411,7 @@ try except finally raise for while lambda is  del</font><div class="line-block">
 
 <span class="c1"># 逆序对序列/list排序</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
-   <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+   <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
    <span class="c1"># 输出</span>
    <span class="c1"># how much</span>
    <span class="c1"># why</span>
@@ -428,7 +432,7 @@ try except finally raise for while lambda is  del</font><div class="line-block">
 <span class="kn">import</span> <span class="nn">time</span>
    <span class="k">def</span> <span class="nf">tail</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
        <span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># 跳到文件的EOF最后</span>
-       <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+       <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
            <span class="n">line</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span> <span class="c1"># 尝试读取一个新的文本行</span>
            <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span><span class="p">:</span>        <span class="c1"># 如果没内容，暂时休眠并再次尝试</span>
                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
@@ -444,7 +448,7 @@ try except finally raise for while lambda is  del</font><div class="line-block">
    <span class="n">wwwlog</span> <span class="o">=</span> <span class="n">tail</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;access.log&quot;</span><span class="p">))</span>
    <span class="n">rlines</span> <span class="o">=</span> <span class="n">grep</span><span class="p">(</span><span class="n">wwwlog</span><span class="p">,</span> <span class="s2">&quot;R&quot;</span><span class="p">)</span>
    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">rlines</span><span class="p">:</span>
-       <span class="k">print</span><span class="p">(</span><span class="s1">&#39;R language exists in {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">line</span><span class="p">))</span>
+       <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;R language exists in </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">line</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>执行 python tail.py
@@ -473,11 +477,11 @@ try except finally raise for while lambda is  del</font><div class="line-block">
 
 <span class="k">def</span> <span class="nf">consumer</span><span class="p">():</span>
     <span class="n">r</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
         <span class="n">n</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">r</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">n</span><span class="p">:</span>
             <span class="k">return</span>
-        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;[CONSUMER] Consuming </span><span class="si">%s</span><span class="s1">...&#39;</span> <span class="o">%</span> <span class="n">n</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;[CONSUMER] Consuming </span><span class="si">%s</span><span class="s1">...&#39;</span> <span class="o">%</span> <span class="n">n</span><span class="p">)</span>
         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
         <span class="n">r</span> <span class="o">=</span> <span class="s1">&#39;I am OK&#39;</span>
 
@@ -486,9 +490,9 @@ try except finally raise for while lambda is  del</font><div class="line-block">
     <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">while</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">:</span>
         <span class="n">n</span> <span class="o">=</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span>
-        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;[PRODUCER] Producing </span><span class="si">%s</span><span class="s1">...&#39;</span> <span class="o">%</span> <span class="n">n</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;[PRODUCER] Producing </span><span class="si">%s</span><span class="s1">...&#39;</span> <span class="o">%</span> <span class="n">n</span><span class="p">)</span>
         <span class="n">r</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="c1"># 切换到consumer()执行</span>
-        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;[PRODUCER] Consumer return: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">r</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;[PRODUCER] Consumer return: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">r</span><span class="p">)</span>
     <span class="n">c</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
 <span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span><span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
@@ -549,11 +553,19 @@ try except finally raise for while lambda is  del</font><div class="line-block">
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Shaofei Wang
+        
+        &copy; 版权所有 2019, Shaofei Wang
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -564,7 +576,6 @@ try except finally raise for while lambda is  del</font><div class="line-block">
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

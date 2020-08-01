@@ -1,42 +1,44 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<html class="writer-html5" lang="zh-CN" >
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>机器学习概览 &mdash; Data Science 1.0 文档</title>
+  <title>算法 &mdash; Data Science 1.0 文档</title>
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script type="text/javascript" src="../_static/translations.js"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
 
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜索" href="../search.html" />
-    <link rel="next" title="样例 - 回归" href="ml-lm.html" />
+    <link rel="next" title="机器学习概览" href="machinelearning1.html" />
     <link rel="prev" title="机器学习" href="index.html" /> 
 </head>
 
@@ -51,7 +53,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> Data Science
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> Data Science
           
 
           
@@ -74,6 +76,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -87,7 +90,15 @@
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../R/index.html">R</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">机器学习</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">机器学习概览</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">算法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#header-n4">机器学习算法</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#header-n6">监督学习算法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#header-n94">非监督学习算法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="machinelearning1.html">机器学习概览</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ml-lm.html">样例 - 回归</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ml-bayesian.html">样例 - 贝叶斯</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ml-tfidf.html">样例 - TFIDF</a></li>
@@ -106,6 +117,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -144,11 +156,11 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="index.html">机器学习</a> &raquo;</li>
         
-      <li>机器学习概览</li>
+      <li>算法</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -167,48 +179,188 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="id1">
-<h1>机器学习概览<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+  <div class="contents topic" id="id1">
+<p class="topic-title">目录</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#header-n2" id="id18">算法</a></p>
+<ul>
+<li><p><a class="reference internal" href="#header-n4" id="id19">机器学习算法</a></p>
+<ul>
+<li><p><a class="reference internal" href="#header-n6" id="id20">监督学习算法</a></p>
+<ul>
+<li><p><a class="reference internal" href="#header-n7" id="id21">一、朴素贝叶斯</a></p>
+<ul>
+<li><p><a class="reference internal" href="#header-n21" id="id22">1.1 高斯朴素贝叶斯</a></p></li>
+<li><p><a class="reference internal" href="#header-n31" id="id23">1.2 多项式分布朴素贝叶斯</a></p></li>
+<li><p><a class="reference internal" href="#header-n38" id="id24">1.3 伯努利朴素贝叶斯</a></p></li>
+<li><p><a class="reference internal" href="#header-n44" id="id25">1.4 基于外存的朴素贝叶斯模型拟合</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#header-n50" id="id26">二、广义线性模型</a></p></li>
+<li><p><a class="reference internal" href="#header-n61" id="id27">三、线性判别分析与二次线性判别分析</a></p></li>
+<li><p><a class="reference internal" href="#header-n67" id="id28">四、支持向量机</a></p></li>
+<li><p><a class="reference internal" href="#knn" id="id29">五、最近邻KNN</a></p></li>
+<li><p><a class="reference internal" href="#header-n81" id="id30">六、决策树</a></p></li>
+<li><p><a class="reference internal" href="#header-n88" id="id31">七、集成方法</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#header-n94" id="id32">非监督学习算法</a></p>
+<ul>
+<li><p><a class="reference internal" href="#header-n96" id="id33">一、高斯混合模型</a></p></li>
+<li><p><a class="reference internal" href="#header-n102" id="id34">二、聚类</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="header-n2">
+<span id="id2"></span><h1><a class="toc-backref" href="#id18">算法</a><a class="headerlink" href="#header-n2" title="永久链接至标题">¶</a></h1>
+<p>常用算法</p>
+<div class="section" id="header-n4">
+<span id="id3"></span><h2><a class="toc-backref" href="#id19">机器学习算法</a><a class="headerlink" href="#header-n4" title="永久链接至标题">¶</a></h2>
+<div class="section" id="header-n6">
+<span id="id4"></span><h3><a class="toc-backref" href="#id20">监督学习算法</a><a class="headerlink" href="#header-n6" title="永久链接至标题">¶</a></h3>
+<div class="section" id="header-n7">
+<span id="id5"></span><h4><a class="toc-backref" href="#id21">一、朴素贝叶斯</a><a class="headerlink" href="#header-n7" title="永久链接至标题">¶</a></h4>
 <blockquote>
-<div><p>机器学习算法分为三大类：监督学习、非监督学习、新兴机器学习</p>
-<p>监督学习中，主要有三大类预测输出变量的类型：</p>
-<blockquote>
-<div><ol class="arabic simple">
-<li><p>预测数值变量：如房价</p></li>
-<li><p>预测类成员：预测类别变量，如会不会采购？</p></li>
-<li><p>倾向性预测</p></li>
-</ol>
+<div><p>请以<strong>嫁与不嫁高富帅矮矬穷</strong>的分类做理解</p>
+<p>假设：每对特征之间相互<strong>独立</strong>，
+很多情况下，朴素贝叶斯工作情况良好，特别是文本分类、文档分类、语言主题分类、垃圾邮件过滤</p>
 </div></blockquote>
-<dl class="simple">
-<dt>关于分类预测，要注意分类器的两种给不同的预测用法：</dt><dd><ol class="arabic simple">
-<li><p>分类：目标是用于预测新记录属于哪个类成员；</p></li>
-<li><p>排序：目标是在一组新记录中检测最有可能属于某个兴趣类别的记录，按概率排序；</p></li>
-</ol>
-</dd>
-</dl>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 75%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>类别</p></th>
-<th class="head"><p>算法</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>监督学习</p></td>
-<td><p>线性回归，逻辑回归，kNN k近邻，决策树，随机森林Random Forest</p></td>
-</tr>
-<tr class="row-odd"><td><p>非监督学习</p></td>
-<td><p>k-Means k均值，聚类，关联规则Apriori，协同过滤</p></td>
-</tr>
-<tr class="row-even"><td><p>新兴机器学习</p></td>
-<td><p>半监督学习，强化学习，马尔科夫决策过程，Q Learning</p></td>
-</tr>
-</tbody>
-</table>
-</div></blockquote>
+<p>给定一个类别 <span class="math notranslate nohighlight">\(y\)</span> 和一个从 <span class="math notranslate nohighlight">\(x_1\)</span>到 <span class="math notranslate nohighlight">\(x_n\)</span>
+的相关的特征向量， 贝叶斯定理阐述了以下关系，方程式如下：</p>
+<div class="math notranslate nohighlight">
+\[P(y \mid x_1, \dots, x_n) = \frac{P(y) P(x_1, \dots x_n \mid y)}{P(x_1, \dots, x_n)}  = \frac{P(y) P(x_1  \mid y) \dots P(x_n \mid y)}{P(x_1) \dots P(x_n)}\]</div>
+<p>关系简化为如下：</p>
+<div class="math notranslate nohighlight">
+\[P(y \mid x_1, \dots, x_n) = \frac{P(y) \prod_{i=1}^{n} P(x_i \mid y)}{P(x_1, \dots, x_n)}]\]</div>
+<p>在如上公式分类规则中，给定的如下分母<span class="math notranslate nohighlight">\(P(x_1, \dots , x_n) = P(x_1) \dots P(x_n)\)</span>
+的<strong>分类</strong>算法中，</p>
+<div class="math notranslate nohighlight">
+\[{P(x_1, \dots , x_n)} = P(x_1) \dots P(x_n)\]</div>
+<p>这是一个 <strong>常量</strong>
+，在类别对比中，分母相同，所以可以直接去掉分母，只比较分子，公式<strong>简化为</strong>如下分类规则：</p>
+<div class="math notranslate nohighlight">
+\[P(y \mid x_1, \dots, x_n) \propto P(y) \prod_{i=1}^{n} P(x_i \mid y)\]</div>
+<div class="math notranslate nohighlight">
+\[\Downarrow\]</div>
+<div class="math notranslate nohighlight">
+\[\hat{y} = \arg\max_y P(y) \prod_{i=1}^{n} P(x_i \mid y),\]</div>
+<div class="section" id="header-n21">
+<span id="id6"></span><h5><a class="toc-backref" href="#id22">1.1 高斯朴素贝叶斯</a><a class="headerlink" href="#header-n21" title="永久链接至标题">¶</a></h5>
+<p>GuassianNB
+实现了运用分类的高斯朴素贝叶斯算法，特征的可能性（即概率）假设为高斯分布：</p>
+<div class="math notranslate nohighlight">
+\[P(x_i \mid y) = \frac{1}{\sqrt{2 \pi \sigma_y^2}} exp(- \frac {(x_i - \mu_y)^2}{2 \sigma_y^2})\]</div>
+<ul>
+<li><p>说明：参数<span class="math notranslate nohighlight">\(\mu_y\)</span>与<span class="math notranslate nohighlight">\(\sigma_y\)</span>
+使用<strong>最大似然法估计</strong></p></li>
+<li><p>代码参考：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
+<span class="n">iris</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_iris</span><span class="p">()</span>
+<span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">GaussianNB</span>
+<span class="n">gnb</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">gnb</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span><span class="p">)</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of mislabeled points out of a total </span><span class="si">%d</span><span class="s2"> points : </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],(</span><span class="n">iris</span><span class="o">.</span><span class="n">target</span> <span class="o">!=</span> <span class="n">y_pred</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()))</span>
+<span class="n">Number</span> <span class="n">of</span> <span class="n">mislabeled</span> <span class="n">points</span> <span class="n">out</span> <span class="n">of</span> <span class="n">a</span> <span class="n">total</span> <span class="mi">150</span> <span class="n">points</span> <span class="p">:</span> <span class="mi">6</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="header-n31">
+<span id="id7"></span><h5><a class="toc-backref" href="#id23">1.2 多项式分布朴素贝叶斯</a><a class="headerlink" href="#header-n31" title="永久链接至标题">¶</a></h5>
+<p>MultinomialNB 实现了服从多项分布数据的朴素贝叶斯算法，适用于文本分类，
+与TF-IDF 同属于适用文本分类的<strong>两大经典算法</strong></p>
+<ul class="simple">
+<li><p>说明</p></li>
+<li><p>用途</p></li>
+</ul>
+</div>
+<div class="section" id="header-n38">
+<span id="id8"></span><h5><a class="toc-backref" href="#id24">1.3 伯努利朴素贝叶斯</a><a class="headerlink" href="#header-n38" title="永久链接至标题">¶</a></h5>
+<ul class="simple">
+<li><p>说明</p></li>
+<li><p>用途</p></li>
+</ul>
+</div>
+<div class="section" id="header-n44">
+<span id="id9"></span><h5><a class="toc-backref" href="#id25">1.4 基于外存的朴素贝叶斯模型拟合</a><a class="headerlink" href="#header-n44" title="永久链接至标题">¶</a></h5>
+<ul class="simple">
+<li><p>说明</p></li>
+<li><p>用途</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="header-n50">
+<span id="id10"></span><h4><a class="toc-backref" href="#id26">二、广义线性模型</a><a class="headerlink" href="#header-n50" title="永久链接至标题">¶</a></h4>
+<p>目标值 <span class="math notranslate nohighlight">\(y\)</span> 是输入变量 <span class="math notranslate nohighlight">\(x\)</span> 的线性组合。定义向量
+:math:` (w_1, dots , w_p)`代表系数coef_，<span class="math notranslate nohighlight">\(w_0\)</span>
+代表截距intercept_，数学概念表示为：</p>
+<div class="math notranslate nohighlight">
+\[\hat y (w,x) = w_0 + w_1 x_1 + \dots + w_p x_p\]</div>
+<ul class="simple">
+<li></li>
+<li><p>用途</p></li>
+</ul>
+</div>
+<div class="section" id="header-n61">
+<span id="id11"></span><h4><a class="toc-backref" href="#id27">三、线性判别分析与二次线性判别分析</a><a class="headerlink" href="#header-n61" title="永久链接至标题">¶</a></h4>
+<ul class="simple">
+<li><p>说明</p></li>
+<li><p>用途</p></li>
+</ul>
+</div>
+<div class="section" id="header-n67">
+<span id="id12"></span><h4><a class="toc-backref" href="#id28">四、支持向量机</a><a class="headerlink" href="#header-n67" title="永久链接至标题">¶</a></h4>
+<ul class="simple">
+<li><p>说明</p></li>
+<li><p>用途</p></li>
+</ul>
+</div>
+<div class="section" id="knn">
+<span id="header-n73"></span><h4><a class="toc-backref" href="#id29">五、最近邻KNN</a><a class="headerlink" href="#knn" title="永久链接至标题">¶</a></h4>
+<ul class="simple">
+<li><p>说明</p></li>
+<li><p>用途</p></li>
+</ul>
+</div>
+<div class="section" id="header-n81">
+<span id="id13"></span><h4><a class="toc-backref" href="#id30">六、决策树</a><a class="headerlink" href="#header-n81" title="永久链接至标题">¶</a></h4>
+<ul class="simple">
+<li><p>说明</p></li>
+<li><p>用途</p></li>
+</ul>
+</div>
+<div class="section" id="header-n88">
+<span id="id14"></span><h4><a class="toc-backref" href="#id31">七、集成方法</a><a class="headerlink" href="#header-n88" title="永久链接至标题">¶</a></h4>
+<ul class="simple">
+<li><p>说明</p></li>
+<li><p>用途</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="header-n94">
+<span id="id15"></span><h3><a class="toc-backref" href="#id32">非监督学习算法</a><a class="headerlink" href="#header-n94" title="永久链接至标题">¶</a></h3>
+<div class="section" id="header-n96">
+<span id="id16"></span><h4><a class="toc-backref" href="#id33">一、高斯混合模型</a><a class="headerlink" href="#header-n96" title="永久链接至标题">¶</a></h4>
+<ul class="simple">
+<li><p>说明</p></li>
+<li><p>用途</p></li>
+</ul>
+</div>
+<div class="section" id="header-n102">
+<span id="id17"></span><h4><a class="toc-backref" href="#id34">二、聚类</a><a class="headerlink" href="#header-n102" title="永久链接至标题">¶</a></h4>
+<ul class="simple">
+<li><p>说明</p></li>
+<li><p>用途</p></li>
+</ul>
+</div>
+</div>
+</div>
 </div>
 
 
@@ -219,7 +371,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="ml-lm.html" class="btn btn-neutral float-right" title="样例 - 回归" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="machinelearning1.html" class="btn btn-neutral float-right" title="机器学习概览" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral float-left" title="机器学习" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -231,11 +383,19 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Shaofei Wang
+        
+        &copy; 版权所有 2019, Shaofei Wang
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -246,7 +406,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

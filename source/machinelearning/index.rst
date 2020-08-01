@@ -8,8 +8,9 @@
 
 .. toctree::
    :maxdepth: 2
-
+   
    machinelearning.rst
+   machinelearning1.rst
    ml-lm.rst
    ml-bayesian.rst
    ml-tfidf.rst

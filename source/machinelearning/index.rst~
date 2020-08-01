@@ -8,7 +8,8 @@
 
 .. toctree::
    :maxdepth: 2
-
+   
+   ml_all.rst
    machinelearning.rst
    ml-lm.rst
    ml-bayesian.rst
@@ -16,6 +17,7 @@
    ml-knn.rst
    ml-classification_tree.rst
    ml-glm.rst
+   ml-arcf.rst
    evaluationpredictiveperformance.rst
    oracleml4python.rst
 
