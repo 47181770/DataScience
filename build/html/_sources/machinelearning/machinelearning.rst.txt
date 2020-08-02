@@ -20,7 +20,7 @@
 一、朴素贝叶斯
 ^^^^^^^^^^^^^^
 
-   请以\ **嫁与不嫁高富帅矮矬穷**\ 的分类做理解
+   请以\ **嫁与不嫁高富帅矮矬穷或者西瓜书**\ 的分类做理解
 
    假设：每对特征之间相互\ **独立**\ ，
    很多情况下，朴素贝叶斯工作情况良好，特别是文本分类、文档分类、语言主题分类、垃圾邮件过滤
@@ -30,25 +30,35 @@
 
 .. math:: P(y \mid x_1, \dots, x_n) = \frac{P(y) P(x_1, \dots x_n \mid y)}{P(x_1, \dots, x_n)}  = \frac{P(y) P(x_1  \mid y) \dots P(x_n \mid y)}{P(x_1) \dots P(x_n)}
 
-关系简化为如下：
+:math:`P(y)` 是类别的“先验”概率，\ :math:`P(x \mid y)`
+是特征\ :math:`x`\ 对于类别标记\ :math:`y`\ 的类条件概率，或称为“似然”(likelihood)；简化为如下：
 
 .. math:: P(y \mid x_1, \dots, x_n) = \frac{P(y) \prod_{i=1}^{n} P(x_i \mid y)}{P(x_1, \dots, x_n)}]
 
 在如上公式分类规则中，给定的如下分母\ :math:`P(x_1, \dots , x_n) = P(x_1) \dots P(x_n)`
 的\ **分类**\ 算法中，
 
-.. math:: {P(x_1, \dots , x_n)} = P(x_1) \dots P(x_n)
+.. math::
+
+   {P(x_1, \dots , x_n)} = P(x_1) \dots P(x_n) 
+   \quad 对所有类标记相同
 
 这是一个 **常量**
-，在类别对比中，分母相同，所以可以直接去掉分母，只比较分子，公式\ **简化为**\ 如下分类规则：
+，在类别对比中，分母相同，所以可以直接去掉分母，只比较分子，公式\ **简化为**\ 如下贝叶斯判定规则：
 
 .. math:: P(y \mid x_1, \dots, x_n) \propto P(y) \prod_{i=1}^{n} P(x_i \mid y)
 
 .. math:: \Downarrow
 
-.. math:: \hat{y} = \arg\max_y P(y) \prod_{i=1}^{n} P(x_i \mid y),
+.. math::
 
-.. _header-n21:
+   \hat{y} = \arg\max_y P(y) \prod_{i=1}^{n} P(x_i \mid y),
+   
+   \quad 对于“连乘”，通常通过取对数的方式转成“连加”，避免数值下溢
+
+朴素贝叶斯分类器的训练过程是基于训练集来估计类别先验概率\ :math:`P(y)`\ ，并为每个属性/特征\ :math:`x_i`\ 估计条件概率\ :math:`P(x_i \mid y)`
+
+.. _header-n224:
 
 1.1 高斯朴素贝叶斯
 ''''''''''''''''''
@@ -58,19 +68,19 @@ GuassianNB
 
 .. math:: P(x_i \mid y) = \frac{1}{\sqrt{2 \pi \sigma_y^2}} exp(- \frac {(x_i - \mu_y)^2}{2 \sigma_y^2})
 
--  说明：参数\ :math:`\mu_y`\ 与\ :math:`\sigma_y`
-   使用\ **最大似然法估计**
+-  说明：对连续属性而言，概率密度函数等式右边其参数为\ :math:`\mu_y 均值`\ 与\ :math:`\sigma_y 方差`
+   ，使用\ **最大似然法估计**
 
 -  代码参考：
 
    .. code:: python
 
-      from sklearn import datasets
-      iris = datasets.load_iris()
-      from sklearn.naive_bayes import GaussianNB
-      gnb = GaussianNB()
-      y_pred = gnb.fit(iris.data, iris.target).predict(iris.data)
-      print("Number of mislabeled points out of a total %d points : %d" % (iris.data.shape[0],(iris.target != y_pred).sum()))
+      from sklearn import datasets
+      iris = datasets.load_iris()
+      from sklearn.naive_bayes import GaussianNB
+      gnb = GaussianNB()
+      y_pred = gnb.fit(iris.data, iris.target).predict(iris.data)
+      print("Number of mislabeled points out of a total %d points : %d" % (iris.data.shape[0],(iris.target != y_pred).sum()))
       Number of mislabeled points out of a total 150 points : 6
 
 .. _header-n31:
@@ -78,30 +88,44 @@ GuassianNB
 1.2 多项式分布朴素贝叶斯
 ''''''''''''''''''''''''
 
-MultinomialNB 实现了服从多项分布数据的朴素贝叶斯算法，适用于文本分类，
-与TF-IDF 同属于适用文本分类的\ **两大经典算法**
+MultinomialNB 实现了服从多项分布数据的朴素贝叶斯算法（MNB）， 与TF-IDF
+同属于适用文本分类的\ **两大经典算法**
 
--  说明：文本分类表现良好
+-  说明：对\ **离散**\ 属性而言，对每一个类别\ :math:`y`\ ，\ :math:`n`\ 是特征数（在文本分类中是词汇量vocabulary），样本中特征\ :math:`x_i`\ 属于类别\ :math:`y`\ 的概率\ :math:`P(x_i \mid y)`\ 可估计为：
 
--  用途
+   .. math:: P(x_i \mid y) = \frac {|D_{y,xi}|}{|D_y|}
+
+   .. math:: \Downarrow
+
+   为了避免其他属性携带的信息被训练集中未出现的属性值“抹去”，在估计概率值时通常要进行“平滑(smoothing)”，常用拉普拉斯平滑(Lapalce
+   smoothing :math:`\alpha = 1`)或Lidstone平滑(Lidstone smoothing
+   :math:`\alpha < 1`)
+   ，\ :math:`N`\ 表示训练集\ :math:`D`\ 中可能的类别数，\ :math:`|D_y|`\ 是类别中所有的特征的总计数，\ :math:`|D_{y,x_1}|`\ 是特征在训练集的样本中出现的次数，公式(8)修正为如下：
+
+   .. math:: \hat P(x_i \mid y) = \frac {|D_{y,xi}| + \alpha}{|D_y| + \alpha N}
+
+-  用途：本算法在文本分类表现良好
 
 .. _header-n38:
 
 1.3 伯努利朴素贝叶斯
 ''''''''''''''''''''
 
--  说明
+-  说明：BernoulliNB实现了用于多重伯努利分布数据的朴素贝叶斯训练和分类算法，即有多个特征，但每个特征都假设是一个二元变量(Bernoulli，Boolean)，要求样本特征以二元值特征向量表示：
 
--  用途
+   .. math:: P(x_i \mid y) = P(i \mid y) x_i + (1- P(i \mid y))(1 - x_i)
+
+-  用途：适合在短文本分类
 
 .. _header-n44:
 
-1.4 基于外存的朴素贝叶斯模型拟合
-''''''''''''''''''''''''''''''''
+1.4 补充朴素贝叶斯
+''''''''''''''''''
 
--  说明
+-  说明：ComplementNB
+   实现了补充朴素贝叶斯（CNB）算法，是1.2的（MNB）的一种改进算法，CNB使用每个类的补集的统计量来计算模型的权重，CNB的参数估计比MNB的参数估计更稳定，比MNB表现的更好
 
--  用途
+-  用途：特别适用于不平衡数据集，解决了MMB中较长文档主导参数估计的趋势。
 
 .. _header-n50:
 
@@ -224,3 +248,8 @@ MultinomialNB 实现了服从多项分布数据的朴素贝叶斯算法，适用
 -  说明
 
 -  用途
+
+.. _header-n210:
+
+Python/R算法
+------------

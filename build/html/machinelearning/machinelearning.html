@@ -96,6 +96,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#header-n196">非监督学习算法</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#python-r">Python/R算法</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="machinelearning1.html">机器学习概览</a></li>
@@ -189,7 +190,7 @@
 <div class="section" id="header-n7">
 <span id="id4"></span><h4>一、朴素贝叶斯<a class="headerlink" href="#header-n7" title="永久链接至标题">¶</a></h4>
 <blockquote>
-<div><p>请以<strong>嫁与不嫁高富帅矮矬穷</strong>的分类做理解</p>
+<div><p>请以<strong>嫁与不嫁高富帅矮矬穷或者西瓜书</strong>的分类做理解</p>
 <p>假设：每对特征之间相互<strong>独立</strong>，
 很多情况下，朴素贝叶斯工作情况良好，特别是文本分类、文档分类、语言主题分类、垃圾邮件过滤</p>
 </div></blockquote>
@@ -197,37 +198,45 @@
 的相关的特征向量， 贝叶斯定理阐述了以下关系，方程式如下：</p>
 <div class="math notranslate nohighlight">
 \[P(y \mid x_1, \dots, x_n) = \frac{P(y) P(x_1, \dots x_n \mid y)}{P(x_1, \dots, x_n)}  = \frac{P(y) P(x_1  \mid y) \dots P(x_n \mid y)}{P(x_1) \dots P(x_n)}\]</div>
-<p>关系简化为如下：</p>
+<p><span class="math notranslate nohighlight">\(P(y)\)</span> 是类别的“先验”概率，<span class="math notranslate nohighlight">\(P(x \mid y)\)</span>
+是特征<span class="math notranslate nohighlight">\(x\)</span>对于类别标记<span class="math notranslate nohighlight">\(y\)</span>的类条件概率，或称为“似然”(likelihood)；简化为如下：</p>
 <div class="math notranslate nohighlight">
 \[P(y \mid x_1, \dots, x_n) = \frac{P(y) \prod_{i=1}^{n} P(x_i \mid y)}{P(x_1, \dots, x_n)}]\]</div>
 <p>在如上公式分类规则中，给定的如下分母<span class="math notranslate nohighlight">\(P(x_1, \dots , x_n) = P(x_1) \dots P(x_n)\)</span>
 的<strong>分类</strong>算法中，</p>
 <div class="math notranslate nohighlight">
-\[{P(x_1, \dots , x_n)} = P(x_1) \dots P(x_n)\]</div>
+\[ \begin{align}\begin{aligned}{P(x_1, \dots , x_n)} = P(x_1) \dots P(x_n)\\\quad 对所有类标记相同\end{aligned}\end{align} \]</div>
 <p>这是一个 <strong>常量</strong>
-，在类别对比中，分母相同，所以可以直接去掉分母，只比较分子，公式<strong>简化为</strong>如下分类规则：</p>
+，在类别对比中，分母相同，所以可以直接去掉分母，只比较分子，公式<strong>简化为</strong>如下贝叶斯判定规则：</p>
 <div class="math notranslate nohighlight">
 \[P(y \mid x_1, \dots, x_n) \propto P(y) \prod_{i=1}^{n} P(x_i \mid y)\]</div>
 <div class="math notranslate nohighlight">
 \[\Downarrow\]</div>
 <div class="math notranslate nohighlight">
-\[\hat{y} = \arg\max_y P(y) \prod_{i=1}^{n} P(x_i \mid y),\]</div>
-<div class="section" id="header-n21">
-<span id="id5"></span><h5>1.1 高斯朴素贝叶斯<a class="headerlink" href="#header-n21" title="永久链接至标题">¶</a></h5>
+\[ \begin{align}\begin{aligned}\hat{y} = \arg\max_y P(y) \prod_{i=1}^{n} P(x_i \mid y),\\\quad 对于“连乘”，通常通过取对数的方式转成“连加”，避免数值下溢\end{aligned}\end{align} \]</div>
+<p>朴素贝叶斯分类器的训练过程是基于训练集来估计类别先验概率<span class="math notranslate nohighlight">\(P(y)\)</span>，并为每个属性/特征<span class="math notranslate nohighlight">\(x_i\)</span>估计条件概率<span class="math notranslate nohighlight">\(P(x_i \mid y)\)</span></p>
+<div class="section" id="header-n224">
+<span id="id5"></span><h5>1.1 高斯朴素贝叶斯<a class="headerlink" href="#header-n224" title="永久链接至标题">¶</a></h5>
 <p>GuassianNB
 实现了运用分类的高斯朴素贝叶斯算法，特征的可能性（即概率）假设为高斯分布：</p>
 <div class="math notranslate nohighlight">
 \[P(x_i \mid y) = \frac{1}{\sqrt{2 \pi \sigma_y^2}} exp(- \frac {(x_i - \mu_y)^2}{2 \sigma_y^2})\]</div>
 <ul>
-<li><p>说明：参数<span class="math notranslate nohighlight">\(\mu_y\)</span>与<span class="math notranslate nohighlight">\(\sigma_y\)</span>
-使用<strong>最大似然法估计</strong></p></li>
+<li><p>说明：对连续属性而言，概率密度函数等式右边其参数为<span class="math notranslate nohighlight">\(\mu_y 均值\)</span>与<span class="math notranslate nohighlight">\(\sigma_y 方差\)</span>
+，使用<strong>最大似然法估计</strong></p></li>
 <li><p>代码参考：</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
+
 <span class="n">iris</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_iris</span><span class="p">()</span>
+
 <span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">GaussianNB</span>
+
 <span class="n">gnb</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>
+
 <span class="n">y_pred</span> <span class="o">=</span> <span class="n">gnb</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span><span class="p">)</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of mislabeled points out of a total </span><span class="si">%d</span><span class="s2"> points : </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],(</span><span class="n">iris</span><span class="o">.</span><span class="n">target</span> <span class="o">!=</span> <span class="n">y_pred</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()))</span>
+
 <span class="n">Number</span> <span class="n">of</span> <span class="n">mislabeled</span> <span class="n">points</span> <span class="n">out</span> <span class="n">of</span> <span class="n">a</span> <span class="n">total</span> <span class="mi">150</span> <span class="n">points</span> <span class="p">:</span> <span class="mi">6</span>
 </pre></div>
 </div>
@@ -236,25 +245,40 @@
 </div>
 <div class="section" id="header-n31">
 <span id="id6"></span><h5>1.2 多项式分布朴素贝叶斯<a class="headerlink" href="#header-n31" title="永久链接至标题">¶</a></h5>
-<p>MultinomialNB 实现了服从多项分布数据的朴素贝叶斯算法，适用于文本分类，
-与TF-IDF 同属于适用文本分类的<strong>两大经典算法</strong></p>
-<ul class="simple">
-<li><p>说明：文本分类表现良好</p></li>
-<li><p>用途</p></li>
+<p>MultinomialNB 实现了服从多项分布数据的朴素贝叶斯算法（MNB）， 与TF-IDF
+同属于适用文本分类的<strong>两大经典算法</strong></p>
+<ul>
+<li><p>说明：对<strong>离散</strong>属性而言，对每一个类别<span class="math notranslate nohighlight">\(y\)</span>，<span class="math notranslate nohighlight">\(n\)</span>是特征数（在文本分类中是词汇量vocabulary），样本中特征<span class="math notranslate nohighlight">\(x_i\)</span>属于类别<span class="math notranslate nohighlight">\(y\)</span>的概率<span class="math notranslate nohighlight">\(P(x_i \mid y)\)</span>可估计为：</p>
+<div class="math notranslate nohighlight">
+\[P(x_i \mid y) = \frac {|D_{y,xi}|}{|D_y|}\]</div>
+<div class="math notranslate nohighlight">
+\[\Downarrow\]</div>
+<p>为了避免其他属性携带的信息被训练集中未出现的属性值“抹去”，在估计概率值时通常要进行“平滑(smoothing)”，常用拉普拉斯平滑(Lapalce
+smoothing <span class="math notranslate nohighlight">\(\alpha = 1\)</span>)或Lidstone平滑(Lidstone smoothing
+<span class="math notranslate nohighlight">\(\alpha &lt; 1\)</span>)
+，<span class="math notranslate nohighlight">\(N\)</span>表示训练集<span class="math notranslate nohighlight">\(D\)</span>中可能的类别数，<span class="math notranslate nohighlight">\(|D_y|\)</span>是类别中所有的特征的总计数，<span class="math notranslate nohighlight">\(|D_{y,x_1}|\)</span>是特征在训练集的样本中出现的次数，公式(8)修正为如下：</p>
+<div class="math notranslate nohighlight">
+\[\hat P(x_i \mid y) = \frac {|D_{y,xi}| + \alpha}{|D_y| + \alpha N}\]</div>
+</li>
+<li><p>用途：本算法在文本分类表现良好</p></li>
 </ul>
 </div>
 <div class="section" id="header-n38">
 <span id="id7"></span><h5>1.3 伯努利朴素贝叶斯<a class="headerlink" href="#header-n38" title="永久链接至标题">¶</a></h5>
-<ul class="simple">
-<li><p>说明</p></li>
-<li><p>用途</p></li>
+<ul>
+<li><p>说明：BernoulliNB实现了用于多重伯努利分布数据的朴素贝叶斯训练和分类算法，即有多个特征，但每个特征都假设是一个二元变量(Bernoulli，Boolean)，要求样本特征以二元值特征向量表示：</p>
+<div class="math notranslate nohighlight">
+\[P(x_i \mid y) = P(i \mid y) x_i + (1- P(i \mid y))(1 - x_i)\]</div>
+</li>
+<li><p>用途：适合在短文本分类</p></li>
 </ul>
 </div>
 <div class="section" id="header-n44">
-<span id="id8"></span><h5>1.4 基于外存的朴素贝叶斯模型拟合<a class="headerlink" href="#header-n44" title="永久链接至标题">¶</a></h5>
+<span id="id8"></span><h5>1.4 补充朴素贝叶斯<a class="headerlink" href="#header-n44" title="永久链接至标题">¶</a></h5>
 <ul class="simple">
-<li><p>说明</p></li>
-<li><p>用途</p></li>
+<li><p>说明：ComplementNB
+实现了补充朴素贝叶斯（CNB）算法，是1.2的（MNB）的一种改进算法，CNB使用每个类的补集的统计量来计算模型的权重，CNB的参数估计比MNB的参数估计更稳定，比MNB表现的更好</p></li>
+<li><p>用途：特别适用于不平衡数据集，解决了MMB中较长文档主导参数估计的趋势。</p></li>
 </ul>
 </div>
 </div>
@@ -362,6 +386,9 @@
 </ul>
 </div>
 </div>
+</div>
+<div class="section" id="python-r">
+<span id="header-n210"></span><h2>Python/R算法<a class="headerlink" href="#python-r" title="永久链接至标题">¶</a></h2>
 </div>
 </div>
 
