@@ -2,9 +2,10 @@
 Data Science数据科学路线图
 ===========================
 
-- 作者: Shaofei Wang
+- 作者: 王少飞
 - 邮箱: 47181770@qq.com 
-- 个人说明：数据分析之路
+- 微信：47181770
+- 说明：数据科学学习之路
 - 网页：https://theroadtodatascience.readthedocs.io/
 
 数据科学概览
@@ -19,7 +20,8 @@ Data Science数据科学路线图
 
 .. Tip::
 
-  如有修改意见请扫描图片二维码联系作者，微信: 47181770
+  如有修改意见请扫描图片二维码联系作者，微信群：
+.. image:: _static/webchatgroup.png
 
 
 路线图
