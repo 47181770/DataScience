@@ -1,21 +1,21 @@
-.. _header-n2:
+.. _header-n4:
 
 算法
 ====
 
 机器学习常用算法数学公式
 
-.. _header-n4:
+.. _header-n6:
 
 机器学习算法
 ------------
 
-.. _header-n6:
+.. _header-n8:
 
 监督学习算法
 ~~~~~~~~~~~~
 
-.. _header-n7:
+.. _header-n9:
 
 一、朴素贝叶斯
 ^^^^^^^^^^^^^^
@@ -40,7 +40,7 @@
 
 .. math::
 
-   {P(x_1, \dots , x_n)} = P(x_1) \dots P(x_n) 
+   {P(x_1, \dots , x_n)} = P(x_1) \dots P(x_n) 
    \quad 对所有类标记相同
 
 这是一个 **常量**
@@ -52,13 +52,13 @@
 
 .. math::
 
-   \hat{y} = \arg\max_y P(y) \prod_{i=1}^{n} P(x_i \mid y),
-   
+   \hat{y} = \arg\max_y P(y) \prod_{i=1}^{n} P(x_i \mid y),
+
    \quad 对于“连乘”，通常通过取对数的方式转成“连加”，避免数值下溢
 
 朴素贝叶斯分类器的训练过程是基于训练集来估计类别先验概率\ :math:`P(y)`\ ，并为每个属性/特征\ :math:`x_i`\ 估计条件概率\ :math:`P(x_i \mid y)`
 
-.. _header-n224:
+.. _header-n24:
 
 1.1 高斯朴素贝叶斯
 ''''''''''''''''''
@@ -75,15 +75,15 @@ GuassianNB
 
    .. code:: python
 
-      from sklearn import datasets
-      iris = datasets.load_iris()
-      from sklearn.naive_bayes import GaussianNB
-      gnb = GaussianNB()
-      y_pred = gnb.fit(iris.data, iris.target).predict(iris.data)
-      print("Number of mislabeled points out of a total %d points : %d" % (iris.data.shape[0],(iris.target != y_pred).sum()))
+      from sklearn import datasets
+      iris = datasets.load_iris()
+      from sklearn.naive_bayes import GaussianNB
+      gnb = GaussianNB()
+      y_pred = gnb.fit(iris.data, iris.target).predict(iris.data)
+      print("Number of mislabeled points out of a total %d points : %d" % (iris.data.shape[0],(iris.target != y_pred).sum()))
       Number of mislabeled points out of a total 150 points : 6
 
-.. _header-n31:
+.. _header-n34:
 
 1.2 多项式分布朴素贝叶斯
 ''''''''''''''''''''''''
@@ -106,7 +106,7 @@ MultinomialNB 实现了服从多项分布数据的朴素贝叶斯算法（MNB）
 
 -  用途：本算法在文本分类表现良好
 
-.. _header-n38:
+.. _header-n45:
 
 1.3 伯努利朴素贝叶斯
 ''''''''''''''''''''
@@ -117,7 +117,7 @@ MultinomialNB 实现了服从多项分布数据的朴素贝叶斯算法（MNB）
 
 -  用途：适合在短文本分类
 
-.. _header-n44:
+.. _header-n52:
 
 1.4 补充朴素贝叶斯
 ''''''''''''''''''
@@ -127,9 +127,9 @@ MultinomialNB 实现了服从多项分布数据的朴素贝叶斯算法（MNB）
 
 -  用途：特别适用于不平衡数据集，解决了MMB中较长文档主导参数估计的趋势。
 
-.. _header-n50:
+.. _header-n58:
 
-二、广义线性模型
+二、线性回归模型
 ^^^^^^^^^^^^^^^^
 
 目标值 :math:`y` 是输入变量 :math:`x` 的线性组合。定义向量
@@ -138,11 +138,15 @@ MultinomialNB 实现了服从多项分布数据的朴素贝叶斯算法（MNB）
 
 .. math:: \hat y (w,x) = w_0 + w_1 x_1 + \dots + w_p x_p
 
+-  说明：算法是拟合一个带有系数\ :math:`w = (w_1, \cdots, w_p)`\ 的线性模型，是的数据集实际\ **观测数据**\ 与\ **预测数据**\ 之间的残差平方和最小，数学概念表示为：
+
+   .. math:: \underset{w}{min\,} \mid \mid X_w - y \mid \mid^2
+
+-  用途：各特征\ :math:`x_1, \cdots, x_p`\ 相互独立的情况下预测连续变量。
+
 -  
 
--  用途
-
-.. _header-n58:
+.. _header-n70:
 
 三、线性判别分析与二次线性判别分析
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -151,7 +155,7 @@ MultinomialNB 实现了服从多项分布数据的朴素贝叶斯算法（MNB）
 
 -  用途
 
-.. _header-n64:
+.. _header-n76:
 
 四、支持向量机
 ^^^^^^^^^^^^^^
@@ -160,25 +164,21 @@ MultinomialNB 实现了服从多项分布数据的朴素贝叶斯算法（MNB）
 
 -  用途
 
-.. _header-n70:
+.. _header-n82:
 
-五、最近邻KNN
-^^^^^^^^^^^^^
+五、k近邻KNN
+^^^^^^^^^^^^
 
--  说明
+-  参考：[KNN最近邻算法]:https://theroadtodatascience.readthedocs.io/en/latest/machinelearning/ml-knn.html
 
--  用途
-
-.. _header-n78:
+.. _header-n86:
 
 六、决策树
 ^^^^^^^^^^
 
--  说明
+-  
 
--  用途
-
-.. _header-n85:
+.. _header-n91:
 
 七、集成方法
 ^^^^^^^^^^^^
@@ -187,7 +187,7 @@ MultinomialNB 实现了服从多项分布数据的朴素贝叶斯算法（MNB）
 
 -  用途
 
-.. _header-n92:
+.. _header-n98:
 
 八、TF-IDF（单文本词频-逆文档频率）
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -211,27 +211,27 @@ MultinomialNB 实现了服从多项分布数据的朴素贝叶斯算法（MNB）
 
       .. math:: TF_1 \cdot IDF_1 + TF_2 \cdot IDF_2 + \cdots + TF_N \cdot IDF_N
 
-   1. 共有10亿个网页\ :math:`D=10亿`\ ，如“的”字，在10亿个网页中都出现过，就是\ :math:`D_w=10亿`\ ，所以“的”字权重就是\ :math:`log( \frac {D}{D_w})=log( \frac {D=10亿}{D_w=十亿}) = log(1) = 0`\ ，如“贝叶斯”在100万个网页中出现，“贝叶斯”的权重就是\ :math:`log( \frac {D}{D_w}) = log(\frac {D=10亿}{D_w=100万})=log(1000)=9.966`\ ；如“算法”在250万个网页中出现，“算法”的权重就是\ :math:`log( \frac {D}{D_w}) = log(\frac {D=10亿}{D_w=250万})=log(400)=8.6438`\ ；如“用途”在500万个网页中出现，“用途”的权重就是\ :math:`log( \frac {D}{D_w}) = log(\frac {D=10亿}{D_w=500万})=log(200)=7.6438`\ ；“的”为停用词，权重为0。
+   5. 共有10亿个网页\ :math:`D=10亿`\ ，如“的”字，在10亿个网页中都出现过，就是\ :math:`D_w=10亿`\ ，所以“的”字权重就是\ :math:`log( \frac {D}{D_w})=log( \frac {D=10亿}{D_w=十亿}) = log(1) = 0`\ ，如“贝叶斯”在100万个网页中出现，“贝叶斯”的权重就是\ :math:`log( \frac {D}{D_w}) = log(\frac {D=10亿}{D_w=100万})=log(1000)=9.966`\ ；如“算法”在250万个网页中出现，“算法”的权重就是\ :math:`log( \frac {D}{D_w}) = log(\frac {D=10亿}{D_w=250万})=log(400)=8.6438`\ ；如“用途”在500万个网页中出现，“用途”的权重就是\ :math:`log( \frac {D}{D_w}) = log(\frac {D=10亿}{D_w=500万})=log(200)=7.6438`\ ；“的”为停用词，权重为0。
 
       .. code:: python
 
-         import math
-         print(math.log(1000,2))
-         print(math.log(400,2))
+         import math
+         print(math.log(1000,2))
+         print(math.log(400,2))
          print(math.log(200,2))
 
-   2. "贝叶斯算法的用途" 短语的TF-IDF详细计算结果如下：
+   6. "贝叶斯算法的用途" 短语的TF-IDF详细计算结果如下：
 
       .. math:: 0.003 \cdot 9.966 + 0.01 \cdot 8.6438 + 0.02 \cdot 0 + 0.005 \cdot 7.6438 = 0.154555
 
-   3. 结合网页排名（PageRank）算法，给定一个查询，搜索有关网页的综合排名大致由\ **相关性和网页排名的乘积**\ 决定。
+   7. 结合网页排名（PageRank）算法，给定一个查询，搜索有关网页的综合排名大致由\ **相关性和网页排名的乘积**\ 决定。
 
-.. _header-n196:
+.. _header-n125:
 
 非监督学习算法
 ~~~~~~~~~~~~~~
 
-.. _header-n100:
+.. _header-n127:
 
 一、高斯混合模型
 ^^^^^^^^^^^^^^^^
@@ -240,7 +240,7 @@ MultinomialNB 实现了服从多项分布数据的朴素贝叶斯算法（MNB）
 
 -  用途
 
-.. _header-n106:
+.. _header-n133:
 
 二、聚类
 ^^^^^^^^
@@ -249,7 +249,7 @@ MultinomialNB 实现了服从多项分布数据的朴素贝叶斯算法（MNB）
 
 -  用途
 
-.. _header-n210:
+.. _header-n142:
 
 Python/R算法
 ------------
