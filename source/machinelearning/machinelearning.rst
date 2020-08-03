@@ -1,21 +1,21 @@
-.. _header-n4:
+.. _header-n2:
 
 算法
 ====
 
 机器学习常用算法数学公式
 
-.. _header-n6:
+.. _header-n4:
 
 机器学习算法
 ------------
 
-.. _header-n8:
+.. _header-n6:
 
 监督学习算法
 ~~~~~~~~~~~~
 
-.. _header-n9:
+.. _header-n7:
 
 一、朴素贝叶斯
 ^^^^^^^^^^^^^^
@@ -58,7 +58,7 @@
 
 朴素贝叶斯分类器的训练过程是基于训练集来估计类别先验概率\ :math:`P(y)`\ ，并为每个属性/特征\ :math:`x_i`\ 估计条件概率\ :math:`P(x_i \mid y)`
 
-.. _header-n24:
+.. _header-n22:
 
 1.1 高斯朴素贝叶斯
 ''''''''''''''''''
@@ -68,22 +68,11 @@ GuassianNB
 
 .. math:: P(x_i \mid y) = \frac{1}{\sqrt{2 \pi \sigma_y^2}} exp(- \frac {(x_i - \mu_y)^2}{2 \sigma_y^2})
 
--  说明：对连续属性而言，概率密度函数等式右边其参数为\ :math:`\mu_y 均值`\ 与\ :math:`\sigma_y 方差`
-   ，使用\ **最大似然法估计**
+-  说明：对连续属性而言，高斯模型假设特征符合正态分布，根据样本计算出均值和方差，就是概率密度函数等式右边其参数为\ :math:`\mu_y 均值`\ 与\ :math:`\sigma_y 方差`
 
--  代码参考：
+-  用途：处理连续型的特征变量，如身高<=160cm是1，160-170cm是2，>170cm是3，可以将连续变量身高转换为离散变量：3个特征f1、f2、f3，但这些方式不够细腻。故引入高斯模型，可以很好地计算男、女身高、体重、脚掌的均值与方差，这样来计算性别。
 
-   .. code:: python
-
-      from sklearn import datasets
-      iris = datasets.load_iris()
-      from sklearn.naive_bayes import GaussianNB
-      gnb = GaussianNB()
-      y_pred = gnb.fit(iris.data, iris.target).predict(iris.data)
-      print("Number of mislabeled points out of a total %d points : %d" % (iris.data.shape[0],(iris.target != y_pred).sum()))
-      Number of mislabeled points out of a total 150 points : 6
-
-.. _header-n34:
+.. _header-n32:
 
 1.2 多项式分布朴素贝叶斯
 ''''''''''''''''''''''''
@@ -106,7 +95,7 @@ MultinomialNB 实现了服从多项分布数据的朴素贝叶斯算法（MNB）
 
 -  用途：本算法在文本分类表现良好
 
-.. _header-n45:
+.. _header-n43:
 
 1.3 伯努利朴素贝叶斯
 ''''''''''''''''''''
@@ -117,7 +106,7 @@ MultinomialNB 实现了服从多项分布数据的朴素贝叶斯算法（MNB）
 
 -  用途：适合在短文本分类
 
-.. _header-n52:
+.. _header-n50:
 
 1.4 补充朴素贝叶斯
 ''''''''''''''''''
@@ -127,7 +116,7 @@ MultinomialNB 实现了服从多项分布数据的朴素贝叶斯算法（MNB）
 
 -  用途：特别适用于不平衡数据集，解决了MMB中较长文档主导参数估计的趋势。
 
-.. _header-n58:
+.. _header-n56:
 
 二、线性回归模型
 ^^^^^^^^^^^^^^^^
@@ -146,7 +135,7 @@ MultinomialNB 实现了服从多项分布数据的朴素贝叶斯算法（MNB）
 
 -  
 
-.. _header-n70:
+.. _header-n68:
 
 三、线性判别分析与二次线性判别分析
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -155,7 +144,7 @@ MultinomialNB 实现了服从多项分布数据的朴素贝叶斯算法（MNB）
 
 -  用途
 
-.. _header-n76:
+.. _header-n74:
 
 四、支持向量机
 ^^^^^^^^^^^^^^
@@ -164,21 +153,21 @@ MultinomialNB 实现了服从多项分布数据的朴素贝叶斯算法（MNB）
 
 -  用途
 
-.. _header-n82:
+.. _header-n80:
 
 五、k近邻KNN
 ^^^^^^^^^^^^
 
 -  参考：[KNN最近邻算法]:https://theroadtodatascience.readthedocs.io/en/latest/machinelearning/ml-knn.html
 
-.. _header-n86:
+.. _header-n84:
 
 六、决策树
 ^^^^^^^^^^
 
 -  
 
-.. _header-n91:
+.. _header-n89:
 
 七、集成方法
 ^^^^^^^^^^^^
@@ -187,7 +176,7 @@ MultinomialNB 实现了服从多项分布数据的朴素贝叶斯算法（MNB）
 
 -  用途
 
-.. _header-n98:
+.. _header-n96:
 
 八、TF-IDF（单文本词频-逆文档频率）
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -226,12 +215,12 @@ MultinomialNB 实现了服从多项分布数据的朴素贝叶斯算法（MNB）
 
    7. 结合网页排名（PageRank）算法，给定一个查询，搜索有关网页的综合排名大致由\ **相关性和网页排名的乘积**\ 决定。
 
-.. _header-n125:
+.. _header-n123:
 
 非监督学习算法
 ~~~~~~~~~~~~~~
 
-.. _header-n127:
+.. _header-n125:
 
 一、高斯混合模型
 ^^^^^^^^^^^^^^^^
@@ -240,7 +229,7 @@ MultinomialNB 实现了服从多项分布数据的朴素贝叶斯算法（MNB）
 
 -  用途
 
-.. _header-n133:
+.. _header-n131:
 
 二、聚类
 ^^^^^^^^
@@ -249,7 +238,7 @@ MultinomialNB 实现了服从多项分布数据的朴素贝叶斯算法（MNB）
 
 -  用途
 
-.. _header-n142:
+.. _header-n140:
 
 Python/R算法
 ------------

@@ -91,9 +91,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../R/index.html">R</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">机器学习</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">算法</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#header-n6">机器学习算法</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#header-n8">监督学习算法</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#header-n125">非监督学习算法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#header-n4">机器学习算法</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#header-n6">监督学习算法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#header-n123">非监督学习算法</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#python-r">Python/R算法</a></li>
@@ -180,15 +180,15 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="header-n4">
-<span id="id1"></span><h1>算法<a class="headerlink" href="#header-n4" title="永久链接至标题">¶</a></h1>
+  <div class="section" id="header-n2">
+<span id="id1"></span><h1>算法<a class="headerlink" href="#header-n2" title="永久链接至标题">¶</a></h1>
 <p>机器学习常用算法数学公式</p>
+<div class="section" id="header-n4">
+<span id="id2"></span><h2>机器学习算法<a class="headerlink" href="#header-n4" title="永久链接至标题">¶</a></h2>
 <div class="section" id="header-n6">
-<span id="id2"></span><h2>机器学习算法<a class="headerlink" href="#header-n6" title="永久链接至标题">¶</a></h2>
-<div class="section" id="header-n8">
-<span id="id3"></span><h3>监督学习算法<a class="headerlink" href="#header-n8" title="永久链接至标题">¶</a></h3>
-<div class="section" id="header-n9">
-<span id="id4"></span><h4>一、朴素贝叶斯<a class="headerlink" href="#header-n9" title="永久链接至标题">¶</a></h4>
+<span id="id3"></span><h3>监督学习算法<a class="headerlink" href="#header-n6" title="永久链接至标题">¶</a></h3>
+<div class="section" id="header-n7">
+<span id="id4"></span><h4>一、朴素贝叶斯<a class="headerlink" href="#header-n7" title="永久链接至标题">¶</a></h4>
 <blockquote>
 <div><p>请以<strong>嫁与不嫁高富帅矮矬穷或者西瓜书</strong>的分类做理解</p>
 <p>假设：每对特征之间相互<strong>独立</strong>，
@@ -216,30 +216,19 @@
 <div class="math notranslate nohighlight">
 \[ \begin{align}\begin{aligned}\hat{y} = \arg\max_y P(y) \prod_{i=1}^{n} P(x_i \mid y),\\\quad 对于“连乘”，通常通过取对数的方式转成“连加”，避免数值下溢\end{aligned}\end{align} \]</div>
 <p>朴素贝叶斯分类器的训练过程是基于训练集来估计类别先验概率<span class="math notranslate nohighlight">\(P(y)\)</span>，并为每个属性/特征<span class="math notranslate nohighlight">\(x_i\)</span>估计条件概率<span class="math notranslate nohighlight">\(P(x_i \mid y)\)</span></p>
-<div class="section" id="header-n24">
-<span id="id5"></span><h5>1.1 高斯朴素贝叶斯<a class="headerlink" href="#header-n24" title="永久链接至标题">¶</a></h5>
+<div class="section" id="header-n22">
+<span id="id5"></span><h5>1.1 高斯朴素贝叶斯<a class="headerlink" href="#header-n22" title="永久链接至标题">¶</a></h5>
 <p>GuassianNB
 实现了运用分类的高斯朴素贝叶斯算法，特征的可能性（即概率）假设为高斯分布：</p>
 <div class="math notranslate nohighlight">
 \[P(x_i \mid y) = \frac{1}{\sqrt{2 \pi \sigma_y^2}} exp(- \frac {(x_i - \mu_y)^2}{2 \sigma_y^2})\]</div>
-<ul>
-<li><p>说明：对连续属性而言，概率密度函数等式右边其参数为<span class="math notranslate nohighlight">\(\mu_y 均值\)</span>与<span class="math notranslate nohighlight">\(\sigma_y 方差\)</span>
-，使用<strong>最大似然法估计</strong></p></li>
-<li><p>代码参考：</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
-<span class="n">iris</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_iris</span><span class="p">()</span>
-<span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">GaussianNB</span>
-<span class="n">gnb</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>
-<span class="n">y_pred</span> <span class="o">=</span> <span class="n">gnb</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span><span class="p">)</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of mislabeled points out of a total </span><span class="si">%d</span><span class="s2"> points : </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],(</span><span class="n">iris</span><span class="o">.</span><span class="n">target</span> <span class="o">!=</span> <span class="n">y_pred</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()))</span>
-<span class="n">Number</span> <span class="n">of</span> <span class="n">mislabeled</span> <span class="n">points</span> <span class="n">out</span> <span class="n">of</span> <span class="n">a</span> <span class="n">total</span> <span class="mi">150</span> <span class="n">points</span> <span class="p">:</span> <span class="mi">6</span>
-</pre></div>
-</div>
-</li>
+<ul class="simple">
+<li><p>说明：对连续属性而言，高斯模型假设特征符合正态分布，根据样本计算出均值和方差，就是概率密度函数等式右边其参数为<span class="math notranslate nohighlight">\(\mu_y 均值\)</span>与<span class="math notranslate nohighlight">\(\sigma_y 方差\)</span></p></li>
+<li><p>用途：处理连续型的特征变量，如身高&lt;=160cm是1，160-170cm是2，&gt;170cm是3，可以将连续变量身高转换为离散变量：3个特征f1、f2、f3，但这些方式不够细腻。故引入高斯模型，可以很好地计算男、女身高、体重、脚掌的均值与方差，这样来计算性别。</p></li>
 </ul>
 </div>
-<div class="section" id="header-n34">
-<span id="id6"></span><h5>1.2 多项式分布朴素贝叶斯<a class="headerlink" href="#header-n34" title="永久链接至标题">¶</a></h5>
+<div class="section" id="header-n32">
+<span id="id6"></span><h5>1.2 多项式分布朴素贝叶斯<a class="headerlink" href="#header-n32" title="永久链接至标题">¶</a></h5>
 <p>MultinomialNB 实现了服从多项分布数据的朴素贝叶斯算法（MNB）， 与TF-IDF
 同属于适用文本分类的<strong>两大经典算法</strong></p>
 <ul>
@@ -258,8 +247,8 @@ smoothing <span class="math notranslate nohighlight">\(\alpha = 1\)</span>)或Li
 <li><p>用途：本算法在文本分类表现良好</p></li>
 </ul>
 </div>
-<div class="section" id="header-n45">
-<span id="id7"></span><h5>1.3 伯努利朴素贝叶斯<a class="headerlink" href="#header-n45" title="永久链接至标题">¶</a></h5>
+<div class="section" id="header-n43">
+<span id="id7"></span><h5>1.3 伯努利朴素贝叶斯<a class="headerlink" href="#header-n43" title="永久链接至标题">¶</a></h5>
 <ul>
 <li><p>说明：BernoulliNB实现了用于多重伯努利分布数据的朴素贝叶斯训练和分类算法，即有多个特征，但每个特征都假设是一个二元变量(Bernoulli，Boolean)，要求样本特征以二元值特征向量表示：</p>
 <div class="math notranslate nohighlight">
@@ -268,8 +257,8 @@ smoothing <span class="math notranslate nohighlight">\(\alpha = 1\)</span>)或Li
 <li><p>用途：适合在短文本分类</p></li>
 </ul>
 </div>
-<div class="section" id="header-n52">
-<span id="id8"></span><h5>1.4 补充朴素贝叶斯<a class="headerlink" href="#header-n52" title="永久链接至标题">¶</a></h5>
+<div class="section" id="header-n50">
+<span id="id8"></span><h5>1.4 补充朴素贝叶斯<a class="headerlink" href="#header-n50" title="永久链接至标题">¶</a></h5>
 <ul class="simple">
 <li><p>说明：ComplementNB
 实现了补充朴素贝叶斯（CNB）算法，是1.2的（MNB）的一种改进算法，CNB使用每个类的补集的统计量来计算模型的权重，CNB的参数估计比MNB的参数估计更稳定，比MNB表现的更好</p></li>
@@ -277,8 +266,8 @@ smoothing <span class="math notranslate nohighlight">\(\alpha = 1\)</span>)或Li
 </ul>
 </div>
 </div>
-<div class="section" id="header-n58">
-<span id="id9"></span><h4>二、线性回归模型<a class="headerlink" href="#header-n58" title="永久链接至标题">¶</a></h4>
+<div class="section" id="header-n56">
+<span id="id9"></span><h4>二、线性回归模型<a class="headerlink" href="#header-n56" title="永久链接至标题">¶</a></h4>
 <p>目标值 <span class="math notranslate nohighlight">\(y\)</span> 是输入变量 <span class="math notranslate nohighlight">\(x\)</span> 的线性组合。定义向量
 :math:` (w_1, dots , w_p)`代表系数coef_，<span class="math notranslate nohighlight">\(w_0\)</span>
 代表截距intercept_，数学概念表示为：</p>
@@ -293,41 +282,41 @@ smoothing <span class="math notranslate nohighlight">\(\alpha = 1\)</span>)或Li
 <li></li>
 </ul>
 </div>
-<div class="section" id="header-n70">
-<span id="id10"></span><h4>三、线性判别分析与二次线性判别分析<a class="headerlink" href="#header-n70" title="永久链接至标题">¶</a></h4>
+<div class="section" id="header-n68">
+<span id="id10"></span><h4>三、线性判别分析与二次线性判别分析<a class="headerlink" href="#header-n68" title="永久链接至标题">¶</a></h4>
 <ul class="simple">
 <li><p>说明</p></li>
 <li><p>用途</p></li>
 </ul>
 </div>
-<div class="section" id="header-n76">
-<span id="id11"></span><h4>四、支持向量机<a class="headerlink" href="#header-n76" title="永久链接至标题">¶</a></h4>
+<div class="section" id="header-n74">
+<span id="id11"></span><h4>四、支持向量机<a class="headerlink" href="#header-n74" title="永久链接至标题">¶</a></h4>
 <ul class="simple">
 <li><p>说明</p></li>
 <li><p>用途</p></li>
 </ul>
 </div>
 <div class="section" id="kknn">
-<span id="header-n82"></span><h4>五、k近邻KNN<a class="headerlink" href="#kknn" title="永久链接至标题">¶</a></h4>
+<span id="header-n80"></span><h4>五、k近邻KNN<a class="headerlink" href="#kknn" title="永久链接至标题">¶</a></h4>
 <ul class="simple">
 <li><p>参考：[KNN最近邻算法]:<a class="reference external" href="https://theroadtodatascience.readthedocs.io/en/latest/machinelearning/ml-knn.html">https://theroadtodatascience.readthedocs.io/en/latest/machinelearning/ml-knn.html</a></p></li>
 </ul>
 </div>
-<div class="section" id="header-n86">
-<span id="id12"></span><h4>六、决策树<a class="headerlink" href="#header-n86" title="永久链接至标题">¶</a></h4>
+<div class="section" id="header-n84">
+<span id="id12"></span><h4>六、决策树<a class="headerlink" href="#header-n84" title="永久链接至标题">¶</a></h4>
 <ul class="simple">
 <li></li>
 </ul>
 </div>
-<div class="section" id="header-n91">
-<span id="id13"></span><h4>七、集成方法<a class="headerlink" href="#header-n91" title="永久链接至标题">¶</a></h4>
+<div class="section" id="header-n89">
+<span id="id13"></span><h4>七、集成方法<a class="headerlink" href="#header-n89" title="永久链接至标题">¶</a></h4>
 <ul class="simple">
 <li><p>说明</p></li>
 <li><p>用途</p></li>
 </ul>
 </div>
 <div class="section" id="tf-idf">
-<span id="header-n98"></span><h4>八、TF-IDF（单文本词频-逆文档频率）<a class="headerlink" href="#tf-idf" title="永久链接至标题">¶</a></h4>
+<span id="header-n96"></span><h4>八、TF-IDF（单文本词频-逆文档频率）<a class="headerlink" href="#tf-idf" title="永久链接至标题">¶</a></h4>
 <ul>
 <li><p>说明：TF：Term Frequency - IDF：Inverse Document Frequency
 搜索关键词权重的科学度量、是对搜索关键词的重要性的度量，具备很强的理论依据</p></li>
@@ -361,17 +350,17 @@ smoothing <span class="math notranslate nohighlight">\(\alpha = 1\)</span>)或Li
 </ul>
 </div>
 </div>
+<div class="section" id="header-n123">
+<span id="id14"></span><h3>非监督学习算法<a class="headerlink" href="#header-n123" title="永久链接至标题">¶</a></h3>
 <div class="section" id="header-n125">
-<span id="id14"></span><h3>非监督学习算法<a class="headerlink" href="#header-n125" title="永久链接至标题">¶</a></h3>
-<div class="section" id="header-n127">
-<span id="id15"></span><h4>一、高斯混合模型<a class="headerlink" href="#header-n127" title="永久链接至标题">¶</a></h4>
+<span id="id15"></span><h4>一、高斯混合模型<a class="headerlink" href="#header-n125" title="永久链接至标题">¶</a></h4>
 <ul class="simple">
 <li><p>说明</p></li>
 <li><p>用途</p></li>
 </ul>
 </div>
-<div class="section" id="header-n133">
-<span id="id16"></span><h4>二、聚类<a class="headerlink" href="#header-n133" title="永久链接至标题">¶</a></h4>
+<div class="section" id="header-n131">
+<span id="id16"></span><h4>二、聚类<a class="headerlink" href="#header-n131" title="永久链接至标题">¶</a></h4>
 <ul class="simple">
 <li><p>说明</p></li>
 <li><p>用途</p></li>
@@ -380,7 +369,7 @@ smoothing <span class="math notranslate nohighlight">\(\alpha = 1\)</span>)或Li
 </div>
 </div>
 <div class="section" id="python-r">
-<span id="header-n142"></span><h2>Python/R算法<a class="headerlink" href="#python-r" title="永久链接至标题">¶</a></h2>
+<span id="header-n140"></span><h2>Python/R算法<a class="headerlink" href="#python-r" title="永久链接至标题">¶</a></h2>
 </div>
 </div>
 
